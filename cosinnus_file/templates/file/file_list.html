@@ -1,0 +1,81 @@
+{% extends "file/base.html" %}
+{% load i18n static %}
+{% block page_title %}File List{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li class="active">{% trans "List" %}</li>
+{% endblock %}
+
+{% block subnav_add_right %}
+<a href="{% url 'sinn_file-entry-create' group=group.pk %}" class="btn">
+  {% trans "Upload file" %}
+</a>
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+{% if tags %}
+  {% for tag in tags %}
+    <a href="{% url 'sinn_file-entry-list-filtered' group=group.pk tag=tag.slug %}"><span class="label">{{ tag.name }}</span></a>
+  {% endfor %}
+{% else %}
+  {% trans "No tags available." %}
+{% endif %}
+
+{% if object_list %}
+<form action="." method="post" class="form-horizontal">
+{% csrf_token %}
+<table class="table table-striped" id="select-all-context">
+    <thead>
+        <td><input type="checkbox" id="select-all" id="select-all"></td>
+        <td><a href="{{ request.path }}{{ sort_helper.get_sort_query_by_name }}">{% trans "Name" %}</a></td>
+        <td><a href="{{ request.path }}{{ sort_helper.get_sort_query_by_uploaded_date }}">{% trans "Uploaded on" %}</a></td>
+        <td><a href="{{ request.path }}{{ sort_helper.get_sort_query_by_uploaded_by }}">{% trans "Uploaded by" %}</a></td>
+        <td>{% trans "Tags" %}</td>
+        <td>{% trans "Actions" %}</td>
+    </thead>
+    {% for object in object_list %}
+        <tr>
+            <td><input type="checkbox" value="{{ object.pk }}" name="select"></td>
+            <td><a target="_blank" href="{{ object.file.url }}">{{ object.name }}</a></td>
+            <td>{{ object.uploaded_date|date:"DATETIME_FORMAT" }}</td>
+            <td>{{ object.uploaded_by }}</td>
+            <td>
+                {% for tag in object.tags.all %}
+                    <a href="{% url 'sinn_file-entry-list-filtered' group=group.pk tag=tag.slug %}"><span class="label">{{ tag.name }}</span></a>
+                {% empty %}
+                -
+                {% endfor %}
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn btn-primary btn-mini" href="{% url 'sinn_file-entry-detail' group=group.pk pk=object.id %}"><i class="icon-eye-open icon-white"></i> {% trans "Show" %}</a>
+                    <a class="btn btn-primary btn-mini dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'sinn_file-entry-update' group=group.pk pk=object.id %}"><i class="icon-pencil"></i> {% trans "Edit" %}</a></li>
+                        <li><a href="{% url 'sinn_file-entry-delete' group=group.pk pk=object.id %}"><i class="icon-trash"></i> {% trans "Delete" %}</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+<div class="pull-right">
+    <button type="submit" class="btn" name="download">{% trans "Download" %}</button>
+</div>
+</form>
+{% else %}
+    {% trans "There are no files." %}
+{% endif %}
+{% endblock content %}
+
+{% block extrafooter %}
+{{ block.super }}
+<script type="text/javascript" src="{% static "js/file.js" %}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  init_select_all('#select-all', '#select-all-context')
+});
+</script>
+{% endblock extrafooter %}

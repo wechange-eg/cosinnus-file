@@ -1,0 +1,146 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Markus Holtermann <info@markusholtermann.eu>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-05 14:03+0200\n"
+"PO-Revision-Date: 2013-08-05 14:03+0200\n"
+"Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
+"Language-Team: German <>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: models.py:19 templates/file/file_detail.html:13
+#: templates/file/file_list.html:32
+msgid "Name"
+msgstr "Name"
+
+#: models.py:20
+msgid "Note"
+msgstr "Bemerkung"
+
+#: models.py:21 models.py:32
+msgid "File"
+msgstr "Datei"
+
+#: models.py:23 templates/file/file_detail.html:17
+#: templates/file/file_list.html:33
+msgid "Uploaded on"
+msgstr "Hochgeladen am"
+
+#: models.py:24 templates/file/file_detail.html:21
+#: templates/file/file_list.html:34
+msgid "Uploaded by"
+msgstr "Hochgeladen durch"
+
+#: models.py:27
+msgid "Group"
+msgstr "Gruppe"
+
+#: models.py:33 templates/file/base.html:7
+msgid "Files"
+msgstr "Dateien"
+
+#: views.py:83 views.py:91
+msgid "File does not exist or you are not allowed to delete it."
+msgstr ""
+"Entweder existiert diese Datei nicht oder Ihnen fehlen die Rechte um die "
+"Veranstaltung zu bearbeiten."
+
+#: views.py:119
+msgid "No files selected."
+msgstr "Keine Dateien ausgewählt."
+
+#: views.py:128
+#, python-format
+msgid ""
+"A problem occurred during export. The following file is missing: "
+"%(filename)s."
+msgid_plural ""
+"A problem occurred during export. The following files are missing: "
+"%(filename)s."
+msgstr[0] ""
+"Beim Exportieren ist ein Fehler aufgetreten. Die folgende Datei existiert "
+"nicht: %(filename)s"
+msgstr[1] ""
+"Beim Exportieren ist ein Fehler aufgetreten. Die folgenden Dateien "
+"existieren nicht: %(filename)s"
+
+#: views.py:143
+msgid "Invalid request."
+msgstr "Ungültiger Seitenaufruf."
+
+#: templates/file/file_detail.html:25
+msgid "URL"
+msgstr "URL"
+
+#: templates/file/file_detail.html:29 templates/file/file_detail.html.py:32
+#: templates/file/file_list.html:36
+msgid "Actions"
+msgstr "Aktionen"
+
+#: templates/file/file_detail.html:34
+msgid "Update"
+msgstr "Bearbeiten"
+
+#: templates/file/file_detail.html:35 templates/file/file_form.html:17
+#: templates/file/file_form.html.py:41 templates/file/file_list.html:57
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/file/file_form.html:15 templates/file/file_form.html.py:37
+msgid "Upload"
+msgstr "Hochgeladen"
+
+#: templates/file/file_form.html:20 templates/file/file_list.html:12
+msgid "Upload file"
+msgstr "Datei hochladen"
+
+#: templates/file/file_form.html:39
+msgctxt "sinn"
+msgid "Save"
+msgstr "Speichern"
+
+#: templates/file/file_form.html:42
+msgid "Are you sure to remove this file?"
+msgstr "Sind Sie sich sicher, dass Sie diese Datei löschen wollen?"
+
+#: templates/file/file_form.html:52
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: templates/file/file_list.html:7
+msgid "List"
+msgstr "Liste"
+
+#: templates/file/file_list.html:23
+msgid "No tags available."
+msgstr "Keine Schlagwörter vorhanden."
+
+#: templates/file/file_list.html:35
+msgid "Tags"
+msgstr "Schlagwörter"
+
+#: templates/file/file_list.html:53
+msgid "Show"
+msgstr "Anzeigen"
+
+#: templates/file/file_list.html:56
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: templates/file/file_list.html:65
+msgid "Download"
+msgstr "Herunterladen"
+
+#: templates/file/file_list.html:69
+msgid "There are no files."
+msgstr "Es gibt keine Dateien."
+

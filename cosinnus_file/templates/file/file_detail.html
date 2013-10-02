@@ -1,0 +1,41 @@
+{% extends "file/base.html" %}
+{% load i18n %}
+{% block page_title %}File{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li class="active">{{ object.name }}</li>
+{% endblock %}
+
+{% block content %}
+<table class="table">
+<tr>
+    <th class="span2">{% trans "Name" %}</th>
+    <td>{{ object }}</td>
+</tr>
+<tr>
+    <th>{% trans "Uploaded on" %}</th>
+    <td>{{ object.uploaded_date|date:"DATETIME_FORMAT" }}</td>
+</tr>
+<tr>
+    <th>{% trans "Uploaded by" %}</th>
+    <td>{{ object.uploaded_by }}</td>
+</tr>
+<tr>
+    <th>{% trans "URL" %}</th>
+    <td><a href="{{ object.file.url }}">{{ object.file.url }}</a></td>
+</tr>
+<tr>
+    <th>{% trans "Actions" %}</th>
+    <td>
+        <div class="btn-group">
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">{% trans "Actions" %} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'sinn_file-entry-update' group=group.pk pk=object.id %}"><i class="icon-pencil"></i> {% trans "Update"%}</a></li>
+                <li><a href="{% url 'sinn_file-entry-delete' group=group.pk pk=object.id %}"><i class="icon-trash"></i> {% trans "Delete" %}</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+</table>
+{% endblock %}
