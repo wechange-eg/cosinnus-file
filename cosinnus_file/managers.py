@@ -10,7 +10,7 @@ from taggit.models import TaggedItem
 class FileEntryManager(models.Manager):
 
     def tags(self):
-        event_type = ContentType.objects.get(app_label="file", model="fileentry")
+        event_type = ContentType.objects.get(app_label="cosinnus_file", model="fileentry")
 
         tag_names = []
         for ti in TaggedItem.objects.filter(content_type_id=event_type):

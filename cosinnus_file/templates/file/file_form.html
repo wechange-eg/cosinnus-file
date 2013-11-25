@@ -1,5 +1,5 @@
 {% extends "file/base.html" %}
-{% load i18n bootstrap_toolkit cosinnus_tags}
+{% load i18n cosinnus_tags %}
 {% load static from staticfiles %}
 {% block page_title %}File{% endblock %}
 
@@ -29,10 +29,6 @@
     <fieldset>
         {{ form }}
 
-        {% set submitbtn_caption = "" %}
-        {% set question = "" %}
-        {% set btnclass = "btn-primary" %}
-
         {% if form_view == 'create' %}
             {% trans "Upload" as submitbtn_caption %}
         {% elif form_view == 'update' %}
@@ -40,7 +36,6 @@
         {% elif form_view == 'delete' %}
             {% trans "Delete" as submitbtn_caption %}
             {% trans "Are you sure to remove this file?" as question %}
-            {% set btnclass = "btn-danger" %}
         {% endif %}
 
         <div class="control-group">
