@@ -12,11 +12,12 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateView
 from django.views.generic.list import ListView
 
-from extra_views.contrib.mixins import SortableListMixin
+from extra_views import SortableListMixin
 
-from cosinnus.authentication.views import FilterGroupMixin, RequireGroupMixin
-from cosinnus.utils.views import TaggedListMixin
-from cosinnus.utils.zip import create_zip_file
+from cosinnus.views.mixins.group import (RequireGroupMixin, FilterGroupMixin,
+    GroupFormKwargsMixin)
+from cosinnus.views.mixins.tagged import TaggedListMixin
+from cosinnus.utils.files import create_zip_file
 
 from cosinnus_file.forms import FileForm, FileListForm
 from cosinnus_file.models import FileEntry
@@ -34,15 +35,15 @@ class FileFormMixin(object):
         return context
 
     def get_success_url(self):
-        return reverse('sinn_file-entry-list',
-                       kwargs={'group': self.group.pk})
+        return reverse('cosinnus:file:list',
+                       kwargs={'group': self.group.name})
 
 
 class FileIndexView(RequireGroupMixin, RedirectView):
 
     def get_redirect_url(self, **kwargs):
-        return reverse('sinn_file-entry-list',
-                       kwargs={'group': self.group.pk})
+        return reverse('cosinnus:file:list',
+                       kwargs={'group': self.group.name})
 
 
 class FileCreateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,

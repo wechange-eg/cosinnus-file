@@ -31,8 +31,8 @@
         <div class="btn-group">
             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">{% trans "Actions" %} <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="{% url 'sinn_file-entry-update' group=group.pk pk=object.id %}"><i class="icon-pencil"></i> {% trans "Update"%}</a></li>
-                <li><a href="{% url 'sinn_file-entry-delete' group=group.pk pk=object.id %}"><i class="icon-trash"></i> {% trans "Delete" %}</a></li>
+                <li><a href="{% url 'cosinnus:file:update' group=group.name slug=object.slug %}"><i class="icon-pencil"></i> {% trans "Update"%}</a></li>
+                <li><a href="{% url 'cosinnus:file:delete' group=group.name slug=object.slug %}"><i class="icon-trash"></i> {% trans "Delete" %}</a></li>
             </ul>
         </div>
     </td>

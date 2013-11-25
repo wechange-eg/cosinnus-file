@@ -10,6 +10,6 @@ NOTIFY_MODELS = [FileEntry]
 NOTIFY_POST_SUBSCRIBE_URLS = {
     'file.FileEntry': {
         'show': lambda obj, group: obj.get_absolute_url(),
-        'list': lambda obj, group: reverse('sinn_file-entry-list', kwargs={'group': group.pk}),
+        'list': lambda obj, group: reverse('cosinnus:file:list', kwargs={'group': group.name}),
     },
 }

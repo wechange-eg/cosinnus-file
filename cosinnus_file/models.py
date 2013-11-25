@@ -10,8 +10,10 @@ from django.utils.encoding import force_unicode
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 
-from cosinnus.authentication.models import Group, User
-from cosinnus.utils.models import TaggableModel
+from django.contrib.auth.models import Group, User
+
+from cosinnus.utils.functions import unique_aware_slugify
+from cosinnus.models.utils import TaggableModel
 
 from cosinnus_file.managers import FileEntryManager
 
@@ -21,6 +23,7 @@ class FileEntry(TaggableModel):
     SORT_FIELDS_ALIASES = [('name', 'name'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
 
     name = models.CharField(_(u'Name'), blank=False, null=False, max_length=50)
+    slug = models.SlugField(max_length=145)  # 4 numbers for the slug number should be fine
     note = models.TextField(_(u'Note'), blank=True, null=True)
     file = models.FileField(_(u'File'), blank=False, null=False,
                             max_length=250, upload_to='files/%Y/%m/%d')
@@ -33,16 +36,23 @@ class FileEntry(TaggableModel):
     objects = FileEntryManager()
 
     class Meta:
+        ordering = ['-uploaded_date', 'name']
+        unique_together = ('group', 'slug')
         verbose_name = _('File')
         verbose_name_plural = _('Files')
 
     def __unicode__(self):
         return force_unicode(self.name)
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            unique_aware_slugify(self, slug_source='name', slug_field='slug', group=self.group)
+        super(FileEntry, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        kwargs = {'group': self.group.pk,
-                  'pk': self.pk}
-        return reverse('sinn_file-entry-detail', kwargs=kwargs)
+        kwargs = {'group': self.group.name,
+                  'slug': self.slug}
+        return reverse('cosinnus:file:file', kwargs=kwargs)
 
 
 @receiver(post_delete, sender=FileEntry)

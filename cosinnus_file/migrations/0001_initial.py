@@ -9,21 +9,28 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'FileEntry'
-        db.create_table(u'file_fileentry', (
+        db.create_table(u'cosinnus_file_fileentry', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=145)),
             ('note', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('file', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
+            ('file', self.gf('django.db.models.fields.files.FileField')(max_length=250)),
             ('uploaded_date', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('uploaded_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name='files', on_delete=models.PROTECT, to=orm['auth.User'])),
+            ('uploaded_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name=u'files', on_delete=models.PROTECT, to=orm['auth.User'])),
             ('group', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.Group'])),
         ))
-        db.send_create_signal(u'file', ['FileEntry'])
+        db.send_create_signal(u'cosinnus_file', ['FileEntry'])
+
+        # Adding unique constraint on 'FileEntry', fields ['group', 'slug']
+        db.create_unique(u'cosinnus_file_fileentry', ['group_id', 'slug'])
 
 
     def backwards(self, orm):
+        # Removing unique constraint on 'FileEntry', fields ['group', 'slug']
+        db.delete_unique(u'cosinnus_file_fileentry', ['group_id', 'slug'])
+
         # Deleting model 'FileEntry'
-        db.delete_table(u'file_fileentry')
+        db.delete_table(u'cosinnus_file_fileentry')
 
 
     models = {
@@ -63,16 +70,30 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'file.fileentry': {
-            'Meta': {'object_name': 'FileEntry'},
-            'file': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
+        u'cosinnus_file.fileentry': {
+            'Meta': {'ordering': "[u'-uploaded_date', u'name']", 'unique_together': "((u'group', u'slug'),)", 'object_name': 'FileEntry'},
+            'file': ('django.db.models.fields.files.FileField', [], {'max_length': '250'}),
             'group': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.Group']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'note': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'uploaded_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'files'", 'on_delete': 'models.PROTECT', 'to': u"orm['auth.User']"}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '145'}),
+            'uploaded_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'files'", 'on_delete': 'models.PROTECT', 'to': u"orm['auth.User']"}),
             'uploaded_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'})
+        },
+        u'taggit.tag': {
+            'Meta': {'object_name': 'Tag'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'})
+        },
+        u'taggit.taggeditem': {
+            'Meta': {'object_name': 'TaggedItem'},
+            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'taggit_taggeditem_tagged_items'", 'to': u"orm['contenttypes.ContentType']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'object_id': ('django.db.models.fields.IntegerField', [], {'db_index': 'True'}),
+            'tag': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "u'taggit_taggeditem_items'", 'to': u"orm['taggit.Tag']"})
         }
     }
 
-    complete_apps = ['file']
+    complete_apps = ['cosinnus_file']
