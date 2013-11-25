@@ -6,8 +6,9 @@ from django.conf.urls import patterns, url
 from cosinnus_file.views import (FileCreateView, FileDeleteView,
     FileDetailView, FileIndexView, FileListView, FileUpdateView)
 
+cosinnus_root_patterns = patterns('', )
 
-urlpatterns = patterns('',
+cosinnus_group_patterns = patterns('',
     url(r'^list/$',
         FileListView.as_view(),
         name='list'),
@@ -39,3 +40,5 @@ urlpatterns = patterns('',
         FileIndexView.as_view(),
         name='index'),
 )
+
+urlpatterns = cosinnus_group_patterns + cosinnus_root_patterns
