@@ -22,13 +22,10 @@
     <td>{{ object.uploaded_by }}</td>
 </tr>
 <tr>
-    <th>{% trans "URL" %}</th>
-    <td><a href="{{ object.file.url }}">{{ object.file.url }}</a></td>
-</tr>
-<tr>
     <th>{% trans "Actions" %}</th>
     <td>
         <div class="btn-group">
+        	<a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:download' group=group.name slug=object.name %}"><i class="icon-eye-open icon-white"></i> {% trans "Download" %}</a>
             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">{% trans "Actions" %} <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="{% url 'cosinnus:file:update' group=group.name slug=object.slug %}"><i class="icon-pencil"></i> {% trans "Update"%}</a></li>

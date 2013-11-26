@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.conf.urls import patterns, url
 
 from cosinnus_file.views import (FileCreateView, FileDeleteView,
-    FileDetailView, FileIndexView, FileListView, FileUpdateView)
+    FileDetailView, FileIndexView, FileListView, FileUpdateView, FileDownloadView)
 
 cosinnus_root_patterns = patterns('', )
 
@@ -25,6 +25,10 @@ cosinnus_group_patterns = patterns('',
     url(r'^(?P<slug>[^/]+)/$',
         FileDetailView.as_view(),
         name='file'),
+    
+    url(r'^(?P<slug>[^/]+)/download$',
+        FileDownloadView.as_view(),
+        name='download'),
 
     url(r'^(?P<slug>[^/]+)/delete/$',
         FileDeleteView.as_view(),

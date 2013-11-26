@@ -11,6 +11,7 @@ from django.views.generic.base import RedirectView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateView
 from django.views.generic.list import ListView
+from django.views.generic import View
 
 from extra_views import SortableListMixin
 
@@ -21,7 +22,9 @@ from cosinnus.utils.files import create_zip_file
 
 from cosinnus_file.forms import FileForm, FileListForm
 from cosinnus_file.models import FileEntry
+from django.http.response import HttpResponseNotFound, HttpResponse
 
+import mimetypes
 
 class FileFormMixin(object):
 
@@ -175,3 +178,35 @@ class FileUpdateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
             'tags': tags
         })
         return context
+
+
+class FileDownloadView(RequireGroupMixin, FilterGroupMixin, View):
+    '''
+        Lets the user download a FileEntry file (file is determined by slug),
+        while the user never gets to see the server file path.
+        Mime type is guessed based on the file
+    '''
+    mimetypes.init()
+    
+    def get(self, request, *args, **kwargs):
+        slug = kwargs.get('slug', None)
+        if slug:
+            files = FileEntry.objects.filter(slug=slug)
+            try:
+                url = files[0].file.url
+            except:
+                pass
+        
+        response = HttpResponseNotFound()
+        if url:
+            try:
+                fsock = open(url, "rb")
+                mime_type_guess = mimetypes.guess_type(url)
+                if mime_type_guess is not None:
+                    response = HttpResponse(fsock, mimetype=mime_type_guess[0])
+                response['Content-Disposition'] = 'attachment; filename=' + url 
+            except IOError:
+                pass
+            
+        return response
+      
