@@ -13,17 +13,16 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import Group, User
 
 from cosinnus.utils.functions import unique_aware_slugify
-from cosinnus.models.utils import TaggableModel
+from cosinnus.models.tagged import BaseTaggableObjectModel
 
 from cosinnus_file.managers import FileEntryManager
 
 
-class FileEntry(TaggableModel):
+class FileEntry(BaseTaggableObjectModel):
 
     SORT_FIELDS_ALIASES = [('name', 'name'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
 
     name = models.CharField(_(u'Name'), blank=False, null=False, max_length=50)
-    slug = models.SlugField(max_length=145)  # 4 numbers for the slug number should be fine
     note = models.TextField(_(u'Note'), blank=True, null=True)
     file = models.FileField(_(u'File'), blank=False, null=False,
                             max_length=250, upload_to='files/%Y/%m/%d')
@@ -31,7 +30,6 @@ class FileEntry(TaggableModel):
     uploaded_by = models.ForeignKey(User, verbose_name=_(u'Uploaded by'),
                                     on_delete=models.PROTECT,
                                     related_name='files')
-    group = models.ForeignKey(Group, verbose_name=_(u'Group'))
 
     objects = FileEntryManager()
 
