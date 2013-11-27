@@ -38,7 +38,7 @@
     {% for object in object_list %}
         <tr>
             <td><input type="checkbox" value="{{ object.pk }}" name="select"></td>
-            <td><a target="_blank" href="{{ object.file.url }}">{{ object.name }}</a></td>
+            <td><a href="{% url 'cosinnus:file:file' group=group.slug slug=object.name %}">{{ object.name }}</a></td>
             <td>{{ object.uploaded_date|date:"DATETIME_FORMAT" }}</td>
             <td>{{ object.uploaded_by }}</td>
             <td>

@@ -24,6 +24,8 @@ from cosinnus_file.forms import FileForm, FileListForm
 from cosinnus_file.models import FileEntry
 from django.http.response import HttpResponseNotFound, HttpResponse
 
+from cosinnus.conf import settings
+
 import mimetypes
 
 class FileFormMixin(object):
@@ -193,20 +195,24 @@ class FileDownloadView(RequireGroupMixin, FilterGroupMixin, View):
         if slug:
             files = FileEntry.objects.filter(slug=slug)
             try:
-                url = files[0].file.url
+                dlfile = files[0].file
+                path = dlfile.path
             except:
                 pass
         
         response = HttpResponseNotFound()
-        if url:
+        if path:
             try:
-                fsock = open(url, "rb")
-                mime_type_guess = mimetypes.guess_type(url)
+                fsock = open( path, "rb")
+                mime_type_guess = mimetypes.guess_type(path)
                 if mime_type_guess is not None:
                     response = HttpResponse(fsock, mimetype=mime_type_guess[0])
-                response['Content-Disposition'] = 'attachment; filename=' + url 
+                response['Content-Disposition'] = 'attachment; filename=' + basename(path) 
             except IOError:
-                pass
+                if settings.DEBUG:
+                    raise
+                else:
+                    pass
             
         return response
       
