@@ -39,14 +39,14 @@ class FileFormMixin(object):
 
     def get_success_url(self):
         return reverse('cosinnus:file:list',
-                       kwargs={'group': self.group.name})
+                       kwargs={'group': self.group.slug})
 
 
 class FileIndexView(RequireGroupMixin, RedirectView):
 
     def get_redirect_url(self, **kwargs):
         return reverse('cosinnus:file:list',
-                       kwargs={'group': self.group.name})
+                       kwargs={'group': self.group.slug})
 
 
 class FileCreateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,

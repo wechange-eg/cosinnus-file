@@ -10,7 +10,7 @@
 {% block breadcrumbs %}
     {{ block.super }}
     {% if object %}
-        <li><a href="{% url 'cosinnus:file:file' group=group.name slug=object.slug %}">{{ object.name }}</a> <span class="divider">/</span></li>
+        <li><a href="{% url 'cosinnus:file:file' group=group.slug slug=object.slug %}">{{ object.name }}</a> <span class="divider">/</span></li>
         {% if form_view == 'update' %}
             <li class="active">{% trans "Upload" %}</li>
         {% elif form_view == 'delete' %}
@@ -44,7 +44,7 @@
             {% endif %}
             <div class="controls">
                 <button type="submit" class="btn {{ btnclass }}">{{ submitbtn_caption }}</button>
-                <a href="{% url 'cosinnus:file:list' group=group.name %}" class="btn">{% trans "Cancel" %}</a>
+                <a href="{% url 'cosinnus:file:list' group=group.slug %}" class="btn">{% trans "Cancel" %}</a>
             </div>
         </div>
     </fieldset>

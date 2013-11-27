@@ -10,7 +10,7 @@ from django.utils.encoding import force_unicode
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
 
 from cosinnus.utils.functions import unique_aware_slugify
 from cosinnus.models.tagged import BaseTaggableObjectModel
@@ -35,7 +35,6 @@ class FileEntry(BaseTaggableObjectModel):
 
     class Meta:
         ordering = ['-uploaded_date', 'name']
-        unique_together = ('group', 'slug')
         verbose_name = _('File')
         verbose_name_plural = _('Files')
 
@@ -48,7 +47,7 @@ class FileEntry(BaseTaggableObjectModel):
         super(FileEntry, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        kwargs = {'group': self.group.name,
+        kwargs = {'group': self.group.slug,
                   'slug': self.slug}
         return reverse('cosinnus:file:file', kwargs=kwargs)
 

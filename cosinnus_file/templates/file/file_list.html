@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block subnav_add_right %}
-<a href="{% url 'cosinnus:file:create' group=group.name %}" class="btn">
+<a href="{% url 'cosinnus:file:create' group=group.slug %}" class="btn">
   {% trans "Upload file" %}
 </a>
 {{ block.super }}
@@ -17,7 +17,7 @@
 {% block content %}
 {% if tags %}
   {% for tag in tags %}
-    <a href="{% url 'cosinnus:file:list-filtered' group=group.name tag=tag.slug %}"><span class="label">{{ tag.name }}</span></a>
+    <a href="{% url 'cosinnus:file:list-filtered' group=group.slug tag=tag.slug %}"><span class="label">{{ tag.name }}</span></a>
   {% endfor %}
 {% else %}
   {% trans "No tags available." %}
@@ -43,19 +43,19 @@
             <td>{{ object.uploaded_by }}</td>
             <td>
                 {% for tag in object.tags.all %}
-                    <a href="{% url 'cosinnus:file:list-filtered' group=group.name tag=tag.slug %}"><span class="label">{{ tag.name }}</span></a>
+                    <a href="{% url 'cosinnus:file:list-filtered' group=group.slug tag=tag.slug %}"><span class="label">{{ tag.name }}</span></a>
                 {% empty %}
                 -
                 {% endfor %}
             </td>
             <td>
                 <div class="btn-group">
-                    <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:file' group=group.name slug=object.name %}"><i class="icon-eye-open icon-white"></i> {% trans "Show" %}</a>
-                    <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:download' group=group.name slug=object.name %}"><i class="icon-eye-open icon-white"></i> {% trans "Download" %}</a>
+                    <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:file' group=group.slug slug=object.name %}"><i class="icon-eye-open icon-white"></i> {% trans "Show" %}</a>
+                    <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:download' group=group.slug slug=object.name %}"><i class="icon-eye-open icon-white"></i> {% trans "Download" %}</a>
                     <a class="btn btn-primary btn-mini dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'cosinnus:file:update' group=group.name slug=object.slug %}"><i class="icon-pencil"></i> {% trans "Edit" %}</a></li>
-                        <li><a href="{% url 'cosinnus:file:delete' group=group.name slug=object.slug %}"><i class="icon-trash"></i> {% trans "Delete" %}</a></li>
+                        <li><a href="{% url 'cosinnus:file:update' group=group.slug slug=object.slug %}"><i class="icon-pencil"></i> {% trans "Edit" %}</a></li>
+                        <li><a href="{% url 'cosinnus:file:delete' group=group.slug slug=object.slug %}"><i class="icon-trash"></i> {% trans "Delete" %}</a></li>
                     </ul>
                 </div>
             </td>
