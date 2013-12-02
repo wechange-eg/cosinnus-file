@@ -17,16 +17,17 @@ from cosinnus.utils.functions import unique_aware_slugify
 from cosinnus.models.tagged import BaseTaggableObjectModel
 from cosinnus_file.managers import FileEntryManager
 
-import hashlib, uuid
+import hashlib, uuid, time
 
 @python_2_unicode_compatible
 
 def get_hashed_filename(instance, filename):
     instance._sourcefilename = filename
-    path = 'cosinnus_files' + '/' + instance.group_id + '/%Y/%m'
+    path = 'cosinnus_files' + '/' + str(instance.group_id) + time.strftime('/%Y/%m')
     newfilename = hashlib.sha1('%s%d%s' % (str(uuid.uuid4()), instance.group_id, filename)).hexdigest()
-    print("returning new filename: " + newfilename)
     return join(path, newfilename)
+
+
 class FileEntry(BaseTaggableObjectModel):
     '''
         Model for uploaded files.
