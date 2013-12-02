@@ -39,6 +39,15 @@ class FileFormMixin(object):
         context.update({'form_view': self.form_view})
         return context
 
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.uploaded_by = self.request.user
+        self.object.group = self.group
+        self.object.save()
+        form.save_m2m()
+        return HttpResponseRedirect(self.get_success_url())
+    
     def get_success_url(self):
         return reverse('cosinnus:file:list',
                        kwargs={'group': self.group.slug})
@@ -56,7 +65,7 @@ class FileCreateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
 
     form_class = FileForm
     model = FileEntry
-    template_name = 'file/file_form.html'
+    template_name = 'cosinnus_file/file_form.html'
 
     def get_context_data(self, **kwargs):
         context = super(FileCreateView, self).get_context_data(**kwargs)
@@ -66,20 +75,12 @@ class FileCreateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
         })
         return context
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.uploaded_by = self.request.user
-        self.object.group = self.group
-        ret = super(FileCreateView, self).form_valid(form)
-        form.save_m2m()
-        return ret
-
 
 class FileDeleteView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
                      DeleteView):
 
     model = FileEntry
-    template_name = 'file/file_form.html'
+    template_name = 'cosinnus_file/file_form.html'
 
     def get_queryset(self):
         qs = super(FileDeleteView, self).get_queryset()
@@ -107,7 +108,7 @@ class FileDeleteView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
 class FileDetailView(RequireGroupMixin, FilterGroupMixin, DetailView):
 
     model = FileEntry
-    template_name = 'file/file_detail.html'
+    template_name = 'cosinnus_file/file_detail.html'
 
 
 class FileListView(RequireGroupMixin, FilterGroupMixin, TaggedListMixin,
@@ -115,7 +116,7 @@ class FileListView(RequireGroupMixin, FilterGroupMixin, TaggedListMixin,
 
     form_class = FileListForm
     model = FileEntry
-    template_name = 'file/file_list.html'
+    template_name = 'cosinnus_file/file_list.html'
 
     def get(self, request, *args, **kwargs):
         self.sort_fields_aliases = self.model.SORT_FIELDS_ALIASES
@@ -171,7 +172,7 @@ class FileUpdateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
 
     form_class = FileForm
     model = FileEntry
-    template_name = 'file/file_form.html'
+    template_name = 'cosinnus_file/file_form.html'
 
     def get_context_data(self, **kwargs):
         context = super(FileUpdateView, self).get_context_data(**kwargs)

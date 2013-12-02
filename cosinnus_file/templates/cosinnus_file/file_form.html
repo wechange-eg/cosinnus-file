@@ -1,6 +1,7 @@
-{% extends "file/base.html" %}
+{% extends "cosinnus_file/base.html" %}
 {% load i18n cosinnus_tags %}
 {% load static from staticfiles %}
+{% load bootstrap3 %}
 {% block page_title %}File{% endblock %}
 
 {% block extrahead %}
@@ -27,17 +28,17 @@
 <form enctype="multipart/form-data" action="." method="post" class="form-horizontal">
     {% csrf_token %}
     <fieldset>
-        {{ form }}
+        {% bootstrap_form form %}
 
-        {% if form_view == 'create' %}
-            {% trans "Upload" as submitbtn_caption %}
-        {% elif form_view == 'update' %}
-            {% trans "Save" context "sinn" as submitbtn_caption %}
-        {% elif form_view == 'delete' %}
-            {% trans "Delete" as submitbtn_caption %}
-            {% trans "Are you sure to remove this file?" as question %}
-        {% endif %}
-
+	        {% if form_view == 'create' %}
+	            {% trans "Upload" as submitbtn_caption %}
+	        {% elif form_view == 'update' %}
+	            {% trans "Save" context "sinn" as submitbtn_caption %}
+	        {% elif form_view == 'delete' %}
+	            {% trans "Delete" as submitbtn_caption %}
+	            {% trans "Are you sure to remove this file?" as question %}
+	        {% endif %}
+		
         <div class="control-group">
             {% if question %}
                 <label class="control-label">{{ question }}</label>

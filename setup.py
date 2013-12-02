@@ -55,10 +55,11 @@ setup(
         'South>=0.7',
         'django-appconf>=0.6',
         'django-taggit>=0.10a1',
+        'django-bootstrap3',
     ],
-    extras_require = {
-        'bootstrap':  ['django-bootstrap-toolkit>=2.11.5'],
-    },
+    dependency_links=[
+        'git+git://github.com/Markush2010/django-bootstrap3.git@develop#egg=django-bootstrap3'
+    ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
