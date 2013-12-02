@@ -2,11 +2,12 @@
 from __future__ import unicode_literals
 
 from os.path import exists, isfile
+
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch.dispatcher import receiver
-from django.utils.encoding import force_unicode
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 
@@ -18,6 +19,7 @@ from cosinnus.models.tagged import BaseTaggableObjectModel
 from cosinnus_file.managers import FileEntryManager
 
 
+@python_2_unicode_compatible
 class FileEntry(BaseTaggableObjectModel):
 
     SORT_FIELDS_ALIASES = [('name', 'name'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
@@ -38,8 +40,8 @@ class FileEntry(BaseTaggableObjectModel):
         verbose_name = _('File')
         verbose_name_plural = _('Files')
 
-    def __unicode__(self):
-        return force_unicode(self.name)
+    def __str__(self):
+        return self.name
     
     def save(self, *args, **kwargs):
         if not self.slug:
