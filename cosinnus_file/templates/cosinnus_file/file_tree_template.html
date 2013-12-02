@@ -1,0 +1,24 @@
+{% ifnotequal node.path "/" %}
+	== FOLDER DESC ==  nodename:{{node.name}}
+{% endifnotequal %}
+<li>
+    {%if node.folders %}
+        <ul>
+        
+         {%for folder in node.folders %}
+         	  FOLDER: name: {{ folder.name }}, path: {{ folder.path }}
+              {%with node=folder template_name="cosinnus_file/file_tree_template.html" %}
+                   {%include template_name%}
+              {%endwith%}
+         {%endfor%}
+         </ul>
+    {%endif%}
+    {%if node.files %}
+        <ul>
+         {%for file in node.files %}
+         FILE: name: {{ file.name }}, path: {{ file.path }}, pathpath: {{ file.file.path }}
+         <br/>
+         {%endfor%}
+         </ul>
+    {%endif%}
+</li>

@@ -23,6 +23,7 @@
   {% trans "No tags available." %}
 {% endif %}
 
+
 {% if object_list %}
 <form action="." method="post" class="form-horizontal">
 {% csrf_token %}
@@ -69,6 +70,17 @@
 {% else %}
     {% trans "There are no files." %}
 {% endif %}
+
+<div>
+saschas stuff here:
+</div>
+<div>
+	{% with node=filetree template_name="cosinnus_file/file_tree_template.html" %}
+         {% include template_name %}
+    {% endwith %}
+</div>
+
+
 {% endblock content %}
 
 {% block extrafooter %}
