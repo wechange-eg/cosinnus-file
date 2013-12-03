@@ -72,16 +72,12 @@
 {% endif %}
 
 <div>
-saschas stuff here:
-</div>
-<div>
-	<li>
+	<ul>
 	{% with node=filetree template_name="cosinnus_file/file_tree_template.html" %}
          {% include template_name %}
     {% endwith %}
-    </li>
+    </ul>
 </div>
-
 
 {% endblock content %}
 

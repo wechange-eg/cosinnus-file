@@ -1,26 +1,29 @@
-	
-	<ul>
-	== FOLDER DESC ==  nodename:{{node.name}}
-	</ul>
+<li>
+	FOLDER: name: {{ folder.name }}, path: {{ folder.path }}
+</li>
 
-    {%if node.folders %}
-       
-        
-         {%for folder in node.folders %}
-         	  FOLDER: name: {{ folder.name }}, path: {{ folder.path }}
-              {%with node=folder template_name="cosinnus_file/file_tree_template.html" %}
-                   {%include template_name%}
-              {%endwith%}
-         {%endfor%}
-         
-    {%endif%}
-    {%if node.files %}
-        
-         {%for file in node.files %}
-        	<ul>
-        	 FILE: name: {{ file.name }}, path: {{ file.path }}, pathpath: {{ file.file.path }}
-        	 <br/>
-        	 </ul>
-         {%endfor%}
-         
-    {%endif%}
+{% if node.folders or node.files %}
+<ul>
+{% endif %}
+
+   {%if node.folders %}
+        {%for folder in node.folders %}
+        	  
+             {%with node=folder template_name="cosinnus_file/file_tree_template.html" %}
+                  {%include template_name%}
+             {%endwith%}
+        {%endfor%}
+   {%endif%}
+   
+   {%if node.files %}
+        {%for file in node.files %}
+       	<li>
+       	 	FILE: name: {{ file.name }}, path: {{ file.path }}, pathpath: {{ file.file.path }}
+       	 </li>
+        {%endfor%}
+   {%endif%}
+
+{% if node.folders or node.files %}
+</ul>
+{% endif %}
+   

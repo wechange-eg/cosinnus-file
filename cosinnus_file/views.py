@@ -178,12 +178,6 @@ class FileListView(RequireGroupMixin, FilterGroupMixin, TaggedListMixin,
         
         tree = create_file_hierarchy(context['fileentry_list'])
         context['filetree'] = tree
-        '''
-        TODO: sascha: here is where we get the objects for the context for the view
-                Find the folder structure for the file here, by finding all folder files, displaying them here
-                and displaying all files whose directory attribute is == the current folder
-        FileEntry.objects.distinct()
-        '''
         
         return context
     
