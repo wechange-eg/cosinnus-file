@@ -1,29 +1,57 @@
-<li>
-	FOLDER: name: {{ folder.name }}, path: {{ folder.path }}
-</li>
+{% load i18n static %}
 
-{% if node.folders or node.files %}
-<ul>
-{% endif %}
+<a class="pull-left" href="#">
+  <img class="media-object" src="http://placehold.it/24&text=Folder">
+</a>
+    
+<div class="media-body">
+    <p>
+	{% if folder.folderfile %}
+		{{ folder.folderfile.slug }}
+	{% else %}
+		<!-- root folder -->
+		// ROOT FOLDER //
+	{% endif %}
+	</p>
+	
+
 
    {%if node.folders %}
         {%for folder in node.folders %}
-        	  
+        	  <div class="media">
              {%with node=folder template_name="cosinnus_file/file_tree_template.html" %}
                   {%include template_name%}
              {%endwith%}
+             </div>
         {%endfor%}
    {%endif%}
    
    {%if node.files %}
         {%for file in node.files %}
-       	<li>
-       	 	FILE: name: {{ file.name }}, path: {{ file.path }}, pathpath: {{ file.file.path }}
-       	 </li>
+       	<div class="media">
+       		<a class="pull-left" href="#">
+			  <img class="media-object" src="http://placehold.it/24&text=File">
+			</a>
+       		
+       		<div>
+	       	 	<span><a href="{% url 'cosinnus:file:file' group=group.slug slug=file.slug %}"
+	       	 	         title="{{ file.note }}">{{ file.name }}</a></span>
+				<span>when: {{ file.uploaded_date|date:"DATETIME_FORMAT" }}</span>
+				<span>by: {{ file.uploaded_by }}</span>
+				<div class="btn-group pull-right">
+	                <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:download' group=group.slug slug=file.slug %}"><i class="icon-eye-open icon-white"></i> {% trans "Download" %}</a>
+	                <a class="btn btn-primary btn-mini dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+	                <ul class="dropdown-menu">
+	                	<li><a href="{% url 'cosinnus:file:file' group=group.slug slug=file.slug %}"><i class="icon-eye-open icon-white"></i> {% trans "Show" %}</a></li>
+	                    <li><a href="{% url 'cosinnus:file:update' group=group.slug slug=file.slug %}"><i class="icon-pencil"></i> {% trans "Edit" %}</a></li>
+	                    <li><a href="{% url 'cosinnus:file:delete' group=group.slug slug=file.slug %}"><i class="icon-trash"></i> {% trans "Delete" %}</a></li>
+	                </ul>
+	                
+	            </div>
+            </div>
+       	 </div>
         {%endfor%}
    {%endif%}
 
-{% if node.folders or node.files %}
-</ul>
-{% endif %}
-   
+
+</div>

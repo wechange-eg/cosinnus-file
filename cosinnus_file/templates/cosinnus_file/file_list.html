@@ -71,13 +71,19 @@
     {% trans "There are no files." %}
 {% endif %}
 
+
+<form action="." method="post" class="form-horizontal">
+{% csrf_token %}
 <div>
-	<ul>
-	{% with node=filetree template_name="cosinnus_file/file_tree_template.html" %}
-         {% include template_name %}
-    {% endwith %}
+	<ul class="media-list">
+		<li class="media">
+		{% with node=filetree template_name="cosinnus_file/file_tree_template.html" %}
+	         {% include template_name %}
+	    {% endwith %}
+    	</li>
     </ul>
 </div>
+</form>
 
 {% endblock content %}
 

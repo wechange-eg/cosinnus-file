@@ -121,11 +121,15 @@ def create_file_hierarchy(filelist):
     '''
     # saves all folder paths that have been created
     folderdict = dict()
-    def getOrCreateFolder(path):
+    def getOrCreateFolder(path, folderFileEntry, specialname=None):
         if (path in folderdict.keys()):
-            return folderdict[path]
-        name = basename(path[:-1])
-        newfolder = defaultdict(dict, (('files',[]), ('folders',[]), ('name', name), ('path', path),))
+            folderEnt = folderdict[path]
+            # attach the folders file entry if we were passed one
+            if folderFileEntry is not None:
+                folderEnt['folderfile'] = folderFileEntry
+            return folderEnt 
+        name = specialname if specialname else basename(path[:-1])
+        newfolder = defaultdict(dict, (('files',[]), ('folders',[]), ('name', name), ('path', path), ('folderfile', folderFileEntry),))
         folderdict[path] = newfolder
         if path != '/':
             attachToParentFolder(newfolder)
@@ -136,18 +140,18 @@ def create_file_hierarchy(filelist):
         if parentpath[-1] != '/':
             parentpath += '/'
         if parentpath not in folderdict.keys():
-            parentfolder = getOrCreateFolder(parentpath)
+            parentfolder = getOrCreateFolder(parentpath, None)
         else:
             parentfolder = folderdict[parentpath]
         parentfolder['folders'].append(folder)
         
     
-    root = getOrCreateFolder('/')
+    root = getOrCreateFolder('/', None)
     for fileEnt in filelist:
         if fileEnt.isfolder:
-            getOrCreateFolder(fileEnt.path)
+            getOrCreateFolder(fileEnt.path, fileEnt)
         else:
-            filesfolder = getOrCreateFolder(fileEnt.path)
+            filesfolder = getOrCreateFolder(fileEnt.path, None)
             filesfolder['files'].append(fileEnt)
     
     return root
