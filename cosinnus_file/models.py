@@ -37,10 +37,10 @@ class FileEntry(BaseTaggableObjectModel):
 
     name = models.CharField(_(u'Name'), blank=False, null=False, max_length=50)
     note = models.TextField(_(u'Note'), blank=True, null=True)
-    file = models.FileField(_(u'File'), blank=False, null=False,
+    file = models.FileField(_(u'File'), blank=True, null=True,
                             max_length=250, upload_to=get_hashed_filename)#'files/%Y/%m/%d')
     isfolder = models.BooleanField(blank=False, null=False, default=False)
-    path = models.CharField(blank=False, null=False, default='/', max_length=100)
+    path = models.CharField(_(u'Path'), blank=False, null=False, default='/', max_length=100)
     
     _sourcefilename = models.CharField(blank=False, null=False, default='download', max_length=100)
     

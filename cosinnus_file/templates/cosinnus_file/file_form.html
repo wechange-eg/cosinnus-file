@@ -32,6 +32,8 @@
 
 	        {% if form_view == 'create' %}
 	            {% trans "Upload" as submitbtn_caption %}
+	        {% elif form_view == 'create_folder' %}
+	            {% trans "Create folder" as submitbtn_caption %}
 	        {% elif form_view == 'update' %}
 	            {% trans "Save" context "sinn" as submitbtn_caption %}
 	        {% elif form_view == 'delete' %}

@@ -21,6 +21,22 @@ cosinnus_group_patterns = patterns('',
         FileCreateView.as_view(),
         {'form_view': 'create'},
         name='add'),
+                                   
+    url(r'^addfolder/$',
+        FileCreateView.as_view(),
+        {'form_view': 'create_folder'},
+        name='addfolder'),
+                                   
+    url(r'^(?P<slug>[^/]+)/add/$',
+        FileCreateView.as_view(),
+        {'form_view': 'create'},
+        name='add'),
+                                   
+    url(r'^(?P<slug>[^/]+)/addfolder/$',
+        FileCreateView.as_view(),
+        {'form_view': 'create_folder'},
+        name='addfolder'),
+                                   
 
     url(r'^(?P<slug>[^/]+)/$',
         FileDetailView.as_view(),

@@ -51,6 +51,7 @@
             </td>
             <td>
                 <div class="btn-group">
+                	<a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:add' group=group.slug slug=object.name %}"><i class="icon-eye-open icon-white"></i> {% trans "Show" %}</a>
                     <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:file' group=group.slug slug=object.name %}"><i class="icon-eye-open icon-white"></i> {% trans "Show" %}</a>
                     <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:download' group=group.slug slug=object.name %}"><i class="icon-eye-open icon-white"></i> {% trans "Download" %}</a>
                     <a class="btn btn-primary btn-mini dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
@@ -71,17 +72,17 @@
     {% trans "There are no files." %}
 {% endif %}
 
-
+<br/><br/><br/>
 <form action="." method="post" class="form-horizontal">
 {% csrf_token %}
 <div>
-	<ul class="media-list">
-		<li class="media">
+	<div class="media-list">
+		<div class="media">
 		{% with node=filetree template_name="cosinnus_file/file_tree_template.html" %}
 	         {% include template_name %}
 	    {% endwith %}
-    	</li>
-    </ul>
+    	</div>
+    </div>
 </div>
 </form>
 

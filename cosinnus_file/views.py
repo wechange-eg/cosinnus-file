@@ -27,6 +27,7 @@ from cosinnus.conf import settings
 import mimetypes
 import imp
 from compiler.ast import Dict
+from django.shortcuts import get_object_or_404
 
 class FileFormMixin(object):
 
@@ -41,10 +42,21 @@ class FileFormMixin(object):
 
     
     def form_valid(self, form):
+        creating = self.object == None
+        
         self.object = form.save(commit=False)
         self.object.uploaded_by = self.request.user
         self.object.group = self.group
         self.object.save()
+        
+        # only after this save do we know the final slug
+        # we still must add it to the end of our path if we're saving a folder
+        # however not when we're only updating the object
+        if self.object.isfolder and creating:
+            suffix = self.object.slug + '/'
+            self.object.path += suffix
+            self.object.save()
+        
         form.save_m2m()
         return HttpResponseRedirect(self.get_success_url())
     
@@ -67,12 +79,29 @@ class FileCreateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
     model = FileEntry
     template_name = 'cosinnus_file/file_form.html'
 
+    def get_initial(self):
+        initial = {}
+        
+        # if a file is given in the URL, we check if its a folder, and if so, let
+        # the user create a file under that path
+        if 'slug' in self.kwargs.keys():
+            folder = get_object_or_404(FileEntry, slug=self.kwargs.get('slug'))
+            initial.update({'path': folder.path})
+            ''' TODO: Sascha: throw error if !folder.isfolder '''
+            
+        # the createfolder view is just a readonly flag that we set here
+        if self.kwargs['form_view'] == 'create_folder':
+            initial.update({'isfolder':True})
+            
+        return initial
+
     def get_context_data(self, **kwargs):
         context = super(FileCreateView, self).get_context_data(**kwargs)
         tags = FileEntry.objects.tags()
         context.update({
             'tags': tags
         })
+        
         return context
 
 

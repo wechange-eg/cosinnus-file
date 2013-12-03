@@ -103,6 +103,10 @@ msgstr "Hochgeladen"
 msgid "Upload file"
 msgstr "Datei hochladen"
 
+#: templates/file/file_form.html:20 templates/file/file_list.html:18
+msgid "Create folder"
+msgstr "Ordner anlegen"
+
 #: templates/file/file_form.html:39
 msgctxt "sinn"
 msgid "Save"
