@@ -1,9 +1,10 @@
-{% ifnotequal node.path "/" %}
+	
+	<ul>
 	== FOLDER DESC ==  nodename:{{node.name}}
-{% endifnotequal %}
-<li>
+	</ul>
+
     {%if node.folders %}
-        <ul>
+       
         
          {%for folder in node.folders %}
          	  FOLDER: name: {{ folder.name }}, path: {{ folder.path }}
@@ -11,14 +12,15 @@
                    {%include template_name%}
               {%endwith%}
          {%endfor%}
-         </ul>
+         
     {%endif%}
     {%if node.files %}
-        <ul>
+        
          {%for file in node.files %}
-         FILE: name: {{ file.name }}, path: {{ file.path }}, pathpath: {{ file.file.path }}
-         <br/>
+        	<ul>
+        	 FILE: name: {{ file.name }}, path: {{ file.path }}, pathpath: {{ file.file.path }}
+        	 <br/>
+        	 </ul>
          {%endfor%}
-         </ul>
+         
     {%endif%}
-</li>

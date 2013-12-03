@@ -31,7 +31,7 @@ def get_hashed_filename(instance, filename):
 class FileEntry(BaseTaggableObjectModel):
     '''
         Model for uploaded files.
-        FIles are saved under 
+        FIles are saved under 'cosinnus_files/groupid/Year/Month/hashedfilename'
     '''
     SORT_FIELDS_ALIASES = [('name', 'name'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
 
@@ -63,6 +63,8 @@ class FileEntry(BaseTaggableObjectModel):
     def save(self, *args, **kwargs):
         if not self.slug:
             unique_aware_slugify(self, slug_source='name', slug_field='slug', group=self.group)
+        if self.path[-1] != '/':
+            self.path += '/'
         super(FileEntry, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
