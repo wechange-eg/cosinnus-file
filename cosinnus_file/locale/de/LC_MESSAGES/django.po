@@ -97,13 +97,13 @@ msgstr "Löschen"
 
 #: templates/file/file_form.html:15 templates/file/file_form.html.py:37
 msgid "Upload"
-msgstr "Hochgeladen"
+msgstr "Hochladen"
 
 #: templates/file/file_form.html:20 templates/file/file_list.html:12
 msgid "Upload file"
 msgstr "Datei hochladen"
 
-#: templates/file/file_form.html:20 templates/file/file_list.html:18
+#: templates/file/file_form.html:22 templates/file/file_list.html:18
 msgid "Create folder"
 msgstr "Ordner anlegen"
 
