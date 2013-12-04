@@ -21,7 +21,7 @@ class FileForm(ModelForm):
         if instance:
             self.fields['path'].widget.attrs['readonly'] = True
             # hide the file upload field on folders, and set the folder flag
-            if 'initial' in kwargs and 'isfolder' in kwargs['initial'] and kwargs['initial']['isfolder']:
+            if instance.isfolder == True or 'initial' in kwargs and 'isfolder' in kwargs['initial'] and kwargs['initial']['isfolder']:
                 del self.fields['file']
                 instance.isfolder = True
                 
