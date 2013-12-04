@@ -9,6 +9,7 @@
 <div class="media-body">
    
 	{% if folder.folderfile %}
+		<!-- regular folder -->
 		<div class="btn-group pull-right" >
             <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:add' group=group.slug slug=folder.folderfile.slug %}"><i class="icon-eye-open icon-white"></i> {% trans "Upload file" %}</a>
             <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:addfolder' group=group.slug slug=folder.folderfile.slug %}"><i class="icon-eye-open icon-white"></i> {% trans "Create folder" %}</a>
@@ -20,12 +21,14 @@
             </ul>
         </div>
 		<p>
-			{{ folder.folderfile.slug }}
+			{{ folder.folderfile.name }}
 		</p>
-		
-		
 	{% else %}
 		<!-- root folder -->
+		<div class="btn-group pull-right" >
+            <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:add' group=group.slug %}"><i class="icon-eye-open icon-white"></i> {% trans "Upload file" %}</a>
+            <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:addfolder' group=group.slug %}"><i class="icon-eye-open icon-white"></i> {% trans "Create folder" %}</a>
+        </div>
 		<p>
 			// ALL FILES: //
 		</p>
