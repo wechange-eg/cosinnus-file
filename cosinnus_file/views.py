@@ -13,8 +13,9 @@ from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateV
 from django.views.generic.list import ListView
 from django.views.generic import View
 
-from cosinnus.views.mixins.group import (RequireGroupMixin, FilterGroupMixin,
-    GroupFormKwargsMixin)
+from cosinnus.views.mixins.group import (
+    RequireReadMixin, RequireWriteMixin, FilterGroupMixin, GroupFormKwargsMixin)
+
 from cosinnus.views.mixins.tagged import TaggedListMixin
 from cosinnus.utils.files import create_zip_file
 
@@ -65,14 +66,14 @@ class FileFormMixin(object):
                        kwargs={'group': self.group.slug})
 
 
-class FileIndexView(RequireGroupMixin, RedirectView):
+class FileIndexView(RequireReadMixin, RedirectView):
 
     def get_redirect_url(self, **kwargs):
         return reverse('cosinnus:file:list',
                        kwargs={'group': self.group.slug})
 
 
-class FileCreateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
+class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
                      CreateView):
 
     form_class = FileForm
@@ -105,7 +106,7 @@ class FileCreateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
         return context
 
 
-class FileDeleteView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
+class FileDeleteView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
                      DeleteView):
 
     model = FileEntry
@@ -134,7 +135,7 @@ class FileDeleteView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
             return HttpResponseRedirect(self.get_success_url())
 
 
-class FileDetailView(RequireGroupMixin, FilterGroupMixin, DetailView):
+class FileDetailView(RequireReadMixin, FilterGroupMixin, DetailView):
 
     model = FileEntry
     template_name = 'cosinnus_file/file_detail.html'
@@ -185,7 +186,7 @@ def create_file_hierarchy(filelist):
     
     return root
 
-class FileListView(RequireGroupMixin, FilterGroupMixin, TaggedListMixin,
+class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
                    FormMixin, ListView):
 
     form_class = FileListForm
@@ -259,7 +260,7 @@ class FileListView(RequireGroupMixin, FilterGroupMixin, TaggedListMixin,
             return self.get(request, *args, **kwargs)
 
 
-class FileUpdateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
+class FileUpdateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
                      UpdateView):
 
     form_class = FileForm
@@ -275,7 +276,7 @@ class FileUpdateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
         return context
 
 
-class FileDownloadView(RequireGroupMixin, FilterGroupMixin, View):
+class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
     '''
         Lets the user download a FileEntry file (file is determined by slug),
         while the user never gets to see the server file path.
