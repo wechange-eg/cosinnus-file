@@ -13,21 +13,17 @@ class FileForm(ModelForm):
 
     class Meta:
         model = FileEntry
-        fields = ('name', 'file', 'path', 'isfolder', 'note', 'tags')
+        fields = ('name', 'file', 'path', 'note', 'tags')
         
     def __init__(self, *args, **kwargs):
         super(FileForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance:
             self.fields['path'].widget.attrs['readonly'] = True
-            self.fields['isfolder'].widget.attrs['readonly'] = True
-            ''' FIXME Sascha: readonly doesn't work on the checkbox, it is still editable '''
+            # hide the file upload field on folders, and set the folder flag
             if 'initial' in kwargs and 'isfolder' in kwargs['initial'] and kwargs['initial']['isfolder']:
                 del self.fields['file']
-                #this doesnt work as a fix
-                #self.fields['isfolder'].initial = True
-            else:
-                del self.fields['isfolder']
+                instance.isfolder = True
                 
     def clean_path(self):
         instance = getattr(self, 'instance', None)
