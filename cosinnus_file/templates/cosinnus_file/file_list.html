@@ -2,6 +2,10 @@
 {% load i18n static %}
 {% block page_title %}File List{% endblock %}
 
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/cosinnus_file.css' %}">
+{% endblock %}
+
 {% block breadcrumbs %}
     {{ block.super }}
     <li class="active">{% trans "List" %}</li>

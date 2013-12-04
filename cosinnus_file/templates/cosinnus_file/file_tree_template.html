@@ -16,7 +16,7 @@
             <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:addfolder' group=group.slug slug=folder.folderfile.slug %}"><i class="icon-eye-open icon-white"></i> {% trans "Create folder" %}</a>
             
             <a class="btn btn-primary btn-mini dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-            <ul class="dropdown-menu" style="position:relative;" >
+            <ul class="dropdown-menu">
                 <li><a href="{% url 'cosinnus:file:update' group=group.slug slug=folder.folderfile.slug %}"><i class="icon-pencil"></i> {% trans "Edit" %}</a></li>
                 <li><a href="{% url 'cosinnus:file:delete' group=group.slug slug=folder.folderfile.slug %}"><i class="icon-trash"></i> {% trans "Delete" %}</a></li>
             </ul>
@@ -68,7 +68,7 @@
                 <div class="btn-group pull-right" >
                     <a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:download' group=group.slug slug=file.slug %}"><i class="icon-eye-open icon-white"></i> {% trans "Download" %}</a>
                     <a class="btn btn-primary btn-mini dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                    <ul class="dropdown-menu" style="position:relative;" >
+                    <ul class="dropdown-menu">
                         <li><a href="{% url 'cosinnus:file:file' group=group.slug slug=file.slug %}"><i class="icon-eye-open icon-white"></i> {% trans "Show" %}</a></li>
                         <li><a href="{% url 'cosinnus:file:update' group=group.slug slug=file.slug %}"><i class="icon-pencil"></i> {% trans "Edit" %}</a></li>
                         <li><a href="{% url 'cosinnus:file:delete' group=group.slug slug=file.slug %}"><i class="icon-trash"></i> {% trans "Delete" %}</a></li>
