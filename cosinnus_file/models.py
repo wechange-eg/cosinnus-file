@@ -10,6 +10,7 @@ from django.dispatch.dispatcher import receiver
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ValidationError
 
 from django.contrib.auth.models import User
 
@@ -31,16 +32,16 @@ def get_hashed_filename(instance, filename):
 class FileEntry(BaseTaggableObjectModel):
     '''
         Model for uploaded files.
-        FIles are saved under 
+        FIles are saved under 'cosinnus_files/groupid/Year/Month/hashedfilename'
     '''
     SORT_FIELDS_ALIASES = [('name', 'name'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
 
     name = models.CharField(_(u'Name'), blank=False, null=False, max_length=50)
     note = models.TextField(_(u'Note'), blank=True, null=True)
-    file = models.FileField(_(u'File'), blank=False, null=False,
+    file = models.FileField(_(u'File'), blank=True, null=True,
                             max_length=250, upload_to=get_hashed_filename)#'files/%Y/%m/%d')
     isfolder = models.BooleanField(blank=False, null=False, default=False)
-    path = models.CharField(blank=False, null=False, default='/', max_length=100)
+    path = models.CharField(_(u'Path'), blank=False, null=False, default='/', max_length=100)
     
     _sourcefilename = models.CharField(blank=False, null=False, default='download', max_length=100)
     
@@ -60,9 +61,16 @@ class FileEntry(BaseTaggableObjectModel):
     def __str__(self):
         return self.name
     
+    def clean(self):
+        # if we are creating a file, require an uploaded file (not required for folders)
+        if not self.isfolder and self.file.name is None:
+            raise ValidationError(_(u'No files selected.'))
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             unique_aware_slugify(self, slug_source='name', slug_field='slug', group=self.group)
+        if self.path[-1] != '/':
+            self.path += '/'
         super(FileEntry, self).save(*args, **kwargs)
 
     def get_absolute_url(self):

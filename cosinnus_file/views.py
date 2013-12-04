@@ -13,8 +13,6 @@ from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateV
 from django.views.generic.list import ListView
 from django.views.generic import View
 
-from extra_views import SortableListMixin
-
 from cosinnus.views.mixins.group import (RequireGroupMixin, FilterGroupMixin,
     GroupFormKwargsMixin)
 from cosinnus.views.mixins.tagged import TaggedListMixin
@@ -27,6 +25,9 @@ from django.http.response import HttpResponseNotFound, HttpResponse
 from cosinnus.conf import settings
 
 import mimetypes
+import imp
+from compiler.ast import Dict
+from django.shortcuts import get_object_or_404
 
 class FileFormMixin(object):
 
@@ -41,10 +42,21 @@ class FileFormMixin(object):
 
     
     def form_valid(self, form):
+        creating = self.object == None
+        
         self.object = form.save(commit=False)
         self.object.uploaded_by = self.request.user
         self.object.group = self.group
         self.object.save()
+        
+        # only after this save do we know the final slug
+        # we still must add it to the end of our path if we're saving a folder
+        # however not when we're only updating the object
+        if self.object.isfolder and creating:
+            suffix = self.object.slug + '/'
+            self.object.path += suffix
+            self.object.save()
+        
         form.save_m2m()
         return HttpResponseRedirect(self.get_success_url())
     
@@ -67,12 +79,29 @@ class FileCreateView(RequireGroupMixin, FilterGroupMixin, FileFormMixin,
     model = FileEntry
     template_name = 'cosinnus_file/file_form.html'
 
+    def get_initial(self):
+        initial = {}
+        
+        # if a file is given in the URL, we check if its a folder, and if so, let
+        # the user create a file under that path
+        if 'slug' in self.kwargs.keys():
+            folder = get_object_or_404(FileEntry, slug=self.kwargs.get('slug'))
+            initial.update({'path': folder.path})
+            ''' TODO: Sascha: throw error if !folder.isfolder '''
+            
+        # the createfolder view is just a readonly flag that we set here
+        if self.kwargs['form_view'] == 'create_folder':
+            initial.update({'isfolder':True})
+            
+        return initial
+
     def get_context_data(self, **kwargs):
         context = super(FileCreateView, self).get_context_data(**kwargs)
         tags = FileEntry.objects.tags()
         context.update({
             'tags': tags
         })
+        
         return context
 
 
@@ -111,17 +140,80 @@ class FileDetailView(RequireGroupMixin, FilterGroupMixin, DetailView):
     template_name = 'cosinnus_file/file_detail.html'
 
 
+from collections import defaultdict
+from os.path import dirname
+def create_file_hierarchy(filelist):
+    '''
+        Create a node/children tree structure containing files.
+        We assume that ALL (!) pathnames end with a '/'
+        A folder has a pathname of /path/to/folder/foldername/   (the last path part is the folder itself!)
+    '''
+    # saves all folder paths that have been created
+    folderdict = dict()
+    def getOrCreateFolder(path, folderFileEntry, specialname=None):
+        if (path in folderdict.keys()):
+            folderEnt = folderdict[path]
+            # attach the folders file entry if we were passed one
+            if folderFileEntry is not None:
+                folderEnt['folderfile'] = folderFileEntry
+            return folderEnt 
+        name = specialname if specialname else basename(path[:-1])
+        newfolder = defaultdict(dict, (('files',[]), ('folders',[]), ('name', name), ('path', path), ('folderfile', folderFileEntry),))
+        folderdict[path] = newfolder
+        if path != '/':
+            attachToParentFolder(newfolder)
+        return newfolder
+    
+    def attachToParentFolder(folder):
+        parentpath = dirname(folder['path'][:-1])
+        if parentpath[-1] != '/':
+            parentpath += '/'
+        if parentpath not in folderdict.keys():
+            parentfolder = getOrCreateFolder(parentpath, None)
+        else:
+            parentfolder = folderdict[parentpath]
+        parentfolder['folders'].append(folder)
+        
+    
+    root = getOrCreateFolder('/', None)
+    for fileEnt in filelist:
+        if fileEnt.isfolder:
+            getOrCreateFolder(fileEnt.path, fileEnt)
+        else:
+            filesfolder = getOrCreateFolder(fileEnt.path, None)
+            filesfolder['files'].append(fileEnt)
+    
+    return root
+
 class FileListView(RequireGroupMixin, FilterGroupMixin, TaggedListMixin,
-                   SortableListMixin, FormMixin, ListView):
+                   FormMixin, ListView):
 
     form_class = FileListForm
     model = FileEntry
     template_name = 'cosinnus_file/file_list.html'
 
-    def get(self, request, *args, **kwargs):
-        self.sort_fields_aliases = self.model.SORT_FIELDS_ALIASES
-        return super(FileListView, self).get(request, *args, **kwargs)
-
+    def get_context_data(self, **kwargs):
+        context = super(FileListView, self).get_context_data(**kwargs)
+        context['haha'] = 'lol'
+        #fileentry_list
+        #prepare recursive file list
+        #tree = create_file_hierarchy(context['fileentry_list'])
+        
+        obj = [   {'path':'/', 'isfolder': False },
+              {'path':'/one/two/three/', 'isfolder': True} ,
+                {'path':'/one/two/three/', 'isfolder':  False} ,
+                {'path':'/one/two/', 'isfolder':  True} ,
+                 {'path':'/one/two/', 'isfolder':  False}
+               ]
+        
+        #tree = create_file_hierarchy(obj)
+        #context['hierarchytest'] = tree
+        
+        tree = create_file_hierarchy(context['fileentry_list'])
+        context['filetree'] = tree
+        
+        return context
+    
     def form_valid(self, form):
         if 'download' in self.request.POST:
             d = form.cleaned_data
@@ -196,7 +288,8 @@ class FileDownloadView(RequireGroupMixin, FilterGroupMixin, View):
         if slug:
             files = FileEntry.objects.filter(slug=slug)
             try:
-                dlfile = files[0].file
+                fileentry = files[0]
+                dlfile = fileentry.file
                 path = dlfile.path
             except:
                 pass
@@ -208,7 +301,7 @@ class FileDownloadView(RequireGroupMixin, FilterGroupMixin, View):
                 mime_type_guess = mimetypes.guess_type(path)
                 if mime_type_guess is not None:
                     response = HttpResponse(fsock, mimetype=mime_type_guess[0])
-                response['Content-Disposition'] = 'attachment; filename=' + basename(path) 
+                response['Content-Disposition'] = 'attachment; filename=' + fileentry._sourcefilename 
             except IOError:
                 if settings.DEBUG:
                     raise

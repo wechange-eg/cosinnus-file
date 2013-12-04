@@ -25,13 +25,24 @@
 {% block subnav_add_right %}{% endblock %}
 
 {% block content %}
+
 <form enctype="multipart/form-data" action="." method="post" class="form-horizontal">
     {% csrf_token %}
+    
+<h2>
+	{% if form_view == 'create' %}
+        {% trans "Upload file" %}
+    {% elif form_view == 'create_folder' %}
+    	{% trans "Create folder" %}
+    {% endif %}
+</h2>
     <fieldset>
         {% bootstrap_form form %}
 
 	        {% if form_view == 'create' %}
-	            {% trans "Upload" as submitbtn_caption %}
+	            {% trans "Upload file" as submitbtn_caption %}
+	        {% elif form_view == 'create_folder' %}
+	            {% trans "Create folder" as submitbtn_caption %}
 	        {% elif form_view == 'update' %}
 	            {% trans "Save" context "sinn" as submitbtn_caption %}
 	        {% elif form_view == 'delete' %}
