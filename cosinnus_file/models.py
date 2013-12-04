@@ -10,6 +10,7 @@ from django.dispatch.dispatcher import receiver
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ValidationError
 
 from django.contrib.auth.models import User
 
@@ -59,6 +60,11 @@ class FileEntry(BaseTaggableObjectModel):
 
     def __str__(self):
         return self.name
+    
+    def clean(self):
+        # if we are creating a file, require an uploaded file (not required for folders)
+        if not self.isfolder and self.file.name is None:
+            raise ValidationError(_(u'No files selected.'))
     
     def save(self, *args, **kwargs):
         if not self.slug:
