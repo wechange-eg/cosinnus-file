@@ -3,7 +3,8 @@
 {% load bootstrap3 %}
 
 <a class="pull-left" href="#">
-  <img class="media-object" src="http://placehold.it/24&text=Folder">
+	<!-- enter js to collapse folders here. -->
+	<span class="glyphicon glyphicon-folder-open"></span>
 </a>
     
 <div class="media-body">
@@ -49,8 +50,8 @@
    {%if node.files %}
         {%for file in node.files %}
        	<div class="media">
-       		<a class="pull-left" href="#">
-			  <img class="media-object" src="http://placehold.it/24&text=File">
+			<a class="pull-left" href="#">
+			  <span class="glyphicon glyphicon-file"></span>
 			</a>
        		<div>
 	       	 	<span><a href="{% url 'cosinnus:file:file' group=group.slug slug=file.slug %}"
