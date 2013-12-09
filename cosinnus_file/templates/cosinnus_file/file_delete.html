@@ -9,22 +9,44 @@
 
 
 {% block content %}
-<h1>{% trans "Delete" %} {{ object.title }} : {{ object.name }}</h1>
+<h1>{% trans "Delete" %} {{ object.title }} : {{ object.name }} </h1>
 
 <form action="" method="post" class="form-inline">
-  {% csrf_token %}
-  <div class="control-group">
-    <label class="control-label">
-      <h3>{% trans "Are you sure you want to delete this file?" %}</h3>
-    </label>
-    <div class="controls">
-      <button type="submit" class="btn btn-danger">
-        {% trans "Delete" %}
-      </button>
-      <a href="{% url 'cosinnus:file:list' group=group.name %}" class="btn">
-        {% trans "Cancel" %}
-      </a>
+    {% csrf_token %}
+    <div class="control-group">
+        <label class="control-label">
+            {% if object.isfolder %}
+                <h3>{% trans "Are you sure you want to delete this folder and all files in it?" %}</h3>
+            {% else %}
+                <h3>{% trans "Are you sure you want to delete this file?" %}</h3>
+            {% endif %}
+        </label>
+        <input type="hidden" name="files_to_delete" value="{{files_to_delete}}" />
+        <div>
+            {% trans "The following files will be deleted:" %}
+             <div class="well well-sm">
+	            {% for file in files_to_delete %}
+	               {% if file.isfolder %}
+		               <span class="glyphicon glyphicon-folder-open"></span>
+		           {% else %}
+		               <span class="glyphicon glyphicon-file"></span>
+		           {% endif %}
+	               <span><a href="{% url 'cosinnus:file:file' group=group.slug slug=file.slug %}"
+                             title="{{ file.note }}">{{ file.name }}</a></span>
+	               <span>{{ file.path }}</span>
+	               {% if not forloop.last %}<br/>{% endif %}
+	            {% endfor %}
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button type="submit" class="btn btn-danger">
+                {% trans "Delete" %}
+            </button>
+            <a href="{% url 'cosinnus:file:list' group=group.name %}" class="btn">
+                {% trans "Cancel" %}
+            </a>
+        </div>
     </div>
-  </div>
 </form>
 {% endblock content %}

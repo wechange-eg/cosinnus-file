@@ -29,6 +29,8 @@ import mimetypes
 import imp
 from compiler.ast import Dict
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 class FileFormMixin(object):
 
@@ -110,7 +112,49 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
 
     model = FileEntry
     template_name = 'cosinnus_file/file_delete.html'
-
+    
+    def _getFilesInPath(self, path):
+        return FileEntry.objects.filter(path__startswith=path)
+    
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.isfolder:
+            dellist = list(self._getFilesInPath(self.object.path))
+        else:
+            dellist = [self.object]
+        
+        # sort so that subelements are always before their parents and files always before folders on the same level
+        dellist.sort(key=lambda o: len(o.path) + (0 if o.isfolder else 1), reverse=True)
+        for fileentry in dellist:
+            ''' sanity check: only delete a folder if it is empty 
+                (there should only be one object (the folder itself) with the path, because
+                we have deleted all its files before it!
+            '''
+            if fileentry.isfolder:
+                folderfiles = self._getFilesInPath(fileentry.path)
+                if len(folderfiles) > 1:
+                    raise ValidationError(_(u"TODO: FIXME: add better exception! One or more folders could not be deleted because they contained files that could not be deleted!"))
+            fileentry.delete()
+            
+        
+        return HttpResponseRedirect(self.get_success_url())
+    
+    def get_context_data(self, **kwargs):
+        context = super(FileDeleteView, self).get_context_data(**kwargs)
+        delfile = kwargs.get('object', None)
+        
+        dellist = []
+        if delfile:
+            if delfile.isfolder:
+                # special handling for folders being deleted:
+                pathfiles = self._getFilesInPath(delfile.path)
+                dellist.extend(pathfiles)
+            else:
+                dellist.append(delfile)
+        
+        context['files_to_delete'] = dellist
+        return context
+    
     def get_queryset(self):
         qs = super(FileDeleteView, self).get_queryset()
         if self.request.user.is_superuser:
@@ -196,6 +240,7 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
     template_name = 'cosinnus_file/file_list.html'
 
     def get_context_data(self, **kwargs):
+        # FIXME: clean up!
         context = super(FileListView, self).get_context_data(**kwargs)
         context['haha'] = 'lol'
         #fileentry_list
