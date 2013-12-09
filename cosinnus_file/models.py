@@ -81,6 +81,7 @@ class FileEntry(BaseTaggableObjectModel):
 
 @receiver(post_delete, sender=FileEntry)
 def post_file_delete(sender, instance, **kwargs):
-    path = instance.file.path
-    if exists(path) and isfile(path):
-        instance.file.delete(False)
+    if instance.file:
+        path = instance.file.path
+        if exists(path) and isfile(path):
+            instance.file.delete(False)
