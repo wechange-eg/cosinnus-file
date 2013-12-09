@@ -106,11 +106,10 @@ class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
         return context
 
 
-class FileDeleteView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
-                     DeleteView):
+class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
 
     model = FileEntry
-    template_name = 'cosinnus_file/file_form.html'
+    template_name = 'cosinnus_file/file_delete.html'
 
     def get_queryset(self):
         qs = super(FileDeleteView, self).get_queryset()
@@ -133,6 +132,9 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
             messages.error(request, ugettext(u'File does not exist or you '
                                              u'are not allowed to delete it.'))
             return HttpResponseRedirect(self.get_success_url())
+    
+    def get_success_url(self):
+        return reverse('cosinnus:file:list', kwargs={'group': self.group.slug})
 
 
 class FileDetailView(RequireReadMixin, FilterGroupMixin, DetailView):
