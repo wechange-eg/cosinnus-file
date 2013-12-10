@@ -1,5 +1,6 @@
 {% extends "cosinnus_file/base.html" %}
 {% load i18n %}
+{% load cosinnus_tags %}
 {% block page_title %}File{% endblock %}
 
 {% block breadcrumbs %}
@@ -39,4 +40,9 @@
     </td>
 </tr>
 </table>
+
+<div>
+    {% cosinnus_render_attached_objects object %}
+</div>
+
 {% endblock %}

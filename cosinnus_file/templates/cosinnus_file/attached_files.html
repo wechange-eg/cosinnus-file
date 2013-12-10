@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="media-body">
+    This is the attached file template.
+    {% if files %}
+        <div>
+            Behold a file with the slug: <b>{{ file.slug }}</b>
+        </div>
+    {% else %}
+        Template was called but no files are passed to be shown.
+    {% endif %}
+</div>

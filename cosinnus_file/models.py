@@ -59,8 +59,8 @@ class FileEntry(BaseTaggableObjectModel):
 
     class Meta:
         ordering = ['-uploaded_date', 'name']
-        verbose_name = _('File')
-        verbose_name_plural = _('Files')
+        verbose_name = _('Cosinnus File')
+        verbose_name_plural = _('Cosinnus Files')
 
     def __str__(self):
         return self.name
