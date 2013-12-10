@@ -33,7 +33,10 @@
 		           {% endif %}
 	               <span><a href="{% url 'cosinnus:file:file' group=group.slug slug=file.slug %}"
                              title="{{ file.note }}">{{ file.name }}</a></span>
-	               <span>{{ file.path }}</span>
+	               <span>
+	                   {{ file.path }}{% if not file.isfolder %}{{ file.sourcefilename }}{% endif %}
+	               </span>
+	               
 	               {% if not forloop.last %}<br/>{% endif %}
 	            {% endfor %}
             </div>

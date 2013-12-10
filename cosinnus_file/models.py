@@ -52,6 +52,10 @@ class FileEntry(BaseTaggableObjectModel):
                                     related_name='files')
 
     objects = FileEntryManager()
+    
+    @property
+    def sourcefilename(self):
+        return self._sourcefilename
 
     class Meta:
         ordering = ['-uploaded_date', 'name']

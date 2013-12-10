@@ -123,19 +123,37 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
         else:
             dellist = [self.object]
         
-        # sort so that subelements are always before their parents and files always before folders on the same level
+        # for a clean deletion, sort so that subelements are always before their parents and files always before folders on the same level
         dellist.sort(key=lambda o: len(o.path) + (0 if o.isfolder else 1), reverse=True)
+        
+        total_files = len(dellist)
+        deleted_count = 0
         for fileentry in dellist:
-            ''' sanity check: only delete a folder if it is empty 
+            """ sanity check: only delete a folder if it is empty 
                 (there should only be one object (the folder itself) with the path, because
                 we have deleted all its files before it!
-            '''
+            """
             if fileentry.isfolder:
                 folderfiles = self._getFilesInPath(fileentry.path)
                 if len(folderfiles) > 1:
-                    raise ValidationError(_(u"TODO: FIXME: add better exception! One or more folders could not be deleted because they contained files that could not be deleted!"))
+                    messages.error(request, _(u'Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename':fileentry.name} )
+                    continue
+            deletedpk = fileentry.pk
             fileentry.delete()
-            
+            # check if deletion was successful
+            try:
+                checkfileentry = FileEntry.objects.get(pk=deletedpk)
+                messages.error(request, _(u'File "%(filename)s" could not be deleted.') % {'filename':checkfileentry.name})
+            except FileEntry.DoesNotExist:
+                deleted_count += 1
+        
+        if deleted_count > 0:
+            if deleted_count > 1 and deleted_count == total_files:
+                messages.success(request, _(u'%(numfiles)d files were deleted successfully.') % {'numfiles':deleted_count})
+            elif deleted_count == 1 and total_files == 1:
+                messages.success(request, _(u'File "%(filename)s" was deleted successfully.')  % {'filename':fileentry.name})
+            else:
+                messages.info(request, _(u'%(numfiles)d other files were deleted.') % {'numfiles':deleted_count})
         
         return HttpResponseRedirect(self.get_success_url())
     

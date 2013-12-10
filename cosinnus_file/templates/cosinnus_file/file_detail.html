@@ -11,7 +11,11 @@
 <table class="table">
 <tr>
     <th class="span2">{% trans "Name" %}</th>
-    <td>{{ object }}</td>
+    <td>{{ object.name }}</td>
+</tr>
+<tr>
+    <th>{% trans "Filename" %}</th>
+    <td><a href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">{{ object.sourcefilename }}</a></td>
 </tr>
 <tr>
     <th>{% trans "Uploaded on" %}</th>
