@@ -16,13 +16,10 @@ class FileEntryRenderer(object):
 
     @staticmethod
     def render_attached_objects(context, files):
-        template="cosinnus_file/attached_file_template.html"
+        template="cosinnus_file/attached_files.html"
         
-        #if not 'request' in context:
-        #    raise ImproperlyConfigured("Current request missing in rendering "
-        #        "context. Include 'django.core.context_processors.request' in the "
-        #        "TEMPLATE_CONTEXT_PROCESSORS.")
-        
-        context[files] = files
+        context['files'] = files
+        print (">>> RENDERER HERE, we got:")
+        print(files)
         
         return render_to_string(template, context)
