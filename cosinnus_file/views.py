@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from os.path import basename
+from os.path import basename, dirname
+from collections import defaultdict
 
 from django.contrib import messages
 from django.core.urlresolvers import reverse
@@ -205,8 +206,6 @@ class FileDetailView(RequireReadMixin, FilterGroupMixin, DetailView):
     template_name = 'cosinnus_file/file_detail.html'
 
 
-from collections import defaultdict
-from os.path import dirname
 def create_file_hierarchy(filelist):
     '''
         Create a node/children tree structure containing files.
@@ -258,22 +257,7 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
     template_name = 'cosinnus_file/file_list.html'
 
     def get_context_data(self, **kwargs):
-        # FIXME: clean up!
         context = super(FileListView, self).get_context_data(**kwargs)
-        context['haha'] = 'lol'
-        #fileentry_list
-        #prepare recursive file list
-        #tree = create_file_hierarchy(context['fileentry_list'])
-        
-        obj = [   {'path':'/', 'isfolder': False },
-              {'path':'/one/two/three/', 'isfolder': True} ,
-                {'path':'/one/two/three/', 'isfolder':  False} ,
-                {'path':'/one/two/', 'isfolder':  True} ,
-                 {'path':'/one/two/', 'isfolder':  False}
-               ]
-        
-        #tree = create_file_hierarchy(obj)
-        #context['hierarchytest'] = tree
         
         tree = create_file_hierarchy(context['fileentry_list'])
         context['filetree'] = tree
