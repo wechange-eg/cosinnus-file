@@ -1,8 +1,17 @@
-cosinnus_note.egg-info/
-build/
-dist/cosinnus_note-0.1a0-py2.7.egg
+.*
+*.egg-info
 *.pyc
+*.swp
+
+# Eclipse
 .project
 .pydevproject
 .settings/org.eclipse.core.resources.prefs
-cosinnus_file.egg-info/
+
+coverage.xml
+build/
+dist/
+docs/_build/
+
+!.coveragerc
+!.gitignore
