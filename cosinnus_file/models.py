@@ -63,7 +63,7 @@ class FileEntry(BaseTaggableObjectModel):
         verbose_name_plural = _('Cosinnus Files')
 
     def __str__(self):
-        return self.name
+        return '%s (%s%s)' % (self.name, self.path, '' if self.isfolder else self.sourcefilename )
     
     def clean(self):
         # if we are creating a file, require an uploaded file (not required for folders)
