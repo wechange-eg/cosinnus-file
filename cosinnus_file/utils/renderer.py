@@ -11,9 +11,6 @@ from django.template.loader import render_to_string
 
 class FileEntryRenderer(object):
 
-    def __init__(self, params):
-        pass
-
     @staticmethod
     def render_attached_objects(context, files):
         template="cosinnus_file/attached_files.html"

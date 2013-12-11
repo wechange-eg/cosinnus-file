@@ -1,13 +1,11 @@
 {% load i18n %}
 
 <div class="media-body">
-    {% if files %}
-        {% for file in files %}
-        <div>
-            Behold a file with the slug: <b>{{ file.slug }}</b>
-        </div>
-        {% empty %}
-            Template was called but no files are passed to be shown.
-        {% endfor %}
-    {% endif %}
+    {% for file in files %}
+    <div>
+        Behold an attached file! with the slug <b>{{ file.slug }}</b>: <a href="{% url 'cosinnus:file:download' group=group.slug slug=file.slug %}">{{ file.sourcefilename }}</a>
+    </div>
+    {% empty %}
+        Template was called but no files are passed to be shown.
+    {% endfor %}
 </div>
