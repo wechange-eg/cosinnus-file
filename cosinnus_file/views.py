@@ -27,10 +27,7 @@ from django.http.response import HttpResponseNotFound, HttpResponse
 from cosinnus.conf import settings
 
 import mimetypes
-import imp
-from compiler.ast import Dict
 from django.shortcuts import get_object_or_404
-from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 class FileFormMixin(object):
