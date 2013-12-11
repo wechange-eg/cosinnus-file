@@ -28,7 +28,7 @@ def get_hashed_filename(instance, filename):
     newfilename = hashlib.sha1('%s%d%s' % (str(uuid.uuid4()), instance.group_id, filename)).hexdigest()
     return join(path, newfilename)
 
-
+@python_2_unicode_compatible
 class FileEntry(BaseTaggableObjectModel):
     '''
         Model for uploaded files.
