@@ -80,12 +80,15 @@ class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
     model = FileEntry
     template_name = 'cosinnus_file/file_form.html'
 
+    def get_object(self, queryset=None):
+        return CreateView.get_object(self, queryset=queryset)
+
     def get_initial(self):
         """
             Supports calling /add under other files, 
             which creates a new file under the given file/folder's path
         """
-        initial = {}
+        initial = super(FileCreateView, self).get_initial()
 
         # if a file is given in the URL, we check if its a folder, and if so, let
         # the user create a file under that path
@@ -99,6 +102,13 @@ class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
             initial.update({'isfolder':True})
 
         return initial
+
+    def form_valid(self, form):
+        """ Pass the path variable retrieved from the slug file over the non-editable field """
+        path = form.initial.get('path', None)
+        if path:
+            form.instance.path = path
+        return FileFormMixin.form_valid(self, form)
 
     def get_context_data(self, **kwargs):
         context = super(FileCreateView, self).get_context_data(**kwargs)

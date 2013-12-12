@@ -39,20 +39,20 @@ class FileEntry(BaseTaggableObjectModel):
     name = models.CharField(_(u'Name'), blank=False, null=False, max_length=50)
     note = models.TextField(_(u'Note'), blank=True, null=True)
     file = models.FileField(_(u'File'), blank=True, null=True,
-                            max_length=250, upload_to=get_hashed_filename)#'files/%Y/%m/%d')
+                            max_length=250, upload_to=get_hashed_filename)  # 'files/%Y/%m/%d')
     isfolder = models.BooleanField(blank=False, null=False, default=False)
-    path = models.CharField(_(u'Path'), blank=False, null=False, default='/', max_length=100)
-    
+    path = models.CharField(_(u'Path'), blank=False, null=False, default='/', max_length=100, editable=False)
+
     _sourcefilename = models.CharField(blank=False, null=False, default='download', max_length=100)
-    
-    
+
+
     uploaded_date = models.DateTimeField(_(u'Uploaded on'), default=now)
     uploaded_by = models.ForeignKey(User, verbose_name=_(u'Uploaded by'),
                                     on_delete=models.PROTECT,
                                     related_name='files')
 
     objects = FileEntryManager()
-    
+
     @property
     def sourcefilename(self):
         return self._sourcefilename
@@ -63,13 +63,13 @@ class FileEntry(BaseTaggableObjectModel):
         verbose_name_plural = _('Cosinnus Files')
 
     def __str__(self):
-        return '%s (%s%s)' % (self.name, self.path, '' if self.isfolder else self.sourcefilename )
-    
+        return '%s (%s%s)' % (self.name, self.path, '' if self.isfolder else self.sourcefilename)
+
     def clean(self):
         # if we are creating a file, require an uploaded file (not required for folders)
         if not self.isfolder and self.file.name is None:
             raise ValidationError(_(u'No files selected.'))
-    
+
     def save(self, *args, **kwargs):
         if not self.slug:
             unique_aware_slugify(self, slug_source='name', slug_field='slug', group=self.group)
