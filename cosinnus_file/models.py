@@ -28,7 +28,7 @@ def get_hashed_filename(instance, filename):
     newfilename = hashlib.sha1('%s%d%s' % (str(uuid.uuid4()), instance.group_id, filename)).hexdigest()
     return join(path, newfilename)
 
-
+@python_2_unicode_compatible
 class FileEntry(BaseTaggableObjectModel):
     '''
         Model for uploaded files.
@@ -59,11 +59,11 @@ class FileEntry(BaseTaggableObjectModel):
 
     class Meta:
         ordering = ['-uploaded_date', 'name']
-        verbose_name = _('File')
-        verbose_name_plural = _('Files')
+        verbose_name = _('Cosinnus File')
+        verbose_name_plural = _('Cosinnus Files')
 
     def __str__(self):
-        return self.name
+        return '%s (%s%s)' % (self.name, self.path, '' if self.isfolder else self.sourcefilename )
     
     def clean(self):
         # if we are creating a file, require an uploaded file (not required for folders)
