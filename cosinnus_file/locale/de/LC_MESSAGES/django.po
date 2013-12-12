@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-10 16:49+0100\n"
+"POT-Creation-Date: 2013-12-12 15:25+0100\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -49,11 +49,11 @@ msgstr "Cosinnus Datei"
 msgid "Cosinnus Files"
 msgstr "Cosinnus Dateien"
 
-#: .\models.py:71 .\views.py:273
+#: .\models.py:71 .\views.py:274
 msgid "No files selected."
 msgstr "Keine Dateien ausgewählt."
 
-#: .\views.py:140
+#: .\views.py:141
 #, fuzzy, python-format
 msgid ""
 "Folder \"%(filename)s\" could not be deleted because it contained files that "
@@ -62,33 +62,33 @@ msgstr ""
 "Ordner \"%(filename)s\" konnte nicht gelöscht werden da er noch Dateien "
 "enthällt die nicht gelöscht werden konnten."
 
-#: .\views.py:147
+#: .\views.py:148
 #, python-format
 msgid "File \"%(filename)s\" could not be deleted."
 msgstr "Datei \"%(filename)s\" konnte nicht gelöscht werden."
 
-#: .\views.py:153
+#: .\views.py:154
 #, python-format
 msgid "%(numfiles)d files were deleted successfully."
 msgstr "%(numfiles)d Dateien wurden erfolgreich gelöscht."
 
-#: .\views.py:155
+#: .\views.py:156
 #, python-format
 msgid "File \"%(filename)s\" was deleted successfully."
 msgstr "Datei \"%(filename)s\" wurde erfolgreich gelöscht."
 
-#: .\views.py:157
+#: .\views.py:158
 #, python-format
 msgid "%(numfiles)d other files were deleted."
 msgstr "%(numfiles)d weitere Dateien wurden gelöscht."
 
-#: .\views.py:187 .\views.py:195
+#: .\views.py:188 .\views.py:196
 msgid "File does not exist or you are not allowed to delete it."
 msgstr ""
 "Entweder existiert diese Datei nicht oder Ihnen fehlen die Rechte um die "
 "Datei zu bearbeiten."
 
-#: .\views.py:282
+#: .\views.py:283
 #, python-format
 msgid ""
 "A problem occurred during export. The following file is missing: %(filename)"
@@ -103,7 +103,7 @@ msgstr[1] ""
 "Beim Exportieren ist ein Fehler aufgetreten. Die folgenden Dateien "
 "existieren nicht: %(filename)s"
 
-#: .\views.py:297
+#: .\views.py:298
 msgid "Invalid request."
 msgstr "Ungültiger Seitenaufruf."
 
@@ -212,3 +212,6 @@ msgstr "Anzeigen"
 
 #~ msgid "There are no files."
 #~ msgstr "Es gibt keine Dateien."
+
+msgid "attached:cosinnus_file.FileEntry"
+msgstr "Angehängte Dateien"

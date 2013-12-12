@@ -41,15 +41,15 @@ class FileFormMixin(object):
         context.update({'form_view': self.form_view})
         return context
 
-    
+
     def form_valid(self, form):
         creating = self.object == None
-        
+
         self.object = form.save(commit=False)
         self.object.uploaded_by = self.request.user
         self.object.group = self.group
         self.object.save()
-        
+
         # only after this save do we know the final slug
         # we still must add it to the end of our path if we're saving a folder
         # however not when we're only updating the object
@@ -57,10 +57,10 @@ class FileFormMixin(object):
             suffix = self.object.slug + '/'
             self.object.path += suffix
             self.object.save()
-        
+
         form.save_m2m()
         return HttpResponseRedirect(self.get_success_url())
-    
+
     def get_success_url(self):
         return reverse('cosinnus:file:list',
                        kwargs={'group': self.group.slug})
@@ -81,19 +81,23 @@ class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
     template_name = 'cosinnus_file/file_form.html'
 
     def get_initial(self):
+        """
+            Supports calling /add under other files, 
+            which creates a new file under the given file/folder's path
+        """
         initial = {}
-        
+
         # if a file is given in the URL, we check if its a folder, and if so, let
         # the user create a file under that path
+        # if it is a file, we let the user create a new file on the same level
         if 'slug' in self.kwargs.keys():
             folder = get_object_or_404(FileEntry, slug=self.kwargs.get('slug'))
             initial.update({'path': folder.path})
-            ''' TODO: Sascha: throw error if !folder.isfolder '''
-            
+
         # the createfolder view is just a readonly flag that we set here
         if self.kwargs['form_view'] == 'create_folder':
             initial.update({'isfolder':True})
-            
+
         return initial
 
     def get_context_data(self, **kwargs):
@@ -102,7 +106,7 @@ class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
         context.update({
             'tags': tags
         })
-        
+
         return context
 
 
@@ -110,20 +114,20 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
 
     model = FileEntry
     template_name = 'cosinnus_file/file_delete.html'
-    
+
     def _getFilesInPath(self, path):
         return FileEntry.objects.filter(path__startswith=path)
-    
+
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         if self.object.isfolder:
             dellist = list(self._getFilesInPath(self.object.path))
         else:
             dellist = [self.object]
-        
+
         # for a clean deletion, sort so that subelements are always before their parents and files always before folders on the same level
         dellist.sort(key=lambda o: len(o.path) + (0 if o.isfolder else 1), reverse=True)
-        
+
         total_files = len(dellist)
         deleted_count = 0
         for fileentry in dellist:
@@ -134,7 +138,7 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
             if fileentry.isfolder:
                 folderfiles = self._getFilesInPath(fileentry.path)
                 if len(folderfiles) > 1:
-                    messages.error(request, _(u'Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename':fileentry.name} )
+                    messages.error(request, _(u'Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename':fileentry.name})
                     continue
             deletedpk = fileentry.pk
             fileentry.delete()
@@ -144,21 +148,21 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
                 messages.error(request, _(u'File "%(filename)s" could not be deleted.') % {'filename':checkfileentry.name})
             except FileEntry.DoesNotExist:
                 deleted_count += 1
-        
+
         if deleted_count > 0:
             if deleted_count > 1 and deleted_count == total_files:
                 messages.success(request, _(u'%(numfiles)d files were deleted successfully.') % {'numfiles':deleted_count})
             elif deleted_count == 1 and total_files == 1:
-                messages.success(request, _(u'File "%(filename)s" was deleted successfully.')  % {'filename':fileentry.name})
+                messages.success(request, _(u'File "%(filename)s" was deleted successfully.') % {'filename':fileentry.name})
             else:
                 messages.info(request, _(u'%(numfiles)d other files were deleted.') % {'numfiles':deleted_count})
-        
+
         return HttpResponseRedirect(self.get_success_url())
-    
+
     def get_context_data(self, **kwargs):
         context = super(FileDeleteView, self).get_context_data(**kwargs)
         delfile = kwargs.get('object', None)
-        
+
         dellist = []
         if delfile:
             if delfile.isfolder:
@@ -167,10 +171,10 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
                 dellist.extend(pathfiles)
             else:
                 dellist.append(delfile)
-        
+
         context['files_to_delete'] = dellist
         return context
-    
+
     def get_queryset(self):
         qs = super(FileDeleteView, self).get_queryset()
         if self.request.user.is_superuser:
@@ -192,7 +196,7 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
             messages.error(request, ugettext(u'File does not exist or you '
                                              u'are not allowed to delete it.'))
             return HttpResponseRedirect(self.get_success_url())
-    
+
     def get_success_url(self):
         return reverse('cosinnus:file:list', kwargs={'group': self.group.slug})
 
@@ -217,14 +221,14 @@ def create_file_hierarchy(filelist):
             # attach the folders file entry if we were passed one
             if folderFileEntry is not None:
                 folderEnt['folderfile'] = folderFileEntry
-            return folderEnt 
+            return folderEnt
         name = specialname if specialname else basename(path[:-1])
-        newfolder = defaultdict(dict, (('files',[]), ('folders',[]), ('name', name), ('path', path), ('folderfile', folderFileEntry),))
+        newfolder = defaultdict(dict, (('files', []), ('folders', []), ('name', name), ('path', path), ('folderfile', folderFileEntry),))
         folderdict[path] = newfolder
         if path != '/':
             attachToParentFolder(newfolder)
         return newfolder
-    
+
     def attachToParentFolder(folder):
         parentpath = dirname(folder['path'][:-1])
         if parentpath[-1] != '/':
@@ -234,8 +238,8 @@ def create_file_hierarchy(filelist):
         else:
             parentfolder = folderdict[parentpath]
         parentfolder['folders'].append(folder)
-        
-    
+
+
     root = getOrCreateFolder('/', None)
     for fileEnt in filelist:
         if fileEnt.isfolder:
@@ -243,7 +247,7 @@ def create_file_hierarchy(filelist):
         else:
             filesfolder = getOrCreateFolder(fileEnt.path, None)
             filesfolder['files'].append(fileEnt)
-    
+
     return root
 
 class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
@@ -255,12 +259,12 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
 
     def get_context_data(self, **kwargs):
         context = super(FileListView, self).get_context_data(**kwargs)
-        
+
         tree = create_file_hierarchy(context['fileentry_list'])
         context['filetree'] = tree
-        
+
         return context
-    
+
     def form_valid(self, form):
         if 'download' in self.request.POST:
             d = form.cleaned_data
@@ -329,7 +333,7 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
         Mime type is guessed based on the file
     '''
     mimetypes.init()
-    
+
     def get(self, request, *args, **kwargs):
         slug = kwargs.get('slug', None)
         if slug:
@@ -340,20 +344,20 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
                 path = dlfile.path
             except:
                 pass
-        
+
         response = HttpResponseNotFound()
         if path:
             try:
-                fsock = open( path, "rb")
+                fsock = open(path, "rb")
                 mime_type_guess = mimetypes.guess_type(path)
                 if mime_type_guess is not None:
                     response = HttpResponse(fsock, mimetype=mime_type_guess[0])
-                response['Content-Disposition'] = 'attachment; filename=' + fileentry._sourcefilename 
+                response['Content-Disposition'] = 'attachment; filename=' + fileentry._sourcefilename
             except IOError:
                 if settings.DEBUG:
                     raise
                 else:
                     pass
-            
+
         return response
-      
+
