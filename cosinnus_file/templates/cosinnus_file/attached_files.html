@@ -1,9 +1,11 @@
 {% load i18n %}
 
+<hr>
+{% trans "attached:cosinnus_file.FileEntry" %}:
 <div class="media-body">
     {% for file in files %}
     <div>
-        Behold an attached file! with the slug <b>{{ file.slug }}</b>: <a href="{% url 'cosinnus:file:download' group=group.slug slug=file.slug %}">{{ file.sourcefilename }}</a>
+        <b>{{ file.slug }}</b>: <a href="{% url 'cosinnus:file:download' group=group.slug slug=file.slug %}">{{ file.sourcefilename }}</a>
     </div>
     {% empty %}
         Template was called but no files are passed to be shown.
