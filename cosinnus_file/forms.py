@@ -17,7 +17,7 @@ class FileForm(ModelForm):
         super(FileForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         # hide the file upload field on folders, and set the folder flag
-        if instance and instance.isfolder == True or 'initial' in kwargs and 'isfolder' in kwargs['initial'] and kwargs['initial']['isfolder']:
+        if instance and instance.isfolder or 'initial' in kwargs and 'isfolder' in kwargs['initial'] and kwargs['initial']['isfolder']:
             del self.fields['file']
             instance.isfolder = True
 

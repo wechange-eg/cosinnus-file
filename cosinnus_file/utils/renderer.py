@@ -12,11 +12,6 @@ from django.template.loader import render_to_string
 class FileEntryRenderer(object):
 
     @staticmethod
-    def render_attached_objects(context, files):
-        template="cosinnus_file/attached_files.html"
-        
+    def render_attached_objects(context, files, template="cosinnus_file/attached_files.html"):
         context['files'] = files
-        print (">>> RENDERER HERE, we got:")
-        print(files)
-        
         return render_to_string(template, context)

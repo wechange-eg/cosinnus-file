@@ -1,34 +1,30 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from os.path import basename, dirname
+import mimetypes
+
 from collections import defaultdict
+from os.path import basename, dirname
 
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponseRedirect, StreamingHttpResponse
-from django.utils.translation import ugettext, ungettext
-from django.views.generic.base import RedirectView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateView
-from django.views.generic.list import ListView
-from django.views.generic import View
+from django.http import (Http404, HttpResponse, HttpResponseNotFound,
+    HttpResponseRedirect, StreamingHttpResponse)
+from django.shortcuts import get_object_or_404
+from django.utils.translation import ungettext, ugettext_lazy as _
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+    RedirectView, UpdateView, View)
+from django.views.generic.edit import FormMixin
 
+from cosinnus.conf import settings
+from cosinnus.utils.files import create_zip_file
 from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
     FilterGroupMixin)
-
 from cosinnus.views.mixins.tagged import TaggedListMixin
-from cosinnus.utils.files import create_zip_file
 
 from cosinnus_file.forms import FileForm, FileListForm
 from cosinnus_file.models import FileEntry
-from django.http.response import HttpResponseNotFound, HttpResponse
 
-from cosinnus.conf import settings
-
-import mimetypes
-from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext_lazy as _
 
 class FileFormMixin(object):
 
@@ -41,9 +37,8 @@ class FileFormMixin(object):
         context.update({'form_view': self.form_view})
         return context
 
-
     def form_valid(self, form):
-        creating = self.object == None
+        creating = self.object is None
 
         self.object = form.save(commit=False)
         self.object.uploaded_by = self.request.user
@@ -85,7 +80,7 @@ class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
 
     def get_initial(self):
         """
-            Supports calling /add under other files, 
+            Supports calling /add under other files,
             which creates a new file under the given file/folder's path
         """
         initial = super(FileCreateView, self).get_initial()
@@ -99,7 +94,7 @@ class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
 
         # the createfolder view is just a readonly flag that we set here
         if self.kwargs['form_view'] == 'create_folder':
-            initial.update({'isfolder':True})
+            initial.update({'isfolder': True})
 
         return initial
 
@@ -141,31 +136,31 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
         total_files = len(dellist)
         deleted_count = 0
         for fileentry in dellist:
-            """ sanity check: only delete a folder if it is empty 
+            """ sanity check: only delete a folder if it is empty
                 (there should only be one object (the folder itself) with the path, because
                 we have deleted all its files before it!
             """
             if fileentry.isfolder:
                 folderfiles = self._getFilesInPath(fileentry.path)
                 if len(folderfiles) > 1:
-                    messages.error(request, _('Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename':fileentry.name})
+                    messages.error(request, _('Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename': fileentry.name})
                     continue
             deletedpk = fileentry.pk
             fileentry.delete()
             # check if deletion was successful
             try:
                 checkfileentry = FileEntry.objects.get(pk=deletedpk)
-                messages.error(request, _('File "%(filename)s" could not be deleted.') % {'filename':checkfileentry.name})
+                messages.error(request, _('File "%(filename)s" could not be deleted.') % {'filename': checkfileentry.name})
             except FileEntry.DoesNotExist:
                 deleted_count += 1
 
         if deleted_count > 0:
             if deleted_count > 1 and deleted_count == total_files:
-                messages.success(request, _('%(numfiles)d files were deleted successfully.') % {'numfiles':deleted_count})
+                messages.success(request, _('%(numfiles)d files were deleted successfully.') % {'numfiles': deleted_count})
             elif deleted_count == 1 and total_files == 1:
-                messages.success(request, _('File "%(filename)s" was deleted successfully.') % {'filename':fileentry.name})
+                messages.success(request, _('File "%(filename)s" was deleted successfully.') % {'filename': fileentry.name})
             else:
-                messages.info(request, _('%(numfiles)d other files were deleted.') % {'numfiles':deleted_count})
+                messages.info(request, _('%(numfiles)d other files were deleted.') % {'numfiles': deleted_count})
 
         return HttpResponseRedirect(self.get_success_url())
 
@@ -195,16 +190,14 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
         try:
             return super(FileDeleteView, self).get(request, *args, **kwargs)
         except Http404:
-            messages.error(request, ugettext('File does not exist or you '
-                                             'are not allowed to delete it.'))
+            messages.error(request, _('File does not exist or you are not allowed to delete it.'))
             return HttpResponseRedirect(self.get_success_url())
 
     def post(self, request, *args, **kwargs):
         try:
             return super(FileDeleteView, self).post(request, *args, **kwargs)
         except Http404:
-            messages.error(request, ugettext('File does not exist or you '
-                                             'are not allowed to delete it.'))
+            messages.error(request, _('File does not exist or you are not allowed to delete it.'))
             return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
@@ -225,6 +218,7 @@ def create_file_hierarchy(filelist):
     '''
     # saves all folder paths that have been created
     folderdict = dict()
+
     def getOrCreateFolder(path, folderFileEntry, specialname=None):
         if (path in folderdict.keys()):
             folderEnt = folderdict[path]
@@ -249,7 +243,6 @@ def create_file_hierarchy(filelist):
             parentfolder = folderdict[parentpath]
         parentfolder['folders'].append(folder)
 
-
     root = getOrCreateFolder('/', None)
     for fileEnt in filelist:
         if fileEnt.isfolder:
@@ -259,6 +252,7 @@ def create_file_hierarchy(filelist):
             filesfolder['files'].append(fileEnt)
 
     return root
+
 
 class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
                    FormMixin, ListView):
@@ -281,7 +275,7 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
             ids = map(int, d.get('select', []))
             files = FileEntry.objects.filter(id__in=ids)
             if not files:
-                messages.warning(self.request, ugettext('No files selected.'))
+                messages.warning(self.request, _('No files selected.'))
                 return HttpResponseRedirect(self.request.path)
 
             filenames = [(f.file.path, f.file.name) for f in files]
@@ -305,7 +299,7 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
         # Either the request is valid (we offer the download or throw an
         # appropriate message) or the request ist invalid, (e.g. the user
         # didn't press the 'download' button and ca
-        messages.error(self.request, ugettext('Invalid request.'))
+        messages.error(self.request, _('Invalid request.'))
         return HttpResponseRedirect(self.request.path)
 
     def post(self, request, *args, **kwargs):
@@ -370,4 +364,3 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
                     pass
 
         return response
-

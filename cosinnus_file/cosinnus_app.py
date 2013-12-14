@@ -6,4 +6,4 @@ IS_COSINNUS_APP = True
 COSINNUS_APP_NAME = 'file'
 
 ATTACHABLE_OBJECT_MODELS = ['cosinnus_file.FileEntry']
-ATTACHABLE_OBJECT_RENDERERS = {'cosinnus_file.FileEntry':renderer.FileEntryRenderer}
+ATTACHABLE_OBJECT_RENDERERS = {'cosinnus_file.FileEntry': renderer.FileEntryRenderer}
