@@ -1,53 +1,57 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import hashlib
+import uuid
+
 from os.path import exists, isfile, join
 
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch.dispatcher import receiver
-from django.utils.encoding import python_2_unicode_compatible
+from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
-from django.core.exceptions import ValidationError
 
-from django.contrib.auth.models import User
-
+from cosinnus.conf import settings
+from cosinnus.models import BaseTaggableObjectModel
 from cosinnus.utils.functions import unique_aware_slugify
-from cosinnus.models.tagged import BaseTaggableObjectModel
+
 from cosinnus_file.managers import FileEntryManager
 
-import hashlib, uuid, time
-
-@python_2_unicode_compatible
 
 def get_hashed_filename(instance, filename):
     instance._sourcefilename = filename
-    path = 'cosinnus_files' + '/' + str(instance.group_id) + time.strftime('/%Y/%m')
-    newfilename = hashlib.sha1('%s%d%s' % (str(uuid.uuid4()), instance.group_id, filename)).hexdigest()
+    time = now()
+    path = join('cosinnus_files', force_text(instance.group_id),
+        force_text(time.year), force_text(time.month))
+    name = '%s%d%s' % (force_text(uuid.uuid4()), instance.group_id, filename)
+    newfilename = hashlib.sha1(name.encode('utf-8')).hexdigest()
     return join(path, newfilename)
+
 
 @python_2_unicode_compatible
 class FileEntry(BaseTaggableObjectModel):
-    '''
-        Model for uploaded files.
-        FIles are saved under 'cosinnus_files/groupid/Year/Month/hashedfilename'
-    '''
+    """
+    Model for uploaded files.
+
+    Files are saved under 'cosinnus_files/groupid/Year/Month/hashedfilename'
+    """
     SORT_FIELDS_ALIASES = [('name', 'name'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
 
-    name = models.CharField(_(u'Name'), blank=False, null=False, max_length=50)
-    note = models.TextField(_(u'Note'), blank=True, null=True)
-    file = models.FileField(_(u'File'), blank=True, null=True,
-                            max_length=250, upload_to=get_hashed_filename)  # 'files/%Y/%m/%d')
+    name = models.CharField(_('Name'), blank=False, null=False, max_length=50)
+    note = models.TextField(_('Note'), blank=True, null=True)
+    file = models.FileField(_('File'), blank=True, null=True,
+                            max_length=250, upload_to=get_hashed_filename)
     isfolder = models.BooleanField(blank=False, null=False, default=False)
-    path = models.CharField(_(u'Path'), blank=False, null=False, default='/', max_length=100, editable=False)
+    path = models.CharField(_('Path'), blank=False, null=False, default='/', max_length=100, editable=False)
 
     _sourcefilename = models.CharField(blank=False, null=False, default='download', max_length=100)
 
-
-    uploaded_date = models.DateTimeField(_(u'Uploaded on'), default=now)
-    uploaded_by = models.ForeignKey(User, verbose_name=_(u'Uploaded by'),
+    uploaded_date = models.DateTimeField(_('Uploaded on'), default=now)
+    uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Uploaded by'),
                                     on_delete=models.PROTECT,
                                     related_name='files')
 
@@ -68,7 +72,7 @@ class FileEntry(BaseTaggableObjectModel):
     def clean(self):
         # if we are creating a file, require an uploaded file (not required for folders)
         if not self.isfolder and self.file.name is None:
-            raise ValidationError(_(u'No files selected.'))
+            raise ValidationError(_('No files selected.'))
 
     def save(self, *args, **kwargs):
         if not self.slug:

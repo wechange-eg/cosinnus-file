@@ -14,8 +14,8 @@ from django.views.generic.edit import CreateView, DeleteView, FormMixin, UpdateV
 from django.views.generic.list import ListView
 from django.views.generic import View
 
-from cosinnus.views.mixins.group import (
-    RequireReadMixin, RequireWriteMixin, FilterGroupMixin, GroupFormKwargsMixin)
+from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
+    FilterGroupMixin)
 
 from cosinnus.views.mixins.tagged import TaggedListMixin
 from cosinnus.utils.files import create_zip_file
@@ -148,24 +148,24 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
             if fileentry.isfolder:
                 folderfiles = self._getFilesInPath(fileentry.path)
                 if len(folderfiles) > 1:
-                    messages.error(request, _(u'Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename':fileentry.name})
+                    messages.error(request, _('Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename':fileentry.name})
                     continue
             deletedpk = fileentry.pk
             fileentry.delete()
             # check if deletion was successful
             try:
                 checkfileentry = FileEntry.objects.get(pk=deletedpk)
-                messages.error(request, _(u'File "%(filename)s" could not be deleted.') % {'filename':checkfileentry.name})
+                messages.error(request, _('File "%(filename)s" could not be deleted.') % {'filename':checkfileentry.name})
             except FileEntry.DoesNotExist:
                 deleted_count += 1
 
         if deleted_count > 0:
             if deleted_count > 1 and deleted_count == total_files:
-                messages.success(request, _(u'%(numfiles)d files were deleted successfully.') % {'numfiles':deleted_count})
+                messages.success(request, _('%(numfiles)d files were deleted successfully.') % {'numfiles':deleted_count})
             elif deleted_count == 1 and total_files == 1:
-                messages.success(request, _(u'File "%(filename)s" was deleted successfully.') % {'filename':fileentry.name})
+                messages.success(request, _('File "%(filename)s" was deleted successfully.') % {'filename':fileentry.name})
             else:
-                messages.info(request, _(u'%(numfiles)d other files were deleted.') % {'numfiles':deleted_count})
+                messages.info(request, _('%(numfiles)d other files were deleted.') % {'numfiles':deleted_count})
 
         return HttpResponseRedirect(self.get_success_url())
 
@@ -195,16 +195,16 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
         try:
             return super(FileDeleteView, self).get(request, *args, **kwargs)
         except Http404:
-            messages.error(request, ugettext(u'File does not exist or you '
-                                             u'are not allowed to delete it.'))
+            messages.error(request, ugettext('File does not exist or you '
+                                             'are not allowed to delete it.'))
             return HttpResponseRedirect(self.get_success_url())
 
     def post(self, request, *args, **kwargs):
         try:
             return super(FileDeleteView, self).post(request, *args, **kwargs)
         except Http404:
-            messages.error(request, ugettext(u'File does not exist or you '
-                                             u'are not allowed to delete it.'))
+            messages.error(request, ugettext('File does not exist or you '
+                                             'are not allowed to delete it.'))
             return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
@@ -312,7 +312,7 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         files = self.get_queryset()
-        form.fields['select'].choices = [(f.id, u'') for f in files]
+        form.fields['select'].choices = [(f.id, '') for f in files]
 
         if form.is_valid():
             return self.form_valid(form)
