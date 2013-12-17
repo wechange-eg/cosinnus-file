@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch.dispatcher import receiver
-from django.utils.encoding import force_text, python_2_unicode_compatible
+from django.utils.encoding import force_text
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 
@@ -32,7 +32,6 @@ def get_hashed_filename(instance, filename):
     return join(path, newfilename)
 
 
-@python_2_unicode_compatible
 class FileEntry(BaseTaggableObjectModel):
     """
     Model for uploaded files.
