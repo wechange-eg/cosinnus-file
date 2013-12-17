@@ -73,8 +73,6 @@ class FileEntry(BaseTaggableObjectModel):
             raise ValidationError(_('No files selected.'))
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            unique_aware_slugify(self, slug_source='name', slug_field='slug', group=self.group)
         if self.path[-1] != '/':
             self.path += '/'
         super(FileEntry, self).save(*args, **kwargs)
