@@ -143,14 +143,14 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
             if fileentry.isfolder:
                 folderfiles = self._getFilesInPath(fileentry.path)
                 if len(folderfiles) > 1:
-                    messages.error(request, _('Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename': fileentry.name})
+                    messages.error(request, _('Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename': fileentry.title})
                     continue
             deletedpk = fileentry.pk
             fileentry.delete()
             # check if deletion was successful
             try:
                 checkfileentry = FileEntry.objects.get(pk=deletedpk)
-                messages.error(request, _('File "%(filename)s" could not be deleted.') % {'filename': checkfileentry.name})
+                messages.error(request, _('File "%(filename)s" could not be deleted.') % {'filename': checkfileentry.title})
             except FileEntry.DoesNotExist:
                 deleted_count += 1
 
@@ -158,7 +158,7 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
             if deleted_count > 1 and deleted_count == total_files:
                 messages.success(request, _('%(numfiles)d files were deleted successfully.') % {'numfiles': deleted_count})
             elif deleted_count == 1 and total_files == 1:
-                messages.success(request, _('File "%(filename)s" was deleted successfully.') % {'filename': fileentry.name})
+                messages.success(request, _('File "%(filename)s" was deleted successfully.') % {'filename': fileentry.title})
             else:
                 messages.info(request, _('%(numfiles)d other files were deleted.') % {'numfiles': deleted_count})
 

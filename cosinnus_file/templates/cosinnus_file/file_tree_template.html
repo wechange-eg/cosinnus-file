@@ -21,7 +21,7 @@
             </ul>
         </div>
         <p>
-            {{ folder.folderfile.name }}
+            {{ folder.folderfile.title }}
         </p>
     {% else %}
         <!-- root folder -->
@@ -54,7 +54,7 @@
             </a>
                <div>
                     <span><a href="{% url 'cosinnus:file:file' group=group.slug slug=file.slug %}"
-                             title="{{ file.note }}">{{ file.name }}</a></span>
+                             title="{{ file.note }}">{{ file.title }}</a></span>
                 <span>when: {{ file.uploaded_date|date:"DATETIME_FORMAT" }}</span>
                 <span>by: {{ file.uploaded_by }}</span>
                 <span><a href="{% url 'cosinnus:file:download' group=group.slug slug=file.slug %}">{{ file.sourcefilename }}</a></span>

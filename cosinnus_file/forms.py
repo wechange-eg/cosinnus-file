@@ -11,7 +11,7 @@ class FileForm(ModelForm):
 
     class Meta:
         model = FileEntry
-        fields = ('name', 'file', 'note', 'tags')
+        fields = ('title', 'file', 'note', 'tags')
 
     def __init__(self, *args, **kwargs):
         super(FileForm, self).__init__(*args, **kwargs)

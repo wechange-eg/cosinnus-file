@@ -39,9 +39,8 @@ class FileEntry(BaseTaggableObjectModel):
 
     Files are saved under 'cosinnus_files/groupid/Year/Month/hashedfilename'
     """
-    SORT_FIELDS_ALIASES = [('name', 'name'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
+    SORT_FIELDS_ALIASES = [('title', 'title'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
 
-    name = models.CharField(_('Name'), blank=False, null=False, max_length=50)
     note = models.TextField(_('Note'), blank=True, null=True)
     file = models.FileField(_('File'), blank=True, null=True,
                             max_length=250, upload_to=get_hashed_filename)
@@ -62,12 +61,12 @@ class FileEntry(BaseTaggableObjectModel):
         return self._sourcefilename
 
     class Meta:
-        ordering = ['-uploaded_date', 'name']
+        ordering = ['-uploaded_date', 'title']
         verbose_name = _('Cosinnus File')
         verbose_name_plural = _('Cosinnus Files')
 
     def __str__(self):
-        return '%s (%s%s)' % (self.name, self.path, '' if self.isfolder else self.sourcefilename)
+        return '%s (%s%s)' % (self.title, self.path, '' if self.isfolder else self.sourcefilename)
 
     def clean(self):
         # if we are creating a file, require an uploaded file (not required for folders)

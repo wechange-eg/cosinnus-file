@@ -5,18 +5,22 @@
 
 {% block breadcrumbs %}
     {{ block.super }}
-    <li class="active">{{ object.name }}</li>
+    <li class="active">{{ object.title }}</li>
 {% endblock %}
 
 {% block content %}
 <table class="table">
 <tr>
     <th class="span2">{% trans "Name" %}</th>
-    <td>{{ object.name }}</td>
+    <td>{{ object.title }}</td>
 </tr>
 <tr>
     <th>{% trans "Filename" %}</th>
     <td><a href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">{{ object.sourcefilename }}</a></td>
+</tr>
+<tr>
+    <th>{% trans "Note" %}</th>
+    <td>{{ object.note }}</td>
 </tr>
 <tr>
     <th>{% trans "Uploaded on" %}</th>
@@ -30,7 +34,7 @@
     <th>{% trans "Actions" %}</th>
     <td>
         <div class="btn-group">
-        	<a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:download' group=group.slug slug=object.name %}"><i class="icon-eye-open icon-white"></i> {% trans "Download" %}</a>
+        	<a class="btn btn-primary btn-mini" href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}"><i class="icon-eye-open icon-white"></i> {% trans "Download" %}</a>
             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">{% trans "Actions" %} <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="{% url 'cosinnus:file:update' group=group.slug slug=object.slug %}"><i class="icon-pencil"></i> {% trans "Update"%}</a></li>
