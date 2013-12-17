@@ -17,7 +17,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from cosinnus.conf import settings
 from cosinnus.models import BaseTaggableObjectModel
-from cosinnus.utils.functions import unique_aware_slugify
 
 from cosinnus_file.managers import FileEntryManager
 
