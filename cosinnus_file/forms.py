@@ -32,7 +32,6 @@ class FileForm(ModelForm):
             instance = getattr(self, 'instance', None)
             if instance:
                 instance.mimetype = fileupload.content_type
-                print(instance.mimetype)
         return fileupload
 
 
