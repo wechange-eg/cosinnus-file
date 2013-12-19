@@ -5,6 +5,7 @@ import hashlib
 import uuid
 
 from os.path import exists, isfile, join
+import os, shutil
 
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
@@ -54,6 +55,30 @@ class FileEntry(BaseTaggableObjectModel):
     mimetype = models.CharField(_('Path'), blank=True, null=True, default='', max_length=50, editable=False)
 
     objects = FileEntryManager()
+
+    @property
+    def get_static_image_url(self):
+        '''
+            This serves as a helper function to display Cosinnus Image Files on the webpage.
+            The image file is copied to a general image folder in cosinnus_files, so the true image
+            path is not shown to the client.
+            This function copies the image to its new path (if necessary) and returns
+            the URL for the image to be displayed on the page. (Ex: '/media/cosinnus_files/images/dca2b30b1e07ed135c24d7dbd928e37523b474bb.jpg') 
+        '''
+        if not self.is_image:
+            return ''
+
+        mediapath = join('cosinnus_files', 'images')
+        mediapath_local = join(settings.MEDIA_ROOT, mediapath)
+        if not os.path.exists(mediapath_local):
+            os.makedirs(mediapath_local)
+
+        image_filename = self.file.path.split(os.sep)[-1] + '.' + self.sourcefilename.split('.')[-1]
+        imagepath_local = join(mediapath_local, image_filename)
+        if not os.path.exists(imagepath_local):
+            shutil.copy(self.file.path, imagepath_local)
+
+        return join(settings.MEDIA_URL, mediapath, image_filename)
 
     @property
     def is_image(self):

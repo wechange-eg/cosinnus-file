@@ -14,4 +14,9 @@ class FileEntryRenderer(BaseRenderer):
 
     @classmethod
     def render(cls, context, myobjs):
-        return super(FileEntryRenderer, cls).render(context, files=myobjs)
+        files = []
+        images = []
+        for fileobj in myobjs:
+            (images if fileobj.is_image else files).append(fileobj)
+
+        return super(FileEntryRenderer, cls).render(context, files=files, images=images)
