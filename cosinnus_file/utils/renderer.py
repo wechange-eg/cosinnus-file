@@ -6,12 +6,12 @@ Created on 10.12.2013
 """
 from __future__ import unicode_literals
 
-from django.template.loader import render_to_string
+from cosinnus.utils.renderer import BaseRenderer
 
+class FileEntryRenderer(BaseRenderer):
 
-class FileEntryRenderer(object):
+    template = 'cosinnus_file/attached_files.html'
 
-    @staticmethod
-    def render_attached_objects(context, files, template="cosinnus_file/attached_files.html"):
-        context['files'] = files
-        return render_to_string(template, context)
+    @classmethod
+    def render(cls, context, myobjs):
+        return super(FileEntryRenderer, cls).render(context, files=myobjs)
