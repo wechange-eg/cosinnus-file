@@ -51,8 +51,15 @@ class FileEntry(BaseTaggableObjectModel):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Uploaded by'),
                                     on_delete=models.PROTECT,
                                     related_name='files')
+    mimetype = models.CharField(_('Path'), blank=True, null=True, default='', max_length=50, editable=False)
 
     objects = FileEntryManager()
+
+    @property
+    def is_image(self):
+        if not self.file or not self.mimetype:
+            return False
+        return self.mimetype.startswith('image/')
 
     @property
     def sourcefilename(self):

@@ -26,6 +26,15 @@ class FileForm(ModelForm):
         if instance:
             return self.cleaned_data['isfolder']
 
+    def clean_file(self):
+        fileupload = self.cleaned_data['file']
+        if fileupload:
+            instance = getattr(self, 'instance', None)
+            if instance:
+                instance.mimetype = fileupload.content_type
+                print(instance.mimetype)
+        return fileupload
+
 
 class FileListForm(forms.Form):
     select = forms.MultipleChoiceField(required=False)  # required=False to handle this validation in the view
