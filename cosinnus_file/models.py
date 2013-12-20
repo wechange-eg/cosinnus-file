@@ -5,6 +5,7 @@ import hashlib
 import uuid
 
 from os.path import exists, isfile, join
+import os, shutil
 
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
@@ -51,12 +52,48 @@ class FileEntry(BaseTaggableObjectModel):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Uploaded by'),
                                     on_delete=models.PROTECT,
                                     related_name='files')
+    mimetype = models.CharField(_('Path'), blank=True, null=True, default='', max_length=50, editable=False)
 
     objects = FileEntryManager()
 
     @property
+    def static_image_url(self):
+        '''
+            This serves as a helper function to display Cosinnus Image Files on the webpage.
+            The image file is copied to a general image folder in cosinnus_files, so the true image
+            path is not shown to the client.
+            This function copies the image to its new path (if necessary) and returns
+            the URL for the image to be displayed on the page. (Ex: '/media/cosinnus_files/images/dca2b30b1e07ed135c24d7dbd928e37523b474bb.jpg') 
+        '''
+        if not self.is_image:
+            return ''
+        media_image_path = self.get_media_image_path()
+
+        # if image is not in media dir yet, copy it
+        imagepath_local = join(settings.MEDIA_ROOT, media_image_path)
+        if not os.path.exists(imagepath_local):
+            shutil.copy(self.file.path, imagepath_local)
+
+        return join(settings.MEDIA_URL, media_image_path)
+
+    @property
+    def is_image(self):
+        if not self.file or not self.mimetype:
+            return False
+        return self.mimetype.startswith('image/')
+
+    @property
     def sourcefilename(self):
         return self._sourcefilename
+
+    def get_media_image_path(self):
+        ''' Gets the unique path for each image file in the media directory '''
+        mediapath = join('cosinnus_files', 'images')
+        mediapath_local = join(settings.MEDIA_ROOT, mediapath)
+        if not os.path.exists(mediapath_local):
+            os.makedirs(mediapath_local)
+        image_filename = self.file.path.split(os.sep)[-1] + '.' + self.sourcefilename.split('.')[-1]
+        return join(mediapath, image_filename)
 
     class Meta:
         ordering = ['-uploaded_date', 'title']
@@ -85,6 +122,12 @@ class FileEntry(BaseTaggableObjectModel):
 @receiver(post_delete, sender=FileEntry)
 def post_file_delete(sender, instance, **kwargs):
     if instance.file:
+        # delete media image file if it existed
+        if instance.is_image:
+            imagepath_local = join(settings.MEDIA_ROOT, instance.get_media_image_path())
+            if os.path.exists(imagepath_local):
+                os.remove(imagepath_local)
+
         path = instance.file.path
         if exists(path) and isfile(path):
             instance.file.delete(False)

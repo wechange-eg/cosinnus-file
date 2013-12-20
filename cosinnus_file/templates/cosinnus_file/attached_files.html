@@ -3,11 +3,15 @@
 <hr>
 {% trans "attached:cosinnus_file.FileEntry" %}:
 <div class="media-body">
+    {% for image in images %}
+    <div>
+        <img src='{{ image.static_image_url }}' title='{{ image.title }}'></img>
+    </div>
+    {% endfor %}
+    <hr>
     {% for file in files %}
     <div>
         <b>{{ file.slug }}</b>: <a href="{% url 'cosinnus:file:download' group=group.slug slug=file.slug %}">{{ file.sourcefilename }}</a>
     </div>
-    {% empty %}
-        Template was called but no files are passed to be shown.
     {% endfor %}
 </div>

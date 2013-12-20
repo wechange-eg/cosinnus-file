@@ -30,6 +30,14 @@
     <th>{% trans "Uploaded by" %}</th>
     <td>{{ object.uploaded_by }}</td>
 </tr>
+{% if object.is_image %}
+<tr>
+    <th>{% trans "Image" %}</th>
+    <td>
+            <img src='{{ object.static_image_url }}' title='{{ object.title }}'></img>
+    </td>
+</tr>
+{% endif %}
 <tr>
     <th>{% trans "Actions" %}</th>
     <td>
@@ -43,6 +51,7 @@
         </div>
     </td>
 </tr>
+
 </table>
 
 <div>
