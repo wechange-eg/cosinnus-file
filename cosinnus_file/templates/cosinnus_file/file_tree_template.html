@@ -50,7 +50,11 @@
         {%for file in node.files %}
            <div class="media">
             <a class="pull-left" href="#">
-              <span class="glyphicon glyphicon-file"></span>
+               {% if file.is_image %}
+               <span><img height=30 src='{{ file.static_image_url }}' title='{{ file.title }}'></img></span>
+               {% else %}
+               <span class="glyphicon glyphicon-file"></span>
+               {% endif %}
             </a>
                <div>
                     <span><a href="{% url 'cosinnus:file:file' group=group.slug slug=file.slug %}"
