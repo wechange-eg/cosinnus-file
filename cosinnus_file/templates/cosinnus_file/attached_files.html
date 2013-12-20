@@ -5,7 +5,7 @@
 <div class="media-body">
     {% for image in images %}
     <div>
-        <img src='{{ image.get_static_image_url }}' title='{{ image.title }}'></img>
+        <img src='{{ image.static_image_url }}' title='{{ image.title }}'></img>
     </div>
     {% endfor %}
     <hr>

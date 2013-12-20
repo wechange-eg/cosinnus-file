@@ -57,7 +57,7 @@ class FileEntry(BaseTaggableObjectModel):
     objects = FileEntryManager()
 
     @property
-    def get_static_image_url(self):
+    def static_image_url(self):
         '''
             This serves as a helper function to display Cosinnus Image Files on the webpage.
             The image file is copied to a general image folder in cosinnus_files, so the true image
@@ -67,18 +67,14 @@ class FileEntry(BaseTaggableObjectModel):
         '''
         if not self.is_image:
             return ''
+        media_image_path = self.get_media_image_path()
 
-        mediapath = join('cosinnus_files', 'images')
-        mediapath_local = join(settings.MEDIA_ROOT, mediapath)
-        if not os.path.exists(mediapath_local):
-            os.makedirs(mediapath_local)
-
-        image_filename = self.file.path.split(os.sep)[-1] + '.' + self.sourcefilename.split('.')[-1]
-        imagepath_local = join(mediapath_local, image_filename)
+        # if image is not in media dir yet, copy it
+        imagepath_local = join(settings.MEDIA_ROOT, media_image_path)
         if not os.path.exists(imagepath_local):
             shutil.copy(self.file.path, imagepath_local)
 
-        return join(settings.MEDIA_URL, mediapath, image_filename)
+        return join(settings.MEDIA_URL, media_image_path)
 
     @property
     def is_image(self):
@@ -89,6 +85,15 @@ class FileEntry(BaseTaggableObjectModel):
     @property
     def sourcefilename(self):
         return self._sourcefilename
+
+    def get_media_image_path(self):
+        ''' Gets the unique path for each image file in the media directory '''
+        mediapath = join('cosinnus_files', 'images')
+        mediapath_local = join(settings.MEDIA_ROOT, mediapath)
+        if not os.path.exists(mediapath_local):
+            os.makedirs(mediapath_local)
+        image_filename = self.file.path.split(os.sep)[-1] + '.' + self.sourcefilename.split('.')[-1]
+        return join(mediapath, image_filename)
 
     class Meta:
         ordering = ['-uploaded_date', 'title']
@@ -117,6 +122,12 @@ class FileEntry(BaseTaggableObjectModel):
 @receiver(post_delete, sender=FileEntry)
 def post_file_delete(sender, instance, **kwargs):
     if instance.file:
+        # delete media image file if it existed
+        if instance.is_image:
+            imagepath_local = join(settings.MEDIA_ROOT, instance.get_media_image_path())
+            if os.path.exists(imagepath_local):
+                os.remove(imagepath_local)
+
         path = instance.file.path
         if exists(path) and isfile(path):
             instance.file.delete(False)
