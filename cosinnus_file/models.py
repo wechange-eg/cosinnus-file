@@ -35,8 +35,18 @@ def get_hashed_filename(instance, filename):
 class FileEntry(BaseTaggableObjectModel):
     """
     Model for uploaded files.
-
+    
     Files are saved under 'cosinnus_files/groupid/Year/Month/hashedfilename'
+    
+    The content type for files is saved in self.mimetype. It finds a special application
+    in defining whether a FileEntry is an image (self.is_image).
+    
+    Image-files are ~additionally~ copied to '/cosinnus_files/images/hashedfilename.<ext>'
+    during the first request of self.static_image_url.
+    This then returns that path in the images folder, so the image can be served from a
+    publicly suitable location for http requests and so it also shows its file extension.
+    The image-copy is deleted when the FileEntry is deleted (post_delete).
+    
     """
     SORT_FIELDS_ALIASES = [('title', 'title'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
 
@@ -121,6 +131,10 @@ class FileEntry(BaseTaggableObjectModel):
 
 @receiver(post_delete, sender=FileEntry)
 def post_file_delete(sender, instance, **kwargs):
+    '''
+        When the user deletes a FileEntry, delete the file on the disk, 
+        and delete the media-image copy of the file if it was an image.
+    '''
     if instance.file:
         # delete media image file if it existed
         if instance.is_image:
