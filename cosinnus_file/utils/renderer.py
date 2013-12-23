@@ -8,6 +8,7 @@ from __future__ import unicode_literals
 
 from cosinnus.utils.renderer import BaseRenderer
 
+
 class FileEntryRenderer(BaseRenderer):
 
     template = 'cosinnus_file/attached_files.html'
@@ -17,6 +18,8 @@ class FileEntryRenderer(BaseRenderer):
         files = []
         images = []
         for fileobj in myobjs:
-            (images if fileobj.is_image else files).append(fileobj)
-
+            if fileobj.is_image:
+                images.append(fileobj)
+            else:
+                files.append(fileobj)
         return super(FileEntryRenderer, cls).render(context, files=files, images=images)
