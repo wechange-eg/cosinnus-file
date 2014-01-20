@@ -1,11 +1,19 @@
 # -*- coding: utf-8 -*-
-from django.utils.translation import ugettext_lazy as _
-from cosinnus_file.utils import renderer
-
-IS_COSINNUS_APP = True
-COSINNUS_APP_NAME = 'file'
-COSINNUS_APP_LABEL = _('Files')
+from __future__ import unicode_literals
 
 
-ATTACHABLE_OBJECT_MODELS = ['cosinnus_file.FileEntry']
-ATTACHABLE_OBJECT_RENDERERS = {'cosinnus_file.FileEntry': renderer.FileEntryRenderer}
+def register():
+    # Import here to prevent import side effects
+    from django.utils.translation import ugettext_lazy as _
+
+    from cosinnus.core.registries import (app_registry,
+        attached_object_registry, url_registry)
+
+    from cosinnus_file.urls import (cosinnus_group_patterns,
+        cosinnus_root_patterns)
+
+    app_registry.register('cosinnus_file', 'file', _('Files'))
+    attached_object_registry.register('cosinnus_file.FileEntry',
+                             'cosinnus_file.renderer.FileEntryRenderer')
+    url_registry.register('cosinnus_file', cosinnus_root_patterns,
+        cosinnus_group_patterns)

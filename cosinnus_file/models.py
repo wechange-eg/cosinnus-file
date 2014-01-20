@@ -152,3 +152,9 @@ def post_file_delete(sender, instance, **kwargs):
         path = instance.file.path
         if exists(path) and isfile(path):
             instance.file.delete(False)
+
+
+import django
+if django.VERSION[:2] < (1, 7):
+    from cosinnus_file import cosinnus_app
+    cosinnus_app.register()
