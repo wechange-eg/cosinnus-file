@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django import forms
+from django.core.files.uploadedfile import UploadedFile
 from django.forms.models import ModelForm
 
 from cosinnus_file.models import FileEntry
@@ -28,7 +29,7 @@ class FileForm(ModelForm):
 
     def clean_file(self):
         fileupload = self.cleaned_data['file']
-        if fileupload:
+        if fileupload and isinstance(fileupload, UploadedFile):
             instance = getattr(self, 'instance', None)
             if instance:
                 instance.mimetype = fileupload.content_type
