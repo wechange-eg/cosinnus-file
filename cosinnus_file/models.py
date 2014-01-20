@@ -2,10 +2,11 @@
 from __future__ import unicode_literals
 
 import hashlib
+import os
+import shutil
 import uuid
 
 from os.path import exists, isfile, join
-import os, shutil
 
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
@@ -35,18 +36,18 @@ def get_hashed_filename(instance, filename):
 class FileEntry(BaseTaggableObjectModel):
     """
     Model for uploaded files.
-    
+
     Files are saved under 'cosinnus_files/groupid/Year/Month/hashedfilename'
-    
+
     The content type for files is saved in self.mimetype. It finds a special application
     in defining whether a FileEntry is an image (self.is_image).
-    
+
     Image-files are ~additionally~ copied to '/cosinnus_files/images/hashedfilename.<ext>'
     during the first request of self.static_image_url.
     This then returns that path in the images folder, so the image can be served from a
     publicly suitable location for http requests and so it also shows its file extension.
     The image-copy is deleted when the FileEntry is deleted (post_delete).
-    
+
     """
     SORT_FIELDS_ALIASES = [('title', 'title'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
 
@@ -68,20 +69,24 @@ class FileEntry(BaseTaggableObjectModel):
 
     @property
     def static_image_url(self):
-        '''
-            This serves as a helper function to display Cosinnus Image Files on the webpage.
-            The image file is copied to a general image folder in cosinnus_files, so the true image
-            path is not shown to the client.
-            This function copies the image to its new path (if necessary) and returns
-            the URL for the image to be displayed on the page. (Ex: '/media/cosinnus_files/images/dca2b30b1e07ed135c24d7dbd928e37523b474bb.jpg') 
-        '''
+        """
+        This function copies the image to its new path (if necessary) and
+        returns the URL for the image to be displayed on the page. (Ex:
+        '/media/cosinnus_files/images/dca2b30b1e07ed135c24d7dbd928e37523b474bb.jpg')
+
+        It is a helper function to display cosinnus image files on the webpage.
+
+        The image file is copied to a general image folder in cosinnus_files,
+        so the true image path is not shown to the client.
+
+        """
         if not self.is_image:
             return ''
         media_image_path = self.get_media_image_path()
 
         # if image is not in media dir yet, copy it
         imagepath_local = join(settings.MEDIA_ROOT, media_image_path)
-        if not os.path.exists(imagepath_local):
+        if not exists(imagepath_local):
             shutil.copy(self.file.path, imagepath_local)
 
         return join(settings.MEDIA_URL, media_image_path)
@@ -97,10 +102,10 @@ class FileEntry(BaseTaggableObjectModel):
         return self._sourcefilename
 
     def get_media_image_path(self):
-        ''' Gets the unique path for each image file in the media directory '''
+        """Gets the unique path for each image file in the media directory"""
         mediapath = join('cosinnus_files', 'images')
         mediapath_local = join(settings.MEDIA_ROOT, mediapath)
-        if not os.path.exists(mediapath_local):
+        if not exists(mediapath_local):
             os.makedirs(mediapath_local)
         image_filename = self.file.path.split(os.sep)[-1] + '.' + self.sourcefilename.split('.')[-1]
         return join(mediapath, image_filename)
@@ -131,15 +136,15 @@ class FileEntry(BaseTaggableObjectModel):
 
 @receiver(post_delete, sender=FileEntry)
 def post_file_delete(sender, instance, **kwargs):
-    '''
-        When the user deletes a FileEntry, delete the file on the disk, 
-        and delete the media-image copy of the file if it was an image.
-    '''
+    """
+    When the user deletes a FileEntry, delete the file on the disk,
+    and delete the media-image copy of the file if it was an image.
+    """
     if instance.file:
         # delete media image file if it existed
         if instance.is_image:
             imagepath_local = join(settings.MEDIA_ROOT, instance.get_media_image_path())
-            if os.path.exists(imagepath_local):
+            if exists(imagepath_local):
                 os.remove(imagepath_local)
 
         path = instance.file.path
