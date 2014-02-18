@@ -12,9 +12,6 @@
 {% endblock %}
 
 {% block subnav_add_right %}
-<a href="{% url 'cosinnus:file:create' group=group.slug %}" class="btn">
-  {% trans "Upload file" %}
-</a>
 {{ block.super }}
 {% endblock %}
 
