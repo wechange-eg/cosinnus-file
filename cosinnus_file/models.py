@@ -89,9 +89,8 @@ class FileEntry(BaseTaggableObjectModel):
         if not exists(imagepath_local):
             shutil.copy(self.file.path, imagepath_local)
 
-        image_url = join(settings.MEDIA_URL, media_image_path)
-        image_url = image_url.replace('\\', '/')  # fix for local windows systems
-        return image_url
+        media_image_path = media_image_path.replace('\\', '/')  # fix for local windows systems
+        return join(settings.MEDIA_URL, media_image_path)
 
     @property
     def is_image(self):
