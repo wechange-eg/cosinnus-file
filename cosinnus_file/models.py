@@ -49,7 +49,7 @@ class FileEntry(BaseTaggableObjectModel):
     The image-copy is deleted when the FileEntry is deleted (post_delete).
 
     """
-    SORT_FIELDS_ALIASES = [('title', 'title'), ('uploaded_date', 'uploaded_date'), ('uploaded_by', 'uploaded_by')]
+    SORT_FIELDS_ALIASES = [('title', 'title'), ('created', 'created'), ('creator', 'creator')]
 
     note = models.TextField(_('Note'), blank=True, null=True)
     file = models.FileField(_('File'), blank=True, null=True,
@@ -59,10 +59,6 @@ class FileEntry(BaseTaggableObjectModel):
 
     _sourcefilename = models.CharField(blank=False, null=False, default='download', max_length=100)
 
-    uploaded_date = models.DateTimeField(_('Uploaded on'), default=now)
-    uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('Uploaded by'),
-                                    on_delete=models.PROTECT,
-                                    related_name='files')
     mimetype = models.CharField(_('Path'), blank=True, null=True, default='', max_length=50, editable=False)
 
     objects = FileEntryManager()
@@ -112,9 +108,14 @@ class FileEntry(BaseTaggableObjectModel):
         return join(mediapath, image_filename)
 
     class Meta:
-        ordering = ['-uploaded_date', 'title']
+        ordering = ['-created', 'title']
         verbose_name = _('Cosinnus File')
         verbose_name_plural = _('Cosinnus Files')
+
+    def __init__(self, *args, **kwargs):
+        super(FileEntry, self).__init__(*args, **kwargs)
+        self._meta.get_field('creator').verbose_name = _('Uploaded by')
+        self._meta.get_field('created').verbose_name = _('Uploaded on')
 
     def __str__(self):
         return '%s (%s%s)' % (self.title, self.path, '' if self.isfolder else self.sourcefilename)

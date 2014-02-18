@@ -41,7 +41,7 @@ class FileFormMixin(object):
         creating = self.object is None
 
         self.object = form.save(commit=False)
-        self.object.uploaded_by = self.request.user
+        self.object.creator = self.request.user
         self.object.group = self.group
         self.object.save()
 
@@ -184,7 +184,7 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
         qs = super(FileDeleteView, self).get_queryset()
         if self.request.user.is_superuser:
             return qs
-        return qs.filter(uploaded_by=self.request.user)
+        return qs.filter(creator=self.request.user)
 
     def get(self, request, *args, **kwargs):
         try:

@@ -63,8 +63,8 @@
                <div>
                     <span><a href="{% url 'cosinnus:file:file' group=group.slug slug=file.slug %}"
                              title="{{ file.note }}">{{ file.title }}</a></span>
-                <span>when: {{ file.uploaded_date|date:"DATETIME_FORMAT" }}</span>
-                <span>by: {{ file.uploaded_by }}</span>
+                <span>when: {{ file.created|date:"DATETIME_FORMAT" }}</span>
+                <span>by: {{ file.creator }}</span>
                 <span><a href="{% url 'cosinnus:file:download' group=group.slug slug=file.slug %}">{{ file.sourcefilename }}</a></span>
                 <span>
                     {% for tag in file.tags.all %}

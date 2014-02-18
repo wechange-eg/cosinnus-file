@@ -24,11 +24,11 @@
 </tr>
 <tr>
     <th>{% trans "Uploaded on" %}</th>
-    <td>{{ object.uploaded_date|date:"DATETIME_FORMAT" }}</td>
+    <td>{{ object.created|date:"DATETIME_FORMAT" }}</td>
 </tr>
 <tr>
     <th>{% trans "Uploaded by" %}</th>
-    <td>{{ object.uploaded_by }}</td>
+    <td>{{ object.creator }}</td>
 </tr>
 {% if object.is_image %}
 <tr>
