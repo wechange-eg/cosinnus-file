@@ -14,6 +14,6 @@ def register():
 
     app_registry.register('cosinnus_file', 'file', _('Files'))
     attached_object_registry.register('cosinnus_file.FileEntry',
-                             'cosinnus_file.renderer.FileEntryRenderer')
+                             'cosinnus_file.utils.renderer.FileEntryRenderer')
     url_registry.register('cosinnus_file', cosinnus_root_patterns,
         cosinnus_group_patterns)
