@@ -107,7 +107,7 @@ class FileEntry(BaseTaggableObjectModel):
         image_filename = self.file.path.split(os.sep)[-1] + '.' + self.sourcefilename.split('.')[-1]
         return join(mediapath, image_filename)
 
-    class Meta:
+    class Meta(BaseTaggableObjectModel.Meta):
         ordering = ['-created', 'title']
         verbose_name = _('Cosinnus File')
         verbose_name_plural = _('Cosinnus Files')
