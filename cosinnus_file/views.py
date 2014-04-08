@@ -62,6 +62,8 @@ class FileIndexView(RequireReadMixin, RedirectView):
         return reverse('cosinnus:file:list',
                        kwargs={'group': self.group.slug})
 
+file_index_view = FileIndexView.as_view()
+
 
 class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
                      CreateView):
@@ -108,6 +110,8 @@ class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
         })
 
         return context
+
+file_create_view = FileCreateView.as_view()
 
 
 class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
@@ -198,11 +202,15 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
     def get_success_url(self):
         return reverse('cosinnus:file:list', kwargs={'group': self.group.slug})
 
+file_delete_view = FileDeleteView.as_view()
+
 
 class FileDetailView(RequireReadMixin, FilterGroupMixin, DetailView):
 
     model = FileEntry
     template_name = 'cosinnus_file/file_detail.html'
+
+file_detail_view = FileDetailView.as_view()
 
 
 def create_file_hierarchy(filelist):
@@ -308,6 +316,8 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
         else:
             return self.get(request, *args, **kwargs)
 
+file_list_view = FileListView.as_view()
+
 
 class FileUpdateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
                      UpdateView):
@@ -323,6 +333,8 @@ class FileUpdateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
             'tags': tags
         })
         return context
+
+file_update_view = FileUpdateView.as_view()
 
 
 class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
@@ -359,3 +371,5 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
                     pass
 
         return response
+
+file_download_view = FileDownloadView.as_view()
