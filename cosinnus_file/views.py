@@ -40,21 +40,16 @@ class FileFormMixin(object):
     def form_valid(self, form):
         creating = self.object is None
 
-        self.object = form.save(commit=False)
-        self.object.creator = self.request.user
-        self.object.group = self.group
-        self.object.save()
+        form.instance.creator = self.request.user
+        form.instance.save()
 
         # only after this save do we know the final slug
         # we still must add it to the end of our path if we're saving a folder
         # however not when we're only updating the object
-        if self.object.isfolder and creating:
+        if form.instance.isfolder and creating:
             suffix = self.object.slug + '/'
-            self.object.path += suffix
-            self.object.save()
-
-        form.save_m2m()
-        return HttpResponseRedirect(self.get_success_url())
+            form.instance.path += suffix
+        return super(FileFormMixin, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('cosinnus:file:list',
@@ -66,6 +61,8 @@ class FileIndexView(RequireReadMixin, RedirectView):
     def get_redirect_url(self, **kwargs):
         return reverse('cosinnus:file:list',
                        kwargs={'group': self.group.slug})
+
+file_index_view = FileIndexView.as_view()
 
 
 class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
@@ -103,7 +100,7 @@ class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
         path = form.initial.get('path', None)
         if path:
             form.instance.path = path
-        return FileFormMixin.form_valid(self, form)
+        return super(FileCreateView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super(FileCreateView, self).get_context_data(**kwargs)
@@ -113,6 +110,8 @@ class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
         })
 
         return context
+
+file_create_view = FileCreateView.as_view()
 
 
 class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
@@ -203,11 +202,15 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
     def get_success_url(self):
         return reverse('cosinnus:file:list', kwargs={'group': self.group.slug})
 
+file_delete_view = FileDeleteView.as_view()
+
 
 class FileDetailView(RequireReadMixin, FilterGroupMixin, DetailView):
 
     model = FileEntry
     template_name = 'cosinnus_file/file_detail.html'
+
+file_detail_view = FileDetailView.as_view()
 
 
 def create_file_hierarchy(filelist):
@@ -313,6 +316,8 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
         else:
             return self.get(request, *args, **kwargs)
 
+file_list_view = FileListView.as_view()
+
 
 class FileUpdateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
                      UpdateView):
@@ -328,6 +333,8 @@ class FileUpdateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
             'tags': tags
         })
         return context
+
+file_update_view = FileUpdateView.as_view()
 
 
 class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
@@ -364,3 +371,5 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
                     pass
 
         return response
+
+file_download_view = FileDownloadView.as_view()

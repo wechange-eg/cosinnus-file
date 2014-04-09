@@ -3,61 +3,60 @@ from __future__ import unicode_literals
 
 from django.conf.urls import patterns, url
 
-from cosinnus_file.views import (FileCreateView, FileDeleteView,
-    FileDetailView, FileIndexView, FileListView, FileUpdateView, FileDownloadView)
 
 cosinnus_root_patterns = patterns('', )
 
-cosinnus_group_patterns = patterns('',
+
+cosinnus_group_patterns = patterns('cosinnus_file.views',
     url(r'^list/$',
-        FileListView.as_view(),
+        'file_list_view',
         name='list'),
 
     url(r'^list/(?P<tag>[^/]+)/$',
-        FileListView.as_view(),
+        'file_list_view',
         name='list-filtered'),
 
     url(r'^add/$',
-        FileCreateView.as_view(),
+        'file_create_view',
         {'form_view': 'create'},
         name='add'),
 
     url(r'^addfolder/$',
-        FileCreateView.as_view(),
+        'file_create_view',
         {'form_view': 'create_folder'},
         name='addfolder'),
 
     url(r'^(?P<slug>[^/]+)/add/$',
-        FileCreateView.as_view(),
+        'file_create_view',
         {'form_view': 'create'},
         name='add'),
 
     url(r'^(?P<slug>[^/]+)/addfolder/$',
-        FileCreateView.as_view(),
+        'file_create_view',
         {'form_view': 'create_folder'},
         name='addfolder'),
 
 
     url(r'^(?P<slug>[^/]+)/$',
-        FileDetailView.as_view(),
+        'file_detail_view',
         name='file'),
 
     url(r'^(?P<slug>[^/]+)/download$',
-        FileDownloadView.as_view(),
+        'file_download_view',
         name='download'),
 
     url(r'^(?P<slug>[^/]+)/delete/$',
-        FileDeleteView.as_view(),
+        'file_delete_view',
         {'form_view': 'delete'},
         name='delete'),
 
     url(r'^(?P<slug>[^/]+)/update/$',
-        FileUpdateView.as_view(),
+        'file_update_view',
         {'form_view': 'update'},
         name='update'),
 
     url(r'^$',
-        FileIndexView.as_view(),
+        'file_index_view',
         name='index'),
 )
 
