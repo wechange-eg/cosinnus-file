@@ -19,14 +19,14 @@ from django.views.generic.edit import FormMixin
 from cosinnus.conf import settings
 from cosinnus.utils.files import create_zip_file
 from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
-    FilterGroupMixin)
+    FilterGroupMixin, GroupFormKwargsMixin)
 from cosinnus.views.mixins.tagged import TaggedListMixin
 
 from cosinnus_file.forms import FileForm, FileListForm
 from cosinnus_file.models import FileEntry
 
 
-class FileFormMixin(object):
+class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin):
 
     def dispatch(self, request, *args, **kwargs):
         self.form_view = kwargs.get('form_view', None)
@@ -65,8 +65,7 @@ class FileIndexView(RequireReadMixin, RedirectView):
 file_index_view = FileIndexView.as_view()
 
 
-class FileCreateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
-                     CreateView):
+class FileCreateView(RequireWriteMixin, FileFormMixin, CreateView):
 
     form_class = FileForm
     model = FileEntry
@@ -319,8 +318,7 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
 file_list_view = FileListView.as_view()
 
 
-class FileUpdateView(RequireWriteMixin, FilterGroupMixin, FileFormMixin,
-                     UpdateView):
+class FileUpdateView(RequireWriteMixin, FileFormMixin, UpdateView):
 
     form_class = FileForm
     model = FileEntry
