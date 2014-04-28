@@ -6,11 +6,13 @@ from django.core.files.uploadedfile import UploadedFile
 
 from cosinnus.forms.group import GroupKwargModelFormMixin
 from cosinnus.forms.tagged import get_form
+from cosinnus.forms.user import UserKwargModelFormMixin
 
 from cosinnus_file.models import FileEntry
 
 
-class _FileForm(GroupKwargModelFormMixin, forms.ModelForm):
+class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
+                forms.ModelForm):
 
     class Meta:
         model = FileEntry

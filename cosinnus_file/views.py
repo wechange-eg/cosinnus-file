@@ -21,12 +21,14 @@ from cosinnus.utils.files import create_zip_file
 from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
     FilterGroupMixin, GroupFormKwargsMixin)
 from cosinnus.views.mixins.tagged import TaggedListMixin
+from cosinnus.views.mixins.user import UserFormKwargsMixin
 
 from cosinnus_file.forms import FileForm, FileListForm
 from cosinnus_file.models import FileEntry
 
 
-class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin):
+class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
+                    UserFormKwargsMixin):
 
     def dispatch(self, request, *args, **kwargs):
         self.form_view = kwargs.get('form_view', None)
