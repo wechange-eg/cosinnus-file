@@ -109,7 +109,6 @@ msgid "Invalid request."
 msgstr "Ungültiger Seitenaufruf."
 
 #: .\templates\cosinnus_file\attached_files.html.py:4
-#, fuzzy
 msgid "attached__cosinnus_file__FileEntry"
 msgstr "Angehängte Dateien"
 
