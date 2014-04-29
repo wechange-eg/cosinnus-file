@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-19 11:21+0100\n"
+"POT-Creation-Date: 2014-04-29 14:03+0200\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -17,40 +17,40 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: .\cosinnus_app.py:7 .\templates\cosinnus_file\base.html.py:7
-#: .\templates\cosinnus_file\file_list.html.py:22
+#: .\cosinnus_app.py:15 .\templates\cosinnus_file\base.html.py:7
+#: .\templates\cosinnus_file\file_list.html.py:19
 msgid "Files"
 msgstr "Dateien"
 
-#: .\models.py:42 .\templates\cosinnus_file\file_detail.html.py:22
+#: .\models.py:54 .\templates\cosinnus_file\file_detail.html.py:22
 msgid "Note"
 msgstr "Bemerkung"
 
-#: .\models.py:43
+#: .\models.py:55
 msgid "File"
 msgstr "Datei"
 
-#: .\models.py:46
+#: .\models.py:58 .\models.py:62
 msgid "Path"
 msgstr "Verzeichnis"
 
-#: .\models.py:50 .\templates\cosinnus_file\file_detail.html.py:26
-msgid "Uploaded on"
-msgstr "Hochgeladen am"
-
-#: .\models.py:51 .\templates\cosinnus_file\file_detail.html.py:30
-msgid "Uploaded by"
-msgstr "Hochgeladen durch"
-
-#: .\models.py:63
+#: .\models.py:112
 msgid "Cosinnus File"
 msgstr "Cosinnus Datei"
 
-#: .\models.py:64
+#: .\models.py:113
 msgid "Cosinnus Files"
 msgstr "Cosinnus Dateien"
 
-#: .\models.py:72 .\views.py:278
+#: .\models.py:117 .\templates\cosinnus_file\file_detail.html.py:30
+msgid "Uploaded by"
+msgstr "Hochgeladen durch"
+
+#: .\models.py:118 .\templates\cosinnus_file\file_detail.html.py:26
+msgid "Uploaded on"
+msgstr "Hochgeladen am"
+
+#: .\models.py:126 .\views.py:282
 msgid "No files selected."
 msgstr "Keine Dateien ausgewählt."
 
@@ -89,7 +89,7 @@ msgstr ""
 "Entweder existiert diese Datei nicht oder Ihnen fehlen die Rechte um die "
 "Datei zu bearbeiten."
 
-#: .\views.py:287
+#: .\views.py:291
 #, python-format
 msgid ""
 "A problem occurred during export. The following file is missing: %(filename)"
@@ -104,21 +104,22 @@ msgstr[1] ""
 "Beim Exportieren ist ein Fehler aufgetreten. Die folgenden Dateien "
 "existieren nicht: %(filename)s"
 
-#: .\views.py:302
+#: .\views.py:306
 msgid "Invalid request."
 msgstr "Ungültiger Seitenaufruf."
 
 #: .\templates\cosinnus_file\attached_files.html.py:4
-msgid "attached:cosinnus_file.FileEntry"
+#, fuzzy
+msgid "attached__cosinnus_file__FileEntry"
 msgstr "Angehängte Dateien"
 
 #: .\templates\cosinnus_file\file_delete.html.py:6
 #: .\templates\cosinnus_file\file_delete.html.py:12
 #: .\templates\cosinnus_file\file_delete.html.py:47
-#: .\templates\cosinnus_file\file_detail.html.py:41
+#: .\templates\cosinnus_file\file_detail.html.py:49
 #: .\templates\cosinnus_file\file_form.html.py:18
-#: .\templates\cosinnus_file\file_tree_template.html.py:20
-#: .\templates\cosinnus_file\file_tree_template.html.py:74
+#: .\templates\cosinnus_file\file_tree_template.html.py:21
+#: .\templates\cosinnus_file\file_tree_template.html.py:83
 msgid "Delete"
 msgstr "Löschen"
 
@@ -148,17 +149,21 @@ msgstr "Name"
 msgid "Filename"
 msgstr "Dateiname"
 
-#: .\templates\cosinnus_file\file_detail.html.py:34
-#: .\templates\cosinnus_file\file_detail.html.py:38
+#: .\templates\cosinnus_file\file_detail.html.py:35
+msgid "Image"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_detail.html.py:42
+#: .\templates\cosinnus_file\file_detail.html.py:46
 msgid "Actions"
 msgstr "Aktionen"
 
-#: .\templates\cosinnus_file\file_detail.html.py:37
-#: .\templates\cosinnus_file\file_tree_template.html.py:69
+#: .\templates\cosinnus_file\file_detail.html.py:45
+#: .\templates\cosinnus_file\file_tree_template.html.py:77
 msgid "Download"
 msgstr "Herunterladen"
 
-#: .\templates\cosinnus_file\file_detail.html.py:40
+#: .\templates\cosinnus_file\file_detail.html.py:48
 msgid "Update"
 msgstr "Bearbeiten"
 
@@ -169,16 +174,15 @@ msgstr "Hochladen"
 #: .\templates\cosinnus_file\file_form.html.py:21
 #: .\templates\cosinnus_file\file_form.html.py:34
 #: .\templates\cosinnus_file\file_form.html.py:43
-#: .\templates\cosinnus_file\file_list.html.py:16
-#: .\templates\cosinnus_file\file_tree_template.html.py:14
-#: .\templates\cosinnus_file\file_tree_template.html.py:29
+#: .\templates\cosinnus_file\file_tree_template.html.py:15
+#: .\templates\cosinnus_file\file_tree_template.html.py:32
 msgid "Upload file"
 msgstr "Datei hochladen"
 
 #: .\templates\cosinnus_file\file_form.html.py:36
 #: .\templates\cosinnus_file\file_form.html.py:45
-#: .\templates\cosinnus_file\file_tree_template.html.py:15
-#: .\templates\cosinnus_file\file_tree_template.html.py:30
+#: .\templates\cosinnus_file\file_tree_template.html.py:16
+#: .\templates\cosinnus_file\file_tree_template.html.py:33
 msgid "Create folder"
 msgstr "Ordner anlegen"
 
@@ -191,16 +195,16 @@ msgstr "Speichern"
 msgid "List"
 msgstr "Liste"
 
-#: .\templates\cosinnus_file\file_list.html.py:29
+#: .\templates\cosinnus_file\file_list.html.py:26
 msgid "No tags available."
 msgstr "Keine Schlagwörter vorhanden."
 
-#: .\templates\cosinnus_file\file_tree_template.html.py:19
-#: .\templates\cosinnus_file\file_tree_template.html.py:73
+#: .\templates\cosinnus_file\file_tree_template.html.py:20
+#: .\templates\cosinnus_file\file_tree_template.html.py:82
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: .\templates\cosinnus_file\file_tree_template.html.py:72
+#: .\templates\cosinnus_file\file_tree_template.html.py:80
 msgid "Show"
 msgstr "Anzeigen"
 
