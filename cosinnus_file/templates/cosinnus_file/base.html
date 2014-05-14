@@ -1,8 +1,13 @@
 {% extends "cosinnus/base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
-{% block breadcrumbs %}
-    {{ block.super }}
-    <li><a href="{% url 'cosinnus:group-detail' group=group.slug %}">{{ group.name }}</a> <span class="divider">/</span></li>
-    <li><a href="{% url 'cosinnus:file:index' group=group.slug %}">{% trans "Files" %}</a> <span class="divider">/</span></li>
+{% block breadcrumb %}
+        {{ block.super }}
+        <li><a class="active" href="{% url 'cosinnus:file:index' group=group.slug %}">{% trans "Files" %}</a></li>
 {% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/cosinnus_file.css' %}">
+{% endblock %}
+
+{% block page_title %}@ {{ group.name }} | {% trans "Files" %}{% endblock page_title %}

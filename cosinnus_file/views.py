@@ -20,23 +20,27 @@ from cosinnus.conf import settings
 from cosinnus.utils.files import create_zip_file
 from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
     FilterGroupMixin, GroupFormKwargsMixin)
-from cosinnus.views.mixins.tagged import TaggedListMixin
+from cosinnus.views.mixins.tagged import TaggedListMixin, HierarchyTreeMixin,\
+    HierarchyPathMixin
 from cosinnus.views.mixins.user import UserFormKwargsMixin
 
 from cosinnus_file.forms import FileForm, FileListForm
 from cosinnus_file.models import FileEntry
+from cosinnus.views.mixins.hierarchy import HierarchicalListCreateViewMixin
 
 
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
                     UserFormKwargsMixin):
-
-    def dispatch(self, request, *args, **kwargs):
-        self.form_view = kwargs.get('form_view', None)
-        return super(FileFormMixin, self).dispatch(request, *args, **kwargs)
+    message_success = _('File "%(title)s" was uploaded successfully.')
+    message_error = _('File "%(title)s" could not be uploaded.')
 
     def get_context_data(self, **kwargs):
         context = super(FileFormMixin, self).get_context_data(**kwargs)
-        context.update({'form_view': self.form_view})
+        tags = FileEntry.objects.tags()
+        context.update({
+            'form_view': self.form_view,
+            'tags': tags
+        })
         return context
 
     def form_valid(self, form):
@@ -48,14 +52,27 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
         # only after this save do we know the final slug
         # we still must add it to the end of our path if we're saving a folder
         # however not when we're only updating the object
-        if form.instance.isfolder and creating:
+        if form.instance.is_container and creating:
             suffix = self.object.slug + '/'
             form.instance.path += suffix
-        return super(FileFormMixin, self).form_valid(form)
+        ret = super(FileFormMixin, self).form_invalid(form)
+        if self.object:
+            messages.error(self.request,
+                self.message_error % {'title': self.object.title})
+        return ret
 
+    def form_invalid(self, form):
+        ret = super(FileFormMixin, self).form_invalid(form)
+        if self.object:
+            messages.error(self.request,
+                self.message_error % {'title': self.object.title})
+        return ret
+    
     def get_success_url(self):
         return reverse('cosinnus:file:list',
                        kwargs={'group': self.group.slug})
+    
+    
 
 
 class FileIndexView(RequireReadMixin, RedirectView):
@@ -68,7 +85,7 @@ file_index_view = FileIndexView.as_view()
 
 
 class FileCreateView(RequireWriteMixin, FileFormMixin, CreateView):
-
+    form_view = 'create'
     form_class = FileForm
     model = FileEntry
     template_name = 'cosinnus_file/file_form.html'
@@ -89,10 +106,6 @@ class FileCreateView(RequireWriteMixin, FileFormMixin, CreateView):
         if 'slug' in self.kwargs.keys():
             folder = get_object_or_404(FileEntry, slug=self.kwargs.get('slug'))
             initial.update({'path': folder.path})
-
-        # the createfolder view is just a readonly flag that we set here
-        if self.kwargs['form_view'] == 'create_folder':
-            initial.update({'isfolder': True})
 
         return initial
 
@@ -115,6 +128,22 @@ class FileCreateView(RequireWriteMixin, FileFormMixin, CreateView):
 file_create_view = FileCreateView.as_view()
 
 
+class FileHybridListView(RequireReadMixin, HierarchyPathMixin, HierarchicalListCreateViewMixin, 
+                             FileCreateView):
+    
+    template_name = 'cosinnus_file/file_list.html'
+
+    def get_success_url(self):
+        if self.object.is_container:
+            return reverse('cosinnus:file:list', kwargs={
+                    'group': self.group.slug,
+                    'slug': self.object.slug})
+        else:
+            return self.object.get_absolute_url();
+
+file_hybrid_list_view = FileHybridListView.as_view()
+
+
 class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
 
     model = FileEntry
@@ -125,13 +154,13 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        if self.object.isfolder:
+        if self.object.is_container:
             dellist = list(self._getFilesInPath(self.object.path))
         else:
             dellist = [self.object]
 
         # for a clean deletion, sort so that subelements are always before their parents and files always before folders on the same level
-        dellist.sort(key=lambda o: len(o.path) + (0 if o.isfolder else 1), reverse=True)
+        dellist.sort(key=lambda o: len(o.path) + (0 if o.is_container else 1), reverse=True)
 
         total_files = len(dellist)
         deleted_count = 0
@@ -140,7 +169,7 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
                 (there should only be one object (the folder itself) with the path, because
                 we have deleted all its files before it!
             """
-            if fileentry.isfolder:
+            if fileentry.is_container:
                 folderfiles = self._getFilesInPath(fileentry.path)
                 if len(folderfiles) > 1:
                     messages.error(request, _('Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename': fileentry.title})
@@ -170,7 +199,7 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
 
         dellist = []
         if delfile:
-            if delfile.isfolder:
+            if delfile.is_container:
                 # special handling for folders being deleted:
                 pathfiles = self._getFilesInPath(delfile.path)
                 dellist.extend(pathfiles)
@@ -214,52 +243,9 @@ class FileDetailView(RequireReadMixin, FilterGroupMixin, DetailView):
 file_detail_view = FileDetailView.as_view()
 
 
-def create_file_hierarchy(filelist):
-    '''
-        Create a node/children tree structure containing files.
-        We assume that ALL (!) pathnames end with a '/'
-        A folder has a pathname of /path/to/folder/foldername/   (the last path part is the folder itself!)
-    '''
-    # saves all folder paths that have been created
-    folderdict = dict()
-
-    def getOrCreateFolder(path, folderFileEntry, specialname=None):
-        if (path in folderdict.keys()):
-            folderEnt = folderdict[path]
-            # attach the folders file entry if we were passed one
-            if folderFileEntry is not None:
-                folderEnt['folderfile'] = folderFileEntry
-            return folderEnt
-        name = specialname if specialname else basename(path[:-1])
-        newfolder = defaultdict(dict, (('files', []), ('folders', []), ('name', name), ('path', path), ('folderfile', folderFileEntry),))
-        folderdict[path] = newfolder
-        if path != '/':
-            attachToParentFolder(newfolder)
-        return newfolder
-
-    def attachToParentFolder(folder):
-        parentpath = dirname(folder['path'][:-1])
-        if parentpath[-1] != '/':
-            parentpath += '/'
-        if parentpath not in folderdict.keys():
-            parentfolder = getOrCreateFolder(parentpath, None)
-        else:
-            parentfolder = folderdict[parentpath]
-        parentfolder['folders'].append(folder)
-
-    root = getOrCreateFolder('/', None)
-    for fileEnt in filelist:
-        if fileEnt.isfolder:
-            getOrCreateFolder(fileEnt.path, fileEnt)
-        else:
-            filesfolder = getOrCreateFolder(fileEnt.path, None)
-            filesfolder['files'].append(fileEnt)
-
-    return root
-
 
 class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
-                   FormMixin, ListView):
+                   FormMixin, HierarchyTreeMixin, ListView):
 
     form_class = FileListForm
     model = FileEntry
@@ -267,10 +253,9 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
 
     def get_context_data(self, **kwargs):
         context = super(FileListView, self).get_context_data(**kwargs)
-
-        tree = create_file_hierarchy(context['fileentry_list'])
-        context['filetree'] = tree
-
+        tree =  self.get_tree(self.object_list)
+        context.update({'filetree': tree})
+        print ">> tree:", tree
         return context
 
     def form_valid(self, form):

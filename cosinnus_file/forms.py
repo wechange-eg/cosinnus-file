@@ -21,15 +21,15 @@ class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
     def __init__(self, *args, **kwargs):
         super(_FileForm, self).__init__(*args, **kwargs)
         # hide the file upload field on folders, and set the folder flag
-        if self.instance.isfolder or \
-                'initial' in kwargs and 'isfolder' in kwargs['initial'] and \
-                kwargs['initial']['isfolder']:
+        if self.instance.is_container or \
+                'initial' in kwargs and 'is_container' in kwargs['initial'] and \
+                kwargs['initial']['is_container']:
             del self.fields['file']
-            self.instance.isfolder = True
+            self.instance.is_container = True
 
-    def clean_isfolder(self):
+    def clean_is_container(self):
         if self.instance:
-            return self.cleaned_data['isfolder']
+            return self.cleaned_data['is_container']
 
     def clean_file(self):
         fileupload = self.cleaned_data['file']

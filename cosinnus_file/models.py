@@ -21,6 +21,7 @@ from cosinnus.conf import settings
 from cosinnus.models import BaseTaggableObjectModel
 
 from cosinnus_file.managers import FileEntryManager
+from cosinnus.models.tagged import BaseHierarchicalTaggableObjectModel
 
 
 def get_hashed_filename(instance, filename):
@@ -33,7 +34,7 @@ def get_hashed_filename(instance, filename):
     return join(path, newfilename)
 
 
-class FileEntry(BaseTaggableObjectModel):
+class FileEntry(BaseHierarchicalTaggableObjectModel):
     """
     Model for uploaded files.
 
@@ -54,8 +55,6 @@ class FileEntry(BaseTaggableObjectModel):
     note = models.TextField(_('Note'), blank=True, null=True)
     file = models.FileField(_('File'), blank=True, null=True,
                             max_length=250, upload_to=get_hashed_filename)
-    isfolder = models.BooleanField(blank=False, null=False, default=False)
-    path = models.CharField(_('Path'), blank=False, null=False, default='/', max_length=100, editable=False)
 
     _sourcefilename = models.CharField(blank=False, null=False, default='download', max_length=100)
 
@@ -118,11 +117,11 @@ class FileEntry(BaseTaggableObjectModel):
         self._meta.get_field('created').verbose_name = _('Uploaded on')
 
     def __str__(self):
-        return '%s (%s%s)' % (self.title, self.path, '' if self.isfolder else self.sourcefilename)
+        return '%s (%s%s)' % (self.title, self.path, '' if self.is_container else self.sourcefilename)
 
     def clean(self):
         # if we are creating a file, require an uploaded file (not required for folders)
-        if not self.isfolder and self.file.name is None:
+        if not self.is_container and self.file.name is None:
             raise ValidationError(_('No files selected.'))
 
     def save(self, *args, **kwargs):
