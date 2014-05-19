@@ -7,7 +7,7 @@ from cosinnus_file.models import FileEntry
 
 
 class FileEntryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'file', 'group', 'created', 'creator')
+    list_display = ('title', 'path', 'file', 'group', 'created', 'creator')
     search_fields = ('title', 'note')
 
 

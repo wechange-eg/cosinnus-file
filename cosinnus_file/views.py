@@ -93,29 +93,6 @@ class FileCreateView(RequireWriteMixin, FileFormMixin, CreateView):
     def get_object(self, queryset=None):
         return CreateView.get_object(self, queryset=queryset)
 
-    def get_initial(self):
-        """
-            Supports calling /add under other files,
-            which creates a new file under the given file/folder's path
-        """
-        initial = super(FileCreateView, self).get_initial()
-
-        # if a file is given in the URL, we check if its a folder, and if so, let
-        # the user create a file under that path
-        # if it is a file, we let the user create a new file on the same level
-        if 'slug' in self.kwargs.keys():
-            folder = get_object_or_404(FileEntry, slug=self.kwargs.get('slug'))
-            initial.update({'path': folder.path})
-
-        return initial
-
-    def form_valid(self, form):
-        """ Pass the path variable retrieved from the slug file over the non-editable field """
-        path = form.initial.get('path', None)
-        if path:
-            form.instance.path = path
-        return super(FileCreateView, self).form_valid(form)
-
     def get_context_data(self, **kwargs):
         context = super(FileCreateView, self).get_context_data(**kwargs)
         tags = FileEntry.objects.tags()
