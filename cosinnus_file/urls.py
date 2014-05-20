@@ -53,11 +53,6 @@ cosinnus_group_patterns = patterns('cosinnus_file.views',
         {'form_view': 'delete'},
         name='delete'),
 
-    url(r'^(?P<slug>[^/]+)/update/$',
-        'file_update_view',
-        {'form_view': 'update'},
-        name='update'),
-
     url(r'^$',
         'file_index_view',
         name='index'),
