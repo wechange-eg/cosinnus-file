@@ -1,4 +1,4 @@
-{% extends "cosinnus_etherpad/base.html" %}
+{% extends "cosinnus_file/base.html" %}
 {% load i18n static cosinnus_tags widget_tweaks %}
 
 {% block page_title %}
@@ -7,9 +7,7 @@
 
 {% block breadcrumb %}
         {{ block.super }}
-        {% if current_folder %}
-            <li class="active">{{ current_folder.title }}</li>
-        {% endif %}
+        {% include "cosinnus_file/breadcrumb_file.html" with folder=current_folder breadcrumb_template="cosinnus_file/breadcrumb_file.html" %}
 {% endblock %}
 
 {% block leftnav %}
@@ -57,7 +55,7 @@
 		            <ul class="media-list">
 		                <li class="media">
 		                    <a class="pull-left" href="#">
-		                        <i class="fa fa-book"></i>
+		                        <i class="fa fa-file"></i>
 		                    </a>
 		                    <a class="pull-right" href="#">
 		                        <i class="fa fa-chevron-down"></i>
