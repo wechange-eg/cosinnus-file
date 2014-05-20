@@ -64,7 +64,7 @@
 		                    <a class="pull-right" href="#">
 		                        <i class="fa fa-chevron-down"></i>
 		                    </a>
-		                    <a class="pull-right" href="{{ object.get_absolute_url }}">
+		                    <a class="pull-right" href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
                                 <i class="fa fa-chain"></i>
                             </a>
                             <a class="pull-right" href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
