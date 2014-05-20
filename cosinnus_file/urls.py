@@ -13,7 +13,7 @@ cosinnus_group_patterns = patterns('cosinnus_file.views',
     #    name='list'),
     url(r'^list/$', 'file_hybrid_list_view', name='list'),
     url(r'^list/(?P<slug>[^/]+)/$', 'file_hybrid_list_view', name='list'),
-    url(r'^(?P<slug>[^/]+)/$', 'file_update_view', name='file'),
+    #url(r'^(?P<slug>[^/]+)/$', 'file_update_view', name='file'),
 
     #url(r'^list/(?P<tag>[^/]+)/$',
     #    'file_list_view',

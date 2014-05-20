@@ -106,11 +106,9 @@ class FileHybridListView(RequireReadMixin, HierarchyPathMixin, HierarchicalListC
         if self.object.is_container:
             messages.success(self.request,
                 self.message_success_folder % {'title': self.object.title})
-            return reverse('cosinnus:file:list', kwargs={
-                    'group': self.group.slug,
-                    'slug': self.object.slug})
-        else:
-            return self.object.get_absolute_url();
+        return reverse('cosinnus:file:list', kwargs={
+                'group': self.group.slug,
+                'slug': self.object.slug})
 
 file_hybrid_list_view = FileHybridListView.as_view()
 

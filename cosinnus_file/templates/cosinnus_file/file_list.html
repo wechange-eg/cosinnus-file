@@ -72,7 +72,7 @@
                             </a>
 		                    
 		                    <div class="media-body">
-		                        <a href="{% url 'cosinnus:file:file' group=group.slug slug=object.slug %}">
+		                        <a href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
 		                            {{ object.title }}
 		                        </a>
 		                    </div>
@@ -115,18 +115,6 @@
                             </a>
                             <div class="media-body">
                                 {% trans "Löschen" %}
-                            </div>
-                        </li>
-                    </ul>
-                </button>
-                <button type="button" class="btn btn-emphasized" href="{{ object.get_absolute_url }}">
-                    <ul class="media-list">
-                        <li class="media">
-                            <a class="pull-left" href="#">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                            <div class="media-body">
-                                {% trans "Bearbeiten" %}
                             </div>
                         </li>
                     </ul>
