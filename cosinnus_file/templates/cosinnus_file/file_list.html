@@ -18,34 +18,34 @@
 	<!-- a box with semi transparent background -->
 	<div class="content-box">
 	    {% with obj_form=form.forms.obj %}
-	    <form action="" method="post" class="form-horizontal">{% csrf_token %}
+	    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
 		    {{ obj_form.non_field_errors }}
 			<div type="button" class="btn btn-default w100 large-space">
-			    <ul class="media-list">
-			        <li class="media">
-			            <a class="pull-left" href="#">
-			                <i class="fa fa-plus"></i>
-			            </a>
-			            <div class="media-body">
-			                {{ obj_form.title.errors }}
-			                {% captureas placeholder %}{% trans "Gib den Titel für ein neues Dokument ein." %}{% endcaptureas %}
-			                {% render_field obj_form.title class+="form-control" placeholder=placeholder id="etherpadCreateInput" %}
-			            </div>
-			        </li>
-			    </ul>
-			</div>
-			<button type="submit" class="btn btn-emphasized large-space" id="etherpadCreateButton">
-			    <ul class="media-list">
-			        <li class="media">
-			            <a class="pull-left" href="#">
-			                <i class="fa fa-floppy-o"></i>
-			            </a>
-			            <div class="media-body">
-			                Speichern
-			            </div>
-			        </li>
-			    </ul>
-			</button>
+                 <ul class="media-list">
+                     <li class="media">
+                         <a class="pull-left" href="#">
+                             <i class="fa fa-plus"></i>
+                         </a>
+                         <div class="media-body">
+                             {{ obj_form.file.errors }}
+                             {% captureas placeholder %}{% trans "Lade ein neues Dokument hoch." %}{% endcaptureas %}
+                             {% render_field obj_form.file class+="form-control" placeholder=placeholder id="fileToUpload" %}
+                         </div>
+                     </li>
+                 </ul>
+             </div>
+             <button type="submit" class="btn btn-emphasized large-space" id="uploadFileButton">
+                 <ul class="media-list">
+                     <li class="media">
+                         <a class="pull-left" href="#">
+                             <i class="fa fa-floppy-o"></i>
+                         </a>
+                         <div class="media-body">
+                             Speichern
+                         </div>
+                     </li>
+                 </ul>
+             </button>
 	    </form>
 	    {% endwith %}
 	    

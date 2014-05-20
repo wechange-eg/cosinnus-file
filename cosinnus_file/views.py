@@ -43,24 +43,6 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
         })
         return context
 
-    def form_valid(self, form):
-        creating = self.object is None
-
-        form.instance.creator = self.request.user
-        form.instance.save()
-
-        # only after this save do we know the final slug
-        # we still must add it to the end of our path if we're saving a folder
-        # however not when we're only updating the object
-        if form.instance.is_container and creating:
-            suffix = self.object.slug + '/'
-            form.instance.path += suffix
-        ret = super(FileFormMixin, self).form_invalid(form)
-        if self.object:
-            messages.error(self.request,
-                self.message_error % {'title': self.object.title})
-        return ret
-
     def form_invalid(self, form):
         ret = super(FileFormMixin, self).form_invalid(form)
         if self.object:

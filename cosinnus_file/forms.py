@@ -37,8 +37,18 @@ class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
             if self.instance:
                 self.instance.mimetype = fileupload.content_type
         return fileupload
-
-
+    
+    def clean(self):
+        """ Insert the filename as title if no title is given """
+        title = self.cleaned_data.get('title', None)
+        if not title:
+            fileupload = self.cleaned_data['file']
+            if fileupload:
+                self.cleaned_data.update({'title': fileupload._name},)
+                self.errors.pop('title', None)
+        return super(_FileForm, self).clean()
+    
+        
 FileForm = get_form(_FileForm, attachable=False)
 
 
