@@ -55,7 +55,11 @@
 		            <ul class="media-list">
 		                <li class="media">
 		                    <a class="pull-left" href="#">
-		                        <i class="fa fa-file"></i>
+		                        {% if object.is_image %}
+					                <img height=40 src='{{ object.static_image_url }}' title='{{ file.title }}'></img>
+				                {% else %}
+				                    <i class="fa fa-file"></i>
+				                {% endif %}
 		                    </a>
 		                    <a class="pull-right" href="#">
 		                        <i class="fa fa-chevron-down"></i>
