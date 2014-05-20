@@ -42,6 +42,12 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
             'tags': tags
         })
         return context
+    
+    def form_valid(self, form):
+        ret = super(FileFormMixin, self).form_valid(form)
+        messages.success(self.request,
+            self.message_success % {'title': self.object.title})
+        return ret
 
     def form_invalid(self, form):
         ret = super(FileFormMixin, self).form_invalid(form)
@@ -71,6 +77,9 @@ class FileCreateView(RequireWriteMixin, FileFormMixin, CreateView):
     form_class = FileForm
     model = FileEntry
     template_name = 'cosinnus_file/file_form.html'
+    
+    message_success = _('File "%(title)s" was uploaded successfully.')
+    message_error = _('File "%(title)s" could not be added.')
 
     def get_object(self, queryset=None):
         return CreateView.get_object(self, queryset=queryset)
@@ -89,11 +98,14 @@ file_create_view = FileCreateView.as_view()
 
 class FileHybridListView(RequireReadMixin, HierarchyPathMixin, HierarchicalListCreateViewMixin, 
                              FileCreateView):
-    
     template_name = 'cosinnus_file/file_list.html'
-
+    
+    message_success_folder = _('Folder "%(title)s" was created successfully.')
+    
     def get_success_url(self):
         if self.object.is_container:
+            messages.success(self.request,
+                self.message_success_folder % {'title': self.object.title})
             return reverse('cosinnus:file:list', kwargs={
                     'group': self.group.slug,
                     'slug': self.object.slug})
@@ -214,7 +226,6 @@ class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
         context = super(FileListView, self).get_context_data(**kwargs)
         tree =  self.get_tree(self.object_list)
         context.update({'filetree': tree})
-        print ">> tree:", tree
         return context
 
     def form_valid(self, form):
@@ -265,10 +276,10 @@ file_list_view = FileListView.as_view()
 
 
 class FileUpdateView(RequireWriteMixin, FileFormMixin, UpdateView):
-
+    form_view = 'edit'
     form_class = FileForm
     model = FileEntry
-    template_name = 'cosinnus_file/file_form.html'
+    template_name = 'cosinnus_file/file_edit.html'
 
     def get_context_data(self, **kwargs):
         context = super(FileUpdateView, self).get_context_data(**kwargs)

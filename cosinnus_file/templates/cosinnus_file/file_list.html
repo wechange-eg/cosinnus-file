@@ -41,7 +41,7 @@
                              <i class="fa fa-floppy-o"></i>
                          </a>
                          <div class="media-body">
-                             Speichern
+                             {% trans "Speichern" %}
                          </div>
                      </li>
                  </ul>
@@ -65,10 +65,14 @@
 		                        <i class="fa fa-chevron-down"></i>
 		                    </a>
 		                    <a class="pull-right" href="{{ object.get_absolute_url }}">
-		                        <i class="fa fa-chain"></i>
-		                    </a>
+                                <i class="fa fa-chain"></i>
+                            </a>
+                            <a class="pull-right" href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
+                                <i class="fa fa-download"></i>
+                            </a>
+		                    
 		                    <div class="media-body">
-		                        <a href="{% url 'cosinnus:file:file-update' group=group.slug slug=object.slug %}">
+		                        <a href="{% url 'cosinnus:file:file' group=group.slug slug=object.slug %}">
 		                            {{ object.title }}
 		                        </a>
 		                    </div>
@@ -77,7 +81,31 @@
 		        </div>
 		        
 		        {% include 'cosinnus/media_tags_readonly.html' %}
-		
+		        
+		        {% if object.is_image %}
+                <div type="button" class="btn btn-default w100 large-space">
+                    <ul class="media-list">
+                        <li class="media">
+                            <div class="media-body">
+                                <img src='{{ object.static_image_url }}' title='{{ object.title }}'></img>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+                
+                {% if object.note %}
+                <div type="button" class="btn btn-default w100 large-space">
+                    <ul class="media-list">
+                        <li class="media">
+                            <div class="media-body">
+                                {{ object.note }} 
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+		        
 		        {% captureas modal_id %}deleteModal_{{object.slug}}{% endcaptureas %}
                 <button type="button" class="btn btn-emphasized" data-toggle="modal" data-target="#{{modal_id}}">
                     <ul class="media-list">
@@ -86,7 +114,7 @@
                                 <i class="fa fa-eraser"></i>
                             </a>
                             <div class="media-body">
-                                Löschen
+                                {% trans "Löschen" %}
                             </div>
                         </li>
                     </ul>
@@ -98,7 +126,7 @@
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <div class="media-body">
-                                Bearbeiten
+                                {% trans "Bearbeiten" %}
                             </div>
                         </li>
                     </ul>

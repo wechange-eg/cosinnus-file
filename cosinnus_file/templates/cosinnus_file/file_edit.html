@@ -1,15 +1,13 @@
-{% extends "cosinnus_etherpad/base.html" %}
+{% extends "cosinnus_file/base.html" %}
 {% load i18n static cosinnus_tags widget_tweaks %}
 
 {% block page_title %}
-{% trans "Pads" %} {{ block.super }}
+{{object.title}} {% trans "Files" %} {{ block.super }}
 {% endblock page_title %}
 
 {% block breadcrumb %}
         {{ block.super }}
-        {% if object.path != '/' %}
-            <li><a href="{% url 'cosinnus:etherpad:list' group=group.slug slug=object.container.slug %}">{{ object.container.title }}</a></li>
-        {% endif %}
+        {% include "cosinnus_file/breadcrumb_file.html" with folder=object.container breadcrumb_template="cosinnus_file/breadcrumb_file.html" %}
         <li class="active">{{ object.title }}</li>
 {% endblock %}
 
@@ -21,26 +19,28 @@
 {% block content %}
     <!-- a box with semi transparent background -->
     <div class="content-box">
-        <form action="" method="post" class="form-horizontal">{% csrf_token %}
+        <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
 	        {{ form.forms.obj.non_field_errors }}
 	        <div class="btn btn-extra-emphasized w100">
 	            <ul class="media-list">
 	                <li class="media">
 	                    <a class="pull-left" href="#">
-	                        <i class="fa fa-book"></i>
+	                        <i class="fa fa-file"></i>
 	                    </a>
 	                    <a class="pull-right" href="{{ object.get_absolute_url }}">
 	                        <i class="fa fa-chain"></i>
 	                    </a>
+                        <a class="pull-right" href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
+                            <i class="fa fa-download"></i>
+                        </a>
 	                    <div class="media-body">
 		                    {{ form.forms.obj.title.errors }}
-		                    {% captureas placeholder %}{% trans "Gib den Titel für das Pad ein." %}{% endcaptureas %}
+		                    {% captureas placeholder %}{% trans "Gib den Titel für die Datei ein." %}{% endcaptureas %}
 		                    {% render_field form.forms.obj.title class+="form-control" placeholder=placeholder id="etherpadTitle" %}
 	                    </div>
 	                </li>
 	            </ul>
 	        </div>
-	        
 	        {% include 'cosinnus/media_tags.html' %}
 	
 	        <button type="submit" class="btn btn-emphasized" id="etherpadSaveMetaButton">
@@ -50,19 +50,77 @@
 	                        <i class="fa fa-floppy-o "></i>
 	                    </a>
 	                    <div class="media-body">
-	                        Speichern
+	                        {% trans "Speichern" %}
 	                    </div>
 	                </li>
 	            </ul>
 	        </button>
-        </form>   
-
-        <div style="clear: both; margin-top: 40px;">
-            <iframe src="{{ etherpad.get_pad_url }}" width="100%" height="600px"></iframe>
-        </div>
-    
+	        
+	        {% if object.is_image %}
+            <div type="button" class="btn btn-default w100 large-space">
+                <ul class="media-list">
+                    <li class="media">
+                        <div class="media-body">
+                            <img src='{{ object.static_image_url }}' title='{{ object.title }}'></img>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+             
+            <div type="button" class="btn btn-default w100 large-space">
+                <ul class="media-list">
+                    <li class="media">
+                        <div class="media-body">
+                            {% trans "Uploaded by" %}</th>
+                            {{ object.creator }}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+           
+            <div type="button" class="btn btn-default w100 large-space">
+                <ul class="media-list">
+                    <li class="media">
+                        <div class="media-body">
+                            {{ form.forms.obj.note.errors }}
+                            {% captureas placeholder %}{% trans "Dateibeschreibung (optional)" %}{% endcaptureas %}
+                            {% render_field form.forms.obj.note class+="form-control" placeholder=placeholder %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        
+            <div type="button" class="btn btn-default w100 large-space">
+                 <ul class="media-list">
+                     <li class="media">
+                         <a class="pull-left" href="#">
+                             <i class="fa fa-plus"></i>
+                         </a>
+                         <div class="media-body">
+                             {{ form.forms.obj.file.errors }}
+                             {% captureas placeholder %}{% trans "Lade ein neues Dokument hoch." %}{% endcaptureas %}
+                             {% render_field form.forms.obj.file class+="form-control" placeholder=placeholder id="fileToUpload" %}
+                         </div>
+                     </li>
+                 </ul>
+             </div>
+        </form>
     </div><!-- content-box -->
     
+    
+    <button type="button" class="btn btn-emphasized" href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
+        <ul class="media-list">
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <div class="media-body">
+                    {% trans "Download" %}
+                </div>
+            </li>
+        </ul>
+    </button>
     <button type="button" class="btn btn-emphasized" data-toggle="modal" data-target="#deleteModal">
         <ul class="media-list">
             <li class="media">
@@ -75,9 +133,8 @@
             </li>
         </ul>
     </button>
-    
-    {% captureas label %}{% blocktrans with pad=object.title %}Do you really want to delete etherpad „{{ pad }}“?{% endblocktrans %}{% endcaptureas %}
-    {% captureas title %}{% trans "Etherpad löschen" %}{% endcaptureas %}
+    {% captureas label %}{% blocktrans with title=object.title %}Do you really want to delete file „{{ title }}“?{% endblocktrans %}{% endcaptureas %}
+    {% captureas title %}{% trans "Datei löschen" %}{% endcaptureas %}
     {% include "cosinnus/modal_box.html" with id="deleteModal" label=label title=title form_action="./delete/" %}
 
     
