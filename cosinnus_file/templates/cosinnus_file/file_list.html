@@ -56,7 +56,7 @@
 		                <li class="media">
 		                    <a class="pull-left" href="#">
 		                        {% if object.is_image %}
-					                <img height=40 src='{{ object.static_image_url }}' title='{{ file.title }}'></img>
+					                <img src='{{ object.static_image_url }}' title='{{ file.title }}'></img>
 				                {% else %}
 				                    <i class="fa fa-file"></i>
 				                {% endif %}
@@ -83,15 +83,7 @@
 		        {% include 'cosinnus/media_tags_readonly.html' %}
 		        
 		        {% if object.is_image %}
-                <div type="button" class="btn btn-default w100 large-space">
-                    <ul class="media-list">
-                        <li class="media">
-                            <div class="media-body">
-                                <img src='{{ object.static_image_url }}' title='{{ object.title }}'></img>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                     <img class="w100" src='{{ object.static_image_url }}' title='{{ object.title }}'></img>
                 {% endif %}
                 
                 {% if object.note %}
