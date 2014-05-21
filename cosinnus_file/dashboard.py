@@ -38,3 +38,6 @@ class Latest(DashboardWidget):
         }
         return render_to_string('cosinnus_file/widgets/latest.html', data)
 
+    def get_queryset(self):
+        qs = super(Latest, self).get_queryset()
+        return qs.filter(is_container=False)
