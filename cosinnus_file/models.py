@@ -132,7 +132,7 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
     def get_absolute_url(self):
         kwargs = {'group': self.group.slug,
                   'slug': self.slug}
-        return reverse('cosinnus:file:file', kwargs=kwargs)
+        return reverse('cosinnus:file:download', kwargs=kwargs)
 
 
 @receiver(post_delete, sender=FileEntry)

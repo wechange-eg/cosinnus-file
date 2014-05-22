@@ -1,0 +1,6 @@
+<div class="todo">
+  <h2><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h2>
+  <p>{{ object.note }}</p>
+  {% include "search/indexes/cosinnus/_media_tag_rendered.txt" %}
+</div>
+
