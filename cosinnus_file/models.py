@@ -108,8 +108,8 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
 
     class Meta(BaseTaggableObjectModel.Meta):
         ordering = ['-created', 'title']
-        verbose_name = _('Cosinnus File')
-        verbose_name_plural = _('Cosinnus Files')
+        verbose_name = _('File')
+        verbose_name_plural = _('Files')
 
     def __init__(self, *args, **kwargs):
         super(FileEntry, self).__init__(*args, **kwargs)
