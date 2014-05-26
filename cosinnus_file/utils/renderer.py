@@ -22,4 +22,4 @@ class FileEntryRenderer(BaseRenderer):
                 images.append(fileobj)
             else:
                 files.append(fileobj)
-        return super(FileEntryRenderer, cls).render(context, files=files, images=images)
+        return super(FileEntryRenderer, cls).render(context, files=files, images=images, all_files=files+images)
