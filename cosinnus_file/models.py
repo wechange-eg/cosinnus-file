@@ -133,7 +133,12 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
         kwargs = {'group': self.group.slug,
                   'slug': self.slug}
         return reverse('cosinnus:file:download', kwargs=kwargs)
-
+    
+    @classmethod
+    def get_current(self, group):
+        """ Returns a queryset of the current upcoming events """
+        return FileEntry.objects.filter(group=group).filter(is_container=False)
+        
 
 @receiver(post_delete, sender=FileEntry)
 def post_file_delete(sender, instance, **kwargs):
