@@ -112,6 +112,18 @@
 	                        </li>
 	                    </ul>
 	                </button>
+                    <button type="button" class="btn btn-emphasized" href="{% url 'cosinnus:file:edit' group=group.slug slug=object.slug %}">
+                        <ul class="media-list">
+                            <li class="media">
+                                <a class="pull-left" href="#">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <div class="media-body">
+                                    {% trans "Bearbeiten" %}
+                                </div>
+                            </li>
+                        </ul>
+                    </button> 
 	            {% endif %}
             </div><!-- fadedown -->
             

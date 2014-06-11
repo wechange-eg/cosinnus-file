@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 17:18+0200\n"
+"POT-Creation-Date: 2014-06-11 16:03+0200\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -133,6 +133,16 @@ msgstr[1] ""
 #: .\views.py:259
 msgid "Invalid request."
 msgstr "Ungültiger Seitenaufruf."
+
+#: .\views.py:282
+#, python-format
+msgid "File \"%(title)s\" was updated successfully."
+msgstr "Datei \"%(title)s\" wurde erfolgreich geändert."
+
+#: .\views.py:283
+#, python-format
+msgid "File \"%(title)s\" could not be updated."
+msgstr "Datei \"%(title)s\" konnte nicht geändert werden."
 
 #: .\templates\__old__cosinnus_file\attached_files.html.py:4
 msgid "attached__cosinnus_file__FileEntry"

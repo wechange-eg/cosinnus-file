@@ -106,7 +106,7 @@ class FileHybridListView(RequireReadMixin, HierarchyPathMixin, HierarchicalListC
         if self.object.is_container:
             messages.success(self.request,
                 self.message_success_folder % {'title': self.object.title})
-        return reverse('cosinnus:file:list', kwargs={
+        return reverse('cosinnus:file:edit', kwargs={
                 'group': self.group.slug,
                 'slug': self.object.slug})
 
@@ -278,6 +278,9 @@ class FileUpdateView(RequireWriteMixin, FileFormMixin, UpdateView):
     form_class = FileForm
     model = FileEntry
     template_name = 'cosinnus_file/file_edit.html'
+    
+    message_success = _('File "%(title)s" was updated successfully.')
+    message_error = _('File "%(title)s" could not be updated.')
 
     def get_context_data(self, **kwargs):
         context = super(FileUpdateView, self).get_context_data(**kwargs)
