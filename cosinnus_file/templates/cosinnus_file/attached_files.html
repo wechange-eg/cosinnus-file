@@ -1,5 +1,5 @@
 {% for file in all_files %}
-<a class="app-files-attachment" href="{% url 'cosinnus:file:download' group=file.group slug=file.slug %}">
+<a class="app-files-attachment" href="{% url 'cosinnus:file:download' group=file.group.slug slug=file.slug %}">
     <i class="fa fa-file"></i> 
     {{ file.title|truncatechars:25 }}
 </a>&nbsp;
