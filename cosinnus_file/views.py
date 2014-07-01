@@ -178,11 +178,6 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
         context['files_to_delete'] = dellist
         return context
 
-    def get_queryset(self):
-        qs = super(FileDeleteView, self).get_queryset()
-        if self.request.user.is_superuser:
-            return qs
-        return qs.filter(creator=self.request.user)
 
     def get(self, request, *args, **kwargs):
         try:
