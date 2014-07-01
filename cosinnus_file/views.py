@@ -44,6 +44,8 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
         return context
     
     def form_valid(self, form):
+        form.instance.creator = self.request.user
+
         ret = super(FileFormMixin, self).form_valid(form)
         messages.success(self.request,
             self.message_success % {'title': self.object.title})
