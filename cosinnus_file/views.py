@@ -20,8 +20,7 @@ from cosinnus.conf import settings
 from cosinnus.utils.files import create_zip_file
 from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
     FilterGroupMixin, GroupFormKwargsMixin)
-from cosinnus.views.mixins.tagged import TaggedListMixin, HierarchyTreeMixin,\
-    HierarchyPathMixin
+from cosinnus.views.mixins.tagged import HierarchyTreeMixin, HierarchyPathMixin
 from cosinnus.views.mixins.user import UserFormKwargsMixin
 
 from cosinnus_file.forms import FileForm, FileListForm
@@ -210,7 +209,7 @@ file_detail_view = FileDetailView.as_view()
 
 
 
-class FileListView(RequireReadMixin, FilterGroupMixin, TaggedListMixin,
+class FileListView(RequireReadMixin, FilterGroupMixin,
                    FormMixin, HierarchyTreeMixin, ListView):
 
     form_class = FileListForm

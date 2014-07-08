@@ -16,7 +16,7 @@ class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
 
     class Meta:
         model = FileEntry
-        fields = ('title', 'file', 'note', 'tags')
+        fields = ('title', 'file', 'note')
 
     def __init__(self, *args, **kwargs):
         super(_FileForm, self).__init__(*args, **kwargs)
