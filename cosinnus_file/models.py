@@ -22,6 +22,7 @@ from cosinnus.models import BaseTaggableObjectModel
 
 from cosinnus_file.managers import FileEntryManager
 from cosinnus.models.tagged import BaseHierarchicalTaggableObjectModel
+from cosinnus.utils.permissions import get_tagged_object_filter_for_user
 
 
 def get_hashed_filename(instance, filename):
@@ -135,9 +136,13 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
         return reverse('cosinnus:file:download', kwargs=kwargs)
     
     @classmethod
-    def get_current(self, group):
+    def get_current(self, group, user):
         """ Returns a queryset of the current upcoming events """
-        return FileEntry.objects.filter(group=group).filter(is_container=False)
+        qs = FileEntry.objects.filter(group=group)
+        if user:
+            q = get_tagged_object_filter_for_user(user)
+            qs = qs.filter(q)
+        return qs.filter(is_container=False)
         
 
 @receiver(post_delete, sender=FileEntry)
