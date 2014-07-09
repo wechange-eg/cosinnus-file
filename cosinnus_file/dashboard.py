@@ -24,17 +24,17 @@ class Latest(DashboardWidget):
     user_model_attr = None  # No filtering on user page
     widget_name = 'latest'
 
-    def get_data(self):
+    def get_data(self, offset=0):
         count = int(self.config['amount'])
         qs = self.get_queryset().select_related('group').order_by('-created').all()
         if count != 0:
-            qs = qs[:count]
+            qs = qs[offset:offset+count]
             
         data = {
             'rows': qs,
             'no_data': _('No files'),
         }
-        return render_to_string('cosinnus_file/widgets/latest.html', data)
+        return (render_to_string('cosinnus_file/widgets/latest.html', data), len(qs))
 
     def get_queryset(self):
         qs = super(Latest, self).get_queryset()
