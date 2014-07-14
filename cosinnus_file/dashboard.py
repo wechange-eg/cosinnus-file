@@ -25,6 +25,9 @@ class Latest(DashboardWidget):
     widget_name = 'latest'
 
     def get_data(self, offset=0):
+        """ Returns a tuple (data, rows_returned, has_more) of the rendered data and how many items were returned.
+            if has_more == False, the receiving widget will assume no further data can be loaded.
+         """
         count = int(self.config['amount'])
         qs = self.get_queryset().select_related('group').order_by('-created').all()
         if count != 0:
@@ -34,7 +37,7 @@ class Latest(DashboardWidget):
             'rows': qs,
             'no_data': _('No files'),
         }
-        return (render_to_string('cosinnus_file/widgets/latest.html', data), len(qs))
+        return (render_to_string('cosinnus_file/widgets/latest.html', data), len(qs), len(qs) >= count)
 
     def get_queryset(self):
         qs = super(Latest, self).get_queryset()
