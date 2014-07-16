@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-09 13:18+0200\n"
+"POT-Creation-Date: 2014-07-16 17:26+0200\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: .\cosinnus_app.py:12 .\models.py:112
+#: .\cosinnus_app.py:12 .\models.py:113
 #: .\templates\__old__cosinnus_file\base.html.py:7
 #: .\templates\__old__cosinnus_file\file_list.html.py:19
 #: .\templates\cosinnus_file\base.html.py:6
@@ -27,36 +27,42 @@ msgstr ""
 msgid "Files"
 msgstr "Dateien"
 
+# The Cosinnus App Name
+msgctxt "the_app"
+msgid "file"
+msgstr "Dateien"
+
+
 #: .\dashboard.py:23
 msgid "Latest Files"
 msgstr ""
 
-#: .\dashboard.py:37
+#: .\dashboard.py:38
 msgid "No files"
 msgstr "Keine Dateien vorhanden"
 
-#: .\models.py:55 .\templates\__old__cosinnus_file\file_detail.html.py:22
+#: .\models.py:56 .\templates\__old__cosinnus_file\file_detail.html.py:22
 msgid "Note"
 msgstr "Bemerkung"
 
-#: .\models.py:56 .\models.py:111
+#: .\models.py:57 .\models.py:112
 msgid "File"
 msgstr "Datei"
 
-#: .\models.py:61
+#: .\models.py:62
 msgid "Path"
 msgstr "Verzeichnis"
 
-#: .\models.py:116 .\templates\__old__cosinnus_file\file_detail.html.py:30
+#: .\models.py:117 .\templates\__old__cosinnus_file\file_detail.html.py:30
 #: .\templates\cosinnus_file\file_edit.html.py:76
 msgid "Uploaded by"
 msgstr "Hochgeladen durch"
 
-#: .\models.py:117 .\templates\__old__cosinnus_file\file_detail.html.py:26
+#: .\models.py:118 .\templates\__old__cosinnus_file\file_detail.html.py:26
 msgid "Uploaded on"
 msgstr "Hochgeladen am"
 
-#: .\models.py:125 .\views.py:231
+#: .\models.py:126 .\views.py:231
 msgid "No files selected."
 msgstr "Keine Dateien ausgewählt."
 
