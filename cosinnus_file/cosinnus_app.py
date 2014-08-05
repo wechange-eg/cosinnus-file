@@ -5,7 +5,8 @@ from __future__ import unicode_literals
 def register():
     # Import here to prevent import side effects
     from django.utils.translation import ugettext_lazy as _
-
+    from django.utils.translation import pgettext_lazy
+    
     from cosinnus.core.registries import (app_registry,
         attached_object_registry, url_registry, widget_registry)
 
@@ -14,3 +15,6 @@ def register():
                              'cosinnus_file.utils.renderer.FileEntryRenderer')
     url_registry.register_urlconf('cosinnus_file', 'cosinnus_file.urls')
     widget_registry.register('file', 'cosinnus_file.dashboard.Latest')
+
+    # makemessages replacement protection
+    name = pgettext_lazy("the_app", "file")
