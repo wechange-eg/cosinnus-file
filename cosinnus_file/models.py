@@ -58,10 +58,17 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
                             max_length=250, upload_to=get_hashed_filename)
 
     _sourcefilename = models.CharField(blank=False, null=False, default='download', max_length=100)
-
+    _filesize = models.IntegerField(blank=True, null=True, default='0')
+    
     mimetype = models.CharField(_('Path'), blank=True, null=True, default='', max_length=50, editable=False)
 
     objects = FileEntryManager()
+    
+    @property
+    def filesize(self):
+        if not self.file or not self._filesize:
+            return 0
+        return self._filesize
 
     @property
     def static_image_url(self):

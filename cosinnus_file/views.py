@@ -44,7 +44,9 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
     
     def form_valid(self, form):
         form.instance.creator = self.request.user
-
+        # save/update filesize
+        form.instance._filesize = form.instance.file.file.size
+        
         ret = super(FileFormMixin, self).form_valid(form)
         messages.success(self.request,
             self.message_success % {'title': self.object.title})
