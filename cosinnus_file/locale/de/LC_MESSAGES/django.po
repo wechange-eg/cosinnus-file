@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16 17:26+0200\n"
+"POT-Creation-Date: 2014-08-06 13:19+0200\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: .\cosinnus_app.py:12 .\models.py:113
+#: .\cosinnus_app.py:13 .\models.py:120
 #: .\templates\__old__cosinnus_file\base.html.py:7
 #: .\templates\__old__cosinnus_file\file_list.html.py:19
 #: .\templates\cosinnus_file\base.html.py:6
@@ -28,65 +28,101 @@ msgid "Files"
 msgstr "Dateien"
 
 # The Cosinnus App Name
+#: .\cosinnus_app.py:20
 msgctxt "the_app"
 msgid "file"
 msgstr "Dateien"
 
-
 #: .\dashboard.py:23
 msgid "Latest Files"
-msgstr ""
+msgstr "Neueste Dateien"
 
 #: .\dashboard.py:38
 msgid "No files"
 msgstr "Keine Dateien vorhanden"
 
+#: .\filters.py:17
+msgid "Pictures"
+msgstr "Bilder"
+
+#: .\filters.py:18
+msgid "Documents"
+msgstr "Dokumente"
+
+#: .\filters.py:19
+msgid "Audio Files"
+msgstr "Audiodateien"
+
+#: .\filters.py:20
+msgid "Videos"
+msgstr "Videos"
+
+#: .\filters.py:47
+msgid "Created By"
+msgstr "Erstellt von"
+
+#: .\filters.py:48
+msgid "File Type"
+msgstr "Dateityp"
+
+#: .\filters.py:54
+msgid "Newest Created"
+msgstr "Zuletzt hochgeladen"
+
+#: .\filters.py:55
+msgid "Smallest Files"
+msgstr "Kleinste Dateien"
+
+#: .\filters.py:56
+msgid "Largest Files"
+msgstr "Größte Dateien"
+
 #: .\models.py:56 .\templates\__old__cosinnus_file\file_detail.html.py:22
 msgid "Note"
 msgstr "Bemerkung"
 
-#: .\models.py:57 .\models.py:112
+#: .\models.py:57 .\models.py:119
 msgid "File"
 msgstr "Datei"
 
-#: .\models.py:62
+#: .\models.py:63
 msgid "Path"
 msgstr "Verzeichnis"
 
-#: .\models.py:117 .\templates\__old__cosinnus_file\file_detail.html.py:30
+#: .\models.py:124 .\templates\__old__cosinnus_file\file_detail.html.py:30
 #: .\templates\cosinnus_file\file_edit.html.py:76
 msgid "Uploaded by"
 msgstr "Hochgeladen durch"
 
-#: .\models.py:118 .\templates\__old__cosinnus_file\file_detail.html.py:26
+#: .\models.py:125 .\templates\__old__cosinnus_file\file_detail.html.py:26
 msgid "Uploaded on"
 msgstr "Hochgeladen am"
 
-#: .\models.py:126 .\views.py:231
+#: .\models.py:133 .\views.py:237
 msgid "No files selected."
 msgstr "Keine Dateien ausgewählt."
 
-#: .\views.py:33 .\views.py:82
+#: .\views.py:36 .\views.py:87
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
 msgstr "Datei \"%(title)s\" wurde erfolgreich hochgeladen."
 
-#: .\views.py:34
+#: .\views.py:37
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
 msgstr "Datei \"%(title)s\" konnte nicht hochgeladen werden."
 
-#: .\views.py:83
+#: .\views.py:88
 #, python-format
 msgid "File \"%(title)s\" could not be added."
 msgstr "Datei \"%(title)s\" konnte nicht hinzugefügt werden."
 
-#: .\views.py:104
+#: .\views.py:110
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
 msgstr "Datei \"%(title)s\" wurde erfolgreich erstellt."
 
-#: .\views.py:145
+#: .\views.py:151
 #, python-format
 msgid ""
 "Folder \"%(filename)s\" could not be deleted because it contained files that "
@@ -95,33 +131,33 @@ msgstr ""
 "Ordner \"%(filename)s\" konnte nicht gelöscht werden da er noch Dateien "
 "enthällt die nicht gelöscht werden konnten."
 
-#: .\views.py:152
+#: .\views.py:158
 #, python-format
 msgid "File \"%(filename)s\" could not be deleted."
 msgstr "Datei \"%(filename)s\" konnte nicht gelöscht werden."
 
-#: .\views.py:158
+#: .\views.py:164
 #, python-format
 msgid "%(numfiles)d files were deleted successfully."
 msgstr "%(numfiles)d Dateien wurden erfolgreich gelöscht."
 
-#: .\views.py:160
+#: .\views.py:166
 #, python-format
 msgid "File \"%(filename)s\" was deleted successfully."
 msgstr "Datei \"%(filename)s\" wurde erfolgreich gelöscht."
 
-#: .\views.py:162
+#: .\views.py:168
 #, python-format
 msgid "%(numfiles)d other files were deleted."
 msgstr "%(numfiles)d weitere Dateien wurden gelöscht."
 
-#: .\views.py:187 .\views.py:194
+#: .\views.py:193 .\views.py:200
 msgid "File does not exist or you are not allowed to delete it."
 msgstr ""
 "Entweder existiert diese Datei nicht oder Ihnen fehlen die Rechte um die "
 "Datei zu bearbeiten."
 
-#: .\views.py:240
+#: .\views.py:246
 #, python-format
 msgid ""
 "A problem occurred during export. The following file is missing: %(filename)"
@@ -136,16 +172,16 @@ msgstr[1] ""
 "Beim Exportieren ist ein Fehler aufgetreten. Die folgenden Dateien "
 "existieren nicht: %(filename)s"
 
-#: .\views.py:255
+#: .\views.py:261
 msgid "Invalid request."
 msgstr "Ungültiger Seitenaufruf."
 
-#: .\views.py:278
+#: .\views.py:284
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
 msgstr "Datei \"%(title)s\" wurde erfolgreich geändert."
 
-#: .\views.py:279
+#: .\views.py:285
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
 msgstr "Datei \"%(title)s\" konnte nicht geändert werden."
@@ -255,7 +291,7 @@ msgid "Gib den Titel für die Datei ein."
 msgstr ""
 
 #: .\templates\cosinnus_file\file_edit.html.py:53
-#: .\templates\cosinnus_file\file_list.html.py:44
+#: .\templates\cosinnus_file\file_list.html.py:47
 msgid "Speichern"
 msgstr ""
 
@@ -264,32 +300,32 @@ msgid "Dateibeschreibung (optional)"
 msgstr ""
 
 #: .\templates\cosinnus_file\file_edit.html.py:104
-#: .\templates\cosinnus_file\file_list.html.py:31
+#: .\templates\cosinnus_file\file_list.html.py:34
 msgid "Lade ein neues Dokument hoch."
 msgstr ""
 
 #: .\templates\cosinnus_file\file_edit.html.py:134
-#: .\templates\cosinnus_file\file_list.html.py:110
+#: .\templates\cosinnus_file\file_list.html.py:113
 msgid "Löschen"
 msgstr ""
 
 #
 #: .\templates\cosinnus_file\file_edit.html.py:139
-#: .\templates\cosinnus_file\file_list.html.py:131
+#: .\templates\cosinnus_file\file_list.html.py:134
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
 msgstr "Sind Sie sich sicher, dass Sie die Datei „%(title)s“ löschen wollen?"
 
 #: .\templates\cosinnus_file\file_edit.html.py:140
-#: .\templates\cosinnus_file\file_list.html.py:132
+#: .\templates\cosinnus_file\file_list.html.py:135
 msgid "Datei löschen"
 msgstr ""
 
-#: .\templates\cosinnus_file\file_list.html.py:122
+#: .\templates\cosinnus_file\file_list.html.py:125
 msgid "Bearbeiten"
 msgstr ""
 
-#: .\templates\cosinnus_file\file_list.html.py:137
+#: .\templates\cosinnus_file\file_list.html.py:140
 msgid "No files have been uploaded yet."
 msgstr "Es wurden noch keine Dateien hochgeladen."
 
