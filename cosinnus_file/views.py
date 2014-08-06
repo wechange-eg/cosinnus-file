@@ -18,6 +18,7 @@ from django.views.generic.edit import FormMixin
 
 from cosinnus.conf import settings
 from cosinnus.utils.files import create_zip_file
+from cosinnus.templatetags.cosinnus_tags import add_current_params
 from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
     FilterGroupMixin, GroupFormKwargsMixin)
 from cosinnus.views.mixins.tagged import HierarchyTreeMixin, HierarchyPathMixin
@@ -200,7 +201,7 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
             return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse('cosinnus:file:list', kwargs={'group': self.group.slug})
+        return "%s%s" % (reverse('cosinnus:file:list', kwargs={'group': self.group.slug}), add_current_params(None, self.request))
 
 file_delete_view = FileDeleteView.as_view()
 
