@@ -75,6 +75,9 @@
                             </a>
 		                    
 		                    <div class="media-body">
+                                {% with creator=object.creator %}
+                                    <span class="annotation">von <a href="{{ creator.cosinnus_profile.get_absolute_url }}" >{{ creator|full_name }}</a></span>
+                                {% endwith %}
 		                        <a href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
 		                            {{ object.title }}
 		                        </a>
