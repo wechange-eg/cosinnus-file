@@ -12,6 +12,14 @@ from cosinnus_file.models import FileEntry
 from django_filters.filters import ChoiceFilter
 from django.core.exceptions import ImproperlyConfigured
 
+
+FILE_TYPE_FILTER_CHOICES = [
+    ('images', _('Pictures')), 
+    ('documents', _('Documents')), 
+    ('audio', _('Audio Files')), 
+    ('videos', _('Videos')),
+]
+
 class FileTypeFilter(ChoiceFilter):
     
     file_extensions = {
@@ -37,7 +45,7 @@ class FileTypeFilter(ChoiceFilter):
 
 class FileFilter(CosinnusFilterSet):
     creator = AllObjectsFilter(label=_('Created By'), widget=SelectCreatorWidget)
-    filetype = FileTypeFilter(label=_('File Type'), name="_sourcefilename", choices=[('images', _('Pictures')), ('documents', _('Documents')), ('audio', _('Audio Files')), ('videos', _('Videos')),], widget=DropdownChoiceWidget)
+    filetype = FileTypeFilter(label=_('File Type'), name="_sourcefilename", choices=FILE_TYPE_FILTER_CHOICES, widget=DropdownChoiceWidget)
     
     class Meta:
         model = FileEntry
