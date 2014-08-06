@@ -26,6 +26,8 @@ from cosinnus.views.mixins.user import UserFormKwargsMixin
 from cosinnus_file.forms import FileForm, FileListForm
 from cosinnus_file.models import FileEntry
 from cosinnus.views.mixins.hierarchy import HierarchicalListCreateViewMixin
+from cosinnus.views.mixins.filters import CosinnusFilterMixin
+from cosinnus_file.filters import FileFilter
 
 
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
@@ -100,8 +102,9 @@ file_create_view = FileCreateView.as_view()
 
 
 class FileHybridListView(RequireReadMixin, HierarchyPathMixin, HierarchicalListCreateViewMixin, 
-                             FileCreateView):
+                             CosinnusFilterMixin, FileCreateView):
     template_name = 'cosinnus_file/file_list.html'
+    filterset_class = FileFilter
     
     message_success_folder = _('Folder "%(title)s" was created successfully.')
     
