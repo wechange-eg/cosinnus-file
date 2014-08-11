@@ -304,6 +304,8 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
     mimetypes.init()
 
     def get(self, request, *args, **kwargs):
+        path = None
+
         slug = kwargs.get('slug', None)
         if slug:
             files = FileEntry.objects.filter(slug=slug)
@@ -312,7 +314,7 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
                 dlfile = fileentry.file
                 path = dlfile.path
             except:
-                pass
+                raise Http404
 
         response = HttpResponseNotFound()
         if path:
