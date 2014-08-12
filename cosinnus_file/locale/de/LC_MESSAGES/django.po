@@ -340,7 +340,7 @@ msgstr "Titel"
 #~ msgstr "Cosinnus Dateien"
 
 #~ msgid "Group"
-#~ msgstr "Gruppe"
+#~ msgstr "Projekt"
 
 #~ msgid "URL"
 #~ msgstr "URL"
