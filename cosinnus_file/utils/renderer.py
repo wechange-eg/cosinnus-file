@@ -12,7 +12,8 @@ from cosinnus.utils.renderer import BaseRenderer
 class FileEntryRenderer(BaseRenderer):
 
     template = 'cosinnus_file/attached_files.html'
-
+    template_single = 'cosinnus_file/single_file.html'
+    
     @classmethod
     def render(cls, context, myobjs):
         files = []
@@ -23,3 +24,4 @@ class FileEntryRenderer(BaseRenderer):
             else:
                 files.append(fileobj)
         return super(FileEntryRenderer, cls).render(context, files=files, images=images, all_files=files+images)
+    
