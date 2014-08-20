@@ -4,7 +4,11 @@
             <ul class="media-list fine-space">
                 <li class="media">
                     <a class="pull-left" href="#">
-                        <i class="fa fa-file"></i>
+                        {% if file.is_image %}
+                            <img src='{{ file.static_image_url }}' title='{{ file.title }}'></img>
+                        {% else %}
+                            <i class="fa fa-file"></i>
+                        {% endif %}
                     </a>
                     <div class="media-body">
                          <strong><a>{{ file.title|truncatechars:25 }}</a></strong>
