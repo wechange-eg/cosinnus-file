@@ -1,0 +1,318 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-31 18:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\cosinnus_app.py:13 .\models.py:120
+#: .\templates\__old__cosinnus_file\base.html.py:7
+#: .\templates\__old__cosinnus_file\file_list.html.py:19
+#: .\templates\cosinnus_file\base.html.py:6
+#: .\templates\cosinnus_file\base.html.py:13
+#: .\templates\cosinnus_file\file_edit.html.py:5
+#: .\templates\cosinnus_file\file_list.html.py:5
+msgid "Files"
+msgstr ""
+
+#: .\cosinnus_app.py:20
+msgctxt "the_app"
+msgid "file"
+msgstr ""
+
+#: .\dashboard.py:23
+msgid "Latest Files"
+msgstr ""
+
+#: .\dashboard.py:38
+msgid "No files"
+msgstr ""
+
+#: .\filters.py:17
+msgid "Pictures"
+msgstr ""
+
+#: .\filters.py:18
+msgid "Documents"
+msgstr ""
+
+#: .\filters.py:19
+msgid "Audio Files"
+msgstr ""
+
+#: .\filters.py:20
+msgid "Videos"
+msgstr ""
+
+#: .\filters.py:47
+msgid "Created By"
+msgstr ""
+
+#: .\filters.py:48
+msgid "File Type"
+msgstr ""
+
+#: .\filters.py:54
+msgid "Newest Created"
+msgstr ""
+
+#: .\filters.py:55
+msgid "Smallest Files"
+msgstr ""
+
+#: .\filters.py:56
+msgid "Largest Files"
+msgstr ""
+
+#: .\models.py:56 .\templates\__old__cosinnus_file\file_detail.html.py:22
+msgid "Note"
+msgstr ""
+
+#: .\models.py:57 .\models.py:119
+msgid "File"
+msgstr ""
+
+#: .\models.py:63
+msgid "Path"
+msgstr ""
+
+#: .\models.py:124 .\templates\__old__cosinnus_file\file_detail.html.py:30
+#: .\templates\cosinnus_file\file_edit.html.py:76
+msgid "Uploaded by"
+msgstr ""
+
+#: .\models.py:125 .\templates\__old__cosinnus_file\file_detail.html.py:26
+msgid "Uploaded on"
+msgstr ""
+
+#: .\models.py:133 .\views.py:237
+msgid "No files selected."
+msgstr ""
+
+#: .\views.py:36 .\views.py:87
+#, python-format
+msgid "File \"%(title)s\" was uploaded successfully."
+msgstr ""
+
+#: .\views.py:37
+#, python-format
+msgid "File \"%(title)s\" could not be uploaded."
+msgstr ""
+
+#: .\views.py:88
+#, python-format
+msgid "File \"%(title)s\" could not be added."
+msgstr ""
+
+#: .\views.py:110
+#, python-format
+msgid "Folder \"%(title)s\" was created successfully."
+msgstr ""
+
+#: .\views.py:151
+#, python-format
+msgid ""
+"Folder \"%(filename)s\" could not be deleted because it contained files that "
+"could not be deleted."
+msgstr ""
+
+#: .\views.py:158
+#, python-format
+msgid "File \"%(filename)s\" could not be deleted."
+msgstr ""
+
+#: .\views.py:164
+#, python-format
+msgid "%(numfiles)d files were deleted successfully."
+msgstr ""
+
+#: .\views.py:166
+#, python-format
+msgid "File \"%(filename)s\" was deleted successfully."
+msgstr ""
+
+#: .\views.py:168
+#, python-format
+msgid "%(numfiles)d other files were deleted."
+msgstr ""
+
+#: .\views.py:193 .\views.py:200
+msgid "File does not exist or you are not allowed to delete it."
+msgstr ""
+
+#: .\views.py:246
+#, python-format
+msgid ""
+"A problem occurred during export. The following file is missing: %(filename)"
+"s."
+msgid_plural ""
+"A problem occurred during export. The following files are missing: %"
+"(filename)s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\views.py:261
+msgid "Invalid request."
+msgstr ""
+
+#: .\views.py:284
+#, python-format
+msgid "File \"%(title)s\" was updated successfully."
+msgstr ""
+
+#: .\views.py:285
+#, python-format
+msgid "File \"%(title)s\" could not be updated."
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\attached_files.html.py:4
+msgid "attached__cosinnus_file__FileEntry"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_delete.html.py:6
+#: .\templates\__old__cosinnus_file\file_delete.html.py:12
+#: .\templates\__old__cosinnus_file\file_delete.html.py:47
+#: .\templates\__old__cosinnus_file\file_detail.html.py:49
+#: .\templates\__old__cosinnus_file\file_form.html.py:18
+#: .\templates\__old__cosinnus_file\file_tree_template.html.py:21
+#: .\templates\__old__cosinnus_file\file_tree_template.html.py:83
+msgid "Delete"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_delete.html.py:19
+msgid "Are you sure you want to delete this folder and all files in it?"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_delete.html.py:21
+msgid "Are you sure you want to delete this file?"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_delete.html.py:26
+msgid "The following files will be deleted:"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_delete.html.py:50
+#: .\templates\__old__cosinnus_file\file_form.html.py:56
+msgid "Cancel"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_detail.html.py:14
+msgid "Name"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_detail.html.py:18
+msgid "Filename"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_detail.html.py:35
+msgid "Image"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_detail.html.py:42
+#: .\templates\__old__cosinnus_file\file_detail.html.py:46
+msgid "Actions"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_detail.html.py:45
+#: .\templates\__old__cosinnus_file\file_tree_template.html.py:77
+#: .\templates\cosinnus_file\file_edit.html.py:121
+msgid "Download"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_detail.html.py:48
+msgid "Update"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_form.html.py:16
+msgid "Upload"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_form.html.py:21
+#: .\templates\__old__cosinnus_file\file_form.html.py:34
+#: .\templates\__old__cosinnus_file\file_form.html.py:43
+#: .\templates\__old__cosinnus_file\file_tree_template.html.py:15
+#: .\templates\__old__cosinnus_file\file_tree_template.html.py:32
+msgid "Upload file"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_form.html.py:36
+#: .\templates\__old__cosinnus_file\file_form.html.py:45
+#: .\templates\__old__cosinnus_file\file_tree_template.html.py:16
+#: .\templates\__old__cosinnus_file\file_tree_template.html.py:33
+msgid "Create folder"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_form.html.py:47
+msgctxt "sinn"
+msgid "Save"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_list.html.py:11
+msgid "List"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_list.html.py:26
+msgid "No tags available."
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_tree_template.html.py:20
+#: .\templates\__old__cosinnus_file\file_tree_template.html.py:82
+msgid "Edit"
+msgstr ""
+
+#: .\templates\__old__cosinnus_file\file_tree_template.html.py:80
+msgid "Show"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:38
+msgid "Gib den Titel für die Datei ein."
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:53
+#: .\templates\cosinnus_file\file_list.html.py:47
+msgid "Speichern"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:89
+msgid "Dateibeschreibung (optional)"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:104
+#: .\templates\cosinnus_file\file_list.html.py:34
+msgid "Lade ein neues Dokument hoch."
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:134
+#: .\templates\cosinnus_file\file_list.html.py:116
+msgid "Löschen"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:139
+#: .\templates\cosinnus_file\file_list.html.py:137
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:140
+#: .\templates\cosinnus_file\file_list.html.py:138
+msgid "Datei löschen"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_list.html.py:128
+msgid "Bearbeiten"
+msgstr ""
+
+#: .\templates\cosinnus_file\widgets\latest.html.py:5
+msgid "Title"
+msgstr ""
