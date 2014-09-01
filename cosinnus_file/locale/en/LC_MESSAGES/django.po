@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-01 12:52+0200\n"
+"POT-Creation-Date: 2014-09-01 18:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: .\templates\cosinnus_file\base.html.py:13
 #: .\templates\cosinnus_file\file_edit.html.py:5
 #: .\templates\cosinnus_file\file_list.html.py:5
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:20
+#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:5
 msgid "Files"
 msgstr ""
 
@@ -318,26 +318,8 @@ msgstr ""
 msgid "Mehr"
 msgstr ""
 
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:5
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:13
-msgid "Widget title"
-msgstr ""
-
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:29
+#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:14
 msgid "Latest files"
-msgstr ""
-
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:37
-msgid "Widget Icon (FA)"
-msgstr ""
-
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:45
-msgid "Font-awesome Widget Icon"
-msgstr ""
-
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:52
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:60
-msgid "Link label"
 msgstr ""
 
 #: .\templates\cosinnus_file\widgets\latest.html.py:37

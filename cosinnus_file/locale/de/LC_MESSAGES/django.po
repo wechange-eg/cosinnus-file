@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-01 12:52+0200\n"
+"POT-Creation-Date: 2014-09-01 18:17+0200\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: .\templates\cosinnus_file\base.html.py:13
 #: .\templates\cosinnus_file\file_edit.html.py:5
 #: .\templates\cosinnus_file\file_list.html.py:5
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:20
+#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:5
 msgid "Files"
 msgstr "Dateien"
 
@@ -229,7 +229,7 @@ msgstr "Dateiname"
 
 #: .\templates\__old__cosinnus_file\file_detail.html.py:35
 msgid "Image"
-msgstr ""
+msgstr "Bild"
 
 #: .\templates\__old__cosinnus_file\file_detail.html.py:42
 #: .\templates\__old__cosinnus_file\file_detail.html.py:46
@@ -330,31 +330,22 @@ msgstr ""
 msgid "Mehr"
 msgstr ""
 
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:5
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:13
-msgid "Widget title"
-msgstr "Widget-Titel"
-
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:29
+#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:14
 msgid "Latest files"
 msgstr "Neueste Dateien"
-
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:37
-msgid "Widget Icon (FA)"
-msgstr "Widget-Icon (fa)"
-
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:45
-msgid "Font-awesome Widget Icon"
-msgstr ""
-
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:52
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:60
-msgid "Link label"
-msgstr "Widget-Button-Titel"
 
 #: .\templates\cosinnus_file\widgets\latest.html.py:37
 msgid "There are no files  yet"
 msgstr "Es wurden noch keine Dateien hochgeladen."
+
+#~ msgid "Widget title"
+#~ msgstr "Widget-Titel"
+
+#~ msgid "Widget Icon (FA)"
+#~ msgstr "Widget-Icon (fa)"
+
+#~ msgid "Link label"
+#~ msgstr "Widget-Button-Titel"
 
 #~ msgid "No files have been uploaded yet."
 #~ msgstr "Es wurden noch keine Dateien hochgeladen."
