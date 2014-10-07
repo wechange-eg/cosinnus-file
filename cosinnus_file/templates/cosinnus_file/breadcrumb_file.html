@@ -1,8 +1,10 @@
+{% load cosinnus_tags %}
+
 {% if folder and folder.path != '/' %}
     {% include breadcrumb_template with folder=folder.container %}
     {% if current_folder and current_folder.path == folder.path %}
         <li class="active">{{ folder.title }}</li>
     {% else %}
-        <li><a href="{% url 'cosinnus:file:list' group=group.slug slug=folder.slug %}">{{ folder.title }}</a></li>
+        <li><a href="{% group_url 'cosinnus:file:list' group=group.slug slug=folder.slug %}">{{ folder.title }}</a></li>
     {% endif %}
 {% endif %}

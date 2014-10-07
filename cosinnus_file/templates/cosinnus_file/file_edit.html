@@ -30,7 +30,7 @@
 	                    <a class="pull-right" href="{{ object.get_absolute_url }}">
 	                        <i class="fa fa-chain"></i>
 	                    </a>
-                        <a class="pull-right" href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
+                        <a class="pull-right" href="{% group_url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
                             <i class="fa fa-download"></i>
                         </a>
 	                    <div class="media-body">
@@ -111,7 +111,7 @@
     </div><!-- content-box -->
     
     
-    <button type="button" class="btn btn-emphasized" href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
+    <button type="button" class="btn btn-emphasized" href="{% group_url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
         <ul class="media-list">
             <li class="media">
                 <a class="pull-left" href="#">
