@@ -29,6 +29,7 @@ from cosinnus_file.models import FileEntry
 from cosinnus.views.mixins.hierarchy import HierarchicalListCreateViewMixin
 from cosinnus.views.mixins.filters import CosinnusFilterMixin
 from cosinnus_file.filters import FileFilter
+from cosinnus.utils.urls import group_aware_reverse
 
 
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
@@ -63,7 +64,7 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
         return ret
     
     def get_success_url(self):
-        return reverse('cosinnus:file:list',
+        return group_aware_reverse('cosinnus:file:list',
                        kwargs={'group': self.group.slug})
     
     
@@ -72,7 +73,7 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
 class FileIndexView(RequireReadMixin, RedirectView):
 
     def get_redirect_url(self, **kwargs):
-        return reverse('cosinnus:file:list',
+        return group_aware_reverse('cosinnus:file:list',
                        kwargs={'group': self.group.slug})
 
 file_index_view = FileIndexView.as_view()
@@ -113,7 +114,7 @@ class FileHybridListView(RequireReadMixin, HierarchyPathMixin, HierarchicalListC
         if self.object.is_container:
             messages.success(self.request,
                 self.message_success_folder % {'title': self.object.title})
-        return reverse('cosinnus:file:list', kwargs={
+        return group_aware_reverse('cosinnus:file:list', kwargs={
                 'group': self.group.slug,
                 'slug': self.object.slug})
 

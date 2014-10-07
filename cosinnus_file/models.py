@@ -23,6 +23,7 @@ from cosinnus.models import BaseTaggableObjectModel
 from cosinnus_file.managers import FileEntryManager
 from cosinnus.models.tagged import BaseHierarchicalTaggableObjectModel
 from cosinnus.utils.permissions import filter_tagged_object_queryset_for_user
+from cosinnus.utils.urls import group_aware_reverse
 
 
 def get_hashed_filename(instance, filename):
@@ -140,7 +141,7 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
     def get_absolute_url(self):
         kwargs = {'group': self.group.slug,
                   'slug': self.slug}
-        return reverse('cosinnus:file:download', kwargs=kwargs)
+        return group_aware_reverse('cosinnus:file:download', kwargs=kwargs)
     
     @classmethod
     def get_current(self, group, user):
