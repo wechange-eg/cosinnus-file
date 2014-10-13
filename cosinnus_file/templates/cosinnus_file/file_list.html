@@ -67,10 +67,10 @@
 		                    <a class="pull-right fadedown-clickarea" href="#">
 		                        <i class="fa fa-chevron-down"></i>
 		                    </a>
-		                    <a class="pull-right" href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
+		                    <a class="pull-right" href="{% group_url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
                                 <i class="fa fa-chain"></i>
                             </a>
-                            <a class="pull-right" href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
+                            <a class="pull-right" href="{% group_url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
                                 <i class="fa fa-download"></i>
                             </a>
 		                    
@@ -78,7 +78,7 @@
                                 {% with creator=object.creator %}
                                     <span class="annotation">von <a href="{{ creator|profile_url }}" >{{ creator|full_name }}</a></span>
                                 {% endwith %}
-		                        <a href="{% url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
+		                        <a href="{% group_url 'cosinnus:file:download' group=group.slug slug=object.slug %}">
 		                            {{ object.title }}
 		                        </a>
 		                    </div>
@@ -118,7 +118,7 @@
 	                        </li>
 	                    </ul>
 	                </button>
-                    <button type="button" class="btn btn-emphasized" href="{% url 'cosinnus:file:edit' group=group.slug slug=object.slug %}">
+                    <button type="button" class="btn btn-emphasized" href="{% group_url 'cosinnus:file:edit' group=group.slug slug=object.slug %}">
                         <ul class="media-list">
                             <li class="media">
                                 <a class="pull-left" href="#">
@@ -136,7 +136,7 @@
             {% if user|has_write_access:object %}   
 	            {% captureas label %}{% blocktrans with title=object.title %}Do you really want to delete file „{{ title }}“?{% endblocktrans %}{% endcaptureas %}
 	            {% captureas title %}{% trans "Datei löschen" %}{% endcaptureas %}
-	            {% captureas action %}{% url 'cosinnus:file:delete' group=group.slug slug=object.slug%}{% add_current_params %}{% endcaptureas %}
+	            {% captureas action %}{% group_url 'cosinnus:file:delete' group=group.slug slug=object.slug%}{% add_current_params %}{% endcaptureas %}
 	            {% include "cosinnus/modal_box.html" with id=modal_id label=label title=title form_action=action %}
 	        {% endif %}
 	    {% empty %}
