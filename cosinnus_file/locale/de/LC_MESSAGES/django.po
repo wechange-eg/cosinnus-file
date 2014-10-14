@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-13 13:29+0200\n"
+"POT-Creation-Date: 2014-10-14 12:31+0200\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -227,6 +227,10 @@ msgstr ""
 msgid "Bearbeiten"
 msgstr ""
 
+#: .\templates\cosinnus_file\file_list_standalone.html.py:15
+msgid "No files have been uploaded yet."
+msgstr "Es wurden noch keine Dateien hochgeladen."
+
 #: .\templates\cosinnus_file\widgets\file_widget.html.py:22
 msgid "Mehr"
 msgstr ""
@@ -306,9 +310,6 @@ msgstr "Es wurden noch keine Dateien hochgeladen."
 
 #~ msgid "Link label"
 #~ msgstr "Widget-Button-Titel"
-
-#~ msgid "No files have been uploaded yet."
-#~ msgstr "Es wurden noch keine Dateien hochgeladen."
 
 #~ msgid "Title"
 #~ msgstr "Titel"

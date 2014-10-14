@@ -12,6 +12,7 @@
         {% for object in object_list %}
             {% include 'cosinnus_file/single_file.html' with object=object %}
         {% empty %}
+            <!-- {% trans "No files have been uploaded yet." %} -->
             {% include 'cosinnus/common/empty_button.html' with message="No files have been uploaded yet." %}
         {% endfor %}
         </div>
