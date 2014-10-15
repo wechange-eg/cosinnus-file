@@ -30,6 +30,7 @@ from cosinnus.views.mixins.hierarchy import HierarchicalListCreateViewMixin
 from cosinnus.views.mixins.filters import CosinnusFilterMixin
 from cosinnus_file.filters import FileFilter
 from cosinnus.utils.urls import group_aware_reverse
+from django.core.exceptions import PermissionDenied
 
 
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
@@ -131,6 +132,9 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
+        if self.object.is_container and self.object.path == "/":
+            raise PermissionDenied("The root file object cannot be deleted!")
+        
         if self.object.is_container:
             dellist = list(self._getFilesInPath(self.object.path))
         else:
