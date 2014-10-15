@@ -3,14 +3,12 @@ from __future__ import unicode_literals
 
 import mimetypes
 
-from collections import defaultdict
-from os.path import basename, dirname
+from os.path import basename
 
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.http import (Http404, HttpResponse, HttpResponseNotFound,
     HttpResponseRedirect, StreamingHttpResponse)
-from django.shortcuts import get_object_or_404
 from django.utils.translation import ungettext, ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
     RedirectView, UpdateView, View)
@@ -21,7 +19,8 @@ from cosinnus.utils.files import create_zip_file
 from cosinnus.templatetags.cosinnus_tags import add_current_params
 from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
     FilterGroupMixin, GroupFormKwargsMixin)
-from cosinnus.views.mixins.tagged import HierarchyTreeMixin, HierarchyPathMixin
+from cosinnus.views.mixins.tagged import HierarchyTreeMixin, HierarchyPathMixin,\
+    HierarchyDeleteMixin
 from cosinnus.views.mixins.user import UserFormKwargsMixin
 
 from cosinnus_file.forms import FileForm, FileListForm
@@ -30,8 +29,6 @@ from cosinnus.views.mixins.hierarchy import HierarchicalListCreateViewMixin
 from cosinnus.views.mixins.filters import CosinnusFilterMixin
 from cosinnus_file.filters import FileFilter
 from cosinnus.utils.urls import group_aware_reverse
-from django.core.exceptions import PermissionDenied
-from cosinnus.utils.permissions import check_object_write_access
 
 
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
@@ -123,80 +120,10 @@ class FileHybridListView(RequireReadMixin, HierarchyPathMixin, HierarchicalListC
 file_hybrid_list_view = FileHybridListView.as_view()
 
 
-class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
+class FileDeleteView(RequireWriteMixin, FilterGroupMixin, HierarchyDeleteMixin, DeleteView):
 
     model = FileEntry
     template_name = 'cosinnus_file/file_delete.html'
-
-    def _getFilesInPath(self, path):
-        return FileEntry.objects.filter(path__startswith=path)
-
-    def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        if self.object.is_container and self.object.path == "/":
-            raise PermissionDenied("The root file object cannot be deleted!")
-        
-        if self.object.is_container:
-            dellist = list(self._getFilesInPath(self.object.path))
-        else:
-            dellist = [self.object]
-
-        # for a clean deletion, sort so that subelements are always before their parents and files always before folders on the same level
-        dellist.sort(key=lambda o: len(o.path) + (0 if o.is_container else 1), reverse=True)
-
-        total_files = len(dellist)
-        deleted_count = 0
-        for fileentry in dellist:
-            """ sanity check: only delete a folder if it is empty
-                (there should only be one object (the folder itself) with the path, because
-                we have deleted all its files before it!
-            """
-            if fileentry.is_container:
-                folderfiles = self._getFilesInPath(fileentry.path)
-                if len(folderfiles) > 1:
-                    messages.error(request, _('Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename': fileentry.title})
-                    continue
-            
-            deletedpk = fileentry.pk
-            if check_object_write_access(fileentry, request.user):
-                fileentry.delete()
-            else:
-                messages.error(request, _('You do not have permissions to delete File "%(filename)s".') % {'filename': fileentry.title})
-                continue
-            
-            # check if deletion was successful
-            try:
-                checkfileentry = FileEntry.objects.get(pk=deletedpk)
-                messages.error(request, _('File "%(filename)s" could not be deleted.') % {'filename': checkfileentry.title})
-            except FileEntry.DoesNotExist:
-                deleted_count += 1
-
-        if deleted_count > 0:
-            if deleted_count > 1 and deleted_count == total_files:
-                messages.success(request, _('%(numfiles)d files were deleted successfully.') % {'numfiles': deleted_count})
-            elif deleted_count == 1 and total_files == 1:
-                messages.success(request, _('File "%(filename)s" was deleted successfully.') % {'filename': fileentry.title})
-            else:
-                messages.info(request, _('%(numfiles)d other files were deleted.') % {'numfiles': deleted_count})
-
-        return HttpResponseRedirect(self.get_success_url())
-
-    def get_context_data(self, **kwargs):
-        context = super(FileDeleteView, self).get_context_data(**kwargs)
-        delfile = kwargs.get('object', None)
-
-        dellist = []
-        if delfile:
-            if delfile.is_container:
-                # special handling for folders being deleted:
-                pathfiles = self._getFilesInPath(delfile.path)
-                dellist.extend(pathfiles)
-            else:
-                dellist.append(delfile)
-
-        context['files_to_delete'] = dellist
-        return context
-
 
     def get(self, request, *args, **kwargs):
         try:
