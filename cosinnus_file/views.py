@@ -31,6 +31,7 @@ from cosinnus.views.mixins.filters import CosinnusFilterMixin
 from cosinnus_file.filters import FileFilter
 from cosinnus.utils.urls import group_aware_reverse
 from django.core.exceptions import PermissionDenied
+from cosinnus.utils.permissions import check_object_write_access
 
 
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
@@ -155,8 +156,14 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, DeleteView):
                 if len(folderfiles) > 1:
                     messages.error(request, _('Folder "%(filename)s" could not be deleted because it contained files that could not be deleted.') % {'filename': fileentry.title})
                     continue
+            
             deletedpk = fileentry.pk
-            fileentry.delete()
+            if check_object_write_access(fileentry, request.user):
+                fileentry.delete()
+            else:
+                messages.error(request, _('You do not have permissions to delete File "%(filename)s".') % {'filename': fileentry.title})
+                continue
+            
             # check if deletion was successful
             try:
                 checkfileentry = FileEntry.objects.get(pk=deletedpk)
