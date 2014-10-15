@@ -64,7 +64,8 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
     
     def get_success_url(self):
         return group_aware_reverse('cosinnus:file:list',
-                       kwargs={'group': self.group.slug})
+                       kwargs={'group': self.group.slug,
+                               'slug': self.object.slug})
     
     
 
