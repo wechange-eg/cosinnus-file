@@ -29,7 +29,7 @@
                          <a class="pull-left" href="#">
                              <i class="fa fa-plus"></i>
                          </a>
-                         <div class="media-body">
+                         <div class="media-body media-body-form-control">
                              {{ obj_form.file.errors }}
                              {% captureas placeholder %}{% trans "Lade ein neues Dokument hoch." %}{% endcaptureas %}
                              {% render_field obj_form.file class+="form-control next-button-is-for-sending" placeholder=placeholder id="fileToUpload" %}
