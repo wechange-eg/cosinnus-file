@@ -136,6 +136,8 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
     def save(self, *args, **kwargs):
         if self.path[-1] != '/':
             self.path += '/'
+        if len(self.mimetype) > 50:
+            self.mimetype = self.mimetype[:50]    
         super(FileEntry, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
