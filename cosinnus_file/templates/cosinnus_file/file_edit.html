@@ -35,7 +35,7 @@
                         </a>
 	                    <div class="media-body media-body-form-control">
 		                    {{ form.forms.obj.title.errors }}
-		                    {% captureas placeholder %}{% trans "Gib den Titel für die Datei ein." %}{% endcaptureas %}
+		                    {% captureas placeholder %}{% trans "Enter the title for the file." %}{% endcaptureas %}
 		                    {% render_field form.forms.obj.title class+="form-control" placeholder=placeholder id="etherpadTitle" %}
 	                    </div>
 	                </li>
@@ -50,7 +50,7 @@
 	                        <i class="fa fa-floppy-o "></i>
 	                    </a>
 	                    <div class="media-body">
-	                        {% trans "Speichern" %}
+	                        {% trans "Save" %}
 	                    </div>
 	                </li>
 	            </ul>
@@ -86,7 +86,7 @@
                     <li class="media">
                         <div class="media-bod media-body-form-controly">
                             {{ form.forms.obj.note.errors }}
-                            {% captureas placeholder %}{% trans "Dateibeschreibung (optional)" %}{% endcaptureas %}
+                            {% captureas placeholder %}{% trans "File description (optional)" %}{% endcaptureas %}
                             {% render_field form.forms.obj.note class+="form-control" placeholder=placeholder %}
                         </div>
                     </li>
@@ -101,7 +101,7 @@
                          </a>
                          <div class="media-body media-body-form-control">
                              {{ form.forms.obj.file.errors }}
-                             {% captureas placeholder %}{% trans "Lade ein neues Dokument hoch." %}{% endcaptureas %}
+                             {% captureas placeholder %}{% trans "Upload a file or document." %}{% endcaptureas %}
                              {% render_field form.forms.obj.file class+="form-control" placeholder=placeholder id="fileToUpload" %}
                          </div>
                      </li>
@@ -131,13 +131,13 @@
 	                    <i class="fa fa-eraser"></i>
 	                </a>
 	                <div class="media-body">
-	                    {% trans "Löschen" %}
+	                    {% trans "Delete" %}
 	                </div>
 	            </li>
 	        </ul>
 	    </button>
 	    {% captureas label %}{% blocktrans with title=object.title %}Do you really want to delete file „{{ title }}“?{% endblocktrans %}{% endcaptureas %}
-	    {% captureas title %}{% trans "Datei löschen" %}{% endcaptureas %}
+	    {% captureas title %}{% trans "Delete file" %}{% endcaptureas %}
 	    {% include "cosinnus/modal_box.html" with id="deleteModal" label=label title=title form_action="./delete/" %}
 	{% endif %}
     
