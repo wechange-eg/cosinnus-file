@@ -61,7 +61,7 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
     _sourcefilename = models.CharField(blank=False, null=False, default='download', max_length=100)
     _filesize = models.IntegerField(blank=True, null=True, default='0')
     
-    mimetype = models.CharField(_('Path'), blank=True, null=True, default='', max_length=50, editable=False)
+    mimetype = models.CharField(_('Path'), blank=True, null=True, default='', max_length=50)
 
     objects = FileEntryManager()
     

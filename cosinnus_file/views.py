@@ -29,6 +29,7 @@ from cosinnus.views.mixins.hierarchy import HierarchicalListCreateViewMixin
 from cosinnus.views.mixins.filters import CosinnusFilterMixin
 from cosinnus_file.filters import FileFilter
 from cosinnus.utils.urls import group_aware_reverse
+from cosinnus_file.utils.strings import clean_filename
 
 
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
@@ -257,19 +258,34 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
                 raise Http404
 
         response = HttpResponseNotFound()
+        
         if path:
-            try:
-                fsock = open(path, "rb")
-                mime_type_guess = mimetypes.guess_type(path)
-                if mime_type_guess is not None:
-                    response = HttpResponse(fsock, mimetype=mime_type_guess[0])
-                response['Content-Disposition'] = 'attachment; filename=' + fileentry._sourcefilename
-            except IOError:
-                if settings.DEBUG:
-                    raise
-                else:
-                    pass
-
+            fp = open(path, 'rb')
+            response = HttpResponse(fp.read())
+            fp.close()
+            content_type, encoding = mimetypes.guess_type(fileentry.sourcefilename)
+            filename = fileentry.sourcefilename
+            if content_type is None:
+                content_type = fileentry.mimetype or 'application/octet-stream'
+            response['Content-Type'] = content_type
+            response['Content-Length'] = fileentry._filesize
+            if encoding is not None:
+                response['Content-Encoding'] = encoding
+        
+            # To inspect details for the below code, see http://greenbytes.de/tech/tc2231/
+            if u'WebKit' in request.META['HTTP_USER_AGENT']:
+                # Safari 3.0 and Chrome 2.0 accepts UTF-8 encoded string directly.
+                filename_header = 'filename=%s' % clean_filename(filename)
+            elif u'MSIE' in request.META['HTTP_USER_AGENT']:
+                # IE does not support internationalized filename at all.
+                # It can only recognize internationalized URL, so we do the trick via routing rules.
+                filename_header = ''
+            else:
+                # For others like Firefox, we follow RFC2231 (encoding extension in HTTP headers).
+                filename_header = 'filename*=UTF-8\'\'%s' % clean_filename(filename)
+            response['Content-Disposition'] = 'attachment; ' + filename_header
+        
         return response
-
+    
+    
 file_download_view = FileDownloadView.as_view()
