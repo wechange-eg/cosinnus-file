@@ -34,8 +34,16 @@ class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
     def clean_file(self):
         fileupload = self.cleaned_data['file']
         if fileupload and isinstance(fileupload, UploadedFile):
-            if len(fileupload._name) > 100:
-                fileupload._name = fileupload._name[:100]
+            max_length = self._meta.model._meta.get_field('_sourcefilename').max_length
+            name = fileupload._name
+            # shorten file name before its file suffix if it is too long
+            if len(name) > max_length:
+                if '.' in fileupload._name:
+                    filename, suffix = name.rsplit('.', 1)
+                    test = '.'.join([filename[:max_length-len(suffix)-1], suffix])
+                    fileupload._name = test
+                else:
+                    fileupload._name = name[:max_length]
             if self.instance:
                 self.instance.mimetype = fileupload.content_type
         return fileupload
