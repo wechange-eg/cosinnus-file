@@ -24,6 +24,8 @@ from cosinnus_file.managers import FileEntryManager
 from cosinnus.models.tagged import BaseHierarchicalTaggableObjectModel
 from cosinnus.utils.permissions import filter_tagged_object_queryset_for_user
 from cosinnus.utils.urls import group_aware_reverse
+from cosinnus_file import cosinnus_notifications
+from django.contrib.auth import get_user_model
 
 
 def get_hashed_filename(instance, filename):
@@ -138,7 +140,12 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
             self.path += '/'
         if len(self.mimetype) > 50:
             self.mimetype = self.mimetype[:50]    
+        created = bool(self.pk) == False
         super(FileEntry, self).save(*args, **kwargs)
+        if created:
+            # todo was created
+            cosinnus_notifications.file_created.send(sender=self, user=self.creator, obj=self, audience=get_user_model().objects.filter(id__in=self.group.members).exclude(id=self.creator.pk))
+        
 
     def get_absolute_url(self):
         kwargs = {'group': self.group.slug,
