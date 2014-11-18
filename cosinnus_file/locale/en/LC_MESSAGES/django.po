@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-27 15:08+0100\n"
+"POT-Creation-Date: 2014-11-18 16:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\cosinnus_app.py:13 .\models.py:121
+#: .\cosinnus_app.py:13 .\models.py:123
 #: .\templates\cosinnus_file\base.html.py:6
 #: .\templates\cosinnus_file\base.html.py:13
 #: .\templates\cosinnus_file\file_edit.html.py:5
@@ -28,6 +28,10 @@ msgstr ""
 #: .\cosinnus_app.py:20
 msgctxt "the_app"
 msgid "file"
+msgstr ""
+
+#: .\cosinnus_notifications.py:39
+msgid "A user uploaded a new file"
 msgstr ""
 
 #: .\dashboard.py:27
@@ -74,55 +78,55 @@ msgstr ""
 msgid "Largest Files"
 msgstr ""
 
-#: .\models.py:57
+#: .\models.py:59
 msgid "Note"
 msgstr ""
 
-#: .\models.py:58 .\models.py:120
+#: .\models.py:60 .\models.py:122
 msgid "File"
 msgstr ""
 
-#: .\models.py:64
+#: .\models.py:66
 msgid "Path"
 msgstr ""
 
-#: .\models.py:125 .\templates\cosinnus_file\file_edit.html.py:76
+#: .\models.py:127 .\templates\cosinnus_file\file_edit.html.py:76
 msgid "Uploaded by"
 msgstr ""
 
-#: .\models.py:126
+#: .\models.py:128
 msgid "Uploaded on"
 msgstr ""
 
-#: .\models.py:134 .\views.py:177
+#: .\models.py:136 .\views.py:178
 msgid "No files selected."
 msgstr ""
 
-#: .\views.py:36 .\views.py:88
+#: .\views.py:37 .\views.py:89
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
 msgstr ""
 
-#: .\views.py:37
+#: .\views.py:38
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
 msgstr ""
 
-#: .\views.py:89
+#: .\views.py:90
 #, python-format
 msgid "File \"%(title)s\" could not be added."
 msgstr ""
 
-#: .\views.py:111
+#: .\views.py:112
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
 msgstr ""
 
-#: .\views.py:133 .\views.py:140
+#: .\views.py:134 .\views.py:141
 msgid "File does not exist or you are not allowed to delete it."
 msgstr ""
 
-#: .\views.py:186
+#: .\views.py:187
 #, python-format
 msgid ""
 "A problem occurred during export. The following file is missing: %(filename)"
@@ -133,16 +137,16 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\views.py:201
+#: .\views.py:202
 msgid "Invalid request."
 msgstr ""
 
-#: .\views.py:224
+#: .\views.py:225
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
 msgstr ""
 
-#: .\views.py:225
+#: .\views.py:226
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
 msgstr ""
@@ -192,6 +196,29 @@ msgstr ""
 #: .\templates\cosinnus_file\file_list.html.py:143
 #: .\templates\cosinnus_file\file_list_standalone.html.py:15
 msgid "No files have been uploaded yet."
+msgstr ""
+
+#: .\templates\cosinnus_file\notifications\file_created.txt.py:1
+#, python-format
+msgid ""
+"Hi %(receiver_name)s,\n"
+"\n"
+"a new file \"%(object_name)s\" in %(group_name)s was uploaded by %"
+"(sender_name)s. \n"
+"\n"
+"You can find it by following this link: %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(Follow this link to edit your notification preferences: %"
+"(notification_settings_url)s )\n"
+"\n"
+"Your %(site_name)s Team."
+msgstr ""
+
+#: .\templates\cosinnus_file\notifications\file_created_subject.txt.py:1
+#, python-format
+msgid "A new file: \"%(object_name)s\" was uploaded in %(group_name)s."
 msgstr ""
 
 #: .\templates\cosinnus_file\widgets\file_widget.html.py:22

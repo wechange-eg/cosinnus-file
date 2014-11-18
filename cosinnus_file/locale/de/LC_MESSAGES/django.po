@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-27 15:08+0100\n"
+"POT-Creation-Date: 2014-11-18 16:12+0100\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: .\cosinnus_app.py:13 .\models.py:121
+#: .\cosinnus_app.py:13 .\models.py:123
 #: .\templates\cosinnus_file\base.html.py:6
 #: .\templates\cosinnus_file\base.html.py:13
 #: .\templates\cosinnus_file\file_edit.html.py:5
@@ -31,6 +31,10 @@ msgstr "Dateien"
 msgctxt "the_app"
 msgid "file"
 msgstr "Dateien"
+
+#: .\cosinnus_notifications.py:39
+msgid "A user uploaded a new file"
+msgstr "Ein(e) Mitarbeiter_in hat eine neue Datei hochgeladen"
 
 #: .\dashboard.py:27
 msgid "Latest Files"
@@ -76,57 +80,57 @@ msgstr "Kleinste Dateien"
 msgid "Largest Files"
 msgstr "Größte Dateien"
 
-#: .\models.py:57
+#: .\models.py:59
 msgid "Note"
 msgstr "Bemerkung"
 
-#: .\models.py:58 .\models.py:120
+#: .\models.py:60 .\models.py:122
 msgid "File"
 msgstr "Datei"
 
-#: .\models.py:64
+#: .\models.py:66
 msgid "Path"
 msgstr "Verzeichnis"
 
-#: .\models.py:125 .\templates\cosinnus_file\file_edit.html.py:76
+#: .\models.py:127 .\templates\cosinnus_file\file_edit.html.py:76
 msgid "Uploaded by"
 msgstr "Hochgeladen durch"
 
-#: .\models.py:126
+#: .\models.py:128
 msgid "Uploaded on"
 msgstr "Hochgeladen am"
 
-#: .\models.py:134 .\views.py:177
+#: .\models.py:136 .\views.py:178
 msgid "No files selected."
 msgstr "Keine Dateien ausgewählt."
 
-#: .\views.py:36 .\views.py:88
+#: .\views.py:37 .\views.py:89
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
 msgstr "Datei \"%(title)s\" wurde erfolgreich hochgeladen."
 
-#: .\views.py:37
+#: .\views.py:38
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
 msgstr "Datei \"%(title)s\" konnte nicht hochgeladen werden."
 
-#: .\views.py:89
+#: .\views.py:90
 #, python-format
 msgid "File \"%(title)s\" could not be added."
 msgstr "Datei \"%(title)s\" konnte nicht hinzugefügt werden."
 
-#: .\views.py:111
+#: .\views.py:112
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
 msgstr "Datei \"%(title)s\" wurde erfolgreich erstellt."
 
-#: .\views.py:133 .\views.py:140
+#: .\views.py:134 .\views.py:141
 msgid "File does not exist or you are not allowed to delete it."
 msgstr ""
 "Entweder existiert diese Datei nicht oder Ihnen fehlen die Rechte um die "
 "Datei zu bearbeiten."
 
-#: .\views.py:186
+#: .\views.py:187
 #, python-format
 msgid ""
 "A problem occurred during export. The following file is missing: %(filename)"
@@ -141,16 +145,16 @@ msgstr[1] ""
 "Beim Exportieren ist ein Fehler aufgetreten. Die folgenden Dateien "
 "existieren nicht: %(filename)s"
 
-#: .\views.py:201
+#: .\views.py:202
 msgid "Invalid request."
 msgstr "Ungültiger Seitenaufruf."
 
-#: .\views.py:224
+#: .\views.py:225
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
 msgstr "Datei \"%(title)s\" wurde erfolgreich geändert."
 
-#: .\views.py:225
+#: .\views.py:226
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
 msgstr "Datei \"%(title)s\" konnte nicht geändert werden."
@@ -202,6 +206,42 @@ msgstr "Bearbeiten"
 #: .\templates\cosinnus_file\file_list_standalone.html.py:15
 msgid "No files have been uploaded yet."
 msgstr "Es wurden noch keine Dateien hochgeladen."
+
+#: .\templates\cosinnus_file\notifications\file_created.txt.py:1
+#, python-format
+msgid ""
+"Hi %(receiver_name)s,\n"
+"\n"
+"a new file \"%(object_name)s\" in %(group_name)s was uploaded by %"
+"(sender_name)s. \n"
+"\n"
+"You can find it by following this link: %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(Follow this link to edit your notification preferences: %"
+"(notification_settings_url)s )\n"
+"\n"
+"Your %(site_name)s Team."
+msgstr ""
+"Hi %(receiver_name)s,\n"
+"\n"
+"eine neue Datei \"%(object_name)s\" in %(group_name)s wurde von %"
+"(sender_name)s hochgeladen. \n"
+"\n"
+"Du kannst es finden indem du folgenden Link aufrufst: %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(Folge diesem Link um deine Benachrichtigungseinstellungen zu ändern: %"
+"(notification_settings_url)s )\n"
+"\n"
+"Dein %(site_name)s Team."
+
+#: .\templates\cosinnus_file\notifications\file_created_subject.txt.py:1
+#, python-format
+msgid "A new file: \"%(object_name)s\" was uploaded in %(group_name)s."
+msgstr "Neue Datei: \"%(object_name)s\" wurde hochgeladen in %(group_name)s."
 
 #: .\templates\cosinnus_file\widgets\file_widget.html.py:22
 msgid "More"
