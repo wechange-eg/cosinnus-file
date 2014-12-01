@@ -6,7 +6,6 @@ import mimetypes
 from os.path import basename
 
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.http import (Http404, HttpResponse, HttpResponseNotFound,
     HttpResponseRedirect, StreamingHttpResponse)
 from django.utils.translation import ungettext, ugettext_lazy as _
@@ -142,7 +141,7 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, HierarchyDeleteMixin, 
             return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return "%s%s" % (reverse('cosinnus:file:list', kwargs={'group': self.group.slug}), add_current_params(None, self.request))
+        return "%s%s" % (group_aware_reverse('cosinnus:file:list', kwargs={'group': self.group.slug}), add_current_params(None, self.request))
 
 file_delete_view = FileDeleteView.as_view()
 
