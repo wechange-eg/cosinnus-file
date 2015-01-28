@@ -52,7 +52,7 @@ class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
         """ Insert the filename as title if no title is given """
         title = self.cleaned_data.get('title', None)
         if not title:
-            fileupload = self.cleaned_data['file']
+            fileupload = self.cleaned_data.get('file', None)
             if fileupload:
                 self.cleaned_data.update({'title': fileupload._name},)
                 self.errors.pop('title', None)
