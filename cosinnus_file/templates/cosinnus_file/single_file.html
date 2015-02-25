@@ -21,10 +21,7 @@
                          </span>
                          <strong><a href="{% group_url 'cosinnus:file:download' group=file.group.slug slug=file.slug %}">{{ file.title }}</a></strong>
                          <div class="group-annotation">
-                             <a href="{{ file.group.get_absolute_url }}">
-                                 <i class="fa fa-users"></i>
-                                 {{ file.group.name }}
-                             </a>
+                             {% include 'cosinnus/group/group_label.html' with group=file.group %}
                          </div>
                     </div>
                 </li>

@@ -16,10 +16,7 @@
                     <div class="media-body">
                         <a href="{{ row.get_absolute_url }}" target="_blank">{{ row.title }}</a>
                         <div class="group-annotation">
-                            <a href="{{ row.group.get_absolute_url }}">
-                                <i class="fa fa-users"></i>
-                                {{ row.group.name }}
-                            </a>
+                            {% include 'cosinnus/group/group_label.html' with group=row.group %}
                         </div>
                     </div>
                 </li>
