@@ -148,12 +148,12 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
         
 
     def get_absolute_url(self):
-        kwargs = {'group': self.group.slug,
+        kwargs = {'group': self.group,
                   'slug': self.slug}
         return group_aware_reverse('cosinnus:file:download', kwargs=kwargs)
     
     def get_delete_url(self):
-        kwargs = {'group': self.group.slug,
+        kwargs = {'group': self.group,
                   'slug': self.slug}
         return group_aware_reverse('cosinnus:file:delete', kwargs=kwargs)
     

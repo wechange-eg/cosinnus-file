@@ -64,7 +64,7 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
     
     def get_success_url(self):
         return group_aware_reverse('cosinnus:file:list',
-                       kwargs={'group': self.group.slug,
+                       kwargs={'group': self.group,
                                'slug': self.object.slug})
     
     
@@ -74,7 +74,7 @@ class FileIndexView(RequireReadMixin, RedirectView):
 
     def get_redirect_url(self, **kwargs):
         return group_aware_reverse('cosinnus:file:list',
-                       kwargs={'group': self.group.slug})
+                       kwargs={'group': self.group})
 
 file_index_view = FileIndexView.as_view()
 
@@ -115,7 +115,7 @@ class FileHybridListView(RequireReadMixin, HierarchyPathMixin, HierarchicalListC
             messages.success(self.request,
                 self.message_success_folder % {'title': self.object.title})
         return group_aware_reverse('cosinnus:file:list', kwargs={
-                'group': self.group.slug,
+                'group': self.group,
                 'slug': self.object.slug})
 
 file_hybrid_list_view = FileHybridListView.as_view()
@@ -141,7 +141,7 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, HierarchyDeleteMixin, 
             return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return "%s%s" % (group_aware_reverse('cosinnus:file:list', kwargs={'group': self.group.slug}), add_current_params(None, self.request))
+        return "%s%s" % (group_aware_reverse('cosinnus:file:list', kwargs={'group': self.group}), add_current_params(None, self.request))
 
 file_delete_view = FileDeleteView.as_view()
 

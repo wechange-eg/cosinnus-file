@@ -5,6 +5,6 @@
     {% if current_folder and current_folder.path == folder.path %}
         <li class="active">{{ folder.title }}</li>
     {% else %}
-        <li><a href="{% group_url 'cosinnus:file:list' group=group.slug slug=folder.slug %}">{{ folder.title }}</a></li>
+        <li><a href="{% group_url 'cosinnus:file:list' group=group slug=folder.slug %}">{{ folder.title }}</a></li>
     {% endif %}
 {% endif %}
