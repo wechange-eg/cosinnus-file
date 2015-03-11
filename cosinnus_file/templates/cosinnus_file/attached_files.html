@@ -15,7 +15,7 @@
                     </a>
                     <div class="media-body no-vertical-padding ">
                         {% comment %} No href here because this would cause a double download (since the div reacts to the clicked href too) {% endcomment %}
-                        <strong><a href="#" target="_blank">{{ file.title|truncatechars:25 }}</a></strong>
+                        <strong><a target="_blank">{{ file.title|truncatechars:25 }}</a></strong>
                         <div class="group-annotation">
                             {% include 'cosinnus/group/group_label.html' with group=file.group %}
                         </div>
