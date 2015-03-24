@@ -10,7 +10,7 @@ def register():
     from cosinnus.core.registries import (app_registry,
         attached_object_registry, url_registry, widget_registry)
 
-    app_registry.register('cosinnus_file', 'file', _('Files'))
+    app_registry.register('cosinnus_file', 'file', _('Files'), deactivatable=True)
     attached_object_registry.register('cosinnus_file.FileEntry',
                              'cosinnus_file.utils.renderer.FileEntryRenderer')
     url_registry.register_urlconf('cosinnus_file', 'cosinnus_file.urls')
