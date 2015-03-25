@@ -28,7 +28,7 @@ msgstr ""
 #: .\cosinnus_app.py:20
 msgctxt "the_app"
 msgid "file"
-msgstr ""
+msgstr "Files"
 
 #: .\cosinnus_notifications.py:39
 msgid "A user uploaded a new file"
