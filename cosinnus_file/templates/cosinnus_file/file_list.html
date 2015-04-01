@@ -131,6 +131,9 @@
                         </ul>
                     </button> 
 	            {% endif %}
+	            
+	            {% include 'cosinnus/feedback/report_button_btn.html' with object=object %}
+	            
             </div><!-- fadedown -->
             
             {% if user|has_write_access:object %}   
