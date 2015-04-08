@@ -29,6 +29,7 @@ from cosinnus.views.mixins.filters import CosinnusFilterMixin
 from cosinnus_file.filters import FileFilter
 from cosinnus.utils.urls import group_aware_reverse
 from cosinnus_file.utils.strings import clean_filename
+from cosinnus.views.hierarchy import MoveElementView
 
 
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
@@ -288,3 +289,10 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
     
     
 file_download_view = FileDownloadView.as_view()
+
+
+class FileMoveElementView(MoveElementView):
+    model = FileEntry
+
+move_element_view = FileMoveElementView.as_view()
+

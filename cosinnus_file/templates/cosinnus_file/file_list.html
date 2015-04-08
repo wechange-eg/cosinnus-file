@@ -1,6 +1,13 @@
 {% extends "cosinnus_file/base.html" %}
 {% load i18n static cosinnus_tags widget_tweaks %}
 
+{% block extrahead %}
+    {{ block.super }}
+    <script src="{% static 'js/vendor/jstree.min.js' %}"></script>
+    <link href="{% static 'css/vendor/jstree/themes/default/style.min.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+
+
 {% block page_title %}
 {% trans "Files" %} {{ block.super }}
 {% endblock page_title %}
@@ -53,7 +60,7 @@
 	    {% endwith %}
 	    
 	    {% for object in objects %}
-		    <div class="fadedown {% if not forloop.last %}regular-space{% endif %}">
+		    <div id="cosinnus_list_element_{{ object.id }}" class="fadedown {% if not forloop.last %}regular-space{% endif %}">
 		        <div class="btn btn-emphasized w100">
 		            <ul class="media-list">
 		                <li class="media">
@@ -70,6 +77,12 @@
 		                    <a class="pull-right" href="{% group_url 'cosinnus:file:download' group=group slug=object.slug %}">
                                 <i class="fa fa-chain"></i>
                             </a>
+                            {% if folders and request.user.is_authenticated %}
+                                <a class="pull-right" href="#" title="{% trans "Move to another Folder" %}" onclick="$.cosinnus.Feedback.cosinnus_move_element({{ object.id }}, {{ current_folder.id }});">
+                                    <i class="fa fa-arrows"></i>
+                                </a>
+                            {% endif %}
+                            
                             <a class="pull-right" href="{% group_url 'cosinnus:file:download' group=group slug=object.slug %}">
                                 <i class="fa fa-download"></i>
                             </a>
@@ -148,4 +161,10 @@
 	    {% endfor %}
 	
 	</div><!-- content-box -->
+	
+    <script type="text/javascript">
+        var cosinnus_move_element_object_url = "{% group_url 'cosinnus:file:move-element' group=group %}";
+    </script>
+    {% include 'cosinnus/hierarchy/move_element_modal.html' %}
+    
 {% endblock content %}
