@@ -26,12 +26,13 @@ from cosinnus.utils.permissions import filter_tagged_object_queryset_for_user
 from cosinnus.utils.urls import group_aware_reverse
 from cosinnus_file import cosinnus_notifications
 from django.contrib.auth import get_user_model
+from cosinnus.utils.files import get_cosinnus_media_file_folder
 
 
 def get_hashed_filename(instance, filename):
     instance._sourcefilename = filename
     time = now()
-    path = join('cosinnus_files', force_text(instance.group_id),
+    path = join(get_cosinnus_media_file_folder(), 'files', force_text(instance.group_id),
         force_text(time.year), force_text(time.month))
     name = '%s%d%s' % (force_text(uuid.uuid4()), instance.group_id, filename)
     newfilename = hashlib.sha1(name.encode('utf-8')).hexdigest()
