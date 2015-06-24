@@ -1,5 +1,5 @@
 {% extends "cosinnus_file/base.html" %}
-{% load i18n static cosinnus_tags widget_tweaks %}
+{% load i18n static cosinnus_tags widget_tweaks thumbnail %}
 
 {% block extrahead %}
     {{ block.super }}
@@ -64,13 +64,13 @@
 		        <div class="btn btn-emphasized w100">
 		            <ul class="media-list">
 		                <li class="media">
-		                    <a class="pull-left" href="#">
-		                        {% if object.is_image %}
-					                <img src='{{ object.static_image_url }}' title='{{ file.title }}'></img>
-				                {% else %}
-				                    <i class="fa fa-file"></i>
-				                {% endif %}
-		                    </a>
+		                    {% if object.is_image %}
+		                        <a class="pull-left" href="{{ object.static_image_url }}" data-lightbox="image-{{ object.id }}" data-title="{{ object.title }}"><img src='{% thumbnail object.file 40x40 crop=1 upscale=1 %}' title='{{ object.title }}'></img></a>
+		                    {% else %}
+			                    <a class="pull-left" href="#">
+		                        	<i class="fa fa-file"></i>
+			                    </a>
+		                    {% endif %}
 		                    <a class="pull-right fadedown-clickarea" href="#">
 		                        <i class="fa fa-chevron-down"></i>
 		                    </a>
@@ -88,7 +88,7 @@
                                 {% with creator=object.creator %}
                                     <span class="annotation">von <a href="{{ creator|profile_url }}" >{{ creator|full_name }}</a></span>
                                 {% endwith %}
-		                        <a href="{% group_url 'cosinnus:file:download' group=group slug=object.slug %}">
+		                        <a {% if object.is_image %}href="{{ object.static_image_url }}" data-lightbox="image-{{ object.id }}" data-title="{{ object.title }}"{% else %}href="{{ object.get_absolute_url }}"{% endif %}>
 		                            {{ object.title }}
 		                        </a>
 		                    </div>
