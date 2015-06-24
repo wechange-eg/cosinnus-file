@@ -40,7 +40,7 @@ notifications = {
         'mail_template': 'cosinnus_file/notifications/file_created.txt',
         'subject_template': 'cosinnus_file/notifications/file_created_subject.txt',
         'signals': [file_created],
-        'default': False,
+        'default': True,
     },  
                     
 }
