@@ -51,6 +51,8 @@ class FileFilter(CosinnusFilterSet):
         model = FileEntry
         fields = ['creator', 'filetype']
         order_by = (
+            ('title', _('File Name')),
+            ('-title', _('File Name (descending)')),
             ('-created', _('Newest Created')),
             ('_filesize', _('Smallest Files')),
             ('-_filesize', _('Largest Files')),

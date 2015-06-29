@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-18 16:12+0100\n"
+"POT-Creation-Date: 2015-06-29 12:57+0200\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: .\cosinnus_app.py:13 .\models.py:123
+#: .\cosinnus_app.py:13 .\models.py:124
 #: .\templates\cosinnus_file\base.html.py:6
 #: .\templates\cosinnus_file\base.html.py:13
 #: .\templates\cosinnus_file\file_edit.html.py:5
-#: .\templates\cosinnus_file\file_list.html.py:5
+#: .\templates\cosinnus_file\file_list.html.py:12
 #: .\templates\cosinnus_file\widgets\file_widget_form.html.py:5
 msgid "Files"
 msgstr "Dateien"
@@ -69,38 +69,46 @@ msgid "File Type"
 msgstr "Dateityp"
 
 #: .\filters.py:54
+msgid "File Name"
+msgstr "Dateiname"
+
+#: .\filters.py:55
+msgid "File Name (descending)"
+msgstr "Dateiname (absteigend)"
+
+#: .\filters.py:56
 msgid "Newest Created"
 msgstr "Zuletzt hochgeladen"
 
-#: .\filters.py:55
+#: .\filters.py:57
 msgid "Smallest Files"
 msgstr "Kleinste Dateien"
 
-#: .\filters.py:56
+#: .\filters.py:58
 msgid "Largest Files"
 msgstr "Größte Dateien"
 
-#: .\models.py:59
+#: .\models.py:60
 msgid "Note"
 msgstr "Bemerkung"
 
-#: .\models.py:60 .\models.py:122
+#: .\models.py:61 .\models.py:123
 msgid "File"
 msgstr "Datei"
 
-#: .\models.py:66
+#: .\models.py:67
 msgid "Path"
 msgstr "Verzeichnis"
 
-#: .\models.py:127 .\templates\cosinnus_file\file_edit.html.py:76
+#: .\models.py:128 .\templates\cosinnus_file\file_edit.html.py:73
 msgid "Uploaded by"
 msgstr "Hochgeladen durch"
 
-#: .\models.py:128
+#: .\models.py:129
 msgid "Uploaded on"
 msgstr "Hochgeladen am"
 
-#: .\models.py:136 .\views.py:178
+#: .\models.py:137 .\views.py:178
 msgid "No files selected."
 msgstr "Keine Dateien ausgewählt."
 
@@ -159,50 +167,54 @@ msgstr "Datei \"%(title)s\" wurde erfolgreich geändert."
 msgid "File \"%(title)s\" could not be updated."
 msgstr "Datei \"%(title)s\" konnte nicht geändert werden."
 
-#: .\templates\cosinnus_file\file_edit.html.py:38
+#: .\templates\cosinnus_file\file_edit.html.py:35
 msgid "Enter the title for the file."
 msgstr "Gib einen Titel für die Datei ein."
 
-#: .\templates\cosinnus_file\file_edit.html.py:53
-#: .\templates\cosinnus_file\file_list.html.py:47
+#: .\templates\cosinnus_file\file_edit.html.py:50
+#: .\templates\cosinnus_file\file_list.html.py:54
 msgid "Save"
 msgstr "Speichern"
 
-#: .\templates\cosinnus_file\file_edit.html.py:89
+#: .\templates\cosinnus_file\file_edit.html.py:86
 msgid "File description (optional)"
 msgstr "Dateibeschreibung (optional)"
 
-#: .\templates\cosinnus_file\file_edit.html.py:104
-#: .\templates\cosinnus_file\file_list.html.py:34
+#: .\templates\cosinnus_file\file_edit.html.py:101
+#: .\templates\cosinnus_file\file_list.html.py:41
 msgid "Upload a file or document."
 msgstr "Lade ein Bild oder Dokument hoch"
 
-#: .\templates\cosinnus_file\file_edit.html.py:121
+#: .\templates\cosinnus_file\file_edit.html.py:118
 msgid "Download"
 msgstr "Herunterladen"
 
-#: .\templates\cosinnus_file\file_edit.html.py:134
-#: .\templates\cosinnus_file\file_list.html.py:116
+#: .\templates\cosinnus_file\file_edit.html.py:131
+#: .\templates\cosinnus_file\file_list.html.py:126
 msgid "Delete"
 msgstr "Löschen"
 
 #
-#: .\templates\cosinnus_file\file_edit.html.py:139
-#: .\templates\cosinnus_file\file_list.html.py:137
+#: .\templates\cosinnus_file\file_edit.html.py:136
+#: .\templates\cosinnus_file\file_list.html.py:150
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
 msgstr "Sind Sie sich sicher, dass Sie die Datei „%(title)s“ löschen wollen?"
 
-#: .\templates\cosinnus_file\file_edit.html.py:140
-#: .\templates\cosinnus_file\file_list.html.py:138
+#: .\templates\cosinnus_file\file_edit.html.py:137
+#: .\templates\cosinnus_file\file_list.html.py:151
 msgid "Delete file"
 msgstr "Datei löschen"
 
-#: .\templates\cosinnus_file\file_list.html.py:128
+#: .\templates\cosinnus_file\file_list.html.py:78
+msgid "Move to another Folder"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_list.html.py:138
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: .\templates\cosinnus_file\file_list.html.py:143
+#: .\templates\cosinnus_file\file_list.html.py:156
 #: .\templates\cosinnus_file\file_list_standalone.html.py:15
 msgid "No files have been uploaded yet."
 msgstr "Es wurden noch keine Dateien hochgeladen."
@@ -251,7 +263,7 @@ msgstr "Mehr"
 msgid "Latest files"
 msgstr "Neueste Dateien"
 
-#: .\templates\cosinnus_file\widgets\latest.html.py:37
+#: .\templates\cosinnus_file\widgets\latest.html.py:34
 msgid "There are no files  yet"
 msgstr "Es wurden noch keine Dateien hochgeladen."
 
@@ -292,9 +304,6 @@ msgstr "Es wurden noch keine Dateien hochgeladen."
 
 #~ msgid "Name"
 #~ msgstr "Name"
-
-#~ msgid "Filename"
-#~ msgstr "Dateiname"
 
 #~ msgid "Image"
 #~ msgstr "Bild"
