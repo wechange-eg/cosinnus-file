@@ -8,6 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 from cosinnus.utils.dashboard import DashboardWidget, DashboardWidgetForm
 
 from cosinnus_file.models import FileEntry
+from cosinnus.models.widget import WidgetConfig
+from cosinnus.utils.urls import group_aware_reverse
 
 
 class LatestFileEntryForm(DashboardWidgetForm):
@@ -46,3 +48,11 @@ class Latest(DashboardWidget):
     def get_queryset(self):
         qs = super(Latest, self).get_queryset()
         return qs.filter(is_container=False)
+    
+    @property
+    def title_url(self):
+        if self.config.type == WidgetConfig.TYPE_MICROSITE:
+            return ''
+        if self.config.group:
+            return group_aware_reverse('cosinnus:file:list', kwargs={'group': self.config.group}) + '?o=-created'
+        return '#'
