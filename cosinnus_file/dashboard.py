@@ -27,8 +27,6 @@ class Latest(DashboardWidget):
     title = _('Latest Files')
     user_model_attr = None  # No filtering on user page
     widget_name = 'latest'
-    widget_template_name = 'cosinnus_file/widgets/file_widget.html'
-    template_name = 'cosinnus_file/widgets/latest.html'
 
     def get_data(self, offset=0):
         """ Returns a tuple (data, rows_returned, has_more) of the rendered data and how many items were returned.
@@ -43,7 +41,7 @@ class Latest(DashboardWidget):
             'rows': qs,
             'no_data': _('No files'),
         }
-        return (render_to_string(self.template_name, data), len(qs), len(qs) >= count)
+        return (render_to_string('cosinnus_file/widgets/latest.html', data), len(qs), len(qs) >= count)
 
     def get_queryset(self):
         qs = super(Latest, self).get_queryset()
