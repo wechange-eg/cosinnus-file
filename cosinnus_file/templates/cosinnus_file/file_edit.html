@@ -40,18 +40,6 @@
 	        </div>
 	        {% include 'cosinnus/media_tags.html' %}
 	
-	        <button type="submit" class="btn btn-emphasized" id="etherpadSaveMetaButton">
-	            <ul class="media-list">
-	                <li class="media">
-	                    <a class="pull-left" href="#">
-	                        <i class="fa fa-floppy-o "></i>
-	                    </a>
-	                    <div class="media-body">
-	                        {% trans "Save" %}
-	                    </div>
-	                </li>
-	            </ul>
-	        </button>
 	        
 	        {% if object.is_image %}
             <div type="button" class="btn btn-default w100 large-space">
@@ -81,7 +69,7 @@
             <div type="button" class="btn btn-default w100 large-space">
                 <ul class="media-list">
                     <li class="media">
-                        <div class="media-bod media-body-form-controly">
+                        <div class="media-body media-body-form-control">
                             {{ form.forms.obj.note.errors }}
                             {% captureas placeholder %}{% trans "File description (optional)" %}{% endcaptureas %}
                             {% render_field form.forms.obj.note class+="form-control" placeholder=placeholder %}
@@ -89,7 +77,8 @@
                     </li>
                 </ul>
             </div>
-        
+        	
+        	{% comment %} We don't want the user to change a file (a FileEntry IS a file for what the user is concerned) 
             <div type="button" class="btn btn-default w100 large-space">
                  <ul class="media-list">
                      <li class="media">
@@ -98,12 +87,33 @@
                          </a>
                          <div class="media-body media-body-form-control">
                              {{ form.forms.obj.file.errors }}
-                             {% captureas placeholder %}{% trans "Upload a file or document." %}{% endcaptureas %}
-                             {% render_field form.forms.obj.file class+="form-control" placeholder=placeholder id="fileToUpload" %}
+                             <div class="media-body media-body-form-control">
+	                             {% trans "Currently" %}: <a href="{{ object.get_absolute_url }}">{{ object.sourcefilename }}</a> 
+	                             <input id="file-clear_id" name="file-clear" type="checkbox"> 
+	                             <label for="file-clear_id">{% trans "Reset" %}</label><br>
+	                             {% trans "Change" %}: 
+	                             <input class="form-control" id="fileToUpload" name="file" placeholder="{% trans "Upload a file or document." %}" type="file">
+                         	</div>
+                             
                          </div>
                      </li>
                  </ul>
              </div>
+        	{% endcomment %}
+        	
+	        <button type="submit" class="btn btn-emphasized">
+	            <ul class="media-list">
+	                <li class="media">
+	                    <a class="pull-left" href="#">
+	                        <i class="fa fa-floppy-o "></i>
+	                    </a>
+	                    <div class="media-body">
+	                        {% trans "Save" %}
+	                    </div>
+	                </li>
+	            </ul>
+	        </button>
+        	
         </form>
     </div><!-- content-box -->
     
