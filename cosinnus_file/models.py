@@ -27,6 +27,7 @@ from cosinnus.utils.urls import group_aware_reverse
 from cosinnus_file import cosinnus_notifications
 from django.contrib.auth import get_user_model
 from cosinnus.utils.files import get_cosinnus_media_file_folder
+from cosinnus.utils.functions import unique_aware_slugify
 
 
 def get_hashed_filename(instance, filename):
@@ -165,7 +166,21 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
         if user:
             qs = filter_tagged_object_queryset_for_user(qs, user)
         return qs.filter(is_container=False)
-        
+
+
+def get_or_create_attachment_folder(group):
+    attachment_folder = None
+    try:
+        attachment_folder = FileEntry.objects.get(is_container=True, group=group,
+              special_type='attached')
+    except FileEntry.DoesNotExist:
+        attachment_folder = FileEntry(title='Attachments', is_container=True, group=group,
+              special_type='attached')
+        unique_aware_slugify(attachment_folder, 'title', 'slug')
+        attachment_folder.path = '/%s/' % attachment_folder.slug
+        attachment_folder.save()
+    return attachment_folder
+
 
 @receiver(post_delete, sender=FileEntry)
 def post_file_delete(sender, instance, **kwargs):
