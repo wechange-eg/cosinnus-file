@@ -14,6 +14,7 @@ cosinnus_group_patterns = patterns('cosinnus_file.views',
     url(r'^list/$', 'file_hybrid_list_view', name='list'),
     url(r'^list/move_element/$', 'move_element_view', name='move-element'),
     url(r'^list/(?P<slug>[^/]+)/$', 'file_hybrid_list_view', name='list'),
+    url(r'^upload_inline/$', 'file_upload_inline', name='upload-inline'),
     url(r'^(?P<slug>[^/]+)/$', 'file_update_view', name='edit'),
 
     #url(r'^list/(?P<tag>[^/]+)/$',

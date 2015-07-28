@@ -23,13 +23,24 @@ from cosinnus.views.mixins.tagged import HierarchyTreeMixin, HierarchyPathMixin,
 from cosinnus.views.mixins.user import UserFormKwargsMixin
 
 from cosinnus_file.forms import FileForm, FileListForm
-from cosinnus_file.models import FileEntry
+from cosinnus_file.models import FileEntry, get_or_create_attachment_folder
 from cosinnus.views.mixins.hierarchy import HierarchicalListCreateViewMixin
 from cosinnus.views.mixins.filters import CosinnusFilterMixin
 from cosinnus_file.filters import FileFilter
 from cosinnus.utils.urls import group_aware_reverse
 from cosinnus_file.utils.strings import clean_filename
 from cosinnus.views.hierarchy import MoveElementView
+from django.http.response import HttpResponseNotAllowed
+from cosinnus.utils.http import JSONResponse
+from cosinnus.core.decorators.views import get_group_for_request
+from cosinnus.utils.permissions import check_group_create_objects_access
+from django.core.exceptions import PermissionDenied
+from cosinnus.utils.functions import clean_single_line_text
+from cosinnus.views.attached_object import build_attachment_field_result
+
+
+import logging
+logger = logging.getLogger('cosinnus')
 
 
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
@@ -295,4 +306,53 @@ class FileMoveElementView(MoveElementView):
     model = FileEntry
 
 move_element_view = FileMoveElementView.as_view()
+
+
+
+def file_upload_inline(request, group):
+    if not request.is_ajax() or not request.method=='POST':
+        return HttpResponseNotAllowed(['POST'])
+    
+    # resolve group either from the slug, or like the permission group mixin does ist
+    # (group type needs to also be used for that=
+    group = get_group_for_request(group, request)
+    if not group:
+        logger.error('No group found when trying to upload a file!', extra={'group_slug': group, 
+            'request': request, 'path': request.path})
+        return JSONResponse({'error': 'groupnotfound'})
+    
+    # do permission checking using has_write_access(request.user, group)
+    if not check_group_create_objects_access(group, request.user):
+        logger.error('Permission error while uploading an attached file directly!', 
+             extra={'user': request.user, 'request': request, 'path': request.path, 'group_slug': group})
+        return JSONResponse({'error': 'denied'})
+    
+    # check if the group has a folder with slug 'uploads' and if not, create one
+    upload_folder = get_or_create_attachment_folder(group)
+    
+    # add any other required kwargs (group) and stuff correctly so the form can be saved
+    post = request.POST
+    post._mutable = True
+    post.update({
+        'title': clean_single_line_text(request.FILES['file']._name),
+        'group_id': group.id
+    })
+    
+    form = FileForm(post, request.FILES, initial={})
+    if form.is_valid():
+        form.instance.group = group
+        form.instance.creator = request.user
+        form.instance.path = upload_folder.path
+        form.instance._filesize = form.instance.file.file.size
+        saved_file = form.save()
+        
+        # pipe the file into the select2 JSON representation to be displayed as select2 pill 
+        pill_id, pill_html = build_attachment_field_result('cosinnus_file.FileEntry', saved_file)
+        return JSONResponse({'status': 'ok', 'select2_data': {'text': pill_html, 'id': pill_id}})
+    else:
+        logger.error('Form error while uploading an attached file directly!', 
+             extra={'form.errors': form.errors, 'user': request.user, 'request': request, 
+                    'path': request.path, 'group_slug': group})
+        
+    return JSONResponse({'status': 'invalid'})
 
