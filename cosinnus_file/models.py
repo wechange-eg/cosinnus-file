@@ -15,7 +15,7 @@ from django.db.models.signals import post_delete
 from django.dispatch.dispatcher import receiver
 from django.utils.encoding import force_text
 from django.utils.timezone import now
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, pgettext
 
 from cosinnus.conf import settings
 from cosinnus.models import BaseTaggableObjectModel
@@ -174,6 +174,7 @@ def get_or_create_attachment_folder(group):
         attachment_folder = FileEntry.objects.get(is_container=True, group=group,
               special_type='attached')
     except FileEntry.DoesNotExist:
+        pgettext('special_folder_type', 'Attachments') # leave this for i18n to find!
         attachment_folder = FileEntry(title='Attachments', is_container=True, group=group,
               special_type='attached')
         unique_aware_slugify(attachment_folder, 'title', 'slug')
