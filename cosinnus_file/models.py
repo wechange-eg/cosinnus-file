@@ -124,7 +124,7 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
     def is_image(self):
         if not self.file or not self.mimetype:
             return False
-        return self.mimetype.startswith('image/')
+        return self.mimetype.startswith('image/') and not self.mimetype == 'image/pdf'
 
     @property
     def sourcefilename(self):
