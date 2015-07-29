@@ -132,7 +132,7 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
 
     def get_media_image_path(self, filename_modifier=None):
         """Gets the unique path for each image file in the media directory"""
-        mediapath = join('cosinnus_files', 'images')
+        mediapath = join('cosinnus_files', 'image_thumbnails')
         mediapath_local = join(settings.MEDIA_ROOT, mediapath)
         if not exists(mediapath_local):
             os.makedirs(mediapath_local)
