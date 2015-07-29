@@ -3,7 +3,7 @@
 {% for file in all_files %}
     <div class="app-files">
         {% group_url 'cosinnus:file:download' group=file.group slug=file.slug as file_url %}
-        <div class="btn btn-emphasized w100 {% if not no_indent %}extra-indented{% endif %}" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox="image-{% if lightbox_context %}{{ lightbox_context }}{% else %}{{ object.id }}{% endif %}" data-title="{{ file.title }}"{% else %}href="{{ file_url }}"{% endif %}>
+        <div target="_blank" class="btn btn-emphasized w100 {% if not no_indent %}extra-indented{% endif %}" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox="image-{% if lightbox_context %}{{ lightbox_context }}{% else %}{{ object.id }}{% endif %}" data-title="{{ file.title }}"{% else %}href="{{ file_url }}"{% endif %}>
             <ul class="media-list fine-space">
                 <li class="media">
                     <a class="pull-left">
@@ -13,7 +13,7 @@
                             <i class="fa fa-file"></i>
                         {% endif %}
                     </a>
-                    <a class="pull-right" style="z-index: 999;" href="{% group_url 'cosinnus:file:download' group=file.group slug=file.slug %}">
+                    <a class="pull-right" target="_blank" href="{% group_url 'cosinnus:file:download' group=file.group slug=file.slug %}">
                         <i class="fa fa-download"></i>
                     </a>
                     <div class="media-body no-vertical-padding ">
