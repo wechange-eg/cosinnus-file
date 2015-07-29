@@ -1,28 +1,8 @@
-{% load i18n %}
+{% load i18n cosinnus_tags %}
 
 
 {% if rows %}
-    {% for row in rows %}
-        <div type="button" class="btn btn-emphasized dashboard-appwidget-contentline">
-            <ul class="media-list fine-space">
-                <li class="media">
-                    <a class="pull-left" {% if row.is_image %}href="{{ row.static_image_url }}" data-lightbox="image-{{ row.id }}" data-title="{{ row.title }}"{% else %}href="{{ row.get_absolute_url }}"{% endif %}>
-                        {% if row.is_image %}
-                            <img src='{{ row.static_image_url }}' title='{{ row.title }}'></img>
-                        {% else %}
-                            <i class="fa fa-file"></i>
-                        {% endif %}
-                    </a>
-                    <div class="media-body">
-                        <a target="_blank" {% if row.is_image %}href="{{ row.static_image_url }}" data-lightbox="image-{{ row.id }}" data-title="{{ row.title }}"{% else %}href="{{ row.get_absolute_url }}"{% endif %}>{{ row.title }}</a>
-                        <div class="group-annotation">
-                            {% include 'cosinnus/group/group_label.html' with group=row.group %}
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div><!-- btn -->
-    {% endfor %}
+    {% include 'cosinnus_file/attached_files.html' with all_files=rows no_indent=1 lightbox_context="file_widget" %}
 {% else %}
     <div type="button" class="btn btn-emphasized dashboard-appwidget-contentline fine-space">
         <ul class="media-list">

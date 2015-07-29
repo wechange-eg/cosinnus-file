@@ -6,7 +6,7 @@
             <ul class="media-list large-space">
                 <li class="media">
                     {% if file.is_image %}
-                        <a class="pull-left" href="{{ file.static_image_url }}" data-lightbox="image-{{ file.id }}" data-title="{{ file.title }}"><img src='{% thumbnail file.file 40x40 crop=1 upscale=1 %}' title='{{ file.title }}'></img></a>
+                        <a class="pull-left" href="{{ file.static_image_url }}" data-lightbox="image-single-thumbnail" data-title="{{ file.title }}"><img src='{{ file.static_image_url_thumbnail }}' title='{{ file.title }}'></img></a>
                     {% else %}
 	                    <a class="pull-left" href="#">
                         	<i class="fa fa-file"></i>
@@ -19,7 +19,7 @@
                              {% endwith %}
                              <span class="moment-data-date" data-date="{{ file.created|date:'c' }}"></span>
                          </span>
-                         <strong><a {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox="image-{{ file.id }}" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>{{ file.title }}</a></strong>
+                         <strong><a {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox="image-single" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>{{ file.title }}</a></strong>
                          <div class="group-annotation">
                              {% include 'cosinnus/group/group_label.html' with group=file.group %}
                          </div>
