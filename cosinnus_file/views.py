@@ -43,6 +43,9 @@ import logging
 logger = logging.getLogger('cosinnus')
 
 
+mimetypes.init()
+
+
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
                     UserFormKwargsMixin):
     message_success = _('File "%(title)s" was uploaded successfully.')
@@ -230,29 +233,21 @@ class FileUpdateView(RequireWriteMixin, FileFormMixin, UpdateView):
 file_update_view = FileUpdateView.as_view()
 
 
-class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
+
+
+class FileDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
     '''
         Lets the user download a FileEntry file (file is determined by slug),
         while the user never gets to see the server file path.
         Mime type is guessed based on the file
     '''
-    mimetypes.init()
+    model = FileEntry
 
-    def get(self, request, *args, **kwargs):
-        path = None
-
-        slug = kwargs.get('slug', None)
-        if slug:
-            files = FileEntry.objects.filter(slug=slug)
-            try:
-                fileentry = files[0]
-                dlfile = fileentry.file
-                path = dlfile.path
-            except:
-                raise Http404
-
+    def render_to_response(self, context, **response_kwargs):
         response = HttpResponseNotFound()
         
+        fileentry = self.object
+        path = fileentry.file and fileentry.file.path
         if path:
             fp = open(path, 'rb')
             response = HttpResponse(fp.read())
@@ -269,10 +264,10 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, View):
                 
             if content_type not in settings.COSINNUS_FILE_NON_DOWNLOAD_MIMETYPES:
                 # To inspect details for the below code, see http://greenbytes.de/tech/tc2231/
-                if u'WebKit' in request.META['HTTP_USER_AGENT']:
+                if u'WebKit' in self.request.META['HTTP_USER_AGENT']:
                     # Safari 3.0 and Chrome 2.0 accepts UTF-8 encoded string directly.
                     filename_header = 'filename=%s' % clean_filename(filename)
-                elif u'MSIE' in request.META['HTTP_USER_AGENT']:
+                elif u'MSIE' in self.request.META['HTTP_USER_AGENT']:
                     # IE does not support internationalized filename at all.
                     # It can only recognize internationalized URL, so we do the trick via routing rules.
                     filename_header = ''
