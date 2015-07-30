@@ -21,27 +21,6 @@ cosinnus_group_patterns = patterns('cosinnus_file.views',
     #    'file_list_view',
     #    name='list-filtered'),
 
-    #url(r'^add/$',
-    #    'file_create_view',
-    #    {'form_view': 'create'},
-    #    name='add'),
-
-    #url(r'^addfolder/$',
-    #    'file_create_view',
-    #    {'form_view': 'create_folder'},
-    #    name='addfolder'),
-
-    #url(r'^(?P<slug>[^/]+)/add/$',
-    #    'file_create_view',
-    #    {'form_view': 'create'},
-    #    name='add'),
-
-    #url(r'^(?P<slug>[^/]+)/addfolder/$',
-    #    'file_create_view',
-    #    {'form_view': 'create_folder'},
-    #    name='addfolder'),
-
-
     #url(r'^(?P<slug>[^/]+)/$',
     #    'file_detail_view',
     #    name='file'),

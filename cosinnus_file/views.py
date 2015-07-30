@@ -17,7 +17,7 @@ from cosinnus.conf import settings
 from cosinnus.utils.files import create_zip_file
 from cosinnus.templatetags.cosinnus_tags import add_current_params
 from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
-    FilterGroupMixin, GroupFormKwargsMixin)
+    FilterGroupMixin, GroupFormKwargsMixin, RequireReadWriteHybridMixin)
 from cosinnus.views.mixins.tagged import HierarchyTreeMixin, HierarchyPathMixin,\
     HierarchyDeleteMixin
 from cosinnus.views.mixins.user import UserFormKwargsMixin
@@ -91,34 +91,17 @@ class FileIndexView(RequireReadMixin, RedirectView):
 file_index_view = FileIndexView.as_view()
 
 
-class FileCreateView(RequireWriteMixin, FileFormMixin, CreateView):
+class FileHybridListView(RequireReadWriteHybridMixin, HierarchyPathMixin, HierarchicalListCreateViewMixin, 
+                             CosinnusFilterMixin, FileFormMixin, CreateView):
+    template_name = 'cosinnus_file/file_list.html'
+    filterset_class = FileFilter
+    
+    model = FileEntry
     form_view = 'create'
     form_class = FileForm
-    model = FileEntry
-    template_name = 'cosinnus_file/file_form.html'
     
     message_success = _('File "%(title)s" was uploaded successfully.')
     message_error = _('File "%(title)s" could not be added.')
-
-    def get_object(self, queryset=None):
-        return CreateView.get_object(self, queryset=queryset)
-
-    def get_context_data(self, **kwargs):
-        context = super(FileCreateView, self).get_context_data(**kwargs)
-        tags = FileEntry.objects.tags()
-        context.update({
-            'tags': tags
-        })
-
-        return context
-
-file_create_view = FileCreateView.as_view()
-
-
-class FileHybridListView(RequireReadMixin, HierarchyPathMixin, HierarchicalListCreateViewMixin, 
-                             CosinnusFilterMixin, FileCreateView):
-    template_name = 'cosinnus_file/file_list.html'
-    filterset_class = FileFilter
     
     message_success_folder = _('Folder "%(title)s" was created successfully.')
     
