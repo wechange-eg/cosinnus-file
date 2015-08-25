@@ -165,8 +165,8 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
             self.mimetype = self.mimetype[:50]    
         created = bool(self.pk) == False
         super(FileEntry, self).save(*args, **kwargs)
-        if created and not self.is_container:
-            # todo was created
+        if created and not self.is_container and not getattr(self, 'no_notification', False):
+            # file was created
             cosinnus_notifications.file_created.send(sender=self, user=self.creator, obj=self, audience=get_user_model().objects.filter(id__in=self.group.members).exclude(id=self.creator.pk))
         
 

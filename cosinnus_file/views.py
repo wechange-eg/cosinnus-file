@@ -40,6 +40,7 @@ from cosinnus.views.attached_object import build_attachment_field_result
 
 
 import logging
+from django.utils.datastructures import MultiValueDict
 logger = logging.getLogger('cosinnus')
 
 
@@ -314,25 +315,34 @@ def file_upload_inline(request, group):
     post = request.POST
     post._mutable = True
     post.update({
-        'title': clean_single_line_text(request.FILES['file']._name),
         'group_id': group.id
     })
     
-    form = FileForm(post, request.FILES, initial={})
-    if form.is_valid():
-        form.instance.group = group
-        form.instance.creator = request.user
-        form.instance.path = upload_folder.path
-        form.instance._filesize = form.instance.file.file.size
-        saved_file = form.save()
-        
-        # pipe the file into the select2 JSON representation to be displayed as select2 pill 
-        pill_id, pill_html = build_attachment_field_result('cosinnus_file.FileEntry', saved_file)
-        return JSONResponse({'status': 'ok', 'select2_data': {'text': pill_html, 'id': pill_id}})
+    result_list = []
+    for dict_file in request.FILES.getlist('file'):
+        single_file_dict = MultiValueDict({'file': [dict_file]})
+        post.update({
+            'title': clean_single_line_text(dict_file._name),
+        })
+        form = FileForm(post, single_file_dict, initial={})
+        if form.is_valid():
+            form.instance.group = group
+            form.instance.creator = request.user
+            form.instance.path = upload_folder.path
+            form.instance._filesize = form.instance.file.file.size
+            form.forms['obj'].instance.no_notification = True # disable spammy notifications
+            saved_file = form.save()
+            
+            # pipe the file into the select2 JSON representation to be displayed as select2 pill 
+            pill_id, pill_html = build_attachment_field_result('cosinnus_file.FileEntry', saved_file)
+            result_list.append({'text': pill_html, 'id': pill_id})
+        else:
+            logger.error('Form error while uploading an attached file directly!', 
+                 extra={'form.errors': form.errors, 'user': request.user, 'request': request, 
+                        'path': request.path, 'group_slug': group})
+    
+    if result_list:
+        return JSONResponse({'status': 'ok', 'select2_data_list': result_list})
     else:
-        logger.error('Form error while uploading an attached file directly!', 
-             extra={'form.errors': form.errors, 'user': request.user, 'request': request, 
-                    'path': request.path, 'group_slug': group})
-        
-    return JSONResponse({'status': 'invalid'})
+        return JSONResponse({'status': 'invalid'})
 
