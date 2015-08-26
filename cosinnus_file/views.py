@@ -316,7 +316,6 @@ def file_upload_inline(request, group):
         'group_id': group.id
     })
     
-    
     upload_folder = None
     if 'target_folder' in post:
         upload_folder = get_object_or_404(FileEntry, id=int(post.get('target_folder')))
@@ -324,20 +323,20 @@ def file_upload_inline(request, group):
         # check if the group has a folder with slug 'uploads' and if not, create one
         upload_folder = get_or_create_attachment_folder(group)
     
-    
     result_list = []
     for dict_file in request.FILES.getlist('file'):
         single_file_dict = MultiValueDict({'file': [dict_file]})
         post.update({
             'title': clean_single_line_text(dict_file._name),
         })
-        form = FileForm(post, single_file_dict, initial={})
+        form = FileForm(post, single_file_dict, group=group, initial={})
         if form.is_valid():
+            # form.instance is the FileEntry, not the media tag
             form.instance.group = group
             form.instance.creator = request.user
             form.instance.path = upload_folder.path
             form.instance._filesize = form.instance.file.file.size
-            form.forms['obj'].instance.no_notification = True # disable spammy notifications
+            form.instance.no_notification = True # disable spammy notifications
             saved_file = form.save()
             
             # pipe the file into the select2 JSON representation to be displayed as select2 pill 
