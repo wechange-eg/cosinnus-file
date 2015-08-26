@@ -28,6 +28,8 @@
 	    {% include 'cosinnus/common/filter_controls.html' %}
 		
 		{% if user|can_create_objects_in:group %}
+			{% comment %} Removed old upload button for now  
+			
 		    {% with obj_form=form.forms.obj %}
 		    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
 			    {{ obj_form.non_field_errors }}
@@ -59,6 +61,7 @@
 	            </button>
 		    </form>
 		    {% endwith %}
+			{% endcomment %}
 		    
 		    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
 		    	{% with cur_folder=current_folder.id %}
