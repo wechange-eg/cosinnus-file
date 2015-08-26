@@ -59,6 +59,21 @@
 	            </button>
 		    </form>
 		    {% endwith %}
+		    
+		    {% comment %}  
+		    with form_data='{"scriddddddpt": "true", "whut":"lol"}' 
+		    {% endcomment %}
+		    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
+		    <div>
+		    	{% with cur_folder=current_folder.id %}
+		    	{% with '{"on_success": "refresh_page", "target_folder": "'|addstr:cur_folder|addstr:'"}' as file_form_data %}
+		    		{% include 'cosinnus/attached/file_upload_button.html' with form_data=file_form_data %}
+		    	{% endwith %}
+		    	{% endwith %}
+		    </div>
+		    </form>
+		    
+		    
 		{% endif %}
 	    
 	    {% for object in objects %}

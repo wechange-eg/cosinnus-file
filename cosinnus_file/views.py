@@ -41,6 +41,7 @@ from cosinnus.views.attached_object import build_attachment_field_result
 
 import logging
 from django.utils.datastructures import MultiValueDict
+from django.shortcuts import get_object_or_404
 logger = logging.getLogger('cosinnus')
 
 
@@ -308,15 +309,21 @@ def file_upload_inline(request, group):
              extra={'user': request.user, 'request': request, 'path': request.path, 'group_slug': group})
         return JSONResponse({'error': 'denied'})
     
-    # check if the group has a folder with slug 'uploads' and if not, create one
-    upload_folder = get_or_create_attachment_folder(group)
-    
     # add any other required kwargs (group) and stuff correctly so the form can be saved
     post = request.POST
     post._mutable = True
     post.update({
         'group_id': group.id
     })
+    
+    
+    upload_folder = None
+    if 'target_folder' in post:
+        upload_folder = get_object_or_404(FileEntry, id=int(post.get('target_folder')))
+    if not upload_folder:
+        # check if the group has a folder with slug 'uploads' and if not, create one
+        upload_folder = get_or_create_attachment_folder(group)
+    
     
     result_list = []
     for dict_file in request.FILES.getlist('file'):
@@ -342,7 +349,10 @@ def file_upload_inline(request, group):
                         'path': request.path, 'group_slug': group})
     
     if result_list:
-        return JSONResponse({'status': 'ok', 'select2_data_list': result_list})
+        if post.get('on_success', None) == 'refresh_page':
+            messages.success(request, ungettext('%(count)d File was added successfully.', '%(count)d Files were added successfully.', len(result_list)) % {'count': len(result_list)})
+        
+        return JSONResponse({'status': 'ok', 'on_success': post.get('on_success', 'add_to_select2'), 'select2_data_list': result_list})
     else:
         return JSONResponse({'status': 'invalid'})
 
