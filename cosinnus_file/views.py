@@ -42,6 +42,8 @@ from cosinnus.views.attached_object import build_attachment_field_result
 import logging
 from django.utils.datastructures import MultiValueDict
 from django.shortcuts import get_object_or_404
+from django.template.loader import render_to_string
+from django.template.context import RequestContext
 logger = logging.getLogger('cosinnus')
 
 
@@ -292,8 +294,17 @@ move_element_view = FileMoveElementView.as_view()
 
 
 def file_upload_inline(request, group):
+    """ Inline file upload to be called from jQuery FileUpload.
+        @param request.on_success: Determines what kind of data will be sent back, and in cosinnus.JS, 
+                                    determines what will be done with the data. Options:
+            - 'add_to_select2' (default): Will render a select2 pill and in JS, append it to the attach-file select2 field.
+            - 'refresh_page' will add a message to the request and in JS refresh the browser page
+            - 'render_object' will render the single file template(s) and in JS append them to the file list """
+    
     if not request.is_ajax() or not request.method=='POST':
         return HttpResponseNotAllowed(['POST'])
+    
+    on_success = request.POST.get('on_success', 'add_to_select2')
     
     # resolve group either from the slug, or like the permission group mixin does ist
     # (group type needs to also be used for that=
@@ -341,17 +352,21 @@ def file_upload_inline(request, group):
             
             # pipe the file into the select2 JSON representation to be displayed as select2 pill 
             pill_id, pill_html = build_attachment_field_result('cosinnus_file.FileEntry', saved_file)
-            result_list.append({'text': pill_html, 'id': pill_id})
+            if on_success == 'render_object':
+                result_list.append(render_to_string('cosinnus_file/single_file_detailed.html', {'file': saved_file, 'do_highlight': True}, context_instance=RequestContext(request)))
+            else:
+                result_list.append({'text': pill_html, 'id': pill_id})
         else:
             logger.error('Form error while uploading an attached file directly!', 
                  extra={'form.errors': form.errors, 'user': request.user, 'request': request, 
                         'path': request.path, 'group_slug': group})
     
     if result_list:
-        if post.get('on_success', None) == 'refresh_page':
+        if on_success == 'refresh_page':
             messages.success(request, ungettext('%(count)d File was added successfully.', '%(count)d Files were added successfully.', len(result_list)) % {'count': len(result_list)})
         
-        return JSONResponse({'status': 'ok', 'on_success': post.get('on_success', 'add_to_select2'), 'select2_data_list': result_list})
+        
+        return JSONResponse({'status': 'ok', 'on_success': on_success, 'data': result_list})
     else:
         return JSONResponse({'status': 'invalid'})
 

@@ -65,14 +65,14 @@
 		    
 		    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
 		    	{% with cur_folder=current_folder.id %}
-		    	{% with '{"on_success": "refresh_page", "target_folder": "'|addstr:cur_folder|addstr:'"}' as file_form_data %}
+		    	{% with '{"on_success": "render_object", "target_folder": "'|addstr:cur_folder|addstr:'"}' as file_form_data %}
 		    		{% include 'cosinnus/attached/file_upload_button.html' with form_data=file_form_data style="large" %}
 		    	{% endwith %}
 		    	{% endwith %}
 		    </form>
-		    
-		    
 		{% endif %}
+		
+		<div id="object_list_anchor"></div>
 	    
 	    {% for file in objects %}
 			{% include 'cosinnus_file/single_file_detailed.html' with file=file %}
