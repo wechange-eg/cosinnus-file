@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-28 17:58+0200\n"
+"POT-Creation-Date: 2015-08-30 13:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\cosinnus_app.py:13 .\models.py:125
+#: .\cosinnus_app.py:13 .\models.py:146
 #: .\templates\cosinnus_file\base.html.py:6
 #: .\templates\cosinnus_file\base.html.py:13
 #: .\templates\cosinnus_file\file_edit.html.py:5
@@ -86,60 +86,60 @@ msgstr ""
 msgid "Largest Files"
 msgstr ""
 
-#: .\models.py:61
+#: .\models.py:63
 msgid "Note"
 msgstr ""
 
-#: .\models.py:62 .\models.py:124
+#: .\models.py:64 .\models.py:145
 msgid "File"
 msgstr ""
 
-#: .\models.py:68
+#: .\models.py:70
 msgid "Path"
 msgstr ""
 
-#: .\models.py:129 .\templates\cosinnus_file\file_edit.html.py:61
+#: .\models.py:150 .\templates\cosinnus_file\file_edit.html.py:61
 msgid "Uploaded by"
 msgstr ""
 
-#: .\models.py:130
+#: .\models.py:151
 msgid "Uploaded on"
 msgstr ""
 
-#: .\models.py:138 .\views.py:189
+#: .\models.py:159 .\views.py:179
 msgid "No files selected."
 msgstr ""
 
-#: .\models.py:177
+#: .\models.py:198
 msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Uploaded Attachments"
 
-#: .\views.py:48 .\views.py:100
+#: .\views.py:55 .\views.py:110
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
 msgstr ""
 
-#: .\views.py:49
+#: .\views.py:56
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
 msgstr ""
 
-#: .\views.py:101
+#: .\views.py:111
 #, python-format
 msgid "File \"%(title)s\" could not be added."
 msgstr ""
 
-#: .\views.py:123
+#: .\views.py:113
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
 msgstr ""
 
-#: .\views.py:145 .\views.py:152
+#: .\views.py:135 .\views.py:142
 msgid "File does not exist or you are not allowed to delete it."
 msgstr ""
 
-#: .\views.py:198
+#: .\views.py:188
 #, python-format
 msgid ""
 "A problem occurred during export. The following file is missing: %(filename)"
@@ -150,19 +150,26 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\views.py:213
+#: .\views.py:203
 msgid "Invalid request."
 msgstr ""
 
-#: .\views.py:236
+#: .\views.py:226
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
 msgstr ""
 
-#: .\views.py:237
+#: .\views.py:227
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
 msgstr ""
+
+#: .\views.py:366
+#, python-format
+msgid "%(count)d File was added successfully."
+msgid_plural "%(count)d Files were added successfully."
+msgstr[0] ""
+msgstr[1] ""
 
 #: .\templates\cosinnus_file\file_edit.html.py:35
 msgid "Enter the title for the file."
@@ -173,7 +180,6 @@ msgid "File description (optional)"
 msgstr ""
 
 #: .\templates\cosinnus_file\file_edit.html.py:112
-#: .\templates\cosinnus_file\file_list.html.py:54
 msgid "Save"
 msgstr ""
 
@@ -182,36 +188,32 @@ msgid "Download"
 msgstr ""
 
 #: .\templates\cosinnus_file\file_edit.html.py:142
-#: .\templates\cosinnus_file\file_list.html.py:126
+#: .\templates\cosinnus_file\single_file_detailed.html.py:67
 msgid "Delete"
 msgstr ""
 
 #: .\templates\cosinnus_file\file_edit.html.py:147
-#: .\templates\cosinnus_file\file_list.html.py:150
+#: .\templates\cosinnus_file\single_file_detailed.html.py:92
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
 msgstr ""
 
 #: .\templates\cosinnus_file\file_edit.html.py:148
-#: .\templates\cosinnus_file\file_list.html.py:151
+#: .\templates\cosinnus_file\single_file_detailed.html.py:93
 msgid "Delete file"
 msgstr ""
 
-#: .\templates\cosinnus_file\file_list.html.py:41
-msgid "Upload a file or document."
+#: .\templates\cosinnus_file\file_list.html.py:81
+#: .\templates\cosinnus_file\file_list_standalone.html.py:15
+msgid "No files have been uploaded yet."
 msgstr ""
 
-#: .\templates\cosinnus_file\file_list.html.py:78
+#: .\templates\cosinnus_file\single_file_detailed.html.py:18
 msgid "Move to another Folder"
 msgstr ""
 
-#: .\templates\cosinnus_file\file_list.html.py:138
+#: .\templates\cosinnus_file\single_file_detailed.html.py:79
 msgid "Edit"
-msgstr ""
-
-#: .\templates\cosinnus_file\file_list.html.py:156
-#: .\templates\cosinnus_file\file_list_standalone.html.py:15
-msgid "No files have been uploaded yet."
 msgstr ""
 
 #: .\templates\cosinnus_file\notifications\file_created.txt.py:1
@@ -245,6 +247,6 @@ msgstr ""
 msgid "Latest files"
 msgstr ""
 
-#: .\templates\cosinnus_file\widgets\latest.html.py:34
+#: .\templates\cosinnus_file\widgets\latest.html.py:14
 msgid "There are no files  yet"
 msgstr ""
