@@ -34,7 +34,7 @@ msgstr "Dateien"
 
 #: .\cosinnus_notifications.py:39
 msgid "A user uploaded a new file"
-msgstr "Ein(e) Mitarbeiter_in hat eine neue Datei hochgeladen"
+msgstr "Ein Mitglied hat eine neue Datei hochgeladen"
 
 #: .\dashboard.py:29
 msgid "Latest Files"
