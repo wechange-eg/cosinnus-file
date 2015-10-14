@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-30 13:09+0200\n"
+"POT-Creation-Date: 2015-10-03 13:40+0200\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -202,13 +202,13 @@ msgstr "Löschen"
 
 #
 #: .\templates\cosinnus_file\file_edit.html.py:147
-#: .\templates\cosinnus_file\single_file_detailed.html.py:92
+#: .\templates\cosinnus_file\single_file_detailed.html.py:89
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
 msgstr "Sind Sie sich sicher, dass Sie die Datei „%(title)s“ löschen wollen?"
 
 #: .\templates\cosinnus_file\file_edit.html.py:148
-#: .\templates\cosinnus_file\single_file_detailed.html.py:93
+#: .\templates\cosinnus_file\single_file_detailed.html.py:90
 msgid "Delete file"
 msgstr "Datei löschen"
 

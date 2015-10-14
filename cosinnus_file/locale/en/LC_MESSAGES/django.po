@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-30 13:09+0200\n"
+"POT-Creation-Date: 2015-10-03 13:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -193,13 +193,13 @@ msgid "Delete"
 msgstr ""
 
 #: .\templates\cosinnus_file\file_edit.html.py:147
-#: .\templates\cosinnus_file\single_file_detailed.html.py:92
+#: .\templates\cosinnus_file\single_file_detailed.html.py:89
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
 msgstr ""
 
 #: .\templates\cosinnus_file\file_edit.html.py:148
-#: .\templates\cosinnus_file\single_file_detailed.html.py:93
+#: .\templates\cosinnus_file\single_file_detailed.html.py:90
 msgid "Delete file"
 msgstr ""
 
