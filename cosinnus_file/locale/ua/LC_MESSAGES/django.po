@@ -1,0 +1,252 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-22 13:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\cosinnus_app.py:13 .\models.py:146
+#: .\templates\cosinnus_file\base.html.py:6
+#: .\templates\cosinnus_file\base.html.py:13
+#: .\templates\cosinnus_file\file_edit.html.py:5
+#: .\templates\cosinnus_file\file_list.html.py:12
+#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:5
+msgid "Files"
+msgstr ""
+
+#: .\cosinnus_app.py:20
+msgctxt "the_app"
+msgid "file"
+msgstr ""
+
+#: .\cosinnus_notifications.py:39
+msgid "A user uploaded a new file"
+msgstr ""
+
+#: .\dashboard.py:29
+msgid "Latest Files"
+msgstr ""
+
+#: .\dashboard.py:44
+msgid "No files"
+msgstr ""
+
+#: .\filters.py:17
+msgid "Pictures"
+msgstr ""
+
+#: .\filters.py:18
+msgid "Documents"
+msgstr ""
+
+#: .\filters.py:19
+msgid "Audio Files"
+msgstr ""
+
+#: .\filters.py:20
+msgid "Videos"
+msgstr ""
+
+#: .\filters.py:47
+msgid "Created By"
+msgstr ""
+
+#: .\filters.py:48
+msgid "File Type"
+msgstr ""
+
+#: .\filters.py:54
+msgid "File Name"
+msgstr ""
+
+#: .\filters.py:55
+msgid "File Name (descending)"
+msgstr ""
+
+#: .\filters.py:56
+msgid "Newest Created"
+msgstr ""
+
+#: .\filters.py:57
+msgid "Smallest Files"
+msgstr ""
+
+#: .\filters.py:58
+msgid "Largest Files"
+msgstr ""
+
+#: .\models.py:63
+msgid "Note"
+msgstr ""
+
+#: .\models.py:64 .\models.py:145
+msgid "File"
+msgstr ""
+
+#: .\models.py:70
+msgid "Path"
+msgstr ""
+
+#: .\models.py:150 .\templates\cosinnus_file\file_edit.html.py:61
+msgid "Uploaded by"
+msgstr ""
+
+#: .\models.py:151
+msgid "Uploaded on"
+msgstr ""
+
+#: .\models.py:159 .\views.py:179
+msgid "No files selected."
+msgstr ""
+
+#: .\models.py:198
+msgctxt "special_folder_type"
+msgid "Attachments"
+msgstr ""
+
+#: .\views.py:55 .\views.py:110
+#, python-format
+msgid "File \"%(title)s\" was uploaded successfully."
+msgstr ""
+
+#: .\views.py:56
+#, python-format
+msgid "File \"%(title)s\" could not be uploaded."
+msgstr ""
+
+#: .\views.py:111
+#, python-format
+msgid "File \"%(title)s\" could not be added."
+msgstr ""
+
+#: .\views.py:113
+#, python-format
+msgid "Folder \"%(title)s\" was created successfully."
+msgstr ""
+
+#: .\views.py:135 .\views.py:142
+msgid "File does not exist or you are not allowed to delete it."
+msgstr ""
+
+#: .\views.py:188
+#, python-format
+msgid ""
+"A problem occurred during export. The following file is missing: %(filename)"
+"s."
+msgid_plural ""
+"A problem occurred during export. The following files are missing: %"
+"(filename)s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\views.py:203
+msgid "Invalid request."
+msgstr ""
+
+#: .\views.py:226
+#, python-format
+msgid "File \"%(title)s\" was updated successfully."
+msgstr ""
+
+#: .\views.py:227
+#, python-format
+msgid "File \"%(title)s\" could not be updated."
+msgstr ""
+
+#: .\views.py:366
+#, python-format
+msgid "%(count)d File was added successfully."
+msgid_plural "%(count)d Files were added successfully."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:35
+msgid "Enter the title for the file."
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:74
+msgid "File description (optional)"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:112
+msgid "Save"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:129
+msgid "Download"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:142
+#: .\templates\cosinnus_file\single_file_detailed.html.py:67
+msgid "Delete"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:147
+#: .\templates\cosinnus_file\single_file_detailed.html.py:89
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_edit.html.py:148
+#: .\templates\cosinnus_file\single_file_detailed.html.py:90
+msgid "Delete file"
+msgstr ""
+
+#: .\templates\cosinnus_file\file_list.html.py:81
+#: .\templates\cosinnus_file\file_list_standalone.html.py:15
+msgid "No files have been uploaded yet."
+msgstr ""
+
+#: .\templates\cosinnus_file\single_file_detailed.html.py:18
+msgid "Move to another Folder"
+msgstr ""
+
+#: .\templates\cosinnus_file\single_file_detailed.html.py:79
+msgid "Edit"
+msgstr ""
+
+#: .\templates\cosinnus_file\notifications\file_created.txt.py:1
+#, python-format
+msgid ""
+"Hi %(receiver_name)s,\n"
+"\n"
+"a new file \"%(object_name)s\" in %(group_name)s was uploaded by %"
+"(sender_name)s. \n"
+"\n"
+"You can find it by following this link: %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(Follow this link to edit your notification preferences: %"
+"(notification_settings_url)s )\n"
+"\n"
+"Your %(site_name)s Team."
+msgstr ""
+
+#: .\templates\cosinnus_file\notifications\file_created_subject.txt.py:1
+#, python-format
+msgid "A new file: \"%(object_name)s\" was uploaded in %(group_name)s."
+msgstr ""
+
+#: .\templates\cosinnus_file\widgets\file_widget.html.py:22
+msgid "More"
+msgstr ""
+
+#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:14
+msgid "Latest files"
+msgstr ""
+
+#: .\templates\cosinnus_file\widgets\latest.html.py:14
+msgid "There are no files  yet"
+msgstr ""
