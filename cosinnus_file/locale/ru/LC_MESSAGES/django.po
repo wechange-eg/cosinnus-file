@@ -31,7 +31,7 @@ msgstr "Файлы"
 #: .\cosinnus_app.py:20
 msgctxt "the_app"
 msgid "file"
-msgstr "Файл"
+msgstr "Файлы"
 
 #: .\cosinnus_notifications.py:39
 msgid "A user uploaded a new file"
@@ -83,11 +83,11 @@ msgstr "Последние созданные"
 
 #: .\filters.py:57
 msgid "Smallest Files"
-msgstr "Самые мелкие файлы"
+msgstr "Маленькие файлы"
 
 #: .\filters.py:58
 msgid "Largest Files"
-msgstr "Самые крупные файлы"
+msgstr "Большие файлы"
 
 #: .\models.py:63
 msgid "Note"
