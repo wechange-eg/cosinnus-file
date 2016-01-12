@@ -268,10 +268,11 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
                 
             if content_type not in settings.COSINNUS_FILE_NON_DOWNLOAD_MIMETYPES:
                 # To inspect details for the below code, see http://greenbytes.de/tech/tc2231/
-                if u'WebKit' in self.request.META['HTTP_USER_AGENT']:
+                user_agent = self.request.META.get('HTTP_USER_AGENT', [])
+                if u'WebKit' in user_agent:
                     # Safari 3.0 and Chrome 2.0 accepts UTF-8 encoded string directly.
                     filename_header = 'filename=%s' % clean_filename(filename)
-                elif u'MSIE' in self.request.META['HTTP_USER_AGENT']:
+                elif u'MSIE' in user_agent:
                     # IE does not support internationalized filename at all.
                     # It can only recognize internationalized URL, so we do the trick via routing rules.
                     filename_header = ''
