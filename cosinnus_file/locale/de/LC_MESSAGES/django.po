@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-03 13:40+0200\n"
+"POT-Creation-Date: 2016-03-30 11:52+0200\n"
 "PO-Revision-Date: 2013-08-05 14:03+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -17,12 +17,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: .\cosinnus_app.py:13 .\models.py:146
-#: .\templates\cosinnus_file\base.html.py:6
-#: .\templates\cosinnus_file\base.html.py:13
-#: .\templates\cosinnus_file\file_edit.html.py:5
-#: .\templates\cosinnus_file\file_list.html.py:12
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:5
+#: .\cosinnus_app.py:13 .\models.py:146 .\templates\cosinnus_file\base.html:6
+#: .\templates\cosinnus_file\base.html:13
+#: .\templates\cosinnus_file\file_edit.html:5
+#: .\templates\cosinnus_file\file_list.html:12
+#: .\templates\cosinnus_file\widgets\file_widget_form.html:5
 msgid "Files"
 msgstr "Dateien"
 
@@ -100,7 +99,7 @@ msgstr "Datei"
 msgid "Path"
 msgstr "Verzeichnis"
 
-#: .\models.py:150 .\templates\cosinnus_file\file_edit.html.py:61
+#: .\models.py:150 .\templates\cosinnus_file\file_edit.html:61
 msgid "Uploaded by"
 msgstr "Hochgeladen durch"
 
@@ -116,6 +115,100 @@ msgstr "Keine Dateien ausgewählt."
 msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Hochgeladene Anhänge"
+
+#: .\templates\cosinnus_file\file_edit.html:35
+msgid "Enter the title for the file."
+msgstr "Gib einen Titel für die Datei ein."
+
+#: .\templates\cosinnus_file\file_edit.html:74
+msgid "File description (optional)"
+msgstr "Dateibeschreibung (optional)"
+
+#: .\templates\cosinnus_file\file_edit.html:112
+msgid "Save"
+msgstr "Speichern"
+
+#: .\templates\cosinnus_file\file_edit.html:129
+msgid "Download"
+msgstr "Herunterladen"
+
+#: .\templates\cosinnus_file\file_edit.html:142
+#: .\templates\cosinnus_file\single_file_detailed.html:67
+msgid "Delete"
+msgstr "Löschen"
+
+#
+#: .\templates\cosinnus_file\file_edit.html:147
+#: .\templates\cosinnus_file\single_file_detailed.html:89
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr "Sind Sie sich sicher, dass Sie die Datei „%(title)s“ löschen wollen?"
+
+#: .\templates\cosinnus_file\file_edit.html:148
+#: .\templates\cosinnus_file\single_file_detailed.html:90
+msgid "Delete file"
+msgstr "Datei löschen"
+
+#: .\templates\cosinnus_file\file_list.html:81
+#: .\templates\cosinnus_file\file_list_standalone.html:15
+msgid "No files have been uploaded yet."
+msgstr "Es wurden noch keine Dateien hochgeladen."
+
+#: .\templates\cosinnus_file\notifications\file_created.txt:1
+#, python-format
+msgid ""
+"Hi %(receiver_name)s,\n"
+"\n"
+"a new file \"%(object_name)s\" in %(group_name)s was uploaded by %"
+"(sender_name)s. \n"
+"\n"
+"You can find it by following this link: %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(Follow this link to edit your notification preferences: %"
+"(notification_settings_url)s )\n"
+"\n"
+"Your %(site_name)s Team."
+msgstr ""
+"Hi %(receiver_name)s,\n"
+"\n"
+"eine neue Datei \"%(object_name)s\" in %(group_name)s wurde von %"
+"(sender_name)s hochgeladen. \n"
+"\n"
+"Du kannst es finden indem du folgenden Link aufrufst: %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(Folge diesem Link um deine Benachrichtigungseinstellungen zu ändern: %"
+"(notification_settings_url)s )\n"
+"\n"
+"Dein %(site_name)s Team."
+
+#: .\templates\cosinnus_file\notifications\file_created_subject.txt:1
+#, python-format
+msgid "A new file: \"%(object_name)s\" was uploaded in %(group_name)s."
+msgstr "Neue Datei: \"%(object_name)s\" wurde hochgeladen in %(group_name)s."
+
+#: .\templates\cosinnus_file\single_file_detailed.html:18
+msgid "Move to another Folder"
+msgstr ""
+
+#: .\templates\cosinnus_file\single_file_detailed.html:79
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: .\templates\cosinnus_file\widgets\file_widget.html:22
+msgid "More"
+msgstr "Mehr"
+
+#: .\templates\cosinnus_file\widgets\file_widget_form.html:14
+msgid "Latest files"
+msgstr "Neueste Dateien"
+
+#: .\templates\cosinnus_file\widgets\latest.html:14
+msgid "There are no files  yet"
+msgstr "Es wurden noch keine Dateien hochgeladen."
 
 #: .\views.py:55 .\views.py:110
 #, python-format
@@ -172,106 +265,12 @@ msgstr "Datei \"%(title)s\" wurde erfolgreich geändert."
 msgid "File \"%(title)s\" could not be updated."
 msgstr "Datei \"%(title)s\" konnte nicht geändert werden."
 
-#: .\views.py:366
+#: .\views.py:367
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d Datei wurde erfolgreich hochgeladen."
 msgstr[1] "%(count)d Dateien wurden erfolgreich hochgeladen."
-
-#: .\templates\cosinnus_file\file_edit.html.py:35
-msgid "Enter the title for the file."
-msgstr "Gib einen Titel für die Datei ein."
-
-#: .\templates\cosinnus_file\file_edit.html.py:74
-msgid "File description (optional)"
-msgstr "Dateibeschreibung (optional)"
-
-#: .\templates\cosinnus_file\file_edit.html.py:112
-msgid "Save"
-msgstr "Speichern"
-
-#: .\templates\cosinnus_file\file_edit.html.py:129
-msgid "Download"
-msgstr "Herunterladen"
-
-#: .\templates\cosinnus_file\file_edit.html.py:142
-#: .\templates\cosinnus_file\single_file_detailed.html.py:67
-msgid "Delete"
-msgstr "Löschen"
-
-#
-#: .\templates\cosinnus_file\file_edit.html.py:147
-#: .\templates\cosinnus_file\single_file_detailed.html.py:89
-#, python-format
-msgid "Do you really want to delete file „%(title)s“?"
-msgstr "Sind Sie sich sicher, dass Sie die Datei „%(title)s“ löschen wollen?"
-
-#: .\templates\cosinnus_file\file_edit.html.py:148
-#: .\templates\cosinnus_file\single_file_detailed.html.py:90
-msgid "Delete file"
-msgstr "Datei löschen"
-
-#: .\templates\cosinnus_file\file_list.html.py:81
-#: .\templates\cosinnus_file\file_list_standalone.html.py:15
-msgid "No files have been uploaded yet."
-msgstr "Es wurden noch keine Dateien hochgeladen."
-
-#: .\templates\cosinnus_file\single_file_detailed.html.py:18
-msgid "Move to another Folder"
-msgstr ""
-
-#: .\templates\cosinnus_file\single_file_detailed.html.py:79
-msgid "Edit"
-msgstr "Bearbeiten"
-
-#: .\templates\cosinnus_file\notifications\file_created.txt.py:1
-#, python-format
-msgid ""
-"Hi %(receiver_name)s,\n"
-"\n"
-"a new file \"%(object_name)s\" in %(group_name)s was uploaded by %"
-"(sender_name)s. \n"
-"\n"
-"You can find it by following this link: %(object_url)s\n"
-"\n"
-"\n"
-"\n"
-"(Follow this link to edit your notification preferences: %"
-"(notification_settings_url)s )\n"
-"\n"
-"Your %(site_name)s Team."
-msgstr ""
-"Hi %(receiver_name)s,\n"
-"\n"
-"eine neue Datei \"%(object_name)s\" in %(group_name)s wurde von %"
-"(sender_name)s hochgeladen. \n"
-"\n"
-"Du kannst es finden indem du folgenden Link aufrufst: %(object_url)s\n"
-"\n"
-"\n"
-"\n"
-"(Folge diesem Link um deine Benachrichtigungseinstellungen zu ändern: %"
-"(notification_settings_url)s )\n"
-"\n"
-"Dein %(site_name)s Team."
-
-#: .\templates\cosinnus_file\notifications\file_created_subject.txt.py:1
-#, python-format
-msgid "A new file: \"%(object_name)s\" was uploaded in %(group_name)s."
-msgstr "Neue Datei: \"%(object_name)s\" wurde hochgeladen in %(group_name)s."
-
-#: .\templates\cosinnus_file\widgets\file_widget.html.py:22
-msgid "More"
-msgstr "Mehr"
-
-#: .\templates\cosinnus_file\widgets\file_widget_form.html.py:14
-msgid "Latest files"
-msgstr "Neueste Dateien"
-
-#: .\templates\cosinnus_file\widgets\latest.html.py:14
-msgid "There are no files  yet"
-msgstr "Es wurden noch keine Dateien hochgeladen."
 
 #~ msgid "Upload a file or document."
 #~ msgstr "Lade ein Bild oder Dokument hoch"
