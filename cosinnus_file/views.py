@@ -143,7 +143,14 @@ class FileDeleteView(RequireWriteMixin, FilterGroupMixin, HierarchyDeleteMixin, 
             return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return "%s%s" % (group_aware_reverse('cosinnus:file:list', kwargs={'group': self.group}), add_current_params(None, self.request))
+        kwargs = {'group': self.group}
+        try:
+            # if possible, redirect to the object's parent folder list view
+            parent_folder = self.object.__class__.objects.get(is_container=True, path=self.object.path)
+            kwargs.update({'slug': parent_folder.slug})
+        except:
+            pass
+        return "%s%s" % (group_aware_reverse('cosinnus:file:list', kwargs=kwargs), add_current_params(None, self.request))
 
 file_delete_view = FileDeleteView.as_view()
 
