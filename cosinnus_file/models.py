@@ -111,7 +111,11 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
             
             if not thumbnail:
                 return ''
-            shutil.copy(thumbnail.path, imagepath_local)
+            try:
+                shutil.copy(thumbnail.path, imagepath_local)
+            except IOError:
+                # if the file wasn't found, we don't need to crash, people can reupload a broken image
+                pass
         
         media_image_path = media_image_path.replace('\\', '/')  # fix for local windows systems
         return join(settings.MEDIA_URL, media_image_path)
