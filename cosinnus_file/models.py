@@ -28,8 +28,7 @@ from cosinnus_file import cosinnus_notifications
 from django.contrib.auth import get_user_model
 from cosinnus.utils.files import get_cosinnus_media_file_folder
 from cosinnus.utils.functions import unique_aware_slugify
-from easy_thumbnails.files import get_thumbnailer
-from easy_thumbnails.exceptions import InvalidImageFormatError
+from cosinnus.models.mixins.images import ThumbnailableImageMixin
 
 
 def get_hashed_filename(instance, filename):
@@ -42,7 +41,8 @@ def get_hashed_filename(instance, filename):
     return join(path, newfilename)
 
 
-class FileEntry(BaseHierarchicalTaggableObjectModel):
+
+class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
     """
     Model for uploaded files.
 
@@ -71,54 +71,13 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
 
     objects = FileEntryManager()
     
+    image_attr_name = 'file'
+    
     @property
     def filesize(self):
         if not self.file or not self._filesize:
             return 0
         return self._filesize
-
-    def static_image_url(self, size=None, filename_modifier=None):
-        """
-        This function copies the image to its new path (if necessary) and
-        returns the URL for the image to be displayed on the page. (Ex:
-        '/media/cosinnus_files/images/dca2b30b1e07ed135c24d7dbd928e37523b474bb.jpg')
-
-        It is a helper function to display cosinnus image files on the webpage.
-
-        The image file is copied to a general image folder in cosinnus_files,
-        so the true image path is not shown to the client.
-
-        """
-        if not self.is_image:
-            return ''
-        if not size:
-            size = settings.COSINNUS_IMAGE_MAXIMUM_SIZE_SCALE
-            
-        # the modifier can be used to save images of different sizes
-        media_image_path = self.get_media_image_path(filename_modifier=filename_modifier)
-
-        # if image is not in media dir yet, resize and copy it
-        imagepath_local = join(settings.MEDIA_ROOT, media_image_path)
-        if not exists(imagepath_local):
-            thumbnailer = get_thumbnailer(self.file)
-            try:
-                thumbnail = thumbnailer.get_thumbnail({
-                    'crop': 'scale',
-                    'size': size,
-                })
-            except InvalidImageFormatError:
-                raise
-            
-            if not thumbnail:
-                return ''
-            shutil.copy(thumbnail.path, imagepath_local)
-        
-        media_image_path = media_image_path.replace('\\', '/')  # fix for local windows systems
-        return join(settings.MEDIA_URL, media_image_path)
-    
-    
-    def static_image_url_thumbnail(self):
-        return self.static_image_url(settings.COSINNUS_IMAGE_THUMBNAIL_SIZE_SCALE, 'small')
     
     @property
     def is_image(self):
@@ -130,15 +89,6 @@ class FileEntry(BaseHierarchicalTaggableObjectModel):
     def sourcefilename(self):
         return self._sourcefilename
 
-    def get_media_image_path(self, filename_modifier=None):
-        """Gets the unique path for each image file in the media directory"""
-        mediapath = join('cosinnus_files', 'image_thumbnails')
-        mediapath_local = join(settings.MEDIA_ROOT, mediapath)
-        if not exists(mediapath_local):
-            os.makedirs(mediapath_local)
-        filename_modifier = '_' + filename_modifier if filename_modifier else ''
-        image_filename = self.file.path.split(os.sep)[-1] + filename_modifier + '.' + self.sourcefilename.split('.')[-1]
-        return join(mediapath, image_filename)
 
     class Meta(BaseTaggableObjectModel.Meta):
         ordering = ['-created', 'title']
