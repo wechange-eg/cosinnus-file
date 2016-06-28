@@ -17,26 +17,13 @@ cosinnus_group_patterns = patterns('cosinnus_file.views',
     url(r'^upload_inline/$', 'file_upload_inline', name='upload-inline'),
     url(r'^(?P<slug>[^/]+)/$', 'file_update_view', name='edit'),
 
-    #url(r'^list/(?P<tag>[^/]+)/$',
-    #    'file_list_view',
-    #    name='list-filtered'),
-
-    #url(r'^(?P<slug>[^/]+)/$',
-    #    'file_detail_view',
-    #    name='file'),
-
-    url(r'^(?P<slug>[^/]+)/download$',
-        'file_download_view',
-        name='download'),
-
-    url(r'^(?P<slug>[^/]+)/delete/$',
-        'file_delete_view',
-        {'form_view': 'delete'},
-        name='delete'),
-
-    url(r'^$',
-        'file_index_view',
-        name='index'),
+    #url(r'^list/(?P<tag>[^/]+)/$', 'file_list_view', name='list-filtered'),
+    #url(r'^(?P<slug>[^/]+)/$', 'file_detail_view', name='file'),
+    url(r'^(?P<slug>[^/]+)/download$', 'file_download_view', name='download'),
+    url(r'^(?P<slug>[^/]+)/save', 'file_download_view', {'force_download': True}, name='save'),
+    url(r'^(?P<slug>[^/]+)/delete/$', 'file_delete_view', {'form_view': 'delete'}, name='delete'),
+    
+    url(r'^$', 'file_index_view', name='index'),
 )
 
 urlpatterns = cosinnus_group_patterns + cosinnus_root_patterns

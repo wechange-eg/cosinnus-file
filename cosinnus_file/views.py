@@ -250,9 +250,17 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
     '''
         Lets the user download a FileEntry file (file is determined by slug),
         while the user never gets to see the server file path.
-        Mime type is guessed based on the file
+        Mime type is guessed based on the file.
+        
+        The /download/ and /save/ urls point to this view, /save/ has force_download == True
     '''
     model = FileEntry
+    force_download = False
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.force_download = kwargs.pop('force_download', self.force_download)
+        return super(FileDownloadView, self).dispatch(request, *args, **kwargs)
+    
 
     def render_to_response(self, context, **response_kwargs):
         response = HttpResponseNotFound()
@@ -273,7 +281,7 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
                 response['Content-Encoding'] = encoding
 
                 
-            if content_type not in settings.COSINNUS_FILE_NON_DOWNLOAD_MIMETYPES:
+            if self.force_download or content_type not in settings.COSINNUS_FILE_NON_DOWNLOAD_MIMETYPES:
                 # To inspect details for the below code, see http://greenbytes.de/tech/tc2231/
                 user_agent = self.request.META.get('HTTP_USER_AGENT', [])
                 if u'WebKit' in user_agent:
