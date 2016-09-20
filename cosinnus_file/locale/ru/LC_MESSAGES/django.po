@@ -7,265 +7,206 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wechange RU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-30 14:38+0200\n"
-"PO-Revision-Date: 2015-11-14 15:33+0100\n"
+"POT-Creation-Date: 2016-09-20 13:27+0200\n"
+"PO-Revision-Date: 2016-09-20 13:08+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Language: ru\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.4\n"
 
-#: .\cosinnus_app.py:13 .\models.py:146 .\templates\cosinnus_file\base.html:6
-#: .\templates\cosinnus_file\base.html:13
-#: .\templates\cosinnus_file\file_edit.html:5
-#: .\templates\cosinnus_file\file_list.html:12
-#: .\templates\cosinnus_file\widgets\file_widget_form.html:5
 msgid "Files"
 msgstr "Файлы"
 
-#: .\cosinnus_app.py:20
 msgctxt "the_app"
 msgid "file"
 msgstr "Файлы"
 
-#: .\cosinnus_notifications.py:39
 msgid "A user uploaded a new file"
 msgstr "Пользователь загрузил новый файл"
 
-#: .\dashboard.py:29
+#, python-format
+msgid "New file by %(sender_name)s"
+msgstr ""
+
+#, fuzzy, python-format
+#| msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
+msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
+msgstr "Новый файл: \"%(object_name)s\" был загружен в %(team_name)s"
+
 msgid "Latest Files"
 msgstr "Последние файлы"
 
-#: .\dashboard.py:44
 msgid "No files"
 msgstr "Нет файлов"
 
-#: .\filters.py:17
 msgid "Pictures"
 msgstr "Изображения"
 
-#: .\filters.py:18
 msgid "Documents"
 msgstr "Документы"
 
-#: .\filters.py:19
 msgid "Audio Files"
 msgstr "Аудиофайлы"
 
-#: .\filters.py:20
 msgid "Videos"
 msgstr "Видео"
 
-#: .\filters.py:47
 msgid "Created By"
 msgstr "Создатель: "
 
-#: .\filters.py:48
 msgid "File Type"
 msgstr "Тип файла"
 
-#: .\filters.py:54
 msgid "File Name"
 msgstr "Название файла"
 
-#: .\filters.py:55
 msgid "File Name (descending)"
 msgstr "Название файла (по убыванию)"
 
-#: .\filters.py:56
 msgid "Newest Created"
 msgstr "Последние созданные"
 
-#: .\filters.py:57
 msgid "Smallest Files"
 msgstr "Маленькие файлы"
 
-#: .\filters.py:58
 msgid "Largest Files"
 msgstr "Большие файлы"
 
-#: .\models.py:63
 msgid "Note"
 msgstr "Заметка"
 
-#: .\models.py:64 .\models.py:145
 msgid "File"
 msgstr "Файл"
 
-#: .\models.py:70
 msgid "Path"
 msgstr "Путь к файлу"
 
-#: .\models.py:150 .\templates\cosinnus_file\file_edit.html:61
 msgid "Uploaded by"
 msgstr "Кем загружен:"
 
-#: .\models.py:151
 msgid "Uploaded on"
 msgstr "Загружен"
 
-#: .\models.py:159 .\views.py:179
 msgid "No files selected."
 msgstr "Файлы не выбраны"
 
-#: .\models.py:198
 msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Вложения"
 
-#: .\templates\cosinnus_file\file_edit.html:35
 msgid "Enter the title for the file."
 msgstr "Введите название файла"
 
-#: .\templates\cosinnus_file\file_edit.html:74
 msgid "File description (optional)"
 msgstr "Описание файла (необязательно)"
 
-#: .\templates\cosinnus_file\file_edit.html:112
 msgid "Save"
 msgstr "Сохранить"
 
-#: .\templates\cosinnus_file\file_edit.html:129
 msgid "Download"
 msgstr "Скачать"
 
-#: .\templates\cosinnus_file\file_edit.html:142
-#: .\templates\cosinnus_file\single_file_detailed.html:67
 msgid "Delete"
 msgstr "Удалить"
 
-#: .\templates\cosinnus_file\file_edit.html:147
-#: .\templates\cosinnus_file\single_file_detailed.html:89
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
 msgstr "Вы действительно хотите удалить файл „%(title)s“?"
 
-#: .\templates\cosinnus_file\file_edit.html:148
-#: .\templates\cosinnus_file\single_file_detailed.html:90
 msgid "Delete file"
 msgstr "Удалить файл"
 
-#: .\templates\cosinnus_file\file_list.html:81
-#: .\templates\cosinnus_file\file_list_standalone.html:15
 msgid "No files have been uploaded yet."
 msgstr "Файлы пока не загружены"
 
-#: .\templates\cosinnus_file\notifications\file_created.txt:1
 #, python-format
 msgid ""
 "Hi %(receiver_name)s,\n"
 "\n"
-"a new file \"%(object_name)s\" in %(team_name)s was uploaded by %"
-"(sender_name)s. \n"
+"a new file \"%(object_name)s\" in %(team_name)s was uploaded by %(sender_name)s. \n"
 "\n"
 "You can find it by following this link: %(object_url)s\n"
 "\n"
 "\n"
 "\n"
-"(Follow this link to edit your notification preferences: %"
-"(notification_settings_url)s )\n"
+"(Follow this link to edit your notification preferences: %(notification_settings_url)s )\n"
 "\n"
 "Your %(site_name)s Team."
 msgstr ""
 "Здравствуйте, %(receiver_name)s,\n"
 "\n"
-"пользователь %(sender_name)s загрузил новый файл \"%(object_name)s\" в %"
-"(team_name)s. \n"
+"пользователь %(sender_name)s загрузил новый файл \"%(object_name)s\" в %(team_name)s. \n"
 "\n"
 "Вы можете найти его по этой ссылке: %(object_url)s\n"
 "\n"
 "\n"
 "\n"
-"(Перейдите по этой ссылке, чтобы изменить настройки уведомлений: %"
-"(notification_settings_url)s )\n"
+"(Перейдите по этой ссылке, чтобы изменить настройки уведомлений: %(notification_settings_url)s )\n"
 "\n"
 "Ваша команда %(site_name)s."
 
-#: .\templates\cosinnus_file\notifications\file_created_subject.txt:1
 #, python-format
 msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
 msgstr "Новый файл: \"%(object_name)s\" был загружен в %(team_name)s"
 
-#: .\templates\cosinnus_file\single_file_detailed.html:18
 msgid "Move to another Folder"
 msgstr "Переместить в другую папку"
 
-#: .\templates\cosinnus_file\single_file_detailed.html:79
 msgid "Edit"
 msgstr "Редактировать"
 
-#: .\templates\cosinnus_file\widgets\file_widget.html:22
 msgid "More"
 msgstr "Больше"
 
-#: .\templates\cosinnus_file\widgets\file_widget_form.html:14
 msgid "Latest files"
 msgstr "Последние файлы"
 
-#: .\templates\cosinnus_file\widgets\latest.html:14
 msgid "There are no files  yet"
 msgstr "Файлов ещё нет"
 
-#: .\views.py:55 .\views.py:110
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
 msgstr "Файл \"%(title)s\" загружен"
 
-#: .\views.py:56
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
 msgstr "Невозможно загрузить файл \"%(title)s\""
 
-#: .\views.py:111
 #, python-format
 msgid "File \"%(title)s\" could not be added."
 msgstr "Невозможно добавить файл „%(title)s\""
 
-#: .\views.py:113
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
 msgstr "Папка \"%(title)s\" создана"
 
-#: .\views.py:135 .\views.py:142
 msgid "File does not exist or you are not allowed to delete it."
 msgstr "Файл не существует или вы не уполномочены удалять его"
 
 # ???
-#: .\views.py:188
 #, python-format
-msgid ""
-"A problem occurred during export. The following file is missing: %(filename)"
-"s."
-msgid_plural ""
-"A problem occurred during export. The following files are missing: %"
-"(filename)s."
-msgstr[0] ""
-"Возникла проблема при экспорте. Следующий файл отсутствует:  %(filename)s."
-msgstr[1] ""
-"Возникла проблема при экспорте. Следующие файлы отсутствуют: %(filename)s."
-msgstr[2] ""
-"Возникла проблема при экспорте. Следующие файлы отсутствуют: %(filename)s."
+msgid "A problem occurred during export. The following file is missing: %(filename)s."
+msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
+msgstr[0] "Возникла проблема при экспорте. Следующий файл отсутствует:  %(filename)s."
+msgstr[1] "Возникла проблема при экспорте. Следующие файлы отсутствуют: %(filename)s."
+msgstr[2] "Возникла проблема при экспорте. Следующие файлы отсутствуют: %(filename)s."
 
-#: .\views.py:203
 msgid "Invalid request."
 msgstr "Недопустимый запрос"
 
-#: .\views.py:226
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
 msgstr "Файл \"%(title)s\" обновлен"
 
-#: .\views.py:227
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
 msgstr "Невозможно обновить файл \"%(title)s\""
 
-# ??? 
-#: .\views.py:367
+# ???
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."

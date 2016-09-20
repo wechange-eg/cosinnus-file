@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-30 14:38+0200\n"
-"PO-Revision-Date: 2013-08-05 14:03+0200\n"
+"POT-Creation-Date: 2016-09-20 13:27+0200\n"
+"PO-Revision-Date: 2016-09-20 14:52+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
 "MIME-Version: 1.0\n"
@@ -15,257 +15,195 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Poedit 1.8.4\n"
 
-#: .\cosinnus_app.py:13 .\models.py:146 .\templates\cosinnus_file\base.html:6
-#: .\templates\cosinnus_file\base.html:13
-#: .\templates\cosinnus_file\file_edit.html:5
-#: .\templates\cosinnus_file\file_list.html:12
-#: .\templates\cosinnus_file\widgets\file_widget_form.html:5
 msgid "Files"
 msgstr "Dateien"
 
 # The Cosinnus App Name
-#: .\cosinnus_app.py:20
 msgctxt "the_app"
 msgid "file"
 msgstr "Dateien"
 
-#: .\cosinnus_notifications.py:39
 msgid "A user uploaded a new file"
 msgstr "Ein Mitglied hat eine neue Datei hochgeladen"
 
-#: .\dashboard.py:29
+#, python-format
+msgid "New file by %(sender_name)s"
+msgstr "Neue Datei von %(sender_name)s"
+
+#, python-format
+msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
+msgstr "Eine neue Datei: \"%(object_name)s\" wurde hochgeladen in %(team_name)s."
+
 msgid "Latest Files"
 msgstr "Neueste Dateien"
 
-#: .\dashboard.py:44
 msgid "No files"
 msgstr "Keine Dateien vorhanden"
 
-#: .\filters.py:17
 msgid "Pictures"
 msgstr "Bilder"
 
-#: .\filters.py:18
 msgid "Documents"
 msgstr "Dokumente"
 
-#: .\filters.py:19
 msgid "Audio Files"
 msgstr "Audiodateien"
 
-#: .\filters.py:20
 msgid "Videos"
 msgstr "Videos"
 
-#: .\filters.py:47
 msgid "Created By"
 msgstr "Erstellt von"
 
-#: .\filters.py:48
 msgid "File Type"
 msgstr "Dateityp"
 
-#: .\filters.py:54
 msgid "File Name"
 msgstr "Dateiname"
 
-#: .\filters.py:55
 msgid "File Name (descending)"
 msgstr "Dateiname (absteigend)"
 
-#: .\filters.py:56
 msgid "Newest Created"
 msgstr "Zuletzt hochgeladen"
 
-#: .\filters.py:57
 msgid "Smallest Files"
 msgstr "Kleinste Dateien"
 
-#: .\filters.py:58
 msgid "Largest Files"
 msgstr "Größte Dateien"
 
-#: .\models.py:63
 msgid "Note"
 msgstr "Bemerkung"
 
-#: .\models.py:64 .\models.py:145
 msgid "File"
 msgstr "Datei"
 
-#: .\models.py:70
 msgid "Path"
 msgstr "Verzeichnis"
 
-#: .\models.py:150 .\templates\cosinnus_file\file_edit.html:61
 msgid "Uploaded by"
 msgstr "Hochgeladen durch"
 
-#: .\models.py:151
 msgid "Uploaded on"
 msgstr "Hochgeladen am"
 
-#: .\models.py:159 .\views.py:179
 msgid "No files selected."
 msgstr "Keine Dateien ausgewählt."
 
-#: .\models.py:198
 msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Hochgeladene Anhänge"
 
-#: .\templates\cosinnus_file\file_edit.html:35
 msgid "Enter the title for the file."
 msgstr "Gib einen Titel für die Datei ein."
 
-#: .\templates\cosinnus_file\file_edit.html:74
 msgid "File description (optional)"
 msgstr "Dateibeschreibung (optional)"
 
-#: .\templates\cosinnus_file\file_edit.html:112
 msgid "Save"
 msgstr "Speichern"
 
-#: .\templates\cosinnus_file\file_edit.html:129
 msgid "Download"
 msgstr "Herunterladen"
 
-#: .\templates\cosinnus_file\file_edit.html:142
-#: .\templates\cosinnus_file\single_file_detailed.html:67
 msgid "Delete"
 msgstr "Löschen"
 
 #
-#: .\templates\cosinnus_file\file_edit.html:147
-#: .\templates\cosinnus_file\single_file_detailed.html:89
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
 msgstr "Sind Sie sich sicher, dass Sie die Datei „%(title)s“ löschen wollen?"
 
-#: .\templates\cosinnus_file\file_edit.html:148
-#: .\templates\cosinnus_file\single_file_detailed.html:90
 msgid "Delete file"
 msgstr "Datei löschen"
 
-#: .\templates\cosinnus_file\file_list.html:81
-#: .\templates\cosinnus_file\file_list_standalone.html:15
 msgid "No files have been uploaded yet."
 msgstr "Es wurden noch keine Dateien hochgeladen."
 
-#: .\templates\cosinnus_file\notifications\file_created.txt:1
 #, python-format
 msgid ""
 "Hi %(receiver_name)s,\n"
 "\n"
-"a new file \"%(object_name)s\" in %(team_name)s was uploaded by %"
-"(sender_name)s. \n"
+"a new file \"%(object_name)s\" in %(team_name)s was uploaded by %(sender_name)s. \n"
 "\n"
 "You can find it by following this link: %(object_url)s\n"
 "\n"
 "\n"
 "\n"
-"(Follow this link to edit your notification preferences: %"
-"(notification_settings_url)s )\n"
+"(Follow this link to edit your notification preferences: %(notification_settings_url)s )\n"
 "\n"
 "Your %(site_name)s Team."
 msgstr ""
 "Hi %(receiver_name)s,\n"
 "\n"
-"eine neue Datei \"%(object_name)s\" in %(team_name)s wurde von %(sender_name)"
-"s hochgeladen. \n"
+"eine neue Datei \"%(object_name)s\" in %(team_name)s wurde von %(sender_name)s hochgeladen. \n"
 "\n"
 "Du kannst es finden indem du folgenden Link aufrufst: %(object_url)s\n"
 "\n"
 "\n"
 "\n"
-"(Folge diesem Link um deine Benachrichtigungseinstellungen zu ändern: %"
-"(notification_settings_url)s )\n"
+"(Folge diesem Link um deine Benachrichtigungseinstellungen zu ändern: %(notification_settings_url)s )\n"
 "\n"
 "Dein %(site_name)s Team."
 
-#: .\templates\cosinnus_file\notifications\file_created_subject.txt:1
 #, python-format
 msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
 msgstr "Neue Datei: \"%(object_name)s\" wurde hochgeladen in %(team_name)s."
 
-#: .\templates\cosinnus_file\single_file_detailed.html:18
 msgid "Move to another Folder"
-msgstr ""
+msgstr "In anderen Ordner verschieben"
 
-#: .\templates\cosinnus_file\single_file_detailed.html:79
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: .\templates\cosinnus_file\widgets\file_widget.html:22
 msgid "More"
 msgstr "Mehr"
 
-#: .\templates\cosinnus_file\widgets\file_widget_form.html:14
 msgid "Latest files"
 msgstr "Neueste Dateien"
 
-#: .\templates\cosinnus_file\widgets\latest.html:14
 msgid "There are no files  yet"
 msgstr "Es wurden noch keine Dateien hochgeladen."
 
-#: .\views.py:55 .\views.py:110
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
 msgstr "Datei \"%(title)s\" wurde erfolgreich hochgeladen."
 
-#: .\views.py:56
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
 msgstr "Datei \"%(title)s\" konnte nicht hochgeladen werden."
 
-#: .\views.py:111
 #, python-format
 msgid "File \"%(title)s\" could not be added."
 msgstr "Datei \"%(title)s\" konnte nicht hinzugefügt werden."
 
-#: .\views.py:113
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
 msgstr "Datei \"%(title)s\" wurde erfolgreich erstellt."
 
-#: .\views.py:135 .\views.py:142
 msgid "File does not exist or you are not allowed to delete it."
-msgstr ""
-"Entweder existiert diese Datei nicht oder Ihnen fehlen die Rechte um die "
-"Datei zu bearbeiten."
+msgstr "Entweder existiert diese Datei nicht oder Ihnen fehlen die Rechte um die Datei zu bearbeiten."
 
-#: .\views.py:188
 #, python-format
-msgid ""
-"A problem occurred during export. The following file is missing: %(filename)"
-"s."
-msgid_plural ""
-"A problem occurred during export. The following files are missing: %"
-"(filename)s."
-msgstr[0] ""
-"Beim Exportieren ist ein Fehler aufgetreten. Die folgende Datei existiert "
-"nicht: %(filename)s"
-msgstr[1] ""
-"Beim Exportieren ist ein Fehler aufgetreten. Die folgenden Dateien "
-"existieren nicht: %(filename)s"
+msgid "A problem occurred during export. The following file is missing: %(filename)s."
+msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
+msgstr[0] "Beim Exportieren ist ein Fehler aufgetreten. Die folgende Datei existiert nicht: %(filename)s"
+msgstr[1] "Beim Exportieren ist ein Fehler aufgetreten. Die folgenden Dateien existieren nicht: %(filename)s"
 
-#: .\views.py:203
 msgid "Invalid request."
 msgstr "Ungültiger Seitenaufruf."
 
-#: .\views.py:226
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
 msgstr "Datei \"%(title)s\" wurde erfolgreich geändert."
 
-#: .\views.py:227
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
 msgstr "Datei \"%(title)s\" konnte nicht geändert werden."
 
-#: .\views.py:367
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
@@ -275,12 +213,8 @@ msgstr[1] "%(count)d Dateien wurden erfolgreich hochgeladen."
 #~ msgid "Upload a file or document."
 #~ msgstr "Lade ein Bild oder Dokument hoch"
 
-#~ msgid ""
-#~ "Folder \"%(filename)s\" could not be deleted because it contained files "
-#~ "that could not be deleted."
-#~ msgstr ""
-#~ "Ordner \"%(filename)s\" konnte nicht gelöscht werden da er noch Dateien "
-#~ "enthällt die nicht gelöscht werden konnten."
+#~ msgid "Folder \"%(filename)s\" could not be deleted because it contained files that could not be deleted."
+#~ msgstr "Ordner \"%(filename)s\" konnte nicht gelöscht werden da er noch Dateien enthällt die nicht gelöscht werden konnten."
 
 #~ msgid "File \"%(filename)s\" could not be deleted."
 #~ msgstr "Datei \"%(filename)s\" konnte nicht gelöscht werden."

@@ -41,6 +41,16 @@ notifications = {
         'subject_template': 'cosinnus_file/notifications/file_created_subject.txt',
         'signals': [file_created],
         'default': True,
+        
+        'is_html': True,
+        'snippet_type': 'file',
+        'event_text': _('New file by %(sender_name)s'),
+        'subject_text': _('A new file: "%(object_name)s" was created in %(team_name)s.'),
+        'data_attributes': {
+            'object_name': 'title', 
+            'object_url': 'get_absolute_url', 
+            'object_text': 'note',
+        },
     },  
                     
 }

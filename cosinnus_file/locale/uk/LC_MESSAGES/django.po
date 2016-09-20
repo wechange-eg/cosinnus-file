@@ -7,167 +7,133 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-30 14:38+0200\n"
+"POT-Creation-Date: 2016-09-20 13:27+0200\n"
 "PO-Revision-Date: 2015-11-11 10:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Language: uk\n"
 "X-Generator: Poedit 1.8.6\n"
 
-#: .\cosinnus_app.py:13 .\models.py:146 .\templates\cosinnus_file\base.html:6
-#: .\templates\cosinnus_file\base.html:13
-#: .\templates\cosinnus_file\file_edit.html:5
-#: .\templates\cosinnus_file\file_list.html:12
-#: .\templates\cosinnus_file\widgets\file_widget_form.html:5
 msgid "Files"
 msgstr "Файли"
 
-#: .\cosinnus_app.py:20
 msgctxt "the_app"
 msgid "file"
 msgstr "Файли"
 
-#: .\cosinnus_notifications.py:39
 msgid "A user uploaded a new file"
 msgstr "Член завантажив/-ла новий файл"
 
-#: .\dashboard.py:29
+#, python-format
+msgid "New file by %(sender_name)s"
+msgstr ""
+
+#, fuzzy, python-format
+#| msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
+msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
+msgstr "Новий файл: «%(object_name)s» було завантажено у %(team_name)s."
+
 msgid "Latest Files"
 msgstr "Останні файли"
 
-#: .\dashboard.py:44
 msgid "No files"
 msgstr "Жодних файлів"
 
-#: .\filters.py:17
 msgid "Pictures"
 msgstr "Зображення"
 
-#: .\filters.py:18
 msgid "Documents"
 msgstr "Документи"
 
-#: .\filters.py:19
 msgid "Audio Files"
 msgstr "Аудіофайли"
 
-#: .\filters.py:20
 msgid "Videos"
 msgstr "Відео"
 
-#: .\filters.py:47
 msgid "Created By"
 msgstr "Автор"
 
-#: .\filters.py:48
 msgid "File Type"
 msgstr "Тип файлу"
 
-#: .\filters.py:54
 msgid "File Name"
 msgstr "Назва файлу"
 
-#: .\filters.py:55
 msgid "File Name (descending)"
 msgstr "Назва файлу (із зменшенням)"
 
-#: .\filters.py:56
 msgid "Newest Created"
 msgstr "Найновіші"
 
-#: .\filters.py:57
 msgid "Smallest Files"
 msgstr "Найменші"
 
-#: .\filters.py:58
 msgid "Largest Files"
 msgstr "Найбільші"
 
-#: .\models.py:63
 msgid "Note"
 msgstr "Примітка"
 
-#: .\models.py:64 .\models.py:145
 msgid "File"
 msgstr "Файли"
 
-#: .\models.py:70
 msgid "Path"
 msgstr "Шлях"
 
-#: .\models.py:150 .\templates\cosinnus_file\file_edit.html:61
 msgid "Uploaded by"
 msgstr "Хто завантажив"
 
-#: .\models.py:151
 msgid "Uploaded on"
 msgstr "Дата завантаження"
 
-#: .\models.py:159 .\views.py:179
 msgid "No files selected."
 msgstr "Не вибрано жодних файлів"
 
-#: .\models.py:198
 msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Додатки"
 
-#: .\templates\cosinnus_file\file_edit.html:35
 msgid "Enter the title for the file."
 msgstr "Уведіть назву для файлу."
 
-#: .\templates\cosinnus_file\file_edit.html:74
 msgid "File description (optional)"
 msgstr "Опис файлу (додатково)"
 
-#: .\templates\cosinnus_file\file_edit.html:112
 msgid "Save"
 msgstr "Зберегти"
 
-#: .\templates\cosinnus_file\file_edit.html:129
 msgid "Download"
 msgstr "Завантажити"
 
-#: .\templates\cosinnus_file\file_edit.html:142
-#: .\templates\cosinnus_file\single_file_detailed.html:67
 msgid "Delete"
 msgstr "Видалити"
 
-#: .\templates\cosinnus_file\file_edit.html:147
-#: .\templates\cosinnus_file\single_file_detailed.html:89
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
 msgstr "Ви дійсно бажаєте видалити файл «%(title)s»?"
 
-#: .\templates\cosinnus_file\file_edit.html:148
-#: .\templates\cosinnus_file\single_file_detailed.html:90
 msgid "Delete file"
 msgstr "Видалити файл"
 
-#: .\templates\cosinnus_file\file_list.html:81
-#: .\templates\cosinnus_file\file_list_standalone.html:15
 msgid "No files have been uploaded yet."
 msgstr "Ще не завантажено жодного файлу."
 
-#: .\templates\cosinnus_file\notifications\file_created.txt:1
 #, python-format
 msgid ""
 "Hi %(receiver_name)s,\n"
 "\n"
-"a new file \"%(object_name)s\" in %(team_name)s was uploaded by %"
-"(sender_name)s. \n"
+"a new file \"%(object_name)s\" in %(team_name)s was uploaded by %(sender_name)s. \n"
 "\n"
 "You can find it by following this link: %(object_url)s\n"
 "\n"
 "\n"
 "\n"
-"(Follow this link to edit your notification preferences: %"
-"(notification_settings_url)s )\n"
+"(Follow this link to edit your notification preferences: %(notification_settings_url)s )\n"
 "\n"
 "Your %(site_name)s Team."
 msgstr ""
@@ -179,93 +145,66 @@ msgstr ""
 "\n"
 "\n"
 "\n"
-"(Перейдіть за цим посиланням, щоб редагувати ваші налаштування сповіщення: %"
-"(notification_settings_url)s )\n"
+"(Перейдіть за цим посиланням, щоб редагувати ваші налаштування сповіщення: %(notification_settings_url)s )\n"
 "\n"
 "З повагою, команда %(site_name)s."
 
-#: .\templates\cosinnus_file\notifications\file_created_subject.txt:1
 #, python-format
 msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
 msgstr "Новий файл: «%(object_name)s» було завантажено у %(team_name)s."
 
-#: .\templates\cosinnus_file\single_file_detailed.html:18
 msgid "Move to another Folder"
 msgstr "Перемістити у іншу папку"
 
-#: .\templates\cosinnus_file\single_file_detailed.html:79
 msgid "Edit"
 msgstr "Редагувати"
 
-#: .\templates\cosinnus_file\widgets\file_widget.html:22
 msgid "More"
 msgstr "Більше"
 
-#: .\templates\cosinnus_file\widgets\file_widget_form.html:14
 msgid "Latest files"
 msgstr "Останні файли"
 
-#: .\templates\cosinnus_file\widgets\latest.html:14
 msgid "There are no files  yet"
 msgstr "Ще немає жодного файлу."
 
-#: .\views.py:55 .\views.py:110
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
 msgstr "Файл «%(title)s» успішно завантажено."
 
-#: .\views.py:56
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
 msgstr "Неможливо завантажити файл «%(title)s»."
 
-#: .\views.py:111
 #, python-format
 msgid "File \"%(title)s\" could not be added."
 msgstr "Неможливо додати файл «%(title)s»."
 
-#: .\views.py:113
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
 msgstr "Папку «%(title)s» успішно створено."
 
-#: .\views.py:135 .\views.py:142
 msgid "File does not exist or you are not allowed to delete it."
 msgstr "Файл не існує, або у вас немає прав для його редагування."
 
-#: .\views.py:188
 #, python-format
-msgid ""
-"A problem occurred during export. The following file is missing: %(filename)"
-"s."
-msgid_plural ""
-"A problem occurred during export. The following files are missing: %"
-"(filename)s."
-msgstr[0] ""
-"Під час експортування виникла проблема. Наступного файлу не існує: %"
-"(filename)s."
-msgstr[1] ""
-"Під час експортування виникла проблема. Наступних файлів не існує: %"
-"(filename)s."
-msgstr[2] ""
-"Під час експортування виникла проблема. Наступних файлів не існує: %"
-"(filename)s."
+msgid "A problem occurred during export. The following file is missing: %(filename)s."
+msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
+msgstr[0] "Під час експортування виникла проблема. Наступного файлу не існує: %(filename)s."
+msgstr[1] "Під час експортування виникла проблема. Наступних файлів не існує: %(filename)s."
+msgstr[2] "Під час експортування виникла проблема. Наступних файлів не існує: %(filename)s."
 
-#: .\views.py:203
 msgid "Invalid request."
 msgstr "Недійсний запит."
 
-#: .\views.py:226
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
 msgstr "Файл «%(title)s» успішно змінено."
 
-#: .\views.py:227
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
 msgstr "Не вдалося змінити файл «%(title)s»."
 
-#: .\views.py:367
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
