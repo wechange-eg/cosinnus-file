@@ -321,6 +321,7 @@ def file_upload_inline(request, group):
         return HttpResponseNotAllowed(['POST'])
     
     on_success = request.POST.get('on_success', 'add_to_select2')
+    direct_upload = request.POST.get('direct_upload', False)
     
     # resolve group either from the slug, or like the permission group mixin does ist
     # (group type needs to also be used for that=
@@ -363,7 +364,8 @@ def file_upload_inline(request, group):
             form.instance.creator = request.user
             form.instance.path = upload_folder.path
             form.instance._filesize = form.instance.file.file.size
-            form.instance.no_notification = True # disable spammy notifications
+            if not direct_upload:
+                form.instance.no_notification = True # disable notifications on non-direct (attached, etc) uploads
             saved_file = form.save()
             
             # pipe the file into the select2 JSON representation to be displayed as select2 pill 
