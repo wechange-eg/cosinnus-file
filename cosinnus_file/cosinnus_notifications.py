@@ -45,6 +45,7 @@ notifications = {
         'is_html': True,
         'snippet_type': 'file',
         'event_text': _('New file by %(sender_name)s'),
+        'notification_text': _('%(sender_name)s created a new file'),
         'subject_text': _('A new file: "%(object_name)s" was created in %(team_name)s.'),
         'data_attributes': {
             'object_name': 'title', 
