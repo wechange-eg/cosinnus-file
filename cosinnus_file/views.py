@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import mimetypes
+import json
 
 from os.path import basename
 
@@ -10,7 +11,7 @@ from django.http import (Http404, HttpResponse, HttpResponseNotFound,
     HttpResponseRedirect, StreamingHttpResponse)
 from django.utils.translation import ungettext, ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-    RedirectView, UpdateView, View)
+    RedirectView, UpdateView)
 from django.views.generic.edit import FormMixin
 
 from cosinnus.conf import settings
@@ -34,7 +35,6 @@ from django.http.response import HttpResponseNotAllowed
 from cosinnus.utils.http import JSONResponse
 from cosinnus.core.decorators.views import get_group_for_request
 from cosinnus.utils.permissions import check_group_create_objects_access
-from django.core.exceptions import PermissionDenied
 from cosinnus.utils.functions import clean_single_line_text
 from cosinnus.views.attached_object import build_attachment_field_result
 
@@ -44,6 +44,7 @@ from django.utils.datastructures import MultiValueDict
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.template.context import RequestContext
+from django.utils.text import slugify
 logger = logging.getLogger('cosinnus')
 
 
@@ -96,7 +97,6 @@ class FileIndexView(RequireReadMixin, RedirectView):
                        kwargs={'group': self.group})
 
 file_index_view = FileIndexView.as_view()
-
 
 class FileHybridListView(RequireReadWriteHybridMixin, HierarchyPathMixin, HierarchicalListCreateViewMixin, 
                              CosinnusFilterMixin, FileFormMixin, CreateView):
@@ -308,6 +308,28 @@ class FileMoveElementView(MoveElementView):
 move_element_view = FileMoveElementView.as_view()
 
 
+def _create_folders_for_path_string(base_folder_object, relative_path_string):
+    """ Will create folders for a relative path string, with properly slugified path elements, 
+        starting from the base folder object. Will not create any folders if the path exists.
+        
+        @param base_folder_object: A FileEntry (is_container=True) object
+        @param relative_path_string: a path string, eg 'my folder/another sub folder/'. Leading/traling slashes are sanitized.
+        @return: The last created sub folder object in the path.  """
+        
+    relative_path_string = relative_path_string[1:] if relative_path_string.startswith('/') else relative_path_string
+    relative_path_string = relative_path_string[:-1] if relative_path_string.endswith('/') else relative_path_string
+    
+    current_folder = base_folder_object
+    for current_path_part in relative_path_string.split('/'):
+        slug_part = slugify(current_path_part)
+        if not slug_part:
+            continue
+        next_path = '%s%s/' % (current_folder.path, slug_part) 
+        next_folder, created = FileEntry.objects.get_or_create(is_container=True, group=base_folder_object.group, path=next_path, defaults={'title': current_path_part})
+        current_folder = next_folder
+    
+    return current_folder
+
 
 def file_upload_inline(request, group):
     """ Inline file upload to be called from jQuery FileUpload.
@@ -344,15 +366,45 @@ def file_upload_inline(request, group):
         'group_id': group.id
     })
     
-    upload_folder = None
+    file_info_array = json.loads(post.get('file_info', '[]'))
+    print ">> post was", post
+    print ">> file info was", file_info_array
+    print ">> file list was:", request.FILES.getlist('file')
+    
+    base_upload_folder = None
+    upload_to_attachment_folder = False
     if 'target_folder' in post:
-        upload_folder = get_object_or_404(FileEntry, id=int(post.get('target_folder')))
-    if not upload_folder:
+        print ">> target folder:", post.get('target_folder')
+        base_upload_folder = get_object_or_404(FileEntry, id=int(post.get('target_folder')))
+    if not base_upload_folder:
         # check if the group has a folder with slug 'uploads' and if not, create one
-        upload_folder = get_or_create_attachment_folder(group)
+        base_upload_folder = get_or_create_attachment_folder(group)
+        upload_to_attachment_folder = True
+    print ">> final folder:", base_upload_folder.path
     
     result_list = []
-    for dict_file in request.FILES.getlist('file'):
+    for file_index, dict_file in enumerate(request.FILES.getlist('file')):
+        upload_folder = None
+        # unless we are uploading as attachment, see if we have any further folder info for this file
+        if not upload_to_attachment_folder and len(file_info_array) > file_index:
+            # get relative path for the ith file, it should be the same as in the FILES list
+            relative_path = file_info_array[file_index]['relative_path']
+            name = file_info_array[file_index]['name']
+            if relative_path:
+                # sanity check, file name in file info must match FILES file name
+                if not name == dict_file._name:
+                    logger.warn('File upload: File order of file with relative path info and FILES list did not match!', extra={
+                        'file_info': file_info_array, 'FILES_list': request.FILES.getlist('file')})
+                print ">>> gota  gooooood matchinf path", relative_path, base_upload_folder
+                upload_folder = _create_folders_for_path_string(base_upload_folder, relative_path)
+                print ">> final path that we will upload to", upload_folder, upload_folder.path
+                # switch mode to refresh page if we had at least one folder upload
+                on_success = 'refresh_page'
+                
+        if not upload_folder:
+            upload_folder = base_upload_folder
+            
+        
         single_file_dict = MultiValueDict({'file': [dict_file]})
         post.update({
             'title': clean_single_line_text(dict_file._name),
