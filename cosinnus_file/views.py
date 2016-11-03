@@ -338,7 +338,6 @@ def file_upload_inline(request, group):
             - 'add_to_select2' (default): Will render a select2 pill and in JS, append it to the attach-file select2 field.
             - 'refresh_page' will add a message to the request and in JS refresh the browser page
             - 'render_object' will render the single file template(s) and in JS append them to the file list """
-    
     if not request.is_ajax() or not request.method=='POST':
         return HttpResponseNotAllowed(['POST'])
     
@@ -367,20 +366,15 @@ def file_upload_inline(request, group):
     })
     
     file_info_array = json.loads(post.get('file_info', '[]'))
-    print ">> post was", post
-    print ">> file info was", file_info_array
-    print ">> file list was:", request.FILES.getlist('file')
     
     base_upload_folder = None
     upload_to_attachment_folder = False
     if 'target_folder' in post:
-        print ">> target folder:", post.get('target_folder')
         base_upload_folder = get_object_or_404(FileEntry, id=int(post.get('target_folder')))
     if not base_upload_folder:
         # check if the group has a folder with slug 'uploads' and if not, create one
         base_upload_folder = get_or_create_attachment_folder(group)
         upload_to_attachment_folder = True
-    print ">> final folder:", base_upload_folder.path
     
     result_list = []
     for file_index, dict_file in enumerate(request.FILES.getlist('file')):
@@ -393,18 +387,15 @@ def file_upload_inline(request, group):
             if relative_path:
                 # sanity check, file name in file info must match FILES file name
                 if not name == dict_file._name:
-                    logger.warn('File upload: File order of file with relative path info and FILES list did not match!', extra={
+                    logger.warn('File upload sanity check failed: File order of file with relative path info and FILES list did not match! (Upload may have sorted the user\'s file in the wrong folder)', extra={
                         'file_info': file_info_array, 'FILES_list': request.FILES.getlist('file')})
-                print ">>> gota  gooooood matchinf path", relative_path, base_upload_folder
                 upload_folder = _create_folders_for_path_string(base_upload_folder, relative_path)
-                print ">> final path that we will upload to", upload_folder, upload_folder.path
                 # switch mode to refresh page if we had at least one folder upload
                 on_success = 'refresh_page'
                 
         if not upload_folder:
             upload_folder = base_upload_folder
             
-        
         single_file_dict = MultiValueDict({'file': [dict_file]})
         post.update({
             'title': clean_single_line_text(dict_file._name),
