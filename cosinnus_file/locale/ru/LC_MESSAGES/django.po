@@ -1,4 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -7,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wechange RU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-27 17:56+0200\n"
-"PO-Revision-Date: 2016-09-20 13:08+0200\n"
+"POT-Creation-Date: 2016-11-02 11:31+0100\n"
+"PO-Revision-Date: 2016-11-02 11:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +22,7 @@ msgstr "Файлы"
 
 msgctxt "the_app"
 msgid "file"
-msgstr "Файлы"
+msgstr "Файл"
 
 msgid "A user uploaded a new file"
 msgstr "Пользователь загрузил новый файл"
@@ -190,7 +189,7 @@ msgid "Folder \"%(title)s\" was created successfully."
 msgstr "Папка \"%(title)s\" создана"
 
 msgid "File does not exist or you are not allowed to delete it."
-msgstr "Файл не существует или вы не уполномочены удалять его"
+msgstr "Файл не существует или Вы не уполномочены удалять его."
 
 # ???
 #, python-format
