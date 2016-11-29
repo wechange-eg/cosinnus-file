@@ -12,7 +12,7 @@
                         	<i class="fa fa-file"></i>
 	                    </a>
                     {% endif %}
-                    <div class="media-body no-vertical-padding">
+                    <div class="media-body {% if not hide_group_name %}no-vertical-padding{% endif %}">
                          <span class="annotation">
                              {% with creator=file.creator %}
                                  {# {% trans "by" %} #} <strong><a href="{{ creator|profile_url }}" >{{ creator|full_name }}</a></strong> 
@@ -20,9 +20,11 @@
                              <span class="moment-data-date" data-date="{{ file.created|date:'c' }}"></span>
                          </span>
                          <strong><a {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox="image-single" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>{{ file.title }}</a></strong>
-                         <div class="group-annotation">
-                             {% include 'cosinnus/group/group_label.html' with group=file.group %}
-                         </div>
+                         {% if not hide_group_name %}
+			                 <div class="group-annotation">
+	                             {% include 'cosinnus/group/group_label.html' with group=file.group %}
+	                         </div>
+	                     {% endif %}
                     </div>
                 </li>
             </ul>
