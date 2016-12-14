@@ -3,7 +3,7 @@
 {% with file=object %}
     <div class="app-files">
         <div class="btn btn-emphasized w100">
-            <ul class="media-list large-space">
+            <ul class="media-list {% if no_space %}fine-space{% else %}large-space{% endif %}">
                 <li class="media">
                     {% if file.is_image %}
                         <a class="pull-left" href="{{ file.static_image_url }}" data-lightbox="image-single-thumbnail" data-title="{{ file.title }}"><img src='{{ file.static_image_url_thumbnail }}' title='{{ file.title }}'></img></a>
