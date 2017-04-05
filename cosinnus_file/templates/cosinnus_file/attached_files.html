@@ -19,9 +19,14 @@
                     <div class="media-body no-vertical-padding ">
                         {% comment %} No href here because this would cause a double download (since the div reacts to the clicked href too) {% endcomment %}
                         <strong><a target="_blank">{{ file.title|truncatechars:25 }}</a></strong>
-                        <div class="group-annotation">
-                            {% include 'cosinnus/group/group_label.html' with group=file.group %}
-                        </div>
+                        {% with creator=file.creator %}
+                            <div class="group-annotation">
+                                <a href="{{ creator|profile_url }}">
+                                    <i class="fa fa-user"></i>
+                                    {{ creator|full_name }}
+                                </a> 
+                            </div>
+                         {% endwith %}
                     </div>
                 </li>
             </ul>
