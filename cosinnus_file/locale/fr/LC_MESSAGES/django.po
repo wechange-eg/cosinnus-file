@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-02 11:31+0100\n"
+"POT-Creation-Date: 2017-04-12 18:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,6 +122,9 @@ msgstr ""
 msgid "Delete file"
 msgstr ""
 
+msgid "Download this folder"
+msgstr ""
+
 msgid "No files have been uploaded yet."
 msgstr ""
 
@@ -193,6 +196,12 @@ msgstr ""
 
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
+msgstr ""
+
+msgid "Downloading failed, the target object was not a folder!"
+msgstr ""
+
+msgid "Canceled the download because there seem to be no files in this folder."
 msgstr ""
 
 #, python-format

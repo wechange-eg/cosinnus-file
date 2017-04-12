@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-02 11:31+0100\n"
-"PO-Revision-Date: 2016-09-27 18:03+0200\n"
+"POT-Creation-Date: 2017-04-12 18:05+0200\n"
+"PO-Revision-Date: 2017-04-12 18:08+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
 "MIME-Version: 1.0\n"
@@ -124,6 +124,9 @@ msgstr "Sind Sie sich sicher, dass Sie die Datei „%(title)s“ löschen wollen
 msgid "Delete file"
 msgstr "Datei löschen"
 
+msgid "Download this folder"
+msgstr "Diesen Ordner herunterladen"
+
 msgid "No files have been uploaded yet."
 msgstr "Es wurden noch keine Dateien hochgeladen."
 
@@ -207,6 +210,12 @@ msgstr "Datei \"%(title)s\" wurde erfolgreich geändert."
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
 msgstr "Datei \"%(title)s\" konnte nicht geändert werden."
+
+msgid "Downloading failed, the target object was not a folder!"
+msgstr "Der Download konnte nicht durchgeführt werden, weil das Zielobjekt kein Ordner ist."
+
+msgid "Canceled the download because there seem to be no files in this folder."
+msgstr "Der Downloadvorgang wurde abgebrochen, weil es in diesem Ordner keine Dateien gibt."
 
 #, python-format
 msgid "%(count)d File was added successfully."
