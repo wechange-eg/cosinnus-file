@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 import mimetypes
 import json
+import os
 
 from os.path import basename
 
@@ -15,7 +16,8 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
 from django.views.generic.edit import FormMixin
 
 from cosinnus.conf import settings
-from cosinnus.utils.files import create_zip_file
+from cosinnus.utils.files import create_zip_file, create_zip_from_files,\
+    append_string_to_filename
 from cosinnus.templatetags.cosinnus_tags import add_current_params
 from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
     FilterGroupMixin, GroupFormKwargsMixin, RequireReadWriteHybridMixin)
@@ -45,6 +47,7 @@ from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.template.context import RequestContext
 from django.utils.text import slugify
+from django.utils.crypto import get_random_string
 logger = logging.getLogger('cosinnus')
 
 
@@ -300,6 +303,66 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
     
     
 file_download_view = FileDownloadView.as_view()
+
+
+class FolderDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
+    '''
+        Lets the user download a FileEntry file (file is determined by slug),
+        while the user never gets to see the server file path.
+        Mime type is guessed based on the file.
+        
+        The /download/ and /save/ urls point to this view, /save/ has force_download == True
+    '''
+    model = FileEntry
+    
+    def dispatch(self, request, *args, **kwargs):
+        # if we have no object parameter, we're looking at the root folder
+        if not 'slug' in kwargs:
+            kwargs['slug'] = '_root_'
+            self.kwargs = kwargs
+        return super(FolderDownloadView, self).dispatch(request, *args, **kwargs)
+
+    def render_to_response(self, context, **response_kwargs):
+        
+        # check if object is a folder
+        folder = self.object
+        if not folder.is_container:
+            messages.error(self.request, _('Downloading failed, the target object was not a folder!'))
+            return HttpResponseRedirect(group_aware_reverse('cosinnus:file:list', kwargs={'group': self.group}))
+        
+        base_path = folder.path
+        files = []
+        # for all files below this folder collect tuples of (filepath on disc, relative file path, )
+        for sub_file in FileEntry.objects.filter(group=self.group, path__startswith=base_path, is_container=False):
+            if not sub_file.file or not sub_file.file.path:
+                continue
+            zip_path = sub_file.path.replace(folder.path, '', 1) + sub_file._sourcefilename
+            files.append([sub_file.file.path, zip_path])
+        
+        # if no files were found (all folders empty), show error message
+        if not files:
+            messages.warning(self.request, _('Canceled the download because there seem to be no files in this folder.'))
+            return HttpResponseRedirect(group_aware_reverse('cosinnus:file:list', kwargs={'group': self.group, 'slug': folder.slug}))
+        
+        # uniquify target zip filenames (we might have the same source file in a folder multiple times)
+        for sub_file in files:
+            if len([True for nil, zfp in files if zfp == sub_file[1]]) > 1:
+                # more than one path like this found, append random string
+                sub_file[1] = append_string_to_filename(sub_file[1], get_random_string(7))
+        
+        # Grab ZIP file from in-memory, make response with correct MIME-type and correct content-disposition
+        zip_content = create_zip_from_files(files).getvalue()
+        zip_filename = clean_filename(folder.title if folder.slug != '_root_' else self.group.name)
+        response = HttpResponse(zip_content)
+        response['Content-Type'] = "application/x-zip-compressed"
+        response['Content-Disposition'] = 'attachment; filename=%s.zip' % zip_filename
+        # fixme: root folder title!
+        response['Content-Length'] = len(zip_content)
+        
+        return response
+    
+    
+folder_download_view = FolderDownloadView.as_view()
 
 
 class FileMoveElementView(MoveElementView):

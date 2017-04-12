@@ -25,6 +25,13 @@
 	<!-- a box with semi transparent background -->
 	<div class="content-box">
 	
+	    <div class="list-link-panel">
+	       <a href="download/">
+	           <i class="fa fa-download"></i>
+	           {% trans "Download this folder" %}
+	       </a>
+	    </div>
+	
 	    {% include 'cosinnus/common/filter_controls.html' %}
 		
 		{% if user|can_create_objects_in:group %}
