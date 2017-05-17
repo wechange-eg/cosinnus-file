@@ -137,7 +137,12 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
         if user:
             qs = filter_tagged_object_queryset_for_user(qs, user)
         return qs.filter(is_container=False)
-
+    
+    def grant_extra_read_permissions(self, user):
+        """ Users tagged in files can always see that file, even if it is private. 
+            Used for sharing files in direct messages etc. """
+        return user in self.media_tag.persons.all()
+    
 
 def get_or_create_attachment_folder(group):
     attachment_folder = None
