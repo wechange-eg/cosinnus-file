@@ -48,6 +48,7 @@ from django.template.loader import render_to_string
 from django.template.context import RequestContext
 from django.utils.text import slugify
 from django.utils.crypto import get_random_string
+from cosinnus.models.tagged import get_tag_object_model, BaseTagObject
 logger = logging.getLogger('cosinnus')
 
 
@@ -406,6 +407,8 @@ def file_upload_inline(request, group):
     
     on_success = request.POST.get('on_success', 'add_to_select2')
     direct_upload = request.POST.get('direct_upload', False)
+    make_private = request.POST.get('private_upload', False)
+    
     
     # resolve group either from the slug, or like the permission group mixin does ist
     # (group type needs to also be used for that=
@@ -473,6 +476,11 @@ def file_upload_inline(request, group):
             if not direct_upload:
                 form.instance.no_notification = True # disable notifications on non-direct (attached, etc) uploads
             saved_file = form.save()
+            
+            # flag for uploading the file visible only to oneself, as used in message attachments
+            if make_private:
+                saved_file.media_tag.visibility = BaseTagObject.VISIBILITY_USER
+                saved_file.media_tag.save()
             
             # pipe the file into the select2 JSON representation to be displayed as select2 pill 
             pill_id, pill_html = build_attachment_field_result('cosinnus_file.FileEntry', saved_file)
