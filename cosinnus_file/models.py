@@ -132,8 +132,9 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
     
     @classmethod
     def get_current(self, group, user):
-        """ Returns a queryset of the current upcoming events """
-        qs = FileEntry.objects.filter(group=group)
+        """ Returns a queryset of the current (non-attachment) files """
+        attachment_folder_path = get_or_create_attachment_folder(group).path
+        qs = FileEntry.objects.filter(group=group).exclude(path=attachment_folder_path)
         if user:
             qs = filter_tagged_object_queryset_for_user(qs, user)
         return qs.filter(is_container=False)
