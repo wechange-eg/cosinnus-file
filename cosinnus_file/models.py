@@ -29,6 +29,7 @@ from django.contrib.auth import get_user_model
 from cosinnus.utils.files import get_cosinnus_media_file_folder
 from cosinnus.utils.functions import unique_aware_slugify
 from cosinnus.models.mixins.images import ThumbnailableImageMixin
+from cosinnus.utils.filters import exclude_special_folders
 
 
 def get_hashed_filename(instance, filename):
@@ -133,8 +134,8 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
     @classmethod
     def get_current(self, group, user):
         """ Returns a queryset of the current (non-attachment) files """
-        attachment_folder_path = get_or_create_attachment_folder(group).path
-        qs = FileEntry.objects.filter(group=group).exclude(path=attachment_folder_path)
+        qs = FileEntry.objects.filter(group=group)
+        qs = exclude_special_folders(qs)
         if user:
             qs = filter_tagged_object_queryset_for_user(qs, user)
         return qs.filter(is_container=False)

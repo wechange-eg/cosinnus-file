@@ -10,6 +10,7 @@ from cosinnus.utils.dashboard import DashboardWidget, DashboardWidgetForm
 from cosinnus_file.models import FileEntry
 from cosinnus.models.widget import WidgetConfig
 from cosinnus.utils.urls import group_aware_reverse
+from cosinnus.utils.filters import exclude_special_folders
 
 
 class LatestFileEntryForm(DashboardWidgetForm):
@@ -36,6 +37,7 @@ class Latest(DashboardWidget):
          """
         count = int(self.config['amount'])
         qs = self.get_queryset().select_related('group').order_by('-created').all()
+        qs = exclude_special_folders(qs)
         if count != 0:
             qs = qs[offset:offset+count]
             
