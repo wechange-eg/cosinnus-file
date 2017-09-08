@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-12 18:05+0200\n"
-"PO-Revision-Date: 2015-11-11 10:42+0200\n"
+"PO-Revision-Date: 2017-09-05 17:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Language: uk\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 2.0.3\n"
 
 msgid "Files"
 msgstr "Файли"
@@ -26,21 +26,19 @@ msgid "file"
 msgstr "Файли"
 
 msgid "A user uploaded a new file"
-msgstr "Член завантажив/-ла новий файл"
+msgstr "Користувач завантажив/-ла новий файл"
 
 #, python-format
 msgid "New file by %(sender_name)s"
-msgstr ""
+msgstr "Новий файл від %(sender_name)s"
 
-#, fuzzy, python-format
-#| msgid "A user uploaded a new file"
+#, python-format
 msgid "%(sender_name)s created a new file"
-msgstr "Член завантажив/-ла новий файл"
+msgstr "%(sender_name)s створив новий файл"
 
-#, fuzzy, python-format
-#| msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
+#, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
-msgstr "Новий файл: «%(object_name)s» було завантажено у %(team_name)s."
+msgstr "Новий файл: \"%(object_name)s\" був створений в %(team_name)s."
 
 msgid "Latest Files"
 msgstr "Останні файли"
@@ -97,7 +95,7 @@ msgid "Uploaded on"
 msgstr "Дата завантаження"
 
 msgid "No files selected."
-msgstr "Не вибрано жодних файлів"
+msgstr "Не обрано жодних файлів."
 
 msgctxt "special_folder_type"
 msgid "Attachments"
@@ -126,7 +124,7 @@ msgid "Delete file"
 msgstr "Видалити файл"
 
 msgid "Download this folder"
-msgstr ""
+msgstr "Завантажити цю папку"
 
 msgid "No files have been uploaded yet."
 msgstr "Ще не завантажено жодного файлу."
@@ -174,7 +172,7 @@ msgid "Latest files"
 msgstr "Останні файли"
 
 msgid "There are no files  yet"
-msgstr "Ще немає жодного файлу."
+msgstr "Ще немає жодного файлу"
 
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
@@ -214,10 +212,10 @@ msgid "File \"%(title)s\" could not be updated."
 msgstr "Не вдалося змінити файл «%(title)s»."
 
 msgid "Downloading failed, the target object was not a folder!"
-msgstr ""
+msgstr "Завантаження не відбулося, обраний об’єкт не був папкою!"
 
 msgid "Canceled the download because there seem to be no files in this folder."
-msgstr ""
+msgstr "Завантаження відмінено, тому що в папці немає файлів."
 
 #, python-format
 msgid "%(count)d File was added successfully."
