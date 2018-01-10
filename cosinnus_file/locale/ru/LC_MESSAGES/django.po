@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wechange RU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-12 18:05+0200\n"
+"POT-Creation-Date: 2018-01-10 16:48+0100\n"
 "PO-Revision-Date: 2017-08-16 14:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -100,17 +100,27 @@ msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Вложения"
 
-msgid "Enter the title for the file."
-msgstr "Введите название файла"
+#, fuzzy
+#| msgid "File Type"
+msgid "File title"
+msgstr "Тип файла"
 
-msgid "File description (optional)"
+msgid "Description"
+msgstr ""
+
+#, fuzzy
+#| msgid "File description (optional)"
+msgid "File description"
 msgstr "Описание файла (необязательно)"
+
+msgid "Preview"
+msgstr ""
+
+msgid "Original filename"
+msgstr ""
 
 msgid "Save"
 msgstr "Сохранить"
-
-msgid "Download"
-msgstr "Скачать"
 
 msgid "Delete"
 msgstr "Удалить"
@@ -121,6 +131,9 @@ msgstr "Вы действительно хотите удалить файл „
 
 msgid "Delete file"
 msgstr "Удалить файл"
+
+msgid "Download"
+msgstr "Скачать"
 
 msgid "Download this folder"
 msgstr "Загрузить эту папку"
@@ -224,6 +237,9 @@ msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d файл был успешно добавлен."
 msgstr[1] "%(count)d файла было успешно добавлено."
 msgstr[2] "%(count)d файлов было успешно добавлено."
+
+#~ msgid "Enter the title for the file."
+#~ msgstr "Введите название файла"
 
 #~ msgid "Upload a file or document."
 #~ msgstr "Загрузить файл или документ."

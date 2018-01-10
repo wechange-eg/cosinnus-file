@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-12 18:05+0200\n"
-"PO-Revision-Date: 2018-01-05 18:44+0100\n"
+"POT-Creation-Date: 2018-01-10 16:48+0100\n"
+"PO-Revision-Date: 2018-01-10 17:41+0100\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
 "MIME-Version: 1.0\n"
@@ -101,17 +101,23 @@ msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Hochgeladene Anhänge"
 
-msgid "Enter the title for the file."
-msgstr "Gib einen Titel für die Datei ein."
+msgid "File title"
+msgstr "Dateititel"
 
-msgid "File description (optional)"
-msgstr "Dateibeschreibung (optional)"
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "File description"
+msgstr "Dateibeschreibung"
+
+msgid "Preview"
+msgstr "Vorschau"
+
+msgid "Original filename"
+msgstr "Ursprünglicher Dateiname"
 
 msgid "Save"
 msgstr "Speichern"
-
-msgid "Download"
-msgstr "Herunterladen"
 
 msgid "Delete"
 msgstr "Löschen"
@@ -123,6 +129,9 @@ msgstr "Sind Sie sich sicher, dass Sie die Datei „%(title)s“ löschen wollen
 
 msgid "Delete file"
 msgstr "Datei löschen"
+
+msgid "Download"
+msgstr "Herunterladen"
 
 msgid "Download this folder"
 msgstr "Diesen Ordner herunterladen"
@@ -223,6 +232,9 @@ msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d Datei wurde erfolgreich hochgeladen."
 msgstr[1] "%(count)d Dateien wurden erfolgreich hochgeladen."
 
+#~ msgid "Enter the title for the file."
+#~ msgstr "Gib einen Titel für die Datei ein."
+
 #~ msgid "Upload a file or document."
 #~ msgstr "Lade ein Bild oder Dokument hoch"
 
@@ -286,9 +298,6 @@ msgstr[1] "%(count)d Dateien wurden erfolgreich hochgeladen."
 
 #~ msgid "Show"
 #~ msgstr "Anzeigen"
-
-#~ msgid "Widget title"
-#~ msgstr "Widget-Titel"
 
 #~ msgid "Widget Icon (FA)"
 #~ msgstr "Widget-Icon (fa)"

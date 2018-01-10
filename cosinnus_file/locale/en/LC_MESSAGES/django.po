@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-12 18:05+0200\n"
+"POT-Creation-Date: 2018-01-10 16:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,16 +99,22 @@ msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Uploaded Attachments"
 
-msgid "Enter the title for the file."
+msgid "File title"
 msgstr ""
 
-msgid "File description (optional)"
+msgid "Description"
+msgstr ""
+
+msgid "File description"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "Original filename"
 msgstr ""
 
 msgid "Save"
-msgstr ""
-
-msgid "Download"
 msgstr ""
 
 msgid "Delete"
@@ -119,6 +125,9 @@ msgid "Do you really want to delete file „%(title)s“?"
 msgstr ""
 
 msgid "Delete file"
+msgstr ""
+
+msgid "Download"
 msgstr ""
 
 msgid "Download this folder"
