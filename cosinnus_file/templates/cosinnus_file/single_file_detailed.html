@@ -5,7 +5,7 @@
         <ul class="media-list">
             <li class="media">
                 {% if file.is_image %}
-                    <a class="pull-left" href="{{ file.static_image_url }}" data-lightbox="image-list-thumbnail" data-title="{{ file.title }}"><img src='{{ file.static_image_url_thumbnail }}' title='{{ file.title }}'></img></a>
+                    <a class="pull-left" href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-list-thumbnail" data-title="{{ file.title }}"><img src='{{ file.static_image_url_thumbnail }}' title='{{ file.title }}'></img></a>
                 {% else %}
                     <a class="pull-left" href="#">
                     	<i class="fa fa-file"></i>
@@ -28,7 +28,7 @@
                     {% with creator=file.creator %}
                         <span class="annotation">von <a href="{{ creator|profile_url }}" >{{ creator|full_name }}</a></span>
                     {% endwith %}
-                    <a {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox="image-list" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>
+                    <a {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-list" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>
                         {{ file.title }}
                     </a>
                 </div>
