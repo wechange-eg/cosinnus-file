@@ -51,6 +51,7 @@ notifications = {
             'object_name': 'title', 
             'object_url': 'get_absolute_url', 
             'object_text': 'note',
+            'image_url': 'static_image_url_thumbnail',
         },
     },  
                     
