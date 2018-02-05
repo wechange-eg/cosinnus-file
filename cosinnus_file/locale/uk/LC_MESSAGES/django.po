@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-10 16:48+0100\n"
-"PO-Revision-Date: 2017-09-05 17:22+0200\n"
+"POT-Creation-Date: 2018-02-05 13:07+0100\n"
+"PO-Revision-Date: 2018-02-01 15:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Language: uk\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.6\n"
 
 msgid "Files"
 msgstr "Файли"
@@ -101,24 +101,23 @@ msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Додатки"
 
-#, fuzzy
-#| msgid "File Type"
+msgid "There was an error in one of the fields you entered. Please correct it before saving!"
+msgstr ""
+
 msgid "File title"
 msgstr "Тип файлу"
 
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
-#, fuzzy
-#| msgid "File description (optional)"
 msgid "File description"
-msgstr "Опис файлу (додатково)"
+msgstr "Опис файлу "
 
 msgid "Preview"
-msgstr ""
+msgstr "Превью"
 
 msgid "Original filename"
-msgstr ""
+msgstr "Оригінальна назва файлу"
 
 msgid "Save"
 msgstr "Зберегти"
