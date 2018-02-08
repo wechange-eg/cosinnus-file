@@ -50,7 +50,9 @@
             {% trans "Uploaded by" as creat_label %}
             {% include 'cosinnus/fields/default_field.html' with label=creat_label %}
             {% with creator=object.creator %}
-                <a href="{{ creator|profile_url }}">{{ creator|full_name }}</a>
+                <p>
+                    <a href="{{ creator|profile_url }}">{{ creator|full_name }}</a>
+                </p>
             {% endwith %}
         {% endif %}
         
@@ -58,7 +60,9 @@
             {% trans "Original filename" as name_label %}
             {% include 'cosinnus/fields/default_field.html' with label=name_label %}
             {% with creator=object.creator %}
-                <a href="{% group_url 'cosinnus:file:save' group=group slug=object.slug %}">{{ object.sourcefilename }}</a>
+                <p>
+                    <a href="{% group_url 'cosinnus:file:save' group=group slug=object.slug %}">{{ object.sourcefilename }}</a>
+                </p>
             {% endwith %}
         {% endif %}
         
