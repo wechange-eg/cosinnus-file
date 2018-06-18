@@ -3,142 +3,140 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-05 13:07+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2018-01-10 16:48+0100\n"
+"PO-Revision-Date: 2018-05-08 23:26+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.0.5\n"
 
 msgid "Files"
-msgstr ""
+msgstr "Fichiers"
 
 msgctxt "the_app"
 msgid "file"
-msgstr ""
+msgstr "fichier"
 
 msgid "A user uploaded a new file"
-msgstr ""
+msgstr "Un utilisateur a téléchargé un nouveau fichier"
 
 #, python-format
 msgid "New file by %(sender_name)s"
-msgstr ""
+msgstr "Nouveau fichier par %(sender_name)s"
 
 #, python-format
 msgid "%(sender_name)s created a new file"
-msgstr ""
+msgstr "%(sender_name)s a créé un nouveau fichier"
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
-msgstr ""
+msgstr "Un nouveau fichier : \"%(object_name)s\" a été créé dans %(team_name)s."
 
 msgid "Latest Files"
-msgstr ""
+msgstr "Derniers fichiers"
 
 msgid "No files"
-msgstr ""
+msgstr "Pas de fichiers"
 
 msgid "Pictures"
-msgstr ""
+msgstr "Photos"
 
 msgid "Documents"
-msgstr ""
+msgstr "Documents"
 
 msgid "Audio Files"
-msgstr ""
+msgstr "Fichiers audio"
 
 msgid "Videos"
-msgstr ""
+msgstr "Vidéos"
 
 msgid "Created By"
-msgstr ""
+msgstr "Créé par"
 
 msgid "File Type"
-msgstr ""
+msgstr "Type de fichier"
 
 msgid "File Name"
-msgstr ""
+msgstr "Nom du fichier"
 
 msgid "File Name (descending)"
-msgstr ""
+msgstr "Nom du fichier (décroissant)"
 
 msgid "Newest Created"
-msgstr ""
+msgstr "Créé le plus récemment"
 
 msgid "Smallest Files"
-msgstr ""
+msgstr "Plus petits fichiers"
 
 msgid "Largest Files"
-msgstr ""
+msgstr "Plus grands fichiers"
 
 msgid "Note"
-msgstr ""
+msgstr "Note"
 
 msgid "File"
-msgstr ""
+msgstr "Fichier"
 
 msgid "Path"
-msgstr ""
+msgstr "Chemin"
 
 msgid "Uploaded by"
-msgstr ""
+msgstr "Téléchargé par"
 
 msgid "Uploaded on"
-msgstr ""
+msgstr "Téléchargé sur"
 
 msgid "No files selected."
-msgstr ""
+msgstr "Aucun fichier sélectionné."
 
 msgctxt "special_folder_type"
 msgid "Attachments"
-msgstr ""
-
-msgid "There was an error in one of the fields you entered. Please correct it before saving!"
-msgstr ""
+msgstr "Pièces jointes"
 
 msgid "File title"
-msgstr ""
+msgstr "Nom du fichier"
 
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 msgid "File description"
-msgstr ""
+msgstr "Description du fichier"
 
 msgid "Preview"
-msgstr ""
+msgstr "Aperçu"
 
 msgid "Original filename"
-msgstr ""
+msgstr "Nom original du fichier"
 
 msgid "Save"
-msgstr ""
+msgstr "Enregistrer"
 
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
-msgstr ""
+msgstr "Souhaites-tu vraiment supprimer le fichier „%(title)s“ ?"
 
 msgid "Delete file"
-msgstr ""
+msgstr "Supprimer le fichier"
 
 msgid "Download"
-msgstr ""
+msgstr "Télécharger"
 
 msgid "Download this folder"
-msgstr ""
+msgstr "Télécharger ce fichier"
 
 msgid "No files have been uploaded yet."
-msgstr ""
+msgstr "Aucun fichier n'a encore été téléchargé."
 
 #, python-format
 msgid ""
@@ -154,70 +152,81 @@ msgid ""
 "\n"
 "Your %(site_name)s Team."
 msgstr ""
+"Salut %(receiver_name)s,\n"
+"\n"
+"un nouveau fichier \"%(object_name)s\" dans %(team_name)s a été téléchargé par %(sender_name)s. \n"
+"\n"
+"Tu peux le trouver en suivant ce lien : %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(Suis ce lien pour modifier tes préférences de notification : %(notification_settings_url)s )\n"
+"\n"
+"L'équipe %(site_name)s"
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
-msgstr ""
+msgstr "Un nouveau fichier : \"%(object_name)s\" a été téléchargé dans %(team_name)s."
 
 msgid "Move to another Folder"
-msgstr ""
+msgstr "Déplacer dans un autre dossier"
 
 msgid "Edit"
-msgstr ""
+msgstr "Modifier"
 
 msgid "More"
-msgstr ""
+msgstr "Plus"
 
 msgid "Latest files"
-msgstr ""
+msgstr "Derniers fichiers"
 
 msgid "There are no files  yet"
-msgstr ""
+msgstr "Il n'y a pas encore de fichiers"
 
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
-msgstr ""
+msgstr "Le fichier \"%(title)s\" a été téléchargé."
 
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
-msgstr ""
+msgstr "Le fichier \"%(title)s\" n'a pas pu être téléchargé."
 
 #, python-format
 msgid "File \"%(title)s\" could not be added."
-msgstr ""
+msgstr "Le fichier \"%(title)s\" n'a pas pu être ajouté."
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
-msgstr ""
+msgstr "Le dossier \"%(title)s\" a été créé."
 
 msgid "File does not exist or you are not allowed to delete it."
-msgstr ""
+msgstr "Le fichier n'existe pas ou tu n'as pas l'autorisation de le supprimer."
 
 #, python-format
 msgid "A problem occurred during export. The following file is missing: %(filename)s."
 msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Un problème est survenu durant l'export. Le fichier suivant manque : %(filename)s."
+msgstr[1] "Un problème est survenu durant l'export. Les fichiers suivants manquent : %(filename)s."
 
 msgid "Invalid request."
-msgstr ""
+msgstr "Demande invalide."
 
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
-msgstr ""
+msgstr "Le fichier \"%(title)s\" a été mis à jour."
 
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
-msgstr ""
+msgstr "Le fichier \"%(title)s\" n'a pas pu être mis à jour."
 
 msgid "Downloading failed, the target object was not a folder!"
-msgstr ""
+msgstr "Le téléchargement a échoué, l'objet cible n'était pas un dossier !"
 
 msgid "Canceled the download because there seem to be no files in this folder."
-msgstr ""
+msgstr "Téléchargement annulé car il semble qu'il n'y ait pas de fichiers dans ce dossier."
 
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)d fichier a été ajouté."
+msgstr[1] "%(count)d fichiers ont été ajoutés."
