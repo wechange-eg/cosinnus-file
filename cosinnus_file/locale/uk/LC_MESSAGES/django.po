@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-05 13:07+0100\n"
-"PO-Revision-Date: 2018-02-01 15:57+0100\n"
+"POT-Creation-Date: 2018-06-19 14:35+0200\n"
+"PO-Revision-Date: 2018-06-17 21:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Файли"
 
 msgctxt "the_app"
 msgid "file"
-msgstr "Файли"
+msgstr "файли"
 
 msgid "A user uploaded a new file"
 msgstr "Користувач завантажив/-ла новий файл"
@@ -105,19 +105,19 @@ msgid "There was an error in one of the fields you entered. Please correct it be
 msgstr ""
 
 msgid "File title"
-msgstr "Тип файлу"
+msgstr "Назва файлу"
 
 msgid "Description"
 msgstr "Опис"
 
 msgid "File description"
-msgstr "Опис файлу "
+msgstr "Опис файлу"
 
 msgid "Preview"
-msgstr "Превью"
+msgstr "Попередній перегляд"
 
 msgid "Original filename"
-msgstr "Оригінальна назва файлу"
+msgstr "Початкова назва файлу"
 
 msgid "Save"
 msgstr "Зберегти"

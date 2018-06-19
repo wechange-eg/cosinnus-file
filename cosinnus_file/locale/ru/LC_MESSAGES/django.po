@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wechange RU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-05 13:07+0100\n"
-"PO-Revision-Date: 2018-02-01 00:32+0100\n"
+"POT-Creation-Date: 2018-06-19 14:35+0200\n"
+"PO-Revision-Date: 2018-06-17 23:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,14 +15,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Language: ru\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.6\n"
 
 msgid "Files"
 msgstr "Файлы"
 
 msgctxt "the_app"
 msgid "file"
-msgstr "Файл"
+msgstr "файл"
 
 msgid "A user uploaded a new file"
 msgstr "Пользователь загрузил новый файл"
@@ -37,7 +37,7 @@ msgstr "%(sender_name)s создал новый файл"
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
-msgstr "Новый файл: \"%(object_name)s\" был создан в %(team_name)s"
+msgstr "Новый файл: \"%(object_name)s\" был создан в %(team_name)s."
 
 msgid "Latest Files"
 msgstr "Последние файлы"
@@ -94,7 +94,7 @@ msgid "Uploaded on"
 msgstr "Загружен"
 
 msgid "No files selected."
-msgstr "Файлы не выбраны"
+msgstr "Файлы не выбраны."
 
 msgctxt "special_folder_type"
 msgid "Attachments"
@@ -104,7 +104,7 @@ msgid "There was an error in one of the fields you entered. Please correct it be
 msgstr ""
 
 msgid "File title"
-msgstr "Заголовок файла"
+msgstr "Название файла"
 
 msgid "Description"
 msgstr "Описание"
@@ -113,10 +113,10 @@ msgid "File description"
 msgstr "Описание файла"
 
 msgid "Preview"
-msgstr "Превью"
+msgstr "Предварительный просмотр"
 
 msgid "Original filename"
-msgstr "Оригинальное название файла"
+msgstr "Первое название"
 
 msgid "Save"
 msgstr "Сохранить"
@@ -138,7 +138,7 @@ msgid "Download this folder"
 msgstr "Загрузить эту папку"
 
 msgid "No files have been uploaded yet."
-msgstr "Файлы пока не загружены"
+msgstr "Файлы пока не загружены."
 
 #, python-format
 msgid ""
@@ -168,7 +168,7 @@ msgstr ""
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
-msgstr "Новый файл: \"%(object_name)s\" был загружен в %(team_name)s"
+msgstr "Новый файл: \"%(object_name)s\" был загружен в %(team_name)s."
 
 msgid "Move to another Folder"
 msgstr "Переместить в другую папку"
@@ -187,19 +187,19 @@ msgstr "Файлов ещё нет"
 
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
-msgstr "Файл \"%(title)s\" загружен"
+msgstr "Файл \"%(title)s\" успешно загружен."
 
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
-msgstr "Невозможно загрузить файл \"%(title)s\""
+msgstr "Невозможно загрузить файл \"%(title)s“."
 
 #, python-format
 msgid "File \"%(title)s\" could not be added."
-msgstr "Невозможно добавить файл „%(title)s\""
+msgstr "Невозможно добавить файл „%(title)s“."
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
-msgstr "Папка \"%(title)s\" создана"
+msgstr "Папка \"%(title)s\" успешно создана."
 
 msgid "File does not exist or you are not allowed to delete it."
 msgstr "Файл не существует или Вы не уполномочены удалять его."
@@ -213,15 +213,15 @@ msgstr[1] "Возникла проблема при экспорте. Следу
 msgstr[2] "Возникла проблема при экспорте. Следующие файлы отсутствуют: %(filename)s."
 
 msgid "Invalid request."
-msgstr "Недопустимый запрос"
+msgstr "Недопустимый запрос."
 
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
-msgstr "Файл \"%(title)s\" обновлен"
+msgstr "Файл \"%(title)s\" обновлен."
 
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
-msgstr "Невозможно обновить файл \"%(title)s\""
+msgstr "Невозможно обновить файл \"%(title)s“."
 
 msgid "Downloading failed, the target object was not a folder!"
 msgstr "Загрузка не успешна, выбнанного объекта не было в папке!"
