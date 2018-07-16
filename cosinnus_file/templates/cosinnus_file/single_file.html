@@ -23,6 +23,7 @@
                          {% if not hide_group_name %}
 			                 <div class="group-annotation">
 	                             {% include 'cosinnus/group/group_label.html' with group=file.group %}
+	                             {% include 'cosinnus/common/hierarchical_object_folder_label.html' with object=file %}
 	                         </div>
 	                     {% endif %}
                     </div>
