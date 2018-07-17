@@ -26,7 +26,16 @@
                 
                 <div class="media-body">
                     {% with creator=file.creator %}
-                        <span class="annotation">von <a href="{{ creator|profile_url }}" >{{ creator|full_name }}</a></span>
+                        <span class="annotation">{% trans "by" %} 
+                            <a href="{{ creator|profile_url }}" >{{ creator|full_name }}</a>
+                            {% if file.created %}
+                                &nbsp;&nbsp;
+                                <span title="{% trans "Created" %}">
+                                    <i class="fa fa-pencil"></i>
+                                    <span class="moment-data-date" data-date="{{ file.created|date:'c' }}"></span>
+                                </span>
+                            {% endif %}   
+                        </span>
                     {% endwith %}
                     <a {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-list" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>
                         {{ file.title }}
