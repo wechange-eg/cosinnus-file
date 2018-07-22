@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-23 16:59+0200\n"
-"PO-Revision-Date: 2018-01-10 17:41+0100\n"
+"POT-Creation-Date: 2018-07-22 13:18+0200\n"
+"PO-Revision-Date: 2018-07-22 13:29+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgid "Attachments"
 msgstr "Hochgeladene Anhänge"
 
 msgid "There was an error in one of the fields you entered. Please correct it before saving!"
-msgstr ""
+msgstr "In einem der eingegebenen Felder trat ein Fehler auf. Bitte korrigiere ihn vor dem Speichern!"
 
 msgid "File title"
 msgstr "Dateititel"
@@ -174,6 +174,12 @@ msgstr "Neue Datei: \"%(object_name)s\" wurde hochgeladen in %(team_name)s."
 
 msgid "Move to another Folder"
 msgstr "In anderen Ordner verschieben"
+
+msgid "by"
+msgstr "von"
+
+msgid "Created"
+msgstr "Hat erstellt"
 
 msgid "Edit"
 msgstr "Bearbeiten"

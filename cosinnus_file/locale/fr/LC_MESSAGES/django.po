@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-23 16:59+0200\n"
+"POT-Creation-Date: 2018-07-22 13:18+0200\n"
 "PO-Revision-Date: 2018-05-08 23:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -173,6 +173,14 @@ msgstr "Un nouveau fichier : \"%(object_name)s\" a été téléchargé dans %(te
 
 msgid "Move to another Folder"
 msgstr "Déplacer dans un autre dossier"
+
+msgid "by"
+msgstr ""
+
+#, fuzzy
+#| msgid "Created By"
+msgid "Created"
+msgstr "Créé par"
 
 msgid "Edit"
 msgstr "Modifier"
