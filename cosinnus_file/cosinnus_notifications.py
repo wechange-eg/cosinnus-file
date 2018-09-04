@@ -41,6 +41,7 @@ notifications = {
         'subject_template': 'cosinnus_file/notifications/file_created_subject.txt',
         'signals': [file_created],
         'default': True,
+        'moderatable_content': True,
         
         'is_html': True,
         'snippet_type': 'file',
