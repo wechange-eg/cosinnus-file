@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-22 13:18+0200\n"
-"PO-Revision-Date: 2018-06-23 16:52+0200\n"
+"POT-Creation-Date: 2018-09-18 22:50+0200\n"
+"PO-Revision-Date: 2018-08-30 16:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Language: pl\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 2.0.4\n"
 
 msgid "Files"
 msgstr "Pliki"
@@ -59,7 +59,7 @@ msgid "Videos"
 msgstr "Filmy"
 
 msgid "Created By"
-msgstr "Stworzone przez"
+msgstr "Utworzone Przez"
 
 msgid "File Type"
 msgstr "Rodzaj Pliku"
@@ -71,7 +71,7 @@ msgid "File Name (descending)"
 msgstr "Nazwa Pliku (malejąco)"
 
 msgid "Newest Created"
-msgstr "Najnowsze stworzone"
+msgstr "Najnowsze Utworzone"
 
 msgid "Smallest Files"
 msgstr "Najmniejsze Pliki"
@@ -80,7 +80,7 @@ msgid "Largest Files"
 msgstr "Największe Pliki"
 
 msgid "Note"
-msgstr "Uwaga"
+msgstr "Uwagi"
 
 msgid "File"
 msgstr "Plik"
@@ -95,7 +95,7 @@ msgid "Uploaded on"
 msgstr "Wysłany w dniu"
 
 msgid "No files selected."
-msgstr "Nie ma wybranych plików"
+msgstr "Nie ma wybranych plików."
 
 msgctxt "special_folder_type"
 msgid "Attachments"
@@ -139,7 +139,7 @@ msgid "Download this folder"
 msgstr "Pobierz ten folder"
 
 msgid "No files have been uploaded yet."
-msgstr "Żadne pliki nie zostały jeszcze wysłane"
+msgstr "Żadne pliki nie zostały jeszcze wysłane."
 
 #, python-format
 msgid ""
@@ -157,10 +157,10 @@ msgid ""
 msgstr ""
 "Cześć %(receiver_name)s,\n"
 "\n"
-"nowy plik \\’’%(object_name)s\\’’ w zespole %(team_name)s został wysłany przez %(sender_name)s.\n"
+"nowy plik \"%(object_name)s\" w zespole %(team_name)s został wysłany przez %(sender_name)s.\n"
 "\n"
-"Dostępny jest pod następującym adresem:\n"
-"%(object_url)s\n"
+"Dostępny jest pod następującym adresem: %(object_url)s\n"
+"\n"
 "\n"
 "\n"
 "(Kliknij tutaj, aby edytować swoje ustawienia powiadomień: %(notification_settings_url)s )\n"
@@ -175,28 +175,26 @@ msgid "Move to another Folder"
 msgstr "Przenieś do innego Folderu"
 
 msgid "by"
-msgstr ""
+msgstr "przez"
 
-#, fuzzy
-#| msgid "Created By"
 msgid "Created"
-msgstr "Stworzone przez"
+msgstr "Utworzony"
 
 msgid "Edit"
 msgstr "Edytuj"
 
 msgid "More"
-msgstr "Wyższą"
+msgstr "Więcej"
 
 msgid "Latest files"
-msgstr "Najnowsze Pliki"
+msgstr "Najnowsze pliki"
 
 msgid "There are no files  yet"
-msgstr "Nie ma jeszcze plików"
+msgstr "Brak plików"
 
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
-msgstr "Plik \"%(title)s\" wysłany pomyślnie."
+msgstr "Plik \"%(title)s\" wysłano pomyślnie."
 
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
@@ -208,7 +206,7 @@ msgstr "Plik \"%(title)s\" nie mógł zostać dodany."
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
-msgstr "Folder \"%(title)s\" utworzony pomyślnie."
+msgstr "Folder \"%(title)s\" utworzono pomyślnie."
 
 msgid "File does not exist or you are not allowed to delete it."
 msgstr "Plik nie istnieje lub nie masz uprawnień, aby go usunąć."
@@ -225,7 +223,7 @@ msgstr "Nieprawidłowe żądanie."
 
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
-msgstr "Plik \"%(title)s\" zaktualizowany pomyślnie."
+msgstr "Plik \"%(title)s\" zaktualizowano pomyślnie."
 
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
@@ -235,11 +233,11 @@ msgid "Downloading failed, the target object was not a folder!"
 msgstr "Pobieranie zakończone niepowodzeniem, obiekt docelowy nie jest folderem!"
 
 msgid "Canceled the download because there seem to be no files in this folder."
-msgstr "Pobieranie anulowane, gdyż w folderze nie ma plików."
+msgstr "Pobieranie anulowano, w folderze nie ma plików."
 
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
-msgstr[0] "%(count)d Plik dodany pomyślnie."
-msgstr[1] "%(count)d Pliki dodane pomyślnie."
-msgstr[2] "%(count)d Pliki dodane pomyślnie."
+msgstr[0] "%(count)d Plik dodano pomyślnie."
+msgstr[1] "%(count)d Pliki dodano pomyślnie."
+msgstr[2] "%(count)d Plików dodano pomyślnie."
