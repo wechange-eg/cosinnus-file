@@ -3,6 +3,7 @@ Created on 05.08.2014
 
 @author: Sascha
 '''
+from builtins import object
 from django.utils.translation import ugettext_lazy as _
 
 from cosinnus.views.mixins.filters import CosinnusFilterSet
@@ -47,7 +48,7 @@ class FileFilter(CosinnusFilterSet):
     creator = AllObjectsFilter(label=_('Created By'), widget=SelectCreatorWidget)
     filetype = FileTypeFilter(label=_('File Type'), name="_sourcefilename", choices=FILE_TYPE_FILTER_CHOICES, widget=DropdownChoiceWidget)
     
-    class Meta:
+    class Meta(object):
         model = FileEntry
         fields = ['creator', 'filetype']
         order_by = (

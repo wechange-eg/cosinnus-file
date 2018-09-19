@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from builtins import map
 import mimetypes
 import json
 import os
@@ -184,7 +185,7 @@ class FileListView(RequireReadMixin, FilterGroupMixin,
     def form_valid(self, form):
         if 'download' in self.request.POST:
             d = form.cleaned_data
-            ids = map(int, d.get('select', []))
+            ids = list(map(int, d.get('select', [])))
             files = FileEntry.objects.filter(id__in=ids)
             if not files:
                 messages.warning(self.request, _('No files selected.'))

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from builtins import object
 from django import forms
 from django.core.files.uploadedfile import UploadedFile
 
@@ -14,7 +15,7 @@ from cosinnus_file.models import FileEntry
 class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
                 BaseTaggableObjectForm):
 
-    class Meta:
+    class Meta(object):
         model = FileEntry
         fields = ('title', 'file', 'note')
 
