@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-18 22:50+0200\n"
-"PO-Revision-Date: 2018-06-17 21:25+0200\n"
+"PO-Revision-Date: 2018-09-30 18:48+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgid "Attachments"
 msgstr "Додатки"
 
 msgid "There was an error in one of the fields you entered. Please correct it before saving!"
-msgstr ""
+msgstr "В одному з полів, яке ви заповнили, виникла помилка. Будь ласка, виправте перед збереженням!"
 
 msgid "File title"
 msgstr "Назва файлу"
@@ -175,12 +175,10 @@ msgid "Move to another Folder"
 msgstr "Перемістити у іншу папку"
 
 msgid "by"
-msgstr ""
+msgstr "автором"
 
-#, fuzzy
-#| msgid "Created By"
 msgid "Created"
-msgstr "Автор"
+msgstr "Створено автором"
 
 msgid "Edit"
 msgstr "Редагувати"
