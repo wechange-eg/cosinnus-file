@@ -96,6 +96,7 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
 
 
 class FileIndexView(RequireReadMixin, RedirectView):
+    permanent = False
 
     def get_redirect_url(self, **kwargs):
         return group_aware_reverse('cosinnus:file:list',
