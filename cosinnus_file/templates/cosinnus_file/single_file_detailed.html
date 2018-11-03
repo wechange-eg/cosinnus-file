@@ -26,7 +26,7 @@
                 
                 <div class="media-body">
                     {% with creator=file.creator %}
-                        <span class="annotation">{% trans "by" %} 
+                        <span class="annotation mobile-hidden">{% trans "by" %} 
                             <a href="{{ creator|profile_url }}" >{{ creator|full_name }}</a>
                             {% if file.created %}
                                 &nbsp;&nbsp;
