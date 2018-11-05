@@ -487,7 +487,12 @@ def file_upload_inline(request, group):
             # pipe the file into the select2 JSON representation to be displayed as select2 pill 
             pill_id, pill_html = build_attachment_field_result('cosinnus_file.FileEntry', saved_file)
             if on_success == 'render_object':
-                result_list.append(render_to_string('cosinnus_file/single_file_detailed.html', {'file': saved_file, 'do_highlight': True}, context_instance=RequestContext(request)))
+                context = RequestContext(request).flatten()
+                context.update({
+                    'file': saved_file,
+                    'do_highlight': True
+                })
+                result_list.append(render_to_string('cosinnus_file/single_file_detailed.html', context))
             else:
                 result_list.append({'text': pill_html, 'id': pill_id})
         else:
