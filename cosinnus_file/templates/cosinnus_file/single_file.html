@@ -2,16 +2,16 @@
 
 {% with file=object %}
     <div class="app-files">
-        <div class="btn btn-emphasized w100">
+        <div class="btn btn-emphasized w100" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-{{ file.id }}" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>
             <ul class="media-list {% if no_space %}fine-space{% else %}large-space{% endif %}">
                 <li class="media">
-                    {% if file.is_image %}
-                        <a class="pull-left" href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-single-thumbnail" data-title="{{ file.title }}"><img src='{{ file.static_image_url_thumbnail }}' title='{{ file.title }}'></img></a>
-                    {% else %}
-	                    <a class="pull-left" href="#">
+                    <span class="pull-left">
+                        {% if file.is_image %}
+                            <img src='{{ file.static_image_url_thumbnail }}' title='{{ file.title }}'></img>
+                        {% else %}
                         	<i class="fa fa-file"></i>
-	                    </a>
-                    {% endif %}
+                        {% endif %}
+                    </span>
                     <div class="media-body {% if not hide_group_name %}no-vertical-padding{% endif %}">
                          <span class="annotation mobile-hidden">
                              {% with creator=file.creator %}
@@ -19,7 +19,7 @@
                              {% endwith %}
                              <span class="moment-data-date" data-date="{{ file.created|date:'c' }}"></span>
                          </span>
-                         <strong><a {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-single" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>{{ file.title }}</a></strong>
+                         <strong>{{ file.title }}</strong>
                          {% if not hide_group_name %}
 			                 <div class="group-annotation">
 	                             {% include 'cosinnus/group/group_label.html' with group=file.group %}
