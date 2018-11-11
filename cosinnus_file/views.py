@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from builtins import map
 import mimetypes
 import json
-import os
 
 from os.path import basename
 
@@ -46,10 +45,9 @@ import logging
 from django.utils.datastructures import MultiValueDict
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
-from django.template.context import RequestContext
 from django.utils.text import slugify
 from django.utils.crypto import get_random_string
-from cosinnus.models.tagged import get_tag_object_model, BaseTagObject
+from cosinnus.models.tagged import BaseTagObject
 logger = logging.getLogger('cosinnus')
 
 
@@ -483,16 +481,15 @@ def file_upload_inline(request, group):
             if make_private:
                 saved_file.media_tag.visibility = BaseTagObject.VISIBILITY_USER
                 saved_file.media_tag.save()
-            
+                
             # pipe the file into the select2 JSON representation to be displayed as select2 pill 
             pill_id, pill_html = build_attachment_field_result('cosinnus_file.FileEntry', saved_file)
             if on_success == 'render_object':
-                context = RequestContext(request).flatten()
-                context.update({
+                context = {
                     'file': saved_file,
                     'do_highlight': True
-                })
-                result_list.append(render_to_string('cosinnus_file/single_file_detailed.html', context))
+                }
+                result_list.append(render_to_string('cosinnus_file/single_file_detailed.html', context, request))
             else:
                 result_list.append({'text': pill_html, 'id': pill_id})
         else:
