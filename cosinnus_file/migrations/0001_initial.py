@@ -30,8 +30,8 @@ class Migration(migrations.Migration):
                 ('_filesize', models.IntegerField(default='0', null=True, blank=True)),
                 ('mimetype', models.CharField(default='', max_length=50, null=True, verbose_name='Path', blank=True)),
                 ('attached_objects', models.ManyToManyField(to='cosinnus.AttachedObject', null=True, blank=True)),
-                ('creator', models.ForeignKey(related_name='cosinnus_file_fileentry_set', verbose_name='Creator', to=settings.AUTH_USER_MODEL, null=True)),
-                ('group', models.ForeignKey(related_name='cosinnus_file_fileentry_set', verbose_name='Group', to='cosinnus.CosinnusGroup')),
+                ('creator', models.ForeignKey(related_name='cosinnus_file_fileentry_set', verbose_name='Creator', to=settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)),
+                ('group', models.ForeignKey(related_name='cosinnus_file_fileentry_set', verbose_name='Group', to='cosinnus.CosinnusGroup', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['-created', 'title'],
