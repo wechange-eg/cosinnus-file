@@ -119,7 +119,10 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
         if created and not self.is_container and not getattr(self, 'no_notification', False):
             # file was created
             cosinnus_notifications.file_created.send(sender=self, user=self.creator, obj=self, audience=get_user_model().objects.filter(id__in=self.group.members).exclude(id=self.creator.pk))
-        
+        # sanity check for files that have gotten the image mimetype but aren't readable
+        if self.is_image and not self.static_image_url():
+            self.mimetype = 'application/octet-stream' # mark as not image
+            self.save(update_fields=['mimetype'])
 
     def get_absolute_url(self):
         kwargs = {'group': self.group,
