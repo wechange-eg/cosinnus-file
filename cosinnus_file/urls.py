@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 from django.conf.urls import url
 from cosinnus_file import views
 
+app_name = 'file'
+
 cosinnus_root_patterns = []
 
 
