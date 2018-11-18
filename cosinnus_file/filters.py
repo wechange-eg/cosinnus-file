@@ -6,7 +6,8 @@ Created on 05.08.2014
 from builtins import object
 from django.utils.translation import ugettext_lazy as _
 
-from cosinnus.views.mixins.filters import CosinnusFilterSet
+from cosinnus.views.mixins.filters import CosinnusFilterSet,\
+    CosinnusOrderingFilter
 from cosinnus.forms.filters import AllObjectsFilter, SelectCreatorWidget,\
     DropdownChoiceWidget
 from cosinnus_file.models import FileEntry
@@ -46,19 +47,26 @@ class FileTypeFilter(ChoiceFilter):
 
 class FileFilter(CosinnusFilterSet):
     creator = AllObjectsFilter(label=_('Created By'), widget=SelectCreatorWidget)
-    filetype = FileTypeFilter(label=_('File Type'), name="_sourcefilename", choices=FILE_TYPE_FILTER_CHOICES, widget=DropdownChoiceWidget)
+    filetype = FileTypeFilter(label=_('File Type'), field_name="_sourcefilename", choices=FILE_TYPE_FILTER_CHOICES, widget=DropdownChoiceWidget)
     
-    class Meta(object):
-        model = FileEntry
-        fields = ['creator', 'filetype']
-        order_by = (
+    o = CosinnusOrderingFilter(
+        fields=(
+            ('created', 'created'),
+            ('_filesize', 'filesize'),
+            ('title', 'title'),
+        ),
+        choices=(
             ('title', _('File Name')),
             ('-title', _('File Name (descending)')),
             ('-created', _('Newest Created')),
-            ('_filesize', _('Smallest Files')),
-            ('-_filesize', _('Largest Files')),
-        )
+            ('filesize', _('Smallest Files')),
+            ('-filesize', _('Largest Files')),
+        ),
+        default='-title',
+        widget=DropdownChoiceWidget
+    )
     
-    def get_order_by(self, order_value):
-        return super(FileFilter, self).get_order_by(order_value)
+    class Meta(object):
+        model = FileEntry
+        fields = ['creator', 'filetype', 'o']
     
