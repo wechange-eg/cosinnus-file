@@ -37,7 +37,7 @@
                             {% endif %}   
                         </span>
                     {% endwith %}
-                    <a {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-list" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>
+                    <a> {# leave empty, will open the lightbox defined above #}
                         {{ file.title }}
                     </a>
                 </div>
