@@ -23,11 +23,9 @@
 
 {% block content %}
     
-    {% comment %}  
 	{% trans "Delete" as btn_label %}
-    {% captureas btn_action %}this.form.action=''{% endcaptureas %}
+    {% captureas btn_action %}$.cosinnus.Feedback.cosinnus_delete_element($.cosinnus.getListOfCheckedItems());{% endcaptureas %}
     {% include 'cosinnus/common/checkbox/checkbox_action_button.html' with label=btn_label icon="fa-eraser" action=btn_action %}
-    {% endcomment %}
 	
 	{% trans "Move" as btn_label %}
     {% captureas btn_action %}$.cosinnus.Feedback.cosinnus_move_element($.cosinnus.getListOfCheckedItems(), {{ current_folder.id }});{% endcaptureas %}
@@ -107,7 +105,9 @@
 	
     <script type="text/javascript">
         var cosinnus_move_element_object_url = "{% group_url 'cosinnus:file:move-element' group=group %}";
+        var cosinnus_delete_element_object_url = "{% group_url 'cosinnus:file:delete-element' group=group %}";
     </script>
     {% include 'cosinnus/hierarchy/move_element_modal.html' %}
+    {% include 'cosinnus/common/delete_element_modal.html' %}
     
 {% endblock content %}

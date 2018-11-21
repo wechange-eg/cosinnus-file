@@ -50,6 +50,7 @@ from django.template.context import RequestContext
 from django.utils.text import slugify
 from django.utils.crypto import get_random_string
 from cosinnus.models.tagged import get_tag_object_model, BaseTagObject
+from cosinnus.views.common import DeleteElementView
 logger = logging.getLogger('cosinnus')
 
 
@@ -371,6 +372,12 @@ class FileMoveElementView(MoveElementView):
     model = FileEntry
 
 move_element_view = FileMoveElementView.as_view()
+
+
+class FileDeleteElementView(DeleteElementView):
+    model = FileEntry
+
+delete_element_view = FileDeleteElementView.as_view()
 
 
 def _create_folders_for_path_string(base_folder_object, relative_path_string):
