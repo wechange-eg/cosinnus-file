@@ -11,6 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 
 """ Signal definitions """
 file_created = dispatch.Signal(providing_args=["user", "obj", "audience"])
+followed_group_file_created = dispatch.Signal(providing_args=["user", "obj", "audience"])
 
 
 """ Notification definitions.
@@ -55,5 +56,24 @@ notifications = {
             'image_url': 'static_image_url_thumbnail',
         },
     },  
-                    
+    'followed_group_file_created': {
+        'label': _('A user uploaded a new file in a team you are following'), 
+        'signals': [followed_group_file_created],
+        'multi_preference_set': 'MULTI_followed_object_notification',
+        'supercedes_notifications': ['file_created'],
+        'requires_object_state_check': 'group.is_user_following',
+        'hidden': True,
+        
+        'is_html': True,
+        'snippet_type': 'file',
+        'event_text': _('New file by %(sender_name)s in %(team_name)s (which you follow)'),
+        'notification_text': _('%(sender_name)s created a new file in %(team_name)s (which you follow)'),
+        'subject_text': _('A new file: "%(object_name)s" was created in %(team_name)s (which you follow).'),
+        'data_attributes': {
+            'object_name': 'title', 
+            'object_url': 'get_absolute_url', 
+            'object_text': 'note',
+            'image_url': 'static_image_url_thumbnail',
+        },
+    },         
 }
