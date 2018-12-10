@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-18 22:50+0200\n"
+"POT-Creation-Date: 2018-12-10 12:52+0100\n"
 "PO-Revision-Date: 2018-07-22 13:29+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
@@ -38,6 +38,26 @@ msgstr "%(sender_name)s hat eine neue Datei hochgeladen"
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
+msgstr "Eine neue Datei: \"%(object_name)s\" wurde hochgeladen in %(team_name)s."
+
+#, fuzzy
+#| msgid "A user uploaded a new file"
+msgid "A user uploaded a new file in a team you are following"
+msgstr "Ein Mitglied hat eine neue Datei hochgeladen"
+
+#, fuzzy, python-format
+#| msgid "New file by %(sender_name)s"
+msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
+msgstr "Neue Datei von %(sender_name)s"
+
+#, fuzzy, python-format
+#| msgid "%(sender_name)s created a new file"
+msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
+msgstr "%(sender_name)s hat eine neue Datei hochgeladen"
+
+#, fuzzy, python-format
+#| msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
+msgid "A new file: \"%(object_name)s\" was created in %(team_name)s (which you follow)."
 msgstr "Eine neue Datei: \"%(object_name)s\" wurde hochgeladen in %(team_name)s."
 
 msgid "Latest Files"
@@ -135,6 +155,11 @@ msgstr "Datei löschen"
 
 msgid "Download"
 msgstr "Herunterladen"
+
+#, fuzzy
+#| msgid "More"
+msgid "Move"
+msgstr "Mehr"
 
 msgid "Download this folder"
 msgstr "Diesen Ordner herunterladen"
