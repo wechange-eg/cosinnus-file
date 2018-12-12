@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: wechange RU\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 12:52+0100\n"
-"PO-Revision-Date: 2018-09-26 15:10+0200\n"
+"PO-Revision-Date: 2018-12-11 19:01+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Language: ru\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.0.6\n"
 
 msgid "Files"
 msgstr "Файлы"
@@ -39,25 +39,20 @@ msgstr "%(sender_name)s создал новый файл"
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
 msgstr "Новый файл: \"%(object_name)s\" был создан в %(team_name)s."
 
-#, fuzzy
-#| msgid "A user uploaded a new file"
 msgid "A user uploaded a new file in a team you are following"
-msgstr "Пользователь загрузил новый файл"
+msgstr "Пользователь загрузил новый файл в команду, за которой Вы следите"
 
-#, fuzzy, python-format
-#| msgid "New file by %(sender_name)s"
+#, python-format
 msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-msgstr "Новый файл от %(sender_name)s"
+msgstr "Новый файл от %(sender_name)s в %(team_name)s (за которой Вы следите)"
 
-#, fuzzy, python-format
-#| msgid "%(sender_name)s created a new file"
+#, python-format
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
-msgstr "%(sender_name)s создал новый файл"
+msgstr "%(sender_name)s создал новый файл в %(team_name)s (за которой Вы следите)"
 
-#, fuzzy, python-format
-#| msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
+#, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s (which you follow)."
-msgstr "Новый файл: \"%(object_name)s\" был создан в %(team_name)s."
+msgstr "Новый файл: \"%(object_name)s\" был создан в %(team_name)s (за которой Вы следите)."
 
 msgid "Latest Files"
 msgstr "Последние файлы"
@@ -78,7 +73,7 @@ msgid "Videos"
 msgstr "Видео"
 
 msgid "Created By"
-msgstr "Создатель: "
+msgstr "Создатель:"
 
 msgid "File Type"
 msgstr "Тип файла"

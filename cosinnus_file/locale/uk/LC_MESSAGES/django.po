@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-10 12:52+0100\n"
-"PO-Revision-Date: 2018-09-30 18:48+0200\n"
+"PO-Revision-Date: 2018-12-12 14:07+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Language: uk\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 1.8.4\n"
 
 msgid "Files"
 msgstr "Файли"
@@ -40,25 +40,20 @@ msgstr "%(sender_name)s створив новий файл"
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
 msgstr "Новий файл: \"%(object_name)s\" був створений в %(team_name)s."
 
-#, fuzzy
-#| msgid "A user uploaded a new file"
 msgid "A user uploaded a new file in a team you are following"
-msgstr "Користувач завантажив/-ла новий файл"
+msgstr "Користувач завантажив/-ла новий файл у команду, яку Ви відстежуєте"
 
-#, fuzzy, python-format
-#| msgid "New file by %(sender_name)s"
+#, python-format
 msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-msgstr "Новий файл від %(sender_name)s"
+msgstr "Новий файл від %(sender_name)s в %(team_name)s (яку Ви відстежуєте)"
 
-#, fuzzy, python-format
-#| msgid "%(sender_name)s created a new file"
+#, python-format
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
-msgstr "%(sender_name)s створив новий файл"
+msgstr "%(sender_name)s створив новий файл в %(team_name)s (яку Ви відстежуєте)"
 
-#, fuzzy, python-format
-#| msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
+#, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s (which you follow)."
-msgstr "Новий файл: \"%(object_name)s\" був створений в %(team_name)s."
+msgstr "Новий файл: \"%(object_name)s\" був створений в %(team_name)s (яку Ви відстежуєте)."
 
 msgid "Latest Files"
 msgstr "Останні файли"
@@ -155,10 +150,8 @@ msgstr "Видалити файл"
 msgid "Download"
 msgstr "Завантажити"
 
-#, fuzzy
-#| msgid "More"
 msgid "Move"
-msgstr "Більше"
+msgstr "Перемістити"
 
 msgid "Download this folder"
 msgstr "Завантажити цю папку"
