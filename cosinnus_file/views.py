@@ -37,14 +37,15 @@ from cosinnus.views.hierarchy import MoveElementView
 from django.http.response import HttpResponseNotAllowed
 from cosinnus.utils.http import JSONResponse
 from cosinnus.core.decorators.views import get_group_for_request
-from cosinnus.utils.permissions import check_group_create_objects_access
+from cosinnus.utils.permissions import check_group_create_objects_access,\
+    check_object_read_access
 from cosinnus.utils.functions import clean_single_line_text
 from cosinnus.views.attached_object import build_attachment_field_result
 
 
 import logging
 from django.utils.datastructures import MultiValueDict
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.template.context import RequestContext
 from django.utils.text import slugify
@@ -315,6 +316,11 @@ class FolderDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
         Mime type is guessed based on the file.
         
         The /download/ and /save/ urls point to this view, /save/ has force_download == True
+        
+        This view also accepts a GET param list `files` with file ids, and will further filter
+        the download to only those files in the list. 
+        Example: /download/?files=123&files=377
+        
     '''
     model = FileEntry
     
@@ -335,10 +341,23 @@ class FolderDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
         
         base_path = folder.path
         files = []
+        
+        file_filter_ids = [int(fileid) for fileid in self.request.GET.getlist('files')]
+        
         # for all files below this folder collect tuples of (filepath on disc, relative file path, )
         for sub_file in FileEntry.objects.filter(group=self.group, path__startswith=base_path, is_container=False):
             if not sub_file.file or not sub_file.file.path:
                 continue
+            # filter for specific files
+            if file_filter_ids and not sub_file.id in file_filter_ids:
+                continue
+            # if only one file is requested, redirect to the single file download view so we don't send a silly 1-file zip
+            if len(file_filter_ids) == 1 and file_filter_ids[0] == sub_file.id:
+                return redirect(group_aware_reverse('cosinnus:file:save', kwargs={'group': sub_file.group, 'slug': sub_file.slug}))
+            # check read access for each file. expensive, but secure
+            if not check_object_read_access(sub_file, self.request.user):
+                continue
+            
             zip_path = sub_file.path.replace(folder.path, '', 1) + sub_file._sourcefilename
             files.append([sub_file.file.path, zip_path])
         

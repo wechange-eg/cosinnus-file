@@ -4,10 +4,10 @@
     <div class="item_checkbox_element btn btn-{% if do_highlight %}extra-{% endif %}emphasized w100" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-list" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>
         <ul class="media-list">
             <li class="media">
-                {% if user|has_write_access:file %}
-	                {% captureas input_name %}{{ file.id }}{% endcaptureas %}
-	                {% include 'cosinnus/common/checkbox/checkbox_overlay_box.html' with input_name=input_name %}
-                {% endif %}
+                
+                {% comment %} File-objects only: we do NOT check for write access here, as we want to enable downloads for all users {% endcomment %}
+                {% captureas input_name %}{{ file.id }}{% endcaptureas %}
+                {% include 'cosinnus/common/checkbox/checkbox_overlay_box.html' with input_name=input_name %}
                 
                 <span class="pull-left">
                     {% if file.is_image %}

@@ -31,6 +31,11 @@
     {% captureas btn_action %}$.cosinnus.Feedback.cosinnus_move_element($.cosinnus.getListOfCheckedItems(), {{ current_folder.id }});{% endcaptureas %}
     {% include 'cosinnus/common/checkbox/checkbox_action_button.html' with label=btn_label icon="fa-arrows" action=btn_action %}
     
+    {% trans "Download" as btn_label %}
+    {% captureas btn_action %}window.location.href = 'download/?files=' + $.cosinnus.getListOfCheckedItems().join('&files=');{% endcaptureas %}
+    {% include 'cosinnus/common/checkbox/checkbox_action_button.html' with label=btn_label icon="fa-download" action=btn_action %}
+    
+    
     {% include 'cosinnus/common/checkbox/checkbox_mark_all_buttons.html' %}
     <div class="clearfix"></div>
     
