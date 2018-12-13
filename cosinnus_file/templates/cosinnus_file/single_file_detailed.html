@@ -1,9 +1,14 @@
 {% load i18n static cosinnus_tags widget_tweaks thumbnail %}
 
 <div id="cosinnus_list_element_{{ file.id }}" class="fadedown {% if not forloop.last %}regular-space{% endif %}">
-    <div class="btn btn-{% if do_highlight %}extra-{% endif %}emphasized w100" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-list" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>
+    <div class="item_checkbox_element btn btn-{% if do_highlight %}extra-{% endif %}emphasized w100" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-list" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>
         <ul class="media-list">
             <li class="media">
+                
+                {% comment %} File-objects only: we do NOT check for write access here, as we want to enable downloads for all users {% endcomment %}
+                {% captureas input_name %}{{ file.id }}{% endcaptureas %}
+                {% include 'cosinnus/common/checkbox/checkbox_overlay_box.html' with input_name=input_name %}
+                
                 <span class="pull-left">
                     {% if file.is_image %}
                         <a class="pull-left" ><img src='{{ file.static_image_url_thumbnail }}' title='{{ file.title }}'></img></a>
@@ -14,15 +19,16 @@
                 <a class="pull-right fadedown-clickarea" href="#">
                     <i class="fa fa-chevron-down"></i>
                 </a>
-                {% if user|can_create_objects_in:file.group %}
-                    <a class="pull-right" href="#" title="{% trans "Move to another Folder" %}" onclick="$.cosinnus.Feedback.cosinnus_move_element({{ file.id }}, {{ current_folder.id }});">
-                        <i class="fa fa-arrows"></i>
-                    </a>
-                {% endif %}
                 
                 <a class="pull-right" href="{% group_url 'cosinnus:file:save' group=file.group slug=file.slug %}">
                     <i class="fa fa-download"></i>
                 </a>
+                
+                {% if user|has_write_access:file %}
+                    <a class="pull-right" href="#" title="{% trans "Move to another Folder" %}" onclick="$.cosinnus.Feedback.cosinnus_move_element(['{{ file.id }}'], {{ current_folder.id }});">
+                        <i class="fa fa-arrows"></i>
+                    </a>
+                {% endif %}
                 
                 <div class="media-body">
                     {% with creator=file.creator %}
@@ -37,7 +43,7 @@
                             {% endif %}   
                         </span>
                     {% endwith %}
-                    <a {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-list" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>
+                    <a> {# leave empty, will open the lightbox defined above #}
                         {{ file.title }}
                     </a>
                 </div>
@@ -47,10 +53,6 @@
     
     <div style="display: none;"> <!-- fadedown wrapper -->
 	    {% include 'cosinnus/media_tags_readonly.html' with object=file %}
-	    
-	    {% if file.is_image %}
-	         <img class="w100" src='{{ file.static_image_url }}' title='{{ file.title }}'></img>
-	    {% endif %}
 	    
 	    {% if file.note %}
 	    <div type="button" class="btn btn-default w100 large-space">

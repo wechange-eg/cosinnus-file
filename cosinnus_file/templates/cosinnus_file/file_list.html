@@ -22,6 +22,24 @@
 {% endblock leftnav %}
 
 {% block content %}
+    
+	{% trans "Delete" as btn_label %}
+    {% captureas btn_action %}$.cosinnus.Feedback.cosinnus_delete_element($.cosinnus.getListOfCheckedItems());{% endcaptureas %}
+    {% include 'cosinnus/common/checkbox/checkbox_action_button.html' with label=btn_label icon="fa-eraser" action=btn_action %}
+	
+	{% trans "Move" as btn_label %}
+    {% captureas btn_action %}$.cosinnus.Feedback.cosinnus_move_element($.cosinnus.getListOfCheckedItems(), {{ current_folder.id }});{% endcaptureas %}
+    {% include 'cosinnus/common/checkbox/checkbox_action_button.html' with label=btn_label icon="fa-arrows" action=btn_action %}
+    
+    {% trans "Download" as btn_label %}
+    {% captureas btn_action %}window.location.href = 'download/?files=' + $.cosinnus.getListOfCheckedItems().join('&files=');{% endcaptureas %}
+    {% include 'cosinnus/common/checkbox/checkbox_action_button.html' with label=btn_label icon="fa-download" action=btn_action %}
+    
+    
+    {% include 'cosinnus/common/checkbox/checkbox_mark_all_buttons.html' %}
+    <div class="clearfix"></div>
+    
+
 	<!-- a box with semi transparent background -->
 	<div class="content-box">
 	
@@ -92,7 +110,9 @@
 	
     <script type="text/javascript">
         var cosinnus_move_element_object_url = "{% group_url 'cosinnus:file:move-element' group=group %}";
+        var cosinnus_delete_element_object_url = "{% group_url 'cosinnus:file:delete-element' group=group %}";
     </script>
     {% include 'cosinnus/hierarchy/move_element_modal.html' %}
+    {% include 'cosinnus/common/delete_element_modal.html' %}
     
 {% endblock content %}

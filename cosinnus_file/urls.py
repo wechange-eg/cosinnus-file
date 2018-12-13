@@ -13,6 +13,7 @@ cosinnus_group_patterns = [
     url(r'^list/$', views.file_hybrid_list_view, name='list'),
     url(r'^list/download/$', views.folder_download_view, name='download-folder'),
     url(r'^list/move_element/$', views.move_element_view, name='move-element'),
+    url(r'^list/delete_element/$', views.delete_element_view, name='delete-element'),
     url(r'^list/(?P<slug>[^/]+)/$', views.file_hybrid_list_view, name='list'),
     url(r'^list/(?P<slug>[^/]+)/download/$', views.folder_download_view, name='download-folder'),
     url(r'^upload_inline/$', views.file_upload_inline, name='upload-inline'),
