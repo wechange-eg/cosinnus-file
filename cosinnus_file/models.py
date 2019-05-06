@@ -75,6 +75,18 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
     
     image_attr_name = 'file'
     
+    timeline_template = 'cosinnus_file/v2/timeline_item.html'
+    
+    class Meta(BaseTaggableObjectModel.Meta):
+        ordering = ['-created', 'title']
+        verbose_name = _('File')
+        verbose_name_plural = _('Files')
+
+    def __init__(self, *args, **kwargs):
+        super(FileEntry, self).__init__(*args, **kwargs)
+        self._meta.get_field('creator').verbose_name = _('Uploaded by')
+        self._meta.get_field('created').verbose_name = _('Uploaded on')
+        
     @property
     def filesize(self):
         if not self.file or not self._filesize:
@@ -90,17 +102,6 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
     @property
     def sourcefilename(self):
         return self._sourcefilename
-
-
-    class Meta(BaseTaggableObjectModel.Meta):
-        ordering = ['-created', 'title']
-        verbose_name = _('File')
-        verbose_name_plural = _('Files')
-
-    def __init__(self, *args, **kwargs):
-        super(FileEntry, self).__init__(*args, **kwargs)
-        self._meta.get_field('creator').verbose_name = _('Uploaded by')
-        self._meta.get_field('created').verbose_name = _('Uploaded on')
 
     def __str__(self):
         return '%s (%s%s)' % (self.title, self.path, '' if self.is_container else self.sourcefilename)
