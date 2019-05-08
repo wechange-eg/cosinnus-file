@@ -1,7 +1,23 @@
+{% extends 'cosinnus/v2/dashboard/timeline_item_base.html' %}
 {% load i18n cosinnus_tags %}
 
-<div class="timeline-item timeline-item-file">
-	Timeline Item: File.
-	<br/>
-	{{ item.title }}
-</div>
+{% block container_class %}timeline-item-file{% endblock %}
+
+{% block creation_label %}{% trans "has uploaded a file" %}{% endblock %}
+
+{% block icon %}fa-file{% endblock %}
+
+{% block title %}{{ item.title }}{% endblock %}
+{% block subtitle %}
+	{% if file.is_image %}
+		TODO: image preview
+	{% else %}
+		TODO: file download symbol
+	{% endif %}
+{% endblock %}
+
+{% block body %}{% endblock %}
+
+{% comment %} TODO: don't just hide tag block, find solution for extra padding if no tags present! {% endcomment %}
+{% block tags %}{% endblock %}
+{% block upper_seperator %}{% endblock %}
