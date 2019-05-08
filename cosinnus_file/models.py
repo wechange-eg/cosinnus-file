@@ -75,7 +75,7 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
     
     image_attr_name = 'file'
     
-    timeline_template = 'cosinnus_file/v2/timeline_item.html'
+    timeline_template = 'cosinnus_file/v2/dashboard/timeline_item.html'
     
     class Meta(BaseTaggableObjectModel.Meta):
         ordering = ['-created', 'title']
