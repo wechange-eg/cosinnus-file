@@ -17,12 +17,13 @@ class FileEntryRenderer(HierarchicalListCreateViewMixin, BaseRenderer):
     model = FileEntry
 
     template = 'cosinnus_file/attached_files.html'
+    template_v2 = 'cosinnus_file/v2/attached_files.html'
     template_single = 'cosinnus_file/single_file.html'
     template_list = 'cosinnus_file/file_list_standalone.html'
     
     
     @classmethod
-    def render(cls, context, myobjs):
+    def render(cls, context, myobjs, **kwargs):
         files = []
         images = []
         for fileobj in myobjs:
@@ -30,7 +31,7 @@ class FileEntryRenderer(HierarchicalListCreateViewMixin, BaseRenderer):
                 images.append(fileobj)
             else:
                 files.append(fileobj)
-        return super(FileEntryRenderer, cls).render(context, files=files, images=images, all_files=files+images)
+        return super(FileEntryRenderer, cls).render(context, files=files, images=images, all_files=files+images, **kwargs)
     
     
     @classmethod

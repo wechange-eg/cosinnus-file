@@ -1,0 +1,8 @@
+{% load cosinnus_tags %}
+
+{% for item in all_files %}
+	{% group_url 'cosinnus:file:download' group=item.group slug=item.slug as item_url %}	
+	{% group_url 'cosinnus:file:save' group=item.group slug=item.slug as download_url %}
+	
+	{% include 'cosinnus/v2/dashboard/timeline_attached_item.html' with text=item.title subtext=item.creator|full_name icon="fa-file" url=item_url download_url=download_url %}
+{% endfor %}
