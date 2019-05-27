@@ -98,7 +98,13 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
         if not self.file or not self.mimetype:
             return False
         return self.mimetype.startswith('image/') and not self.mimetype == 'image/pdf'
-
+    
+    @property
+    def wrap_self_attached_images(self):
+        """ A wrapper dict that has the file itself as property `attached_images`.
+            Useful for reusing attached image templates. """
+        return {'attached_images': [self]} if self.is_image else {}
+    
     @property
     def sourcefilename(self):
         return self._sourcefilename

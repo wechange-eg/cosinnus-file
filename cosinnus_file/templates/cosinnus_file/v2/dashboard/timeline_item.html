@@ -4,19 +4,25 @@
 {% block container_class %}timeline-item-file{% endblock %}
 
 {% block creation_label %}{% trans "uploaded a file" %}{% endblock %}
+{% block icon_class %}icon-extra-padded{% endblock %} {% comment %} Set if there is a subtitle row! {% endcomment %}
 
 {% block icon %}fa-file{% endblock %}
 
-{% block title %}{{ item.title }}{% endblock %}
-{% block subtitle %}
-	{% if file.is_image %}
-		TODO: image preview
-	{% else %}
-		TODO: file download symbol
-	{% endif %}
-{% endblock %}
+{% block title_frame %}{% endblock %}
+{% block subtitle %}{% endblock %}
 
-{% block body %}{% endblock %}
+{% block body_frame %}
+	{% if item.is_image %}
+		<div class="attachments attached-images">
+			{% include 'cosinnus/v2/dashboard/timeline_attached_image_gallery.html' with object=item.wrap_self_attached_images max_images=3 %}
+		</div>
+	{% endif %}
+
+	{% group_url 'cosinnus:file:download' group=item.group slug=item.slug as item_url %}	
+	{% group_url 'cosinnus:file:save' group=item.group slug=item.slug as download_url %}
+	
+	{% include 'cosinnus/v2/dashboard/timeline_attached_item.html' with text=item.title subtext=item.creator|full_name icon="fa-file" url=item_url download_url=download_url %}
+{% endblock %}
 
 {% block edit_button_frame %}{% endblock %}
 
