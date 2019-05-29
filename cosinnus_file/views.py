@@ -22,7 +22,7 @@ from cosinnus.templatetags.cosinnus_tags import add_current_params
 from cosinnus.views.mixins.group import (RequireReadMixin, RequireWriteMixin,
     FilterGroupMixin, GroupFormKwargsMixin, RequireReadWriteHybridMixin)
 from cosinnus.views.mixins.tagged import HierarchyTreeMixin, HierarchyPathMixin,\
-    HierarchyDeleteMixin
+    HierarchyDeleteMixin, RecordLastVisitedMixin
 from cosinnus.views.mixins.user import UserFormKwargsMixin
 
 from cosinnus_file.forms import FileForm, FileListForm
@@ -252,7 +252,7 @@ file_update_view = FileUpdateView.as_view()
 
 
 
-class FileDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
+class FileDownloadView(RequireReadMixin, RecordLastVisitedMixin, FilterGroupMixin, DetailView):
     '''
         Lets the user download a FileEntry file (file is determined by slug),
         while the user never gets to see the server file path.
@@ -301,7 +301,10 @@ class FileDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
                     # For others like Firefox, we follow RFC2231 (encoding extension in HTTP headers).
                     filename_header = 'filename*=UTF-8\'\'%s' % clean_filename(filename)
                 response['Content-Disposition'] = 'attachment; ' + filename_header
-        
+            
+            # manually marking visited from `RecordLastVisitedMixin`
+            self.mark_visited()
+            
         return response
     
     
