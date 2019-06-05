@@ -24,5 +24,6 @@
 	{% include 'cosinnus/v2/dashboard/timeline_attached_item.html' with text=item.title subtext=item.creator|full_name icon="fa-file" url=item_url download_url=download_url %}
 {% endblock %}
 
+{% block delete_button_frame %}{% endblock %}
 {% block edit_button_frame %}{% endblock %}
 
