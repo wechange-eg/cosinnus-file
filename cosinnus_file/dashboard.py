@@ -57,4 +57,4 @@ class Latest(DashboardWidget):
             return ''
         if self.config.group:
             return group_aware_reverse('cosinnus:file:list', kwargs={'group': self.config.group}) + '?o=-created'
-        return '#'
+        return ''
