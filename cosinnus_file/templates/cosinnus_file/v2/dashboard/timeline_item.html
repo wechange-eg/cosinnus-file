@@ -3,7 +3,15 @@
 
 {% block container_class %}timeline-item-file{% endblock %}
 
-{% block creation_label %}{% trans "uploaded a file" context "This appears next to new items in the timeline, as in '<Jane> created a new item'" %}{% endblock %}
+{% block creation_label %}
+	{% if item.creator == user %}
+		{% trans "You uploaded a file" %}
+	{% else %}
+		{% trans "uploaded a file" context "This appears next to new items in the timeline, as in '<Jane> created a new item'" %}
+	{% endif %}
+{% endblock %}
+
+
 {% block icon_class %}icon-extra-padded{% endblock %} {% comment %} Set if there is a subtitle row! {% endcomment %}
 
 {% block icon %}fa-file{% endblock %}
