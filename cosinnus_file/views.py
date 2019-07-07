@@ -354,8 +354,9 @@ class FolderDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
             if file_filter_ids and not sub_file.id in file_filter_ids:
                 continue
             # if only one file is requested, redirect to the single file download view so we don't send a silly 1-file zip
-            if len(file_filter_ids) == 1 and file_filter_ids[0] == sub_file.id:
-                return redirect(group_aware_reverse('cosinnus:file:save', kwargs={'group': sub_file.group, 'slug': sub_file.slug}))
+            # appearently, this is really confusing for users, so disable this and always download a folder!
+            #if len(file_filter_ids) == 1 and file_filter_ids[0] == sub_file.id:
+            #    return redirect(group_aware_reverse('cosinnus:file:save', kwargs={'group': sub_file.group, 'slug': sub_file.slug}))
             # check read access for each file. expensive, but secure
             if not check_object_read_access(sub_file, self.request.user):
                 continue
