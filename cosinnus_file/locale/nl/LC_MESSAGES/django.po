@@ -3,161 +3,161 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-03 17:47+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2019-09-05 13:50+0200\n"
+"PO-Revision-Date: 2019-09-19 22:32+0200\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.2.3\n"
 
 msgid "Files"
-msgstr ""
+msgstr "Bestanden"
 
 msgctxt "the_app"
 msgid "file"
-msgstr ""
+msgstr "bestand"
 
 msgid "A user uploaded a new file"
-msgstr ""
+msgstr "Een gebruiker heeft een nieuw bestand geüpload"
 
 #, python-format
 msgid "New file by %(sender_name)s"
-msgstr ""
+msgstr "Nieuw bestand door %(sender_name)s"
 
 #, python-format
 msgid "%(sender_name)s created a new file"
-msgstr ""
+msgstr "%(sender_name)s heeft een nieuw bestand aangemaakt"
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
-msgstr ""
+msgstr "Een nieuw bestand: “%(object_name)s” is aangemaakt in %(team_name)s."
 
 msgid "A user uploaded a new file in a team you are following"
-msgstr ""
+msgstr "Een gebruiker heeft een nieuw bestand geüpload in een team die u volgt"
 
 #, python-format
 msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-msgstr ""
+msgstr "Nieuw bestand door %(sender_name)s in %(team_name)s (die u volgt)"
 
 #, python-format
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
-msgstr ""
+msgstr "%(sender_name)s heef teen nieuw bestand aangemaakt in %(team_name)s (die u volgt)"
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s (which you follow)."
-msgstr ""
+msgstr "Een nieuw bestand: “%(object_name)s” is aangemaakt in %(team_name)s (die u volgt)."
 
 msgid "Latest Files"
-msgstr ""
+msgstr "Nieuwste Bestanden"
 
 msgid "No files"
-msgstr ""
+msgstr "Geen bestanden"
 
 msgid "Pictures"
-msgstr ""
+msgstr "Foto’s"
 
 msgid "Documents"
-msgstr ""
+msgstr "Documenten"
 
 msgid "Audio Files"
-msgstr ""
+msgstr "Audio bestanden"
 
 msgid "Videos"
-msgstr ""
+msgstr "Video’s"
 
 msgid "Created By"
-msgstr ""
+msgstr "Aangemaakt door"
 
 msgid "File Type"
-msgstr ""
+msgstr "Bestand Type"
 
 msgid "File Name"
-msgstr ""
+msgstr "Bestandsnaam"
 
 msgid "File Name (descending)"
-msgstr ""
+msgstr "Bestandsnaam (aflopend)"
 
 msgid "Newest Created"
-msgstr ""
+msgstr "Nieuwst aangemaakte"
 
 msgid "Smallest Files"
-msgstr ""
+msgstr "Kleinste Bestanden"
 
 msgid "Largest Files"
-msgstr ""
+msgstr "Grootste Bestanden"
 
 msgid "Note"
-msgstr ""
+msgstr "Opmerking"
 
 msgid "File"
-msgstr ""
+msgstr "Bestand"
 
 msgid "Path"
-msgstr ""
+msgstr "Pad"
 
 msgid "Uploaded by"
-msgstr ""
+msgstr "Geüpload door"
 
 msgid "Uploaded on"
-msgstr ""
+msgstr "Geüpload op"
 
 msgid "No files selected."
-msgstr ""
+msgstr "Geen bestanden geselecteerd."
 
 msgctxt "special_folder_type"
 msgid "Attachments"
-msgstr ""
+msgstr "Bijlagen"
 
 msgid "There was an error in one of the fields you entered. Please correct it before saving!"
-msgstr ""
+msgstr "Er is een fout opgetreden in een van de velden die u hebt ingevoerd. Corrigeer dit voordat u opslaat!"
 
 msgid "File title"
-msgstr ""
+msgstr "Bestandstitel"
 
 msgid "Description"
-msgstr ""
+msgstr "Beschrijving"
 
 msgid "File description"
-msgstr ""
+msgstr "Bestandsbeschrijving"
 
 msgid "Preview"
-msgstr ""
+msgstr "Preview"
 
 msgid "Original filename"
-msgstr ""
+msgstr "Originele bestandsnaam"
 
 msgid "Save"
-msgstr ""
+msgstr "Opslaan"
 
 msgid "Delete"
-msgstr ""
+msgstr "Verwijder"
 
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
-msgstr ""
+msgstr "Weet u zeker dat u „%(title)s“ wilt verwijderen?"
 
 msgid "Delete file"
-msgstr ""
+msgstr "Verwijder bestand"
 
 msgid "Download"
-msgstr ""
+msgstr "Download"
 
 msgid "Move"
-msgstr ""
+msgstr "Verplaats"
 
 msgid "Download this folder"
-msgstr ""
+msgstr "Download deze map"
 
 msgid "No files have been uploaded yet."
-msgstr ""
+msgstr "Nog geen bestanden geüpload."
 
 #, python-format
 msgid ""
@@ -173,83 +173,94 @@ msgid ""
 "\n"
 "Your %(site_name)s Team."
 msgstr ""
+"Hallo %(receiver_name)s,\n"
+"\n"
+"een nieuw bestand “%(object_name)s” in %(team_name)s is geüpload door %(sender_name)s. \n"
+"\n"
+"U kunt hem vinden door de volgende link te volgen: %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(Volg deze link om uw notificatie voorkeuren te wijzigen: %(notification_settings_url)s )\n"
+"\n"
+"Jouw %(site_name)s Team."
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
-msgstr ""
+msgstr "Een nieuw bestand: “%(object_name)s” is geüpload in %(team_name)s."
 
 msgid "Move to another Folder"
-msgstr ""
+msgstr "Verplaats naar andere Map"
 
 msgid "by"
-msgstr ""
+msgstr "door"
 
 msgid "Created"
-msgstr ""
+msgstr "Aangemaakt"
 
 msgid "Edit"
-msgstr ""
+msgstr "Gewijzigd"
 
 msgid "You uploaded a file"
-msgstr ""
+msgstr "U heeft een bestand geüpload"
 
 msgctxt "This appears next to new items in the timeline, as in '<Jane> created a new item'"
 msgid "uploaded a file"
-msgstr ""
+msgstr "heeft een bestand geüpload"
 
 msgid "More"
-msgstr ""
+msgstr "Meer"
 
 msgid "Latest files"
-msgstr ""
+msgstr "Nieuwste bestanden"
 
 msgid "There are no files  yet"
-msgstr ""
+msgstr "Er zijn nog geen bestanden"
 
 #, python-format
 msgid "File \"%(title)s\" was uploaded successfully."
-msgstr ""
+msgstr "Bestand “%(title)s” is succesvol geüpload."
 
 #, python-format
 msgid "File \"%(title)s\" could not be uploaded."
-msgstr ""
+msgstr "Bestand “%(title)s” kon niet worden geüpload."
 
 #, python-format
 msgid "File \"%(title)s\" could not be added."
-msgstr ""
+msgstr "Bestand “%(title)s” kon niet worden toegevoegd."
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
-msgstr ""
+msgstr "Bestand “%(title)s” is succesvol aangemaakt."
 
 msgid "File does not exist or you are not allowed to delete it."
-msgstr ""
+msgstr "Bestand bestaat niet of u mag het niet verwijderen."
 
 #, python-format
 msgid "A problem occurred during export. The following file is missing: %(filename)s."
 msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Er is een probleem opgetreden tijdens het exporteren. Het volgende bestand ontbreekt: %(filename)s."
+msgstr[1] "Er is een probleem opgetreden tijdens het exporteren. De volgende bestanden ontbreken: %(filename)s."
 
 msgid "Invalid request."
-msgstr ""
+msgstr "Ongeldige aanvraag."
 
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
-msgstr ""
+msgstr "Bestand “%(title)s” is succesvol geüpload."
 
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
-msgstr ""
+msgstr "Bestand “%(title)s” kon niet worden geüpload."
 
 msgid "Downloading failed, the target object was not a folder!"
-msgstr ""
+msgstr "Downloaden mislukt, het object was geen map!"
 
 msgid "Canceled the download because there seem to be no files in this folder."
-msgstr ""
+msgstr "De download is geannuleerd omdat er geen bestanden in deze map bevinden."
 
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)d Bestand is succesvol toegevoegd."
+msgstr[1] "%(count)d Bestanden zijn succesvol toegevoegd."
