@@ -311,6 +311,63 @@ class FileDownloadView(RequireReadMixin, RecordLastVisitedMixin, FilterGroupMixi
 file_download_view = FileDownloadView.as_view()
 
 
+class RocketFileDownloadView(RecordLastVisitedMixin, DetailView):
+    '''
+        Lets the user download a FileEntry file (file is determined by slug),
+        while the user never gets to see the server file path.
+        Mime type is guessed based on the file.
+        The /download/ and /save/ urls point to this view, /save/ has force_download == True
+    '''
+    model = FileEntry
+    force_download = False
+
+    def dispatch(self, request, *args, **kwargs):
+        self.force_download = kwargs.pop('force_download', self.force_download)
+        return super(RocketFileDownloadView, self).dispatch(request, *args, **kwargs)
+
+    def render_to_response(self, context, **response_kwargs):
+        response = HttpResponseNotFound()
+
+        fileentry = self.object
+        path = fileentry.file and fileentry.file.path
+        if path:
+            fp = open(path, 'rb')
+            response = HttpResponse(fp.read())
+            fp.close()
+            content_type, encoding = mimetypes.guess_type(fileentry.sourcefilename)
+            filename = fileentry.sourcefilename
+            if content_type is None:
+                content_type = fileentry.mimetype or 'application/octet-stream'
+            response['Content-Type'] = content_type
+            response['Content-Length'] = fileentry._filesize
+            if encoding is not None:
+                response['Content-Encoding'] = encoding
+
+            # if self.force_download or content_type not in settings.COSINNUS_FILE_NON_DOWNLOAD_MIMETYPES:
+            if True:
+                # To inspect details for the below code, see http://greenbytes.de/tech/tc2231/
+                user_agent = self.request.META.get('HTTP_USER_AGENT', [])
+                if u'WebKit' in user_agent:
+                    # Safari 3.0 and Chrome 2.0 accepts UTF-8 encoded string directly.
+                    filename_header = 'filename=%s' % clean_filename(filename)
+                elif u'MSIE' in user_agent:
+                    # IE does not support internationalized filename at all.
+                    # It can only recognize internationalized URL, so we do the trick via routing rules.
+                    filename_header = ''
+                else:
+                    # For others like Firefox, we follow RFC2231 (encoding extension in HTTP headers).
+                    filename_header = 'filename*=UTF-8\'\'%s' % clean_filename(filename)
+                response['Content-Disposition'] = 'attachment; ' + filename_header
+
+            # manually marking visited from `RecordLastVisitedMixin`
+            self.mark_visited()
+
+        return response
+
+
+rocket_file_download_view = RocketFileDownloadView.as_view()
+
+
 class FolderDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
     '''
         Lets the user download a FileEntry file (file is determined by slug),
