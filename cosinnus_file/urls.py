@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.conf.urls import url
 from cosinnus_file import views
 
@@ -27,5 +28,10 @@ cosinnus_group_patterns = [
     
     url(r'^$', views.file_index_view, name='index'),
 ]
+
+if settings.COSINNUS_ROCKET_EXPORT_ENABLED:
+    cosinnus_group_patterns += [
+        url(r'^(?P<slug>[^/]+)/rocket$', views.rocket_file_download_view, name='rocket-download'),
+    ]
 
 urlpatterns = cosinnus_group_patterns + cosinnus_root_patterns
