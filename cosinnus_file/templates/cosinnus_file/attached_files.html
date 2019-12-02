@@ -2,7 +2,7 @@
 
 {% for file in all_files %}
     <div class="app-files">
-        {% group_url 'cosinnus:file:download' group=file.group slug=file.slug as file_url %}
+        {% captureas file_url %}{{ file.get_absolute_url }}{% endcaptureas %}
         <div target="_blank" class="btn btn-emphasized w100 {% if not no_indent %}indented{% endif %}" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-{% if lightbox_context %}{{ lightbox_context }}{% else %}{{ object.id }}{% endif %}" data-title="{{ file.title }}"{% else %}href="{{ file_url }}"{% endif %}>
             <ul class="media-list fine-space">
                 <li class="media">

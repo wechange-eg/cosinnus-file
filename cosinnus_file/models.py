@@ -31,6 +31,7 @@ from cosinnus.utils.functions import unique_aware_slugify
 from cosinnus.models.mixins.images import ThumbnailableImageMixin
 from cosinnus.utils.filters import exclude_special_folders
 from uuid import uuid1
+from cosinnus_file.utils.strings import clean_filename
 
 
 def get_hashed_filename(instance, filename):
@@ -139,8 +140,9 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
 
     def get_absolute_url(self):
         kwargs = {'group': self.group,
-                  'slug': self.slug}
-        return group_aware_reverse('cosinnus:file:download', kwargs=kwargs)
+                  'slug': self.slug,
+                  'pretty_filename': clean_filename(self.sourcefilename.replace(' ', '-'))}
+        return group_aware_reverse('cosinnus:file:pretty-download', kwargs=kwargs)
     
     def get_delete_url(self):
         kwargs = {'group': self.group,
