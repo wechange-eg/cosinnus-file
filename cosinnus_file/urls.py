@@ -23,6 +23,7 @@ cosinnus_group_patterns = [
     #url(r'^list/(?P<tag>[^/]+)/$', views.file_list_view', name='list-filtered'),
     #url(r'^(?P<slug>[^/]+)/$', views.file_detail_view', name='file'),
     url(r'^(?P<slug>[^/]+)/download$', views.file_download_view, name='download'),
+    url(r'^(?P<slug>[^/]+)/download/(?P<pretty_filename>[^/]+)$', views.file_download_view, name='pretty-download'),
     url(r'^(?P<slug>[^/]+)/save', views.file_download_view, {'force_download': True}, name='save'),
     url(r'^(?P<slug>[^/]+)/delete/$', views.file_delete_view, {'form_view': 'delete'}, name='delete'),
     

@@ -26,7 +26,7 @@
 		</div>
 	{% endif %}
 
-	{% group_url 'cosinnus:file:download' group=item.group slug=item.slug as item_url %}	
+    {% captureas item_url %}{{ item.get_absolute_url }}{% endcaptureas %}
 	{% group_url 'cosinnus:file:save' group=item.group slug=item.slug as download_url %}
 	
 	{% include 'cosinnus/v2/dashboard/timeline_attached_item.html' with text=item.title subtext=item.creator|full_name icon="fa-file" url=item_url download_url=download_url %}

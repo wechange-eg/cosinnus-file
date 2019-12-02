@@ -265,6 +265,8 @@ class FileDownloadView(RequireReadMixin, RecordLastVisitedMixin, FilterGroupMixi
     
     def dispatch(self, request, *args, **kwargs):
         self.force_download = kwargs.pop('force_download', self.force_download)
+        # remove this, it's only for the browser to have a proper preview download name
+        kwargs.pop('pretty_filename', None)
         return super(FileDownloadView, self).dispatch(request, *args, **kwargs)
     
 
