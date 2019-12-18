@@ -1,0 +1,87 @@
+{% load i18n cosinnus_tags widget_tweaks %}
+
+<form method="POST" action="" class="cosinnus-form form-horizontal" enctype="multipart/form-data"  {% if form_attrs %}{{ form_attrs }}{% endif %}>
+    {% csrf_token %}
+    {{ form.forms.obj.non_field_errors }}
+    {{ form.forms.media_tag.non_field_errors }}
+    
+    <!-- a box with semi transparent background -->
+    <div class="content-box">
+        
+        {% if not object or object.is_url == True %}
+	        {% trans "URL Link" as url_label %}
+	        {% trans "Paste the link's URL here" as url_placeholder %}
+	        {% trans "You can also use the paste command in the file list without bringing up this popup first!" as url_legend %}
+	        {% include 'cosinnus/fields/default_field.html' with field=form.forms.obj.url label=url_label placeholder=url_placeholder legend=url_legend first=True show_required=True hide_optional=True major_field=True %}
+        {% endif %}
+        
+        {% trans "Title" as title_label %}
+        {% include 'cosinnus/fields/default_field.html' with field=form.forms.obj.title label=title_label placeholder=title_label first=True %}
+        
+        {# SimpleMDE Description Field (gets initialized in extrahead) #}                                   
+        {% trans "Description" as description_placeholder %}
+        {% trans "Description" as description_label %}
+        {% include 'cosinnus/fields/default_field.html' with field=form.forms.obj.note legend=description_legend label=description_label placeholder=description_placeholder large_field=True %}
+              
+        {% if object.is_image %}
+            {% trans "Preview" as prev_label %}
+            {% include 'cosinnus/fields/default_field.html' with label=prev_label %}
+            <img class="img-responsive" src='{{ object.static_image_url }}' title='{{ object.title }}'></img>
+        {% endif %}
+             
+        {% if object.creator %}
+            {% trans "Uploaded by" as creat_label %}
+            {% include 'cosinnus/fields/default_field.html' with label=creat_label %}
+            {% with creator=object.creator %}
+                <p>
+                    <a href="{{ creator|profile_url }}">{{ creator|full_name }}</a>
+                </p>
+            {% endwith %}
+        {% endif %}
+        
+        {% if object.sourcefilename %}
+            {% trans "Original filename" as name_label %}
+            {% include 'cosinnus/fields/default_field.html' with label=name_label %}
+            {% with creator=object.creator %}
+                <p>
+                    <a href="{% group_url 'cosinnus:file:save' group=group slug=object.slug %}">{{ object.sourcefilename }}</a>
+                </p>
+            {% endwith %}
+        {% endif %}
+        
+        
+        {% include 'cosinnus/media_tags.html' %}
+            
+    </div><!-- content-box -->
+    
+    <button type="submit" class="btn btn-emphasized">
+        <ul class="media-list">
+            <li class="media">
+                <span class="pull-left" href="#">
+                    <i class="fa fa-floppy-o "></i>
+                </span>
+                <div class="media-body">
+                    {% trans "Save" %}
+                </div>
+            </li>
+        </ul>
+    </button>
+    
+    {% if not show_in_page %}
+        <button type="button" class="btn btn-emphasized" data-dismiss="modal">
+            <ul class="media-list">
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <div class="media-body">
+                        {% trans "Cancel" %}
+                    </div>
+                </li>
+            </ul>
+        </button>
+    {% endif %}
+    
+    <div class="clearfix"></div>
+    
+</form>

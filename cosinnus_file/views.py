@@ -50,6 +50,7 @@ from django.utils.text import slugify
 from django.utils.crypto import get_random_string
 from cosinnus.models.tagged import BaseTagObject
 from cosinnus.views.common import DeleteElementView
+from ajax_forms.ajax_forms import AjaxFormsCreateViewMixin
 logger = logging.getLogger('cosinnus')
 
 
@@ -73,11 +74,20 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
     def form_valid(self, form):
         form.instance.creator = self.request.user
         # save/update filesize
-        form.instance._filesize = form.instance.file.file.size
+        if form.instance.file:
+            form.instance._filesize = form.instance.file.file.size
+        
+        # mark as is_url for a URL filetype
+        if not form.instance.file and form.instance.url:
+            form.instance.is_url = True
         
         ret = super(FileFormMixin, self).form_valid(form)
         messages.success(self.request,
             self.message_success % {'title': self.object.title})
+        
+        # trigger URL downloading 
+        if self.instance.is_url:
+            pass # TODO
         return ret
 
     def form_invalid(self, form):
@@ -105,13 +115,16 @@ class FileIndexView(RequireReadMixin, RedirectView):
 file_index_view = FileIndexView.as_view()
 
 class FileHybridListView(RequireReadWriteHybridMixin, HierarchyPathMixin, HierarchicalListCreateViewMixin, 
-                             CosinnusFilterMixin, FileFormMixin, CreateView):
+                             CosinnusFilterMixin, FileFormMixin, AjaxFormsCreateViewMixin, CreateView):
     template_name = 'cosinnus_file/file_list.html'
     filterset_class = FileFilter
     
     model = FileEntry
     form_view = 'create'
     form_class = FileForm
+    
+    ajax_form_partial = 'cosinnus_file/file_form_core.html'
+    ajax_result_partial = 'cosinnus_file/single_file_detailed.html'
     
     message_success = _('File "%(title)s" was uploaded successfully.')
     message_error = _('File "%(title)s" could not be added.')
@@ -520,7 +533,6 @@ def file_upload_inline(request, group):
         'group_id': group.id
     })
     
-    file_info_array = json.loads(post.get('file_info', '[]'))
     
     base_upload_folder = None
     upload_to_attachment_folder = False
@@ -531,6 +543,7 @@ def file_upload_inline(request, group):
         base_upload_folder = get_or_create_attachment_folder(group)
         upload_to_attachment_folder = True
     
+    file_info_array = json.loads(post.get('file_info', '[]'))
     result_list = []
     for file_index, dict_file in enumerate(request.FILES.getlist('file')):
         upload_folder = None
@@ -571,8 +584,7 @@ def file_upload_inline(request, group):
                 saved_file.media_tag.visibility = BaseTagObject.VISIBILITY_USER
                 saved_file.media_tag.save()
                 
-            # pipe the file into the select2 JSON representation to be displayed as select2 pill 
-            pill_id, pill_html = build_attachment_field_result('cosinnus_file.FileEntry', saved_file)
+            # render either for the file list or for the attached objects
             if on_success == 'render_object':
                 context = {
                     'file': saved_file,
@@ -580,6 +592,8 @@ def file_upload_inline(request, group):
                 }
                 result_list.append(render_to_string('cosinnus_file/single_file_detailed.html', context, request))
             else:
+                # pipe the file into the select2 JSON representation to be displayed as select2 pill 
+                pill_id, pill_html = build_attachment_field_result('cosinnus_file.FileEntry', saved_file)
                 result_list.append({'text': pill_html, 'id': pill_id})
         else:
             logger.error('Form error while uploading an attached file directly!', 

@@ -66,12 +66,19 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
     note = models.TextField(_('Note'), blank=True, null=True)
     file = models.FileField(_('File'), blank=True, null=True,
                             max_length=250, upload_to=get_hashed_filename)
-
+    
+    is_url = models.BooleanField(_('Is URL Link'), default=False,
+            help_text='Marks that this file only consists of an URL link. '\
+                    'The `file` field may be used to download a preview image.')
+    url = models.URLField(_('URL'), blank=True, null=True, max_length=250,
+            help_text='For files with `is_url` set to True, this is the URL link. '\
+                    'For actual file uploads, this is blank.')
+    
     _sourcefilename = models.CharField(blank=False, null=False, default='download', max_length=100)
     _filesize = models.IntegerField(blank=True, null=True, default='0')
     
     mimetype = models.CharField(_('Path'), blank=True, null=True, default='', max_length=50)
-
+    
     objects = FileEntryManager()
     
     image_attr_name = 'file'

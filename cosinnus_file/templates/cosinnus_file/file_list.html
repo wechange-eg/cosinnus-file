@@ -4,7 +4,10 @@
 {% block extrahead %}
     {{ block.super }}
     <script src="{% static 'js/vendor/jstree.min.js' %}"></script>
+    <script src="{% static 'js/ajax_forms.js' %}"></script>
+    <script src="{% static 'js/cosinnus_file.js' %}"></script>
     <link href="{% static 'css/vendor/jstree/themes/default/style.min.css' %}" rel="stylesheet">
+    {% include 'cosinnus/common/simplemde_dependencies.html' with element_id=form.forms.obj.note.id_for_label %}
 {% endblock extrahead %}
 
 
@@ -51,6 +54,7 @@
 	    </div>
 	
 	    {% include 'cosinnus/common/filter_controls.html' %}
+	    <div class="clearfix"></div>
 		
 		{% if user|can_create_objects_in:group %}
 			{% comment %} Removed old upload button for now  
@@ -88,13 +92,40 @@
 		    {% endwith %}
 			{% endcomment %}
 		    
-		    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
-		    	{% with cur_folder=current_folder.id %}
-		    	{% with '{"on_success": "render_object", "direct_upload": "1", "target_folder": "'|addstr:cur_folder|addstr:'"}' as file_form_data %}
-		    		{% include 'cosinnus/attached/file_upload_button.html' with form_data=file_form_data style="large" %}
-		    	{% endwith %}
-		    	{% endwith %}
-		    </form>
+		    <div>
+			    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
+			    	{% with cur_folder=current_folder.id %}
+			    	{% with '{"on_success": "render_object", "direct_upload": "1", "target_folder": "'|addstr:cur_folder|addstr:'"}' as file_form_data %}
+			    		{% include 'cosinnus/attached/file_upload_button.html' with form_data=file_form_data style="large" %}
+			    	{% endwith %}
+			    	{% endwith %}
+			    </form>
+			</div>
+			<div class="large-space">
+			     <button type="button" class="btn btn-emphasized btn-autosize" data-toggle="modal" data-target="#add-url-modal">
+		            <ul class="media-list">
+		                <li class="media">
+		                    <a class="pull-left" href="#">
+		                        <i class="fa fa-link"></i>
+		                    </a>
+		                    <div class="media-body">
+		                        {% trans "Add URL link" %}
+		                    </div>
+		                </li>
+		            </ul>
+		        </button>
+		        
+				{% captureas label %}
+	                {% captureas form_attrs %}data-target="ajax-form" data-ajax-oncomplete="$('#add-url-modal').modal('hide');init_simplemde();{% endcaptureas %}
+                    {% include 'cosinnus_file/file_form_core.html' with is_url_form=True form_attrs=form_attrs %}     
+				{% endcaptureas %}
+				{% captureas title %}{% trans "Add a URL link" %}{% endcaptureas %}
+				{% trans "Cancel" as cancel_button_label %}
+				{% captureas submit_button_label %}{% trans "Add URL" %}{% endcaptureas %}
+				{% include "cosinnus/modal_box.html" with id="add-url-modal" label=label title=title title_icon="fa-link" extra_modal_classes="modal-lg" hide_footer=True cancel_button_label=cancel_button_label%}
+				
+				<div class="clearfix"></div>
+			</div>
 		{% endif %}
 		
 		<div id="object_list_anchor"></div>

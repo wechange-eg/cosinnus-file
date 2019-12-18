@@ -25,67 +25,7 @@
     </div>
 {% endif %}
 
-<form method="POST" action="" class="cosinnus-form form-horizontal" enctype="multipart/form-data">{% csrf_token %}
-    {{ form.forms.obj.non_field_errors }}
-    {{ form.forms.media_tag.non_field_errors }}
-    
-    <!-- a box with semi transparent background -->
-    <div class="content-box">
-    
-        {% trans "File title" as title_label %}
-        {% include 'cosinnus/fields/default_field.html' with field=form.forms.obj.title label=title_label placeholder=title_label first=True %}
-        
-        {# SimpleMDE Description Field (gets initialized in extrahead) #}                                   
-        {% trans "Description" as description_placeholder %}
-        {% trans "File description" as description_label %}
-        {% include 'cosinnus/fields/default_field.html' with field=form.forms.obj.note legend=description_legend label=description_label placeholder=description_placeholder large_field=True %}
-              
-        {% if object.is_image %}
-            {% trans "Preview" as prev_label %}
-	        {% include 'cosinnus/fields/default_field.html' with label=prev_label %}
-            <img class="img-responsive" src='{{ object.static_image_url }}' title='{{ object.title }}'></img>
-        {% endif %}
-             
-        {% if object.creator %}
-            {% trans "Uploaded by" as creat_label %}
-            {% include 'cosinnus/fields/default_field.html' with label=creat_label %}
-            {% with creator=object.creator %}
-                <p>
-                    <a href="{{ creator|profile_url }}">{{ creator|full_name }}</a>
-                </p>
-            {% endwith %}
-        {% endif %}
-        
-        {% if object.sourcefilename %}
-            {% trans "Original filename" as name_label %}
-            {% include 'cosinnus/fields/default_field.html' with label=name_label %}
-            {% with creator=object.creator %}
-                <p>
-                    <a href="{% group_url 'cosinnus:file:save' group=group slug=object.slug %}">{{ object.sourcefilename }}</a>
-                </p>
-            {% endwith %}
-        {% endif %}
-        
-        
-        {% include 'cosinnus/media_tags.html' %}
-        	
-    </div><!-- content-box -->
-    
-    <button type="submit" class="btn btn-emphasized">
-        <ul class="media-list">
-            <li class="media">
-                <span class="pull-left" href="#">
-                    <i class="fa fa-floppy-o "></i>
-                </span>
-                <div class="media-body">
-                    {% trans "Save" %}
-                </div>
-            </li>
-        </ul>
-    </button>
-    
-</form>
-    
+{% include 'cosinnus_file/file_form_core.html' hide_cancel_button=True %}
     
 {% if user|has_write_access:object %}   
     <button type="button" class="btn btn-emphasized pull-left no-margin" data-toggle="modal" data-target="#deleteModal">

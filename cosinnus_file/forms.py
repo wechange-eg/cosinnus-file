@@ -10,22 +10,31 @@ from cosinnus.forms.tagged import get_form, BaseTaggableObjectForm
 from cosinnus.forms.user import UserKwargModelFormMixin
 
 from cosinnus_file.models import FileEntry
+from django.core.exceptions import ValidationError
 
 
 class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
                 BaseTaggableObjectForm):
+    
+    optional_fields = ['title', 'file', 'note', 'url']
+    
+    url = forms.URLField(widget=forms.TextInput, required=False)
 
     class Meta(object):
         model = FileEntry
-        fields = ('title', 'file', 'note')
+        fields = ('title', 'file', 'note', 'url')
 
     def __init__(self, *args, **kwargs):
         super(_FileForm, self).__init__(*args, **kwargs)
+        # make optional fields not required
+        for field_name in self.optional_fields:
+            self.fields[field_name].required = False
         # hide the file upload field on folders, and set the folder flag
         if self.instance.is_container or \
                 'initial' in kwargs and 'is_container' in kwargs['initial'] and \
                 kwargs['initial']['is_container']:
             del self.fields['file']
+            del self.fields['url']
             self.instance.is_container = True
 
     def clean_is_container(self):
@@ -49,17 +58,32 @@ class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
                 self.instance.mimetype = fileupload.content_type
         return fileupload
     
+    def clean_url(self):
+        url = self.cleaned_data.get('url', None)
+        if url:
+            if not url.startswith('http'):
+                url = 'https://%s' % url
+        return url
+    
     def clean(self):
         """ Insert the filename as title if no title is given """
+        fileupload = self.cleaned_data.get('file', None)
+        url = self.cleaned_data.get('url', None)
         title = self.cleaned_data.get('title', None)
+        is_container = self.cleaned_data['is_container']
+        # url or file is required
+        if not url and not fileupload and not is_container:
+            raise ValidationError(_('Must supply either a URL or File'))
         if not title:
-            fileupload = self.cleaned_data.get('file', None)
             if fileupload:
                 self.cleaned_data.update({'title': fileupload._name},)
                 self.errors.pop('title', None)
+            if url:
+                self.cleaned_data.update({'title': url},)
+                self.errors.pop('title', None)
+        
         return super(_FileForm, self).clean()
     
-        
 FileForm = get_form(_FileForm, attachable=False)
 
 
