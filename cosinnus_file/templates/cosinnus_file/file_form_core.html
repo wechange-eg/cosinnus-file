@@ -2,7 +2,12 @@
 
 <form id="file_url_upload_form" method="POST" action="" 
         class="cosinnus-form form-horizontal" enctype="multipart/form-data"  
-        {% if not form_edit %}data-target="ajax-form" data-ajax-oncomplete="$('#add-url-modal').modal('hide');init_simplemde();$.cosinnus.renderMomentDataDate();"{% endif %}>
+        {% if not form_edit %}
+            data-target="ajax-form" 
+            data-ajax-oncomplete="$('#add-url-modal').modal('hide');init_simplemde();$.cosinnus.renderMomentDataDate();"
+            data-ajax-form-error-message="{% trans "The URL you have entered does not seem to be valid!" %}"
+        {% endif %}
+        >
         
     {% csrf_token %}
     {{ form.forms.obj.non_field_errors }}
@@ -26,7 +31,7 @@
         {% trans "Description" as description_label %}
         {% include 'cosinnus/fields/default_field.html' with field=form.forms.obj.note legend=description_legend label=description_label placeholder=description_placeholder large_field=True %}
         
-        {% if form_edit == True %}
+        {% if form_edit == True and object and not object.is_url %}
 	        {% if object.is_image %}
 	            {% trans "Preview" as prev_label %}
 	            {% include 'cosinnus/fields/default_field.html' with label=prev_label %}
@@ -48,7 +53,7 @@
 	            {% include 'cosinnus/fields/default_field.html' with label=name_label %}
 	            {% with creator=object.creator %}
 	                <p>
-	                    <a href="{% group_url 'cosinnus:file:save' group=group slug=object.slug %}">{{ object.sourcefilename }}</a>
+	                    <a href="{{ object.get_download_url }}">{{ object.sourcefilename }}</a>
 	                </p>
 	            {% endwith %}
 	        {% endif %}

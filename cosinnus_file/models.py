@@ -150,10 +150,23 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
             self.save(update_fields=['mimetype'])
 
     def get_absolute_url(self):
-        kwargs = {'group': self.group,
-                  'slug': self.slug,
-                  'pretty_filename': clean_filename(self.sourcefilename.replace(' ', '-'))}
+        if self.is_url:
+            return self.url
+        if self.is_image:
+            kwargs = {'group': self.group, 'slug': self.container.slug}
+            return group_aware_reverse('cosinnus:file:list', kwargs=kwargs) + '?id=%s' % self.id
+        kwargs = {
+            'group': self.group,
+            'slug': self.slug,
+            'pretty_filename': clean_filename(self.sourcefilename.replace(' ', '-'))
+        }
         return group_aware_reverse('cosinnus:file:pretty-download', kwargs=kwargs)
+    
+    def get_download_url(self):
+        if self.is_url:
+            return self.url
+        kwargs = {'group': self.group, 'slug': self.slug}
+        return group_aware_reverse('cosinnus:file:save', kwargs=kwargs)
     
     def get_delete_url(self):
         kwargs = {'group': self.group,
@@ -174,6 +187,10 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
             Used for sharing files in direct messages etc. """
         return user in self.media_tag.persons.all()
     
+    def get_icon(self):
+        """ Returns the font-awesome icon specific to the file type """
+        return 'fa-link' if self.is_url else 'fa-file'
+
 
 def get_or_create_attachment_folder(group):
     attachment_folder = None

@@ -1,7 +1,7 @@
 {% load i18n static cosinnus_tags widget_tweaks thumbnail %}
 
 <div id="cosinnus_list_element_{{ file.id }}" class="fadedown {% if not forloop.last %}regular-space{% endif %}">
-    <div class="item_checkbox_element btn btn-{% if do_highlight or created_with_ajax_forms %}extra-{% endif %}emphasized w100" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-list" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}"{% endif %}>
+    <div class="item_checkbox_element btn btn-{% if do_highlight or created_with_ajax_forms %}extra-{% endif %}emphasized w100" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-list" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}" {% if file.is_url %}target="_blank"{% endif %}{% endif %}>
         <ul class="media-list">
             <li class="media">
                 
@@ -13,20 +13,28 @@
                     {% if file.is_image %}
                         <a class="pull-left" ><img src='{{ file.static_image_url_thumbnail }}' title='{{ file.title }}'></img></a>
                     {% else %}
-                    	<i class="fa fa-file"></i>
+                    	<i class="fa {{ file.get_icon }}"></i>
                     {% endif %}
                 </span>
                 <a class="pull-right fadedown-clickarea">
                     <i class="fa fa-chevron-down"></i>
                 </a>
                 
-                <a class="pull-right" href="{% group_url 'cosinnus:file:save' group=file.group slug=file.slug %}">
-                    <i class="fa fa-download"></i>
-                </a>
+                {% if not file.is_url %}
+	                <a class="pull-right" href="{{ file.get_download_url }}">
+	                    <i class="fa fa-download"></i>
+	                </a>
+                {% endif %}
                 
                 {% if user|has_write_access:file %}
                     <a class="pull-right" href="#" title="{% trans "Move to another Folder" %}" onclick="$.cosinnus.Feedback.cosinnus_move_element(['{{ file.id }}'], {{ current_folder.id }});">
                         <i class="fa fa-arrows"></i>
+                    </a>
+                {% endif %}
+                
+                {% if file.is_image %}
+                    <a class="pull-right" href="{{ file.get_absolute_url }}" title="{% trans "Link to this Image" %}" >
+                        <i class="fa fa-link"></i>
                     </a>
                 {% endif %}
                 
@@ -43,8 +51,11 @@
                             {% endif %}   
                         </span>
                     {% endwith %}
-                    <a> {# leave empty, will open the lightbox defined above #}
+                    <a {% if not file.is_image %}href="{{ file.get_absolute_url }}" {% if file.is_url %}target="_blank"{% endif %}{% endif %}> {# leave empty for images, will open the lightbox defined above #}
                         {{ file.title }}
+                        {% if file.is_url and not file.title == file.url %}
+                            <i>({{ file.url }})</i>
+                        {% endif %}
                     </a>
                 </div>
             </li>
@@ -105,3 +116,4 @@
     </div> <!-- end fadedown wrapper -->
     
 </div><!-- fadedown -->
+

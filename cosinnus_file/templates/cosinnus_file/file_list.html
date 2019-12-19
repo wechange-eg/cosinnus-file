@@ -143,6 +143,11 @@
     <script type="text/javascript">
         var cosinnus_move_element_object_url = "{% group_url 'cosinnus:file:move-element' group=group %}";
         var cosinnus_delete_element_object_url = "{% group_url 'cosinnus:file:delete-element' group=group %}";
+        {% if request.GET.id %}
+        $(function(){
+            $('#cosinnus_list_element_{{ request.GET.id }} [data-lightbox]').click();
+        });
+        {% endif %}
     </script>
     {% include 'cosinnus/hierarchy/move_element_modal.html' %}
     {% include 'cosinnus/common/delete_element_modal.html' %}

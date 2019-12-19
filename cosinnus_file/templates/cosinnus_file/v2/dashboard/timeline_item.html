@@ -14,7 +14,7 @@
 
 {% block icon_class %}icon-extra-padded{% endblock %} {% comment %} Set if there is a subtitle row! {% endcomment %}
 
-{% block icon %}fa-file{% endblock %}
+{% block icon %}{{ item.get_icon }}{% endblock %}
 
 {% block title_frame %}{% endblock %}
 {% block subtitle %}{% endblock %}
@@ -27,9 +27,8 @@
 	{% endif %}
 
     {% captureas item_url %}{{ item.get_absolute_url }}{% endcaptureas %}
-	{% group_url 'cosinnus:file:save' group=item.group slug=item.slug as download_url %}
-	
-	{% include 'cosinnus/v2/dashboard/timeline_attached_item.html' with text=item.title subtext=item.creator|full_name icon="fa-file" url=item_url download_url=download_url %}
+	{% captureas download_url %}{{ item.get_download_url }}{% endcaptureas %}
+	{% include 'cosinnus/v2/dashboard/timeline_attached_item.html' with text=item.title subtext=item.creator|full_name icon=item.get_icon url=item_url download_url=download_url %}
 {% endblock %}
 
 {% block delete_button_frame %}{% endblock %}
