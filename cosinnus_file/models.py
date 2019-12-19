@@ -153,7 +153,9 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
         if self.is_url:
             return self.url
         if self.is_image:
-            kwargs = {'group': self.group, 'slug': self.container.slug}
+            kwargs = {'group': self.group}
+            if self.container:
+                kwargs['slug'] = self.container.slug
             return group_aware_reverse('cosinnus:file:list', kwargs=kwargs) + '?id=%s' % self.id
         kwargs = {
             'group': self.group,
