@@ -116,8 +116,7 @@
 		        </button>
 		        
 				{% captureas label %}
-	                {% captureas form_attrs %}data-target="ajax-form" data-ajax-oncomplete="$('#add-url-modal').modal('hide');init_simplemde();{% endcaptureas %}
-                    {% include 'cosinnus_file/file_form_core.html' with is_url_form=True form_attrs=form_attrs %}     
+                    {% include 'cosinnus_file/file_form_core.html' %}     
 				{% endcaptureas %}
 				{% captureas title %}{% trans "Add a URL link" %}{% endcaptureas %}
 				{% trans "Cancel" as cancel_button_label %}
@@ -128,13 +127,15 @@
 			</div>
 		{% endif %}
 		
-		<div id="object_list_anchor"></div>
+		<div id="object_list_anchor" data-target="ajax-form-result-anchor" data-ajax-form-id="file_url_upload_form"></div>
 	    
 	    {% for file in objects %}
 			{% include 'cosinnus_file/single_file_detailed.html' with file=file %}
 	    {% empty %}
-	        <!-- {% trans "No files have been uploaded yet." %} -->
-            {% include 'cosinnus/common/empty_button.html' with message="No files have been uploaded yet." %}
+	        <div data-target="ajax-form-delete-element" data-ajax-form-id="file_url_upload_form">
+		        <!-- {% trans "No files have been uploaded yet." %} -->
+	            {% include 'cosinnus/common/empty_button.html' with message="No files have been uploaded yet." %}
+            </div>
 	    {% endfor %}
 	
 	</div><!-- content-box -->

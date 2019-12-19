@@ -122,7 +122,8 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
 
     def clean(self):
         # if we are creating a file, require an uploaded file (not required for folders)
-        if not self.is_container and self.file.name is None:
+        # also not required for URL file types
+        if not self.is_container and self.file.name is None and not self.url:
             raise ValidationError(_('No files selected.'))
 
     def save(self, *args, **kwargs):
@@ -131,6 +132,9 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
         if len(self.mimetype) > 50:
             self.mimetype = self.mimetype[:50]    
         created = bool(self.pk) == False
+        # mark as URL filetype if not file but a URL is given
+        if self.url and not self.file:
+            self.is_url = True
         super(FileEntry, self).save(*args, **kwargs)
         if created and not self.is_container and not getattr(self, 'no_notification', False):
             # file was created

@@ -2,15 +2,21 @@
 from __future__ import unicode_literals
 
 from builtins import object
+from cosinnus_file.models import FileEntry
+import logging
+
 from django import forms
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import UploadedFile
+from django.core.validators import URLValidator
+from django.utils.translation import ugettext_lazy as _
 
 from cosinnus.forms.group import GroupKwargModelFormMixin
 from cosinnus.forms.tagged import get_form, BaseTaggableObjectForm
 from cosinnus.forms.user import UserKwargModelFormMixin
 
-from cosinnus_file.models import FileEntry
-from django.core.exceptions import ValidationError
+
+logger = logging.getLogger('cosinnus')
 
 
 class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
@@ -59,10 +65,14 @@ class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
         return fileupload
     
     def clean_url(self):
-        url = self.cleaned_data.get('url', None)
+        url = self.data.get('url', None)
         if url:
+            url = url.strip()
             if not url.startswith('http'):
                 url = 'https://%s' % url
+            msg = _('The given URL does not seem to be valid.')
+            validate = URLValidator(message=msg)
+            validate(url)
         return url
     
     def clean(self):
@@ -70,7 +80,7 @@ class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
         fileupload = self.cleaned_data.get('file', None)
         url = self.cleaned_data.get('url', None)
         title = self.cleaned_data.get('title', None)
-        is_container = self.cleaned_data['is_container']
+        is_container = self.cleaned_data.get('is_container', None)
         # url or file is required
         if not url and not fileupload and not is_container:
             raise ValidationError(_('Must supply either a URL or File'))
@@ -81,7 +91,6 @@ class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
             if url:
                 self.cleaned_data.update({'title': url},)
                 self.errors.pop('title', None)
-        
         return super(_FileForm, self).clean()
     
 FileForm = get_form(_FileForm, attachable=False)

@@ -25,38 +25,6 @@
     </div>
 {% endif %}
 
-{% include 'cosinnus_file/file_form_core.html' hide_cancel_button=True %}
-    
-{% if user|has_write_access:object %}   
-    <button type="button" class="btn btn-emphasized pull-left no-margin" data-toggle="modal" data-target="#deleteModal">
-        <ul class="media-list">
-            <li class="media">
-                <a class="pull-left" href="#">
-                    <i class="fa fa-eraser"></i>
-                </a>
-                <div class="media-body">
-                    {% trans "Delete" %}
-                </div>
-            </li>
-        </ul>
-    </button>
-    {% captureas label %}{% blocktrans with title=object.title %}Do you really want to delete file „{{ title }}“?{% endblocktrans %}{% endcaptureas %}
-    {% captureas title %}{% trans "Delete file" %}{% endcaptureas %}
-    {% include "cosinnus/modal_box.html" with id="deleteModal" label=label title=title form_action="./delete/" %}
-{% endif %}
-
-<button type="button" class="btn btn-emphasized pull-left" href="{% group_url 'cosinnus:file:save' group=group slug=object.slug %}">
-    <ul class="media-list">
-        <li class="media">
-            <a class="pull-left" href="#">
-                <i class="fa fa-download"></i>
-            </a>
-            <div class="media-body">
-                {% trans "Download" %}
-            </div>
-        </li>
-    </ul>
-</button>
-    
+{% include 'cosinnus_file/file_form_core.html' with form_edit=True hide_cancel_button=True %}
     
 {% endblock content %}

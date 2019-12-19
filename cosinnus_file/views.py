@@ -59,9 +59,7 @@ mimetypes.init()
 
 class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
                     UserFormKwargsMixin):
-    message_success = _('File "%(title)s" was uploaded successfully.')
-    message_error = _('File "%(title)s" could not be uploaded.')
-
+    
     def get_context_data(self, **kwargs):
         context = super(FileFormMixin, self).get_context_data(**kwargs)
         tags = FileEntry.objects.tags()
@@ -82,27 +80,16 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
             form.instance.is_url = True
         
         ret = super(FileFormMixin, self).form_valid(form)
-        messages.success(self.request,
-            self.message_success % {'title': self.object.title})
         
         # trigger URL downloading 
-        if self.instance.is_url:
+        if self.object.is_url:
             pass # TODO
         return ret
 
-    def form_invalid(self, form):
-        ret = super(FileFormMixin, self).form_invalid(form)
-        if self.object:
-            messages.error(self.request,
-                self.message_error % {'title': self.object.title})
-        return ret
-    
     def get_success_url(self):
         return group_aware_reverse('cosinnus:file:list',
                        kwargs={'group': self.group,
                                'slug': self.object.slug})
-    
-    
 
 
 class FileIndexView(RequireReadMixin, RedirectView):
@@ -125,9 +112,7 @@ class FileHybridListView(RequireReadWriteHybridMixin, HierarchyPathMixin, Hierar
     
     ajax_form_partial = 'cosinnus_file/file_form_core.html'
     ajax_result_partial = 'cosinnus_file/single_file_detailed.html'
-    
-    message_success = _('File "%(title)s" was uploaded successfully.')
-    message_error = _('File "%(title)s" could not be added.')
+    ajax_result_partial_object_alias = 'file'
     
     message_success_folder = _('Folder "%(title)s" was created successfully.')
     
