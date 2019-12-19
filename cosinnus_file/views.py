@@ -51,6 +51,8 @@ from django.utils.crypto import get_random_string
 from cosinnus.models.tagged import BaseTagObject
 from cosinnus.views.common import DeleteElementView
 from ajax_forms.ajax_forms import AjaxFormsCreateViewMixin
+import tempfile
+import os
 logger = logging.getLogger('cosinnus')
 
 
@@ -402,11 +404,9 @@ class FolderDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
         files = []
         
         file_filter_ids = [int(fileid) for fileid in self.request.GET.getlist('files')]
-        
+        temp_file_paths = []
         # for all files below this folder collect tuples of (filepath on disc, relative file path, )
         for sub_file in FileEntry.objects.filter(group=self.group, path__startswith=base_path, is_container=False):
-            if not sub_file.file or not sub_file.file.path:
-                continue
             # filter for specific files
             if file_filter_ids and not sub_file.id in file_filter_ids:
                 continue
@@ -418,6 +418,20 @@ class FolderDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
             if not check_object_read_access(sub_file, self.request.user):
                 continue
             
+            # for urls, write the url to a temp file
+            if sub_file.is_url:
+                fd, temp_path = tempfile.mkstemp()
+                with os.fdopen(fd, 'w') as tmp:
+                    tmp.write(sub_file.url)
+                temp_file_paths.append(temp_path)
+                # attach temp file path
+                zip_path = sub_file.path.replace(folder.path, '', 1) + clean_filename(slugify(sub_file.title)) + '.url'
+                files.append([temp_path, zip_path])
+                continue
+            
+            # we have a real file, check if it exists and add its path
+            if not sub_file.file or not sub_file.file.path:
+                continue
             zip_path = sub_file.path.replace(folder.path, '', 1) + sub_file._sourcefilename
             files.append([sub_file.file.path, zip_path])
         
@@ -440,6 +454,13 @@ class FolderDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
         response['Content-Disposition'] = 'attachment; filename=%s.zip' % zip_filename
         # fixme: root folder title!
         response['Content-Length'] = len(zip_content)
+        
+        # clean up temp files
+        try:
+            for temp_file_path in temp_file_paths:
+                os.remove(temp_file_path)
+        except:
+            pass
         
         return response
     
