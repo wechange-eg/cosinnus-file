@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-03 17:47+0200\n"
+"POT-Creation-Date: 2019-12-23 17:02+0100\n"
 "PO-Revision-Date: 2019-06-09 13:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -94,11 +94,23 @@ msgstr "Найменшыя файлы"
 msgid "Largest Files"
 msgstr "Найбольшыя файлы"
 
+msgid "The given URL does not seem to be valid."
+msgstr ""
+
+msgid "Must supply either a URL or File"
+msgstr ""
+
 msgid "Note"
 msgstr "Подпіс"
 
 msgid "File"
 msgstr "Файл"
+
+msgid "Is URL Link"
+msgstr ""
+
+msgid "URL"
+msgstr ""
 
 msgid "Path"
 msgstr "Шлях"
@@ -119,14 +131,20 @@ msgstr "Далучэнні"
 msgid "There was an error in one of the fields you entered. Please correct it before saving!"
 msgstr "У адным з палёў, якія вы запоўнілі, ёсць памылка. Калі ласка, выпраўце яе перш чым захаваць старонку!"
 
-msgid "File title"
-msgstr "Назва файла"
+msgid "The URL you have entered does not seem to be valid!"
+msgstr ""
+
+msgid "URL Link"
+msgstr ""
+
+msgid "Paste or type the link's URL here"
+msgstr ""
+
+msgid "Title"
+msgstr ""
 
 msgid "Description"
 msgstr "Апісанне"
-
-msgid "File description"
-msgstr "Апісанне файла"
 
 msgid "Preview"
 msgstr "Перадпрагляд"
@@ -137,24 +155,23 @@ msgstr "Першапачатковае імя файла"
 msgid "Save"
 msgstr "Захаваць"
 
+msgid "Cancel"
+msgstr ""
+
 msgid "Delete"
 msgstr "Выдаліць"
-
-#, python-format
-msgid "Do you really want to delete file „%(title)s“?"
-msgstr "Вы сапраўды хочаце выдаліць файл \"%(title)s\"?"
-
-msgid "Delete file"
-msgstr "Выдаліць файл"
-
-msgid "Download"
-msgstr "Сцягнуць"
 
 msgid "Move"
 msgstr "Перамясціць"
 
+msgid "Download"
+msgstr "Сцягнуць"
+
 msgid "Download this folder"
 msgstr "Сцягнуць гэту папку"
+
+msgid "Add URL link"
+msgstr ""
 
 msgid "No files have been uploaded yet."
 msgstr "Яшчэ няма зацягнутых файлаў."
@@ -192,6 +209,9 @@ msgstr "Новы файл: \"%(object_name)s\" быў зацягнуты ў %(te
 msgid "Move to another Folder"
 msgstr "Перамясціць у іншую папку"
 
+msgid "Link to this Image"
+msgstr ""
+
 msgid "by"
 msgstr "Стваральнік(-ца):"
 
@@ -200,6 +220,16 @@ msgstr "Створаны"
 
 msgid "Edit"
 msgstr "Рэдагаваць"
+
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr "Вы сапраўды хочаце выдаліць файл \"%(title)s\"?"
+
+msgid "Delete file"
+msgstr "Выдаліць файл"
+
+msgid "Close"
+msgstr ""
 
 #, fuzzy
 #| msgid "A user uploaded a new file"
@@ -220,18 +250,6 @@ msgstr "Апошнія файлы"
 
 msgid "There are no files  yet"
 msgstr "Файлаў яшчэ няма"
-
-#, python-format
-msgid "File \"%(title)s\" was uploaded successfully."
-msgstr "Файл \"%(title)s\" паспяхова зацягнуты."
-
-#, python-format
-msgid "File \"%(title)s\" could not be uploaded."
-msgstr "Файл \"%(title)s\" не атрымалася зацягнуць."
-
-#, python-format
-msgid "File \"%(title)s\" could not be added."
-msgstr "Файл \"%(title)s\" не атрымалася дадаць."
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
@@ -272,3 +290,18 @@ msgstr[0] "%(count)d файл паспяхова дададзены."
 msgstr[1] "%(count)d файлы паспяхова дададзеныя."
 msgstr[2] "%(count)d файлаў паспяхова дададзеныя."
 msgstr[3] ""
+
+#~ msgid "File title"
+#~ msgstr "Назва файла"
+
+#~ msgid "File description"
+#~ msgstr "Апісанне файла"
+
+#~ msgid "File \"%(title)s\" was uploaded successfully."
+#~ msgstr "Файл \"%(title)s\" паспяхова зацягнуты."
+
+#~ msgid "File \"%(title)s\" could not be uploaded."
+#~ msgstr "Файл \"%(title)s\" не атрымалася зацягнуць."
+
+#~ msgid "File \"%(title)s\" could not be added."
+#~ msgstr "Файл \"%(title)s\" не атрымалася дадаць."

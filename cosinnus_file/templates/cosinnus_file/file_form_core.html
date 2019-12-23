@@ -19,8 +19,7 @@
         {% if not object or object.is_url == True %}
 	        {% trans "URL Link" as url_label %}
 	        {% trans "Paste or type the link's URL here" as url_placeholder %}
-	        {% trans "You can also use the paste command in the file list without bringing up this popup first!" as url_legend %}
-	        {% include 'cosinnus/fields/default_field.html' with field=form.forms.obj.url label=url_label placeholder=url_placeholder legend=url_legend first=True show_required=True hide_optional=True major_field=True %}
+	        {% include 'cosinnus/fields/default_field.html' with field=form.forms.obj.url label=url_label placeholder=url_placeholder first=True show_required=True hide_optional=True major_field=True %}
 	        <i id="fileUrlSpinner" class="fa fa-3x fa-spin fa-spinner" style="display: none; float: right; position: fixed; right: 40px; margin-top: -54px;"></i>
         {% endif %}
         

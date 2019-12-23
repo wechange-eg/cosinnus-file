@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wechange RU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-03 17:47+0200\n"
-"PO-Revision-Date: 2019-07-03 17:40+0100\n"
+"POT-Creation-Date: 2019-12-23 17:02+0100\n"
+"PO-Revision-Date: 2019-12-23 17:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.5.4\n"
 
 msgid "Files"
@@ -48,11 +49,16 @@ msgstr "Новый файл от %(sender_name)s в %(team_name)s (за кото
 
 #, python-format
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
-msgstr "%(sender_name)s создал новый файл в %(team_name)s (за которой Вы следите)"
+msgstr ""
+"%(sender_name)s создал новый файл в %(team_name)s (за которой Вы следите)"
 
 #, python-format
-msgid "A new file: \"%(object_name)s\" was created in %(team_name)s (which you follow)."
-msgstr "Новый файл: \"%(object_name)s\" был создан в %(team_name)s (за которой Вы следите)."
+msgid ""
+"A new file: \"%(object_name)s\" was created in %(team_name)s (which you "
+"follow)."
+msgstr ""
+"Новый файл: \"%(object_name)s\" был создан в %(team_name)s (за которой Вы "
+"следите)."
 
 msgid "Latest Files"
 msgstr "Последние файлы"
@@ -93,11 +99,23 @@ msgstr "Маленькие файлы"
 msgid "Largest Files"
 msgstr "Большие файлы"
 
+msgid "The given URL does not seem to be valid."
+msgstr "Данный URL-адрес, кажется, недействителен."
+
+msgid "Must supply either a URL or File"
+msgstr "Должен предоставить либо URL-адрес, либо файл."
+
 msgid "Note"
 msgstr "Заметка"
 
 msgid "File"
 msgstr "Файл"
+
+msgid "Is URL Link"
+msgstr "Есть ссылка на URL-адрес"
+
+msgid "URL"
+msgstr "URL-АДРЕС"
 
 msgid "Path"
 msgstr "Путь к файлу"
@@ -115,17 +133,27 @@ msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Вложения"
 
-msgid "There was an error in one of the fields you entered. Please correct it before saving!"
-msgstr "В одном из введенных Вами полей произошла ошибка. Пожалуйста, исправьте его перед сохранением!"
+msgid ""
+"There was an error in one of the fields you entered. Please correct it "
+"before saving!"
+msgstr ""
+"В одном из введенных Вами полей произошла ошибка. Пожалуйста, исправьте его "
+"перед сохранением!"
 
-msgid "File title"
-msgstr "Название файла"
+msgid "The URL you have entered does not seem to be valid!"
+msgstr "Введенный вами URL-адрес, кажется, недействителен!"
+
+msgid "URL Link"
+msgstr "URL-адрес"
+
+msgid "Paste or type the link's URL here"
+msgstr "Вставьте или введите URL ссылки здесь"
+
+msgid "Title"
+msgstr "Название"
 
 msgid "Description"
 msgstr "Описание"
-
-msgid "File description"
-msgstr "Описание файла"
 
 msgid "Preview"
 msgstr "Предварительный просмотр"
@@ -136,24 +164,23 @@ msgstr "Первое название"
 msgid "Save"
 msgstr "Сохранить"
 
+msgid "Cancel"
+msgstr "Отменить"
+
 msgid "Delete"
 msgstr "Удалить"
-
-#, python-format
-msgid "Do you really want to delete file „%(title)s“?"
-msgstr "Вы действительно хотите удалить файл „%(title)s“?"
-
-msgid "Delete file"
-msgstr "Удалить файл"
-
-msgid "Download"
-msgstr "Скачать"
 
 msgid "Move"
 msgstr "Передвинуть"
 
+msgid "Download"
+msgstr "Скачать"
+
 msgid "Download this folder"
 msgstr "Загрузить эту папку"
+
+msgid "Add URL link"
+msgstr "Добавить ссылку URL-адрес"
 
 msgid "No files have been uploaded yet."
 msgstr "Файлы пока не загружены."
@@ -162,25 +189,29 @@ msgstr "Файлы пока не загружены."
 msgid ""
 "Hi %(receiver_name)s,\n"
 "\n"
-"a new file \"%(object_name)s\" in %(team_name)s was uploaded by %(sender_name)s. \n"
+"a new file \"%(object_name)s\" in %(team_name)s was uploaded by "
+"%(sender_name)s. \n"
 "\n"
 "You can find it by following this link: %(object_url)s\n"
 "\n"
 "\n"
 "\n"
-"(Follow this link to edit your notification preferences: %(notification_settings_url)s )\n"
+"(Follow this link to edit your notification preferences: "
+"%(notification_settings_url)s )\n"
 "\n"
 "Your %(site_name)s Team."
 msgstr ""
 "Здравствуйте, %(receiver_name)s,\n"
 "\n"
-"пользователь %(sender_name)s загрузил новый файл \"%(object_name)s\" в %(team_name)s. \n"
+"пользователь %(sender_name)s загрузил новый файл \"%(object_name)s\" в "
+"%(team_name)s. \n"
 "\n"
 "Вы можете найти его по этой ссылке: %(object_url)s\n"
 "\n"
 "\n"
 "\n"
-"(Перейдите по этой ссылке, чтобы изменить настройки уведомлений: %(notification_settings_url)s )\n"
+"(Перейдите по этой ссылке, чтобы изменить настройки уведомлений: "
+"%(notification_settings_url)s )\n"
 "\n"
 "Ваша команда %(site_name)s."
 
@@ -191,6 +222,9 @@ msgstr "Новый файл: \"%(object_name)s\" был загружен в %(te
 msgid "Move to another Folder"
 msgstr "Переместить в другую папку"
 
+msgid "Link to this Image"
+msgstr "Ссылка на это изображение"
+
 msgid "by"
 msgstr "Создатель"
 
@@ -200,10 +234,22 @@ msgstr "Создано"
 msgid "Edit"
 msgstr "Редактировать"
 
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr "Вы действительно хотите удалить файл „%(title)s“?"
+
+msgid "Delete file"
+msgstr "Удалить файл"
+
+msgid "Close"
+msgstr "Закрыть"
+
 msgid "You uploaded a file"
 msgstr "Ты загрузил(а) новый файл"
 
-msgctxt "This appears next to new items in the timeline, as in '<Jane> created a new item'"
+msgctxt ""
+"This appears next to new items in the timeline, as in '<Jane> created a new "
+"item'"
 msgid "uploaded a file"
 msgstr "Загруженный файл"
 
@@ -217,18 +263,6 @@ msgid "There are no files  yet"
 msgstr "Файлов ещё нет"
 
 #, python-format
-msgid "File \"%(title)s\" was uploaded successfully."
-msgstr "Файл \"%(title)s\" успешно загружен."
-
-#, python-format
-msgid "File \"%(title)s\" could not be uploaded."
-msgstr "Невозможно загрузить файл \"%(title)s“."
-
-#, python-format
-msgid "File \"%(title)s\" could not be added."
-msgstr "Невозможно добавить файл „%(title)s“."
-
-#, python-format
 msgid "Folder \"%(title)s\" was created successfully."
 msgstr "Папка \"%(title)s\" успешно создана."
 
@@ -237,11 +271,18 @@ msgstr "Файл не существует или Вы не уполномоче
 
 # ???
 #, python-format
-msgid "A problem occurred during export. The following file is missing: %(filename)s."
-msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
-msgstr[0] "Возникла проблема при экспорте. Следующий файл отсутствует:  %(filename)s."
-msgstr[1] "Возникла проблема при экспорте. Следующие файлы отсутствуют: %(filename)s."
-msgstr[2] "Возникла проблема при экспорте. Следующие файлы отсутствуют: %(filename)s."
+msgid ""
+"A problem occurred during export. The following file is missing: "
+"%(filename)s."
+msgid_plural ""
+"A problem occurred during export. The following files are missing: "
+"%(filename)s."
+msgstr[0] ""
+"Возникла проблема при экспорте. Следующий файл отсутствует:  %(filename)s."
+msgstr[1] ""
+"Возникла проблема при экспорте. Следующие файлы отсутствуют: %(filename)s."
+msgstr[2] ""
+"Возникла проблема при экспорте. Следующие файлы отсутствуют: %(filename)s."
 
 msgid "Invalid request."
 msgstr "Недопустимый запрос."
@@ -267,6 +308,21 @@ msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d файл был успешно добавлен."
 msgstr[1] "%(count)d файла было успешно добавлено."
 msgstr[2] "%(count)d файлов было успешно добавлено."
+
+#~ msgid "File title"
+#~ msgstr "Название файла"
+
+#~ msgid "File description"
+#~ msgstr "Описание файла"
+
+#~ msgid "File \"%(title)s\" was uploaded successfully."
+#~ msgstr "Файл \"%(title)s\" успешно загружен."
+
+#~ msgid "File \"%(title)s\" could not be uploaded."
+#~ msgstr "Невозможно загрузить файл \"%(title)s“."
+
+#~ msgid "File \"%(title)s\" could not be added."
+#~ msgstr "Невозможно добавить файл „%(title)s“."
 
 #~ msgid "Enter the title for the file."
 #~ msgstr "Введите название файла"

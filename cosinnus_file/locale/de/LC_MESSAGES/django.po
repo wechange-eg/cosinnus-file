@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-03 17:47+0200\n"
-"PO-Revision-Date: 2019-07-05 17:31+0100\n"
+"POT-Creation-Date: 2019-12-23 17:02+0100\n"
+"PO-Revision-Date: 2019-12-23 17:02+0100\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
 "Language: de\n"
@@ -41,26 +41,22 @@ msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
 msgstr ""
 "Eine neue Datei: \"%(object_name)s\" wurde hochgeladen in %(team_name)s."
 
-#| msgid "A user uploaded a new file"
 msgid "A user uploaded a new file in a team you are following"
 msgstr ""
 "Ein Mitglied hat eine neue Datei hochgeladen in einem Projekt oder Gruppe "
 "(dem du folgst)"
 
 #, python-format
-#| msgid "New file by %(sender_name)s"
 msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
 msgstr "Neue Datei von %(sender_name)s in %(team_name)s (dem du folgst)"
 
 #, python-format
-#| msgid "%(sender_name)s created a new file"
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
 msgstr ""
 "%(sender_name)s hat eine neue Datei hochgeladen in %(team_name)s (dem du "
 "folgst)"
 
 #, python-format
-#| msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
 msgid ""
 "A new file: \"%(object_name)s\" was created in %(team_name)s (which you "
 "follow)."
@@ -107,11 +103,23 @@ msgstr "Kleinste Dateien"
 msgid "Largest Files"
 msgstr "Größte Dateien"
 
+msgid "The given URL does not seem to be valid."
+msgstr "Die eingegebe URL scheint nicht gültig zu sein."
+
+msgid "Must supply either a URL or File"
+msgstr "Eine URL oder Datei muss angegeben sein"
+
 msgid "Note"
 msgstr "Bemerkung"
 
 msgid "File"
 msgstr "Datei"
+
+msgid "Is URL Link"
+msgstr "Ist URL Link"
+
+msgid "URL"
+msgstr "URL"
 
 msgid "Path"
 msgstr "Verzeichnis"
@@ -136,14 +144,20 @@ msgstr ""
 "In einem der eingegebenen Felder trat ein Fehler auf. Bitte korrigiere ihn "
 "vor dem Speichern!"
 
-msgid "File title"
-msgstr "Dateititel"
+msgid "The URL you have entered does not seem to be valid!"
+msgstr "Die eingegebe URL scheint nicht gültig zu sein!"
+
+msgid "URL Link"
+msgstr "URL Link"
+
+msgid "Paste or type the link's URL here"
+msgstr "Füge oder tippe die URL des Links hier ein"
+
+msgid "Title"
+msgstr "Titel"
 
 msgid "Description"
 msgstr "Beschreibung"
-
-msgid "File description"
-msgstr "Dateibeschreibung"
 
 msgid "Preview"
 msgstr "Vorschau"
@@ -154,26 +168,23 @@ msgstr "Ursprünglicher Dateiname"
 msgid "Save"
 msgstr "Speichern"
 
+msgid "Cancel"
+msgstr "Abbrechen"
+
 msgid "Delete"
 msgstr "Löschen"
 
-#
-#, python-format
-msgid "Do you really want to delete file „%(title)s“?"
-msgstr "Sind Sie sich sicher, dass Sie die Datei „%(title)s“ löschen wollen?"
-
-msgid "Delete file"
-msgstr "Datei löschen"
+msgid "Move"
+msgstr "Verschieben"
 
 msgid "Download"
 msgstr "Herunterladen"
 
-#| msgid "More"
-msgid "Move"
-msgstr "Verschieben"
-
 msgid "Download this folder"
 msgstr "Diesen Ordner herunterladen"
+
+msgid "Add URL link"
+msgstr "URL Link hinzufügen"
 
 msgid "No files have been uploaded yet."
 msgstr "Es wurden noch keine Dateien hochgeladen."
@@ -215,6 +226,9 @@ msgstr "Neue Datei: \"%(object_name)s\" wurde hochgeladen in %(team_name)s."
 msgid "Move to another Folder"
 msgstr "In anderen Ordner verschieben"
 
+msgid "Link to this Image"
+msgstr "Zu diesem Bild verlinken"
+
 msgid "by"
 msgstr "von"
 
@@ -223,6 +237,17 @@ msgstr "Hat erstellt"
 
 msgid "Edit"
 msgstr "Bearbeiten"
+
+#
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr "Sind Sie sich sicher, dass Sie die Datei „%(title)s“ löschen wollen?"
+
+msgid "Delete file"
+msgstr "Datei löschen"
+
+msgid "Close"
+msgstr "Schließen"
 
 msgid "You uploaded a file"
 msgstr "Du hast eine Datei hochgeladen"
@@ -241,18 +266,6 @@ msgstr "Neueste Dateien"
 
 msgid "There are no files  yet"
 msgstr "Es wurden noch keine Dateien hochgeladen."
-
-#, python-format
-msgid "File \"%(title)s\" was uploaded successfully."
-msgstr "Datei \"%(title)s\" wurde erfolgreich hochgeladen."
-
-#, python-format
-msgid "File \"%(title)s\" could not be uploaded."
-msgstr "Datei \"%(title)s\" konnte nicht hochgeladen werden."
-
-#, python-format
-msgid "File \"%(title)s\" could not be added."
-msgstr "Datei \"%(title)s\" konnte nicht hinzugefügt werden."
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
@@ -303,6 +316,21 @@ msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d Datei wurde erfolgreich hochgeladen."
 msgstr[1] "%(count)d Dateien wurden erfolgreich hochgeladen."
+
+#~ msgid "File title"
+#~ msgstr "Dateititel"
+
+#~ msgid "File description"
+#~ msgstr "Dateibeschreibung"
+
+#~ msgid "File \"%(title)s\" was uploaded successfully."
+#~ msgstr "Datei \"%(title)s\" wurde erfolgreich hochgeladen."
+
+#~ msgid "File \"%(title)s\" could not be uploaded."
+#~ msgstr "Datei \"%(title)s\" konnte nicht hochgeladen werden."
+
+#~ msgid "File \"%(title)s\" could not be added."
+#~ msgstr "Datei \"%(title)s\" konnte nicht hinzugefügt werden."
 
 #~ msgid "Enter the title for the file."
 #~ msgstr "Gib einen Titel für die Datei ein."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-03 17:47+0200\n"
+"POT-Creation-Date: 2019-12-23 17:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,10 +93,22 @@ msgstr ""
 msgid "Largest Files"
 msgstr ""
 
+msgid "The given URL does not seem to be valid."
+msgstr ""
+
+msgid "Must supply either a URL or File"
+msgstr ""
+
 msgid "Note"
 msgstr ""
 
 msgid "File"
+msgstr ""
+
+msgid "Is URL Link"
+msgstr ""
+
+msgid "URL"
 msgstr ""
 
 msgid "Path"
@@ -118,13 +130,19 @@ msgstr "Uploaded Attachments"
 msgid "There was an error in one of the fields you entered. Please correct it before saving!"
 msgstr ""
 
-msgid "File title"
+msgid "The URL you have entered does not seem to be valid!"
+msgstr ""
+
+msgid "URL Link"
+msgstr ""
+
+msgid "Paste or type the link's URL here"
+msgstr ""
+
+msgid "Title"
 msgstr ""
 
 msgid "Description"
-msgstr ""
-
-msgid "File description"
 msgstr ""
 
 msgid "Preview"
@@ -136,23 +154,22 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+msgid "Cancel"
+msgstr ""
+
 msgid "Delete"
-msgstr ""
-
-#, python-format
-msgid "Do you really want to delete file „%(title)s“?"
-msgstr ""
-
-msgid "Delete file"
-msgstr ""
-
-msgid "Download"
 msgstr ""
 
 msgid "Move"
 msgstr ""
 
+msgid "Download"
+msgstr ""
+
 msgid "Download this folder"
+msgstr ""
+
+msgid "Add URL link"
 msgstr ""
 
 msgid "No files have been uploaded yet."
@@ -180,6 +197,9 @@ msgstr ""
 msgid "Move to another Folder"
 msgstr ""
 
+msgid "Link to this Image"
+msgstr ""
+
 msgid "by"
 msgstr ""
 
@@ -187,6 +207,16 @@ msgid "Created"
 msgstr ""
 
 msgid "Edit"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr ""
+
+msgid "Delete file"
+msgstr ""
+
+msgid "Close"
 msgstr ""
 
 msgid "You uploaded a file"
@@ -203,18 +233,6 @@ msgid "Latest files"
 msgstr ""
 
 msgid "There are no files  yet"
-msgstr ""
-
-#, python-format
-msgid "File \"%(title)s\" was uploaded successfully."
-msgstr ""
-
-#, python-format
-msgid "File \"%(title)s\" could not be uploaded."
-msgstr ""
-
-#, python-format
-msgid "File \"%(title)s\" could not be added."
 msgstr ""
 
 #, python-format

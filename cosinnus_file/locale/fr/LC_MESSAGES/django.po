@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-03 17:47+0200\n"
+"POT-Creation-Date: 2019-12-23 17:02+0100\n"
 "PO-Revision-Date: 2018-09-14 18:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -99,11 +99,23 @@ msgstr "Plus petits fichiers"
 msgid "Largest Files"
 msgstr "Plus grands fichiers"
 
+msgid "The given URL does not seem to be valid."
+msgstr ""
+
+msgid "Must supply either a URL or File"
+msgstr ""
+
 msgid "Note"
 msgstr "Note"
 
 msgid "File"
 msgstr "Fichier"
+
+msgid "Is URL Link"
+msgstr ""
+
+msgid "URL"
+msgstr ""
 
 msgid "Path"
 msgstr "Chemin"
@@ -124,14 +136,20 @@ msgstr "Pièces jointes"
 msgid "There was an error in one of the fields you entered. Please correct it before saving!"
 msgstr "Il y a une erreur dans l'un des champs que tu as saisis. Corrige-la avant d'enregistrer !"
 
-msgid "File title"
-msgstr "Nom du fichier"
+msgid "The URL you have entered does not seem to be valid!"
+msgstr ""
+
+msgid "URL Link"
+msgstr ""
+
+msgid "Paste or type the link's URL here"
+msgstr ""
+
+msgid "Title"
+msgstr ""
 
 msgid "Description"
 msgstr "Description"
-
-msgid "File description"
-msgstr "Description du fichier"
 
 msgid "Preview"
 msgstr "Aperçu"
@@ -142,26 +160,25 @@ msgstr "Nom original du fichier"
 msgid "Save"
 msgstr "Enregistrer"
 
+msgid "Cancel"
+msgstr ""
+
 msgid "Delete"
 msgstr "Supprimer"
-
-#, python-format
-msgid "Do you really want to delete file „%(title)s“?"
-msgstr "Souhaites-tu vraiment supprimer le fichier „%(title)s“ ?"
-
-msgid "Delete file"
-msgstr "Supprimer le fichier"
-
-msgid "Download"
-msgstr "Télécharger"
 
 #, fuzzy
 #| msgid "More"
 msgid "Move"
 msgstr "Plus"
 
+msgid "Download"
+msgstr "Télécharger"
+
 msgid "Download this folder"
 msgstr "Télécharger ce fichier"
+
+msgid "Add URL link"
+msgstr ""
 
 msgid "No files have been uploaded yet."
 msgstr "Aucun fichier n'a encore été téléchargé."
@@ -199,6 +216,9 @@ msgstr "Un nouveau fichier : \"%(object_name)s\" a été téléchargé dans %(te
 msgid "Move to another Folder"
 msgstr "Déplacer dans un autre dossier"
 
+msgid "Link to this Image"
+msgstr ""
+
 msgid "by"
 msgstr "par"
 
@@ -207,6 +227,16 @@ msgstr "Créé"
 
 msgid "Edit"
 msgstr "Modifier"
+
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr "Souhaites-tu vraiment supprimer le fichier „%(title)s“ ?"
+
+msgid "Delete file"
+msgstr "Supprimer le fichier"
+
+msgid "Close"
+msgstr ""
 
 #, fuzzy
 #| msgid "A user uploaded a new file"
@@ -227,18 +257,6 @@ msgstr "Derniers fichiers"
 
 msgid "There are no files  yet"
 msgstr "Il n'y a pas encore de fichiers"
-
-#, python-format
-msgid "File \"%(title)s\" was uploaded successfully."
-msgstr "Le fichier \"%(title)s\" a été téléchargé."
-
-#, python-format
-msgid "File \"%(title)s\" could not be uploaded."
-msgstr "Le fichier \"%(title)s\" n'a pas pu être téléchargé."
-
-#, python-format
-msgid "File \"%(title)s\" could not be added."
-msgstr "Le fichier \"%(title)s\" n'a pas pu être ajouté."
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
@@ -275,3 +293,18 @@ msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d fichier a été ajouté."
 msgstr[1] "%(count)d fichiers ont été ajoutés."
+
+#~ msgid "File title"
+#~ msgstr "Nom du fichier"
+
+#~ msgid "File description"
+#~ msgstr "Description du fichier"
+
+#~ msgid "File \"%(title)s\" was uploaded successfully."
+#~ msgstr "Le fichier \"%(title)s\" a été téléchargé."
+
+#~ msgid "File \"%(title)s\" could not be uploaded."
+#~ msgstr "Le fichier \"%(title)s\" n'a pas pu être téléchargé."
+
+#~ msgid "File \"%(title)s\" could not be added."
+#~ msgstr "Le fichier \"%(title)s\" n'a pas pu être ajouté."

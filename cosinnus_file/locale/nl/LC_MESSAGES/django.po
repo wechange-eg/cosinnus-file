@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 13:50+0200\n"
+"POT-Creation-Date: 2019-12-23 17:02+0100\n"
 "PO-Revision-Date: 2019-09-19 22:32+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.2.3\n"
 
 msgid "Files"
@@ -94,11 +94,23 @@ msgstr "Kleinste Bestanden"
 msgid "Largest Files"
 msgstr "Grootste Bestanden"
 
+msgid "The given URL does not seem to be valid."
+msgstr ""
+
+msgid "Must supply either a URL or File"
+msgstr ""
+
 msgid "Note"
 msgstr "Opmerking"
 
 msgid "File"
 msgstr "Bestand"
+
+msgid "Is URL Link"
+msgstr ""
+
+msgid "URL"
+msgstr ""
 
 msgid "Path"
 msgstr "Pad"
@@ -119,14 +131,20 @@ msgstr "Bijlagen"
 msgid "There was an error in one of the fields you entered. Please correct it before saving!"
 msgstr "Er is een fout opgetreden in een van de velden die u hebt ingevoerd. Corrigeer dit voordat u opslaat!"
 
-msgid "File title"
-msgstr "Bestandstitel"
+msgid "The URL you have entered does not seem to be valid!"
+msgstr ""
+
+msgid "URL Link"
+msgstr ""
+
+msgid "Paste or type the link's URL here"
+msgstr ""
+
+msgid "Title"
+msgstr ""
 
 msgid "Description"
 msgstr "Beschrijving"
-
-msgid "File description"
-msgstr "Bestandsbeschrijving"
 
 msgid "Preview"
 msgstr "Preview"
@@ -137,24 +155,23 @@ msgstr "Originele bestandsnaam"
 msgid "Save"
 msgstr "Opslaan"
 
+msgid "Cancel"
+msgstr ""
+
 msgid "Delete"
 msgstr "Verwijder"
-
-#, python-format
-msgid "Do you really want to delete file „%(title)s“?"
-msgstr "Weet u zeker dat u „%(title)s“ wilt verwijderen?"
-
-msgid "Delete file"
-msgstr "Verwijder bestand"
-
-msgid "Download"
-msgstr "Download"
 
 msgid "Move"
 msgstr "Verplaats"
 
+msgid "Download"
+msgstr "Download"
+
 msgid "Download this folder"
 msgstr "Download deze map"
+
+msgid "Add URL link"
+msgstr ""
 
 msgid "No files have been uploaded yet."
 msgstr "Nog geen bestanden geüpload."
@@ -192,6 +209,9 @@ msgstr "Een nieuw bestand: “%(object_name)s” is geüpload in %(team_name)s."
 msgid "Move to another Folder"
 msgstr "Verplaats naar andere Map"
 
+msgid "Link to this Image"
+msgstr ""
+
 msgid "by"
 msgstr "door"
 
@@ -200,6 +220,16 @@ msgstr "Aangemaakt"
 
 msgid "Edit"
 msgstr "Gewijzigd"
+
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr "Weet u zeker dat u „%(title)s“ wilt verwijderen?"
+
+msgid "Delete file"
+msgstr "Verwijder bestand"
+
+msgid "Close"
+msgstr ""
 
 msgid "You uploaded a file"
 msgstr "U heeft een bestand geüpload"
@@ -216,18 +246,6 @@ msgstr "Nieuwste bestanden"
 
 msgid "There are no files  yet"
 msgstr "Er zijn nog geen bestanden"
-
-#, python-format
-msgid "File \"%(title)s\" was uploaded successfully."
-msgstr "Bestand “%(title)s” is succesvol geüpload."
-
-#, python-format
-msgid "File \"%(title)s\" could not be uploaded."
-msgstr "Bestand “%(title)s” kon niet worden geüpload."
-
-#, python-format
-msgid "File \"%(title)s\" could not be added."
-msgstr "Bestand “%(title)s” kon niet worden toegevoegd."
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
@@ -264,3 +282,18 @@ msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d Bestand is succesvol toegevoegd."
 msgstr[1] "%(count)d Bestanden zijn succesvol toegevoegd."
+
+#~ msgid "File title"
+#~ msgstr "Bestandstitel"
+
+#~ msgid "File description"
+#~ msgstr "Bestandsbeschrijving"
+
+#~ msgid "File \"%(title)s\" was uploaded successfully."
+#~ msgstr "Bestand “%(title)s” is succesvol geüpload."
+
+#~ msgid "File \"%(title)s\" could not be uploaded."
+#~ msgstr "Bestand “%(title)s” kon niet worden geüpload."
+
+#~ msgid "File \"%(title)s\" could not be added."
+#~ msgstr "Bestand “%(title)s” kon niet worden toegevoegd."

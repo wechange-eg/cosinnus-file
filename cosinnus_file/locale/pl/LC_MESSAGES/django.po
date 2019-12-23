@@ -7,16 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-03 17:47+0200\n"
-"PO-Revision-Date: 2018-08-30 16:45+0200\n"
+"POT-Creation-Date: 2019-12-23 17:02+0100\n"
+"PO-Revision-Date: 2019-12-23 17:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.4\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid "Files"
 msgstr "Pliki"
@@ -40,25 +41,28 @@ msgstr "%(sender_name)s utworzył nowy plik"
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
 msgstr "Nowy plik: \"%(object_name)s\" został utworzony w %(team_name)s."
 
-#, fuzzy
 #| msgid "A user uploaded a new file"
 msgid "A user uploaded a new file in a team you are following"
-msgstr "Użytkownik przesłał nowy plik"
+msgstr "Użytkownik wgrał nowy plik w zespole, który śledzisz"
 
-#, fuzzy, python-format
+#, python-format
 #| msgid "New file by %(sender_name)s"
 msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-msgstr "Nowy plik wysłany przez %(sender_name)s"
+msgstr "Nowy plik przez %(sender_name)s w %(team_name)s (który śledzisz)"
 
-#, fuzzy, python-format
+#, python-format
 #| msgid "%(sender_name)s created a new file"
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
-msgstr "%(sender_name)s utworzył nowy plik"
+msgstr "%(sender_name)s stworzył nowy plik w %(team_name)s (który śledzisz)"
 
-#, fuzzy, python-format
+#, python-format
 #| msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
-msgid "A new file: \"%(object_name)s\" was created in %(team_name)s (which you follow)."
-msgstr "Nowy plik: \"%(object_name)s\" został utworzony w %(team_name)s."
+msgid ""
+"A new file: \"%(object_name)s\" was created in %(team_name)s (which you "
+"follow)."
+msgstr ""
+"Nowa kartoteka: \"%(object_name)s\" został utworzony w %(team_name)s (który "
+"śledzisz)."
 
 msgid "Latest Files"
 msgstr "Najnowsze Pliki"
@@ -99,11 +103,23 @@ msgstr "Najmniejsze Pliki"
 msgid "Largest Files"
 msgstr "Największe Pliki"
 
+msgid "The given URL does not seem to be valid."
+msgstr "Podany adres URL wydaje się być nieważny."
+
+msgid "Must supply either a URL or File"
+msgstr "Musi zawierać adres URL lub plik"
+
 msgid "Note"
 msgstr "Uwagi"
 
 msgid "File"
 msgstr "Plik"
+
+msgid "Is URL Link"
+msgstr "Czy URL Link"
+
+msgid "URL"
+msgstr "URL"
 
 msgid "Path"
 msgstr "Ścieżka"
@@ -121,17 +137,25 @@ msgctxt "special_folder_type"
 msgid "Attachments"
 msgstr "Załączniki"
 
-msgid "There was an error in one of the fields you entered. Please correct it before saving!"
+msgid ""
+"There was an error in one of the fields you entered. Please correct it "
+"before saving!"
 msgstr "W jednym z wypełnionych pól jest błąd. Popraw go przed zapisaniem!"
 
-msgid "File title"
-msgstr "Tytuł pliku"
+msgid "The URL you have entered does not seem to be valid!"
+msgstr "Wprowadzony adres URL wydaje się być nieważny!"
+
+msgid "URL Link"
+msgstr "URL Link"
+
+msgid "Paste or type the link's URL here"
+msgstr "Wklej lub wpisz adres URL odnośnika tutaj"
+
+msgid "Title"
+msgstr "Tytuł"
 
 msgid "Description"
 msgstr "Opis"
-
-msgid "File description"
-msgstr "Opis pliku"
 
 msgid "Preview"
 msgstr "Podgląd"
@@ -142,26 +166,24 @@ msgstr "Oryginalna nazwa pliku"
 msgid "Save"
 msgstr "Zapisz"
 
+msgid "Cancel"
+msgstr "Anuluj"
+
 msgid "Delete"
 msgstr "Usuń"
 
-#, python-format
-msgid "Do you really want to delete file „%(title)s“?"
-msgstr "Czy na pewno chcesz usunąć plik „%(title)s”?"
-
-msgid "Delete file"
-msgstr "Usuń plik"
+#| msgid "More"
+msgid "Move"
+msgstr "Przenieść"
 
 msgid "Download"
 msgstr "Pobierz"
 
-#, fuzzy
-#| msgid "More"
-msgid "Move"
-msgstr "Więcej"
-
 msgid "Download this folder"
 msgstr "Pobierz ten folder"
+
+msgid "Add URL link"
+msgstr "Dodaj link URL"
 
 msgid "No files have been uploaded yet."
 msgstr "Żadne pliki nie zostały jeszcze wysłane."
@@ -170,25 +192,29 @@ msgstr "Żadne pliki nie zostały jeszcze wysłane."
 msgid ""
 "Hi %(receiver_name)s,\n"
 "\n"
-"a new file \"%(object_name)s\" in %(team_name)s was uploaded by %(sender_name)s. \n"
+"a new file \"%(object_name)s\" in %(team_name)s was uploaded by "
+"%(sender_name)s. \n"
 "\n"
 "You can find it by following this link: %(object_url)s\n"
 "\n"
 "\n"
 "\n"
-"(Follow this link to edit your notification preferences: %(notification_settings_url)s )\n"
+"(Follow this link to edit your notification preferences: "
+"%(notification_settings_url)s )\n"
 "\n"
 "Your %(site_name)s Team."
 msgstr ""
 "Cześć %(receiver_name)s,\n"
 "\n"
-"nowy plik \"%(object_name)s\" w zespole %(team_name)s został wysłany przez %(sender_name)s.\n"
+"nowy plik \"%(object_name)s\" w zespole %(team_name)s został wysłany przez "
+"%(sender_name)s.\n"
 "\n"
 "Dostępny jest pod następującym adresem: %(object_url)s\n"
 "\n"
 "\n"
 "\n"
-"(Kliknij tutaj, aby edytować swoje ustawienia powiadomień: %(notification_settings_url)s )\n"
+"(Kliknij tutaj, aby edytować swoje ustawienia powiadomień: "
+"%(notification_settings_url)s )\n"
 "\n"
 "Twój Zespół %(site_name)s."
 
@@ -199,6 +225,9 @@ msgstr "Nowy plik: \"%(object_name)s\" został wysłany w %(team_name)s."
 msgid "Move to another Folder"
 msgstr "Przenieś do innego Folderu"
 
+msgid "Link to this Image"
+msgstr "Link do tego obrazu"
+
 msgid "by"
 msgstr "przez"
 
@@ -208,16 +237,26 @@ msgstr "Utworzony"
 msgid "Edit"
 msgstr "Edytuj"
 
-#, fuzzy
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr "Czy na pewno chcesz usunąć plik „%(title)s”?"
+
+msgid "Delete file"
+msgstr "Usuń plik"
+
+msgid "Close"
+msgstr "Zamknij"
+
 #| msgid "A user uploaded a new file"
 msgid "You uploaded a file"
-msgstr "Użytkownik przesłał nowy plik"
+msgstr "Wysłałeś plik"
 
-#, fuzzy
 #| msgid "A user uploaded a new file"
-msgctxt "This appears next to new items in the timeline, as in '<Jane> created a new item'"
+msgctxt ""
+"This appears next to new items in the timeline, as in '<Jane> created a new "
+"item'"
 msgid "uploaded a file"
-msgstr "Użytkownik przesłał nowy plik"
+msgstr "załadowany plik"
 
 msgid "More"
 msgstr "Więcej"
@@ -229,18 +268,6 @@ msgid "There are no files  yet"
 msgstr "Brak plików"
 
 #, python-format
-msgid "File \"%(title)s\" was uploaded successfully."
-msgstr "Plik \"%(title)s\" wysłano pomyślnie."
-
-#, python-format
-msgid "File \"%(title)s\" could not be uploaded."
-msgstr "Plik \"%(title)s\" nie mógł zostać wysłany."
-
-#, python-format
-msgid "File \"%(title)s\" could not be added."
-msgstr "Plik \"%(title)s\" nie mógł zostać dodany."
-
-#, python-format
 msgid "Folder \"%(title)s\" was created successfully."
 msgstr "Folder \"%(title)s\" utworzono pomyślnie."
 
@@ -248,11 +275,20 @@ msgid "File does not exist or you are not allowed to delete it."
 msgstr "Plik nie istnieje lub nie masz uprawnień, aby go usunąć."
 
 #, python-format
-msgid "A problem occurred during export. The following file is missing: %(filename)s."
-msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
-msgstr[0] "Podczas eksportu wystąpił problem. Brakuje następującego pliku: %(filename)s."
-msgstr[1] "Podczas eksportu wystąpił problem. Brakuje następujących plików: %(filename)s."
-msgstr[2] "Podczas eksportu wystąpił problem. Brakuje następujących plików: %(filename)s."
+msgid ""
+"A problem occurred during export. The following file is missing: "
+"%(filename)s."
+msgid_plural ""
+"A problem occurred during export. The following files are missing: "
+"%(filename)s."
+msgstr[0] ""
+"Podczas eksportu wystąpił problem. Brakuje następującego pliku: %(filename)s."
+msgstr[1] ""
+"Podczas eksportu wystąpił problem. Brakuje następujących plików: "
+"%(filename)s."
+msgstr[2] ""
+"Podczas eksportu wystąpił problem. Brakuje następujących plików: "
+"%(filename)s."
 
 msgid "Invalid request."
 msgstr "Nieprawidłowe żądanie."
@@ -266,7 +302,8 @@ msgid "File \"%(title)s\" could not be updated."
 msgstr "Plik \"%(title)s\" nie mógł zostać zaktualizowany."
 
 msgid "Downloading failed, the target object was not a folder!"
-msgstr "Pobieranie zakończone niepowodzeniem, obiekt docelowy nie jest folderem!"
+msgstr ""
+"Pobieranie zakończone niepowodzeniem, obiekt docelowy nie jest folderem!"
 
 msgid "Canceled the download because there seem to be no files in this folder."
 msgstr "Pobieranie anulowano, w folderze nie ma plików."
@@ -277,3 +314,18 @@ msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d Plik dodano pomyślnie."
 msgstr[1] "%(count)d Pliki dodano pomyślnie."
 msgstr[2] "%(count)d Plików dodano pomyślnie."
+
+#~ msgid "File title"
+#~ msgstr "Tytuł pliku"
+
+#~ msgid "File description"
+#~ msgstr "Opis pliku"
+
+#~ msgid "File \"%(title)s\" was uploaded successfully."
+#~ msgstr "Plik \"%(title)s\" wysłano pomyślnie."
+
+#~ msgid "File \"%(title)s\" could not be uploaded."
+#~ msgstr "Plik \"%(title)s\" nie mógł zostać wysłany."
+
+#~ msgid "File \"%(title)s\" could not be added."
+#~ msgstr "Plik \"%(title)s\" nie mógł zostać dodany."
