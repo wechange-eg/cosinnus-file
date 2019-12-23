@@ -4,7 +4,7 @@
         class="cosinnus-form form-horizontal" enctype="multipart/form-data"  
         {% if not form_edit %}
             data-target="ajax-form" 
-            data-ajax-oncomplete="$('#add-url-modal').modal('hide');init_simplemde();$.cosinnus.renderMomentDataDate();$('div.modal').hide();"
+            data-ajax-oncomplete="$('#add-url-modal').modal('hide');init_simplemde();$.cosinnus.renderMomentDataDate();$('div.modal').hide();init_file_url_form();"
             data-ajax-form-error-message="{% trans "The URL you have entered does not seem to be valid!" %}"
         {% endif %}
         >

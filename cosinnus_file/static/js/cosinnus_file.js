@@ -8,19 +8,7 @@ function validURL(str) {
     return !!pattern.test(str);
 }
 
-$(function(){
-    $('#add-url-modal').on('shown.bs.modal', function (e) {
-        $('#id_url').focus();
-    });
-    
-    // clear form on modal close
-    $('#add-url-modal').on('hidden.bs.modal', function (e) {
-        $('#id_url').val('');
-        $('#id_title').val('');
-        inited_simplemde.value('');
-        init_simplemde();
-    });
-    
+function init_file_url_form() {
     // on url input change, grab metadata and fill inputs if they are empty
     $('#id_url').on("input paste", function(){
         url = $(this).val();
@@ -47,4 +35,19 @@ $(function(){
             return false;
         }
     });
+}
+
+$(function(){
+    $('#add-url-modal').on('shown.bs.modal', function (e) {
+        $('#id_url').focus();
+    });
+    
+    // clear form on modal close
+    $('#add-url-modal').on('hidden.bs.modal', function (e) {
+        $('#id_url').val('');
+        $('#id_title').val('');
+        inited_simplemde.value('');
+    });
+    
+    init_file_url_form();
 });
