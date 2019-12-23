@@ -120,8 +120,8 @@
 				{% endcaptureas %}
 				{% captureas title %}{% trans "Add a URL link" %}{% endcaptureas %}
 				{% trans "Cancel" as cancel_button_label %}
-				{% captureas submit_button_label %}{% trans "Add URL" %}{% endcaptureas %}
-				{% include "cosinnus/modal_box.html" with id="add-url-modal" label=label title=title title_icon="fa-link" extra_modal_classes="modal-lg" hide_footer=True cancel_button_label=cancel_button_label%}
+				{% captureas submit_button_label_f %}{% trans "Add URL" %}{% endcaptureas %}
+				{% include "cosinnus/modal_box.html" with id="add-url-modal" label=label title=title title_icon="fa-link" extra_modal_classes="modal-lg" hide_footer=True cancel_button_label=cancel_button_label submit_button_label=submit_button_label_f %}
 				
 				<div class="clearfix"></div>
 			</div>

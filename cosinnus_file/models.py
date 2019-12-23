@@ -32,6 +32,7 @@ from cosinnus.models.mixins.images import ThumbnailableImageMixin
 from cosinnus.utils.filters import exclude_special_folders
 from uuid import uuid1
 from cosinnus_file.utils.strings import clean_filename
+from cosinnus.views.mixins.media import VideoEmbedFieldMixin
 
 
 def get_hashed_filename(instance, filename):
@@ -45,7 +46,7 @@ def get_hashed_filename(instance, filename):
 
 
 
-class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
+class FileEntry(ThumbnailableImageMixin, VideoEmbedFieldMixin, BaseHierarchicalTaggableObjectModel):
     """
     Model for uploaded files.
 
@@ -82,6 +83,7 @@ class FileEntry(ThumbnailableImageMixin, BaseHierarchicalTaggableObjectModel):
     objects = FileEntryManager()
     
     image_attr_name = 'file'
+    video_url_field_name = 'url'
     
     timeline_template = 'cosinnus_file/v2/dashboard/timeline_item.html'
     
