@@ -1,6 +1,7 @@
 {% load i18n static cosinnus_tags widget_tweaks thumbnail %}
 
-{% with is_video=file.get_video_properties %}
+
+{% with is_video=file.is_video %}
 	<div id="cosinnus_list_element_{{ file.id }}" class="fadedown {% if not forloop.last %}regular-space{% endif %}">
 	    <div class="item_checkbox_element btn btn-{% if do_highlight or created_with_ajax_forms %}extra-{% endif %}emphasized w100" 
 	            {% if file.is_image %}
