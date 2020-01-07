@@ -2,7 +2,7 @@
 
 
 {% with is_video=file.is_video %}
-	<div id="cosinnus_list_element_{{ file.id }}" class="fadedown {% if not forloop.last %}regular-space{% endif %}">
+	<div id="cosinnus_list_element_{{ file.id }}" class="fadedown {% if not forloop.last and not file.note %}regular-space{% endif %}">
 	    <div class="item_checkbox_element btn btn-{% if do_highlight or created_with_ajax_forms %}extra-{% endif %}emphasized w100" 
 	            {% if file.is_image %}
 	                href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" 
@@ -78,18 +78,6 @@
 	    <div style="display: none;"> <!-- fadedown wrapper -->
 		    {% include 'cosinnus/media_tags_readonly.html' with object=file %}
 		    
-		    {% if file.note %}
-		    <div type="button" class="btn btn-default w100 large-space">
-		        <ul class="media-list">
-		            <li class="media">
-		                <div class="media-body">
-		                    {{ file.note }} 
-		                </div>
-		            </li>
-		        </ul>
-		    </div>
-		    {% endif %}
-		    
 		    {% if user|has_write_access:file %}   
 		        {% captureas modal_id %}deleteModal_{{file.slug}}{% endcaptureas %}
 		        <button type="button" class="btn btn-emphasized" data-toggle="modal" data-target="#{{modal_id}}">
@@ -127,8 +115,14 @@
 			    {% include "cosinnus/modal_box.html" with id=modal_id label=label title=title form_action=action %}
 			{% endif %}
 	    </div> <!-- end fadedown wrapper -->
+	               
 	    
 	</div><!-- fadedown -->
+    {% if file.note %}
+    <div class="white-content w100 regular-space">
+        {{ file.note }} 
+    </div>
+    {% endif %}
 	
 	{% captureas label %}
         {{ file.render_video_embed }}     
