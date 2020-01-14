@@ -124,13 +124,14 @@
     </div>
     {% endif %}
 	
-	{% captureas label %}
-        {{ file.render_video_embed }}     
-    {% endcaptureas %}
-    {% captureas popup_id %}video-popup-{{ file.id }}{% endcaptureas %}
-    {% captureas title %}{{ file.title }}{% endcaptureas %}
-    {% captureas submit_button_label_v %}{% trans "Close" %}{% endcaptureas %}
-    {% include "cosinnus/modal_box.html" with id=popup_id label=label title=title title_icon="fa-video" extra_modal_classes="modal-lg" submit_button_label=submit_button_label_v %}
-    
+	{% if is_video %}
+		{% captureas label %}
+	        {{ file.render_video_embed }}     
+	    {% endcaptureas %}
+	    {% captureas popup_id %}video-popup-{{ file.id }}{% endcaptureas %}
+	    {% captureas title %}{{ file.title }}{% endcaptureas %}
+	    {% captureas submit_button_label_v %}{% trans "Close" %}{% endcaptureas %}
+	    {% include "cosinnus/modal_box.html" with id=popup_id label=label title=title title_icon="fa-video" extra_modal_classes="modal-lg" submit_button_label=submit_button_label_v %}
+    {% endif %}
 	
 {% endwith %}
