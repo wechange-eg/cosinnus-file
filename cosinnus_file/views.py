@@ -422,7 +422,7 @@ class FolderDownloadView(RequireReadMixin, FilterGroupMixin, DetailView):
             if sub_file.is_url:
                 fd, temp_path = tempfile.mkstemp()
                 with os.fdopen(fd, 'w') as tmp:
-                    tmp.write(sub_file.url)
+                    tmp.write('[InternetShortcut]\nURL=%s' % sub_file.url)
                 temp_file_paths.append(temp_path)
                 # attach temp file path
                 zip_path = sub_file.path.replace(folder.path, '', 1) + clean_filename(slugify(sub_file.title)) + '.url'
