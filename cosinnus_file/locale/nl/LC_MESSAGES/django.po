@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-14 19:31+0100\n"
+"POT-Creation-Date: 2020-02-02 16:09+0100\n"
 "PO-Revision-Date: 2019-09-19 22:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,6 +27,16 @@ msgstr "bestand"
 
 msgid "A user uploaded a new file"
 msgstr "Een gebruiker heeft een nieuw bestand geüpload"
+
+#, fuzzy, python-format
+#| msgid "%(sender_name)s created a new file"
+msgid "%(sender_name)s uploaded the file %(object_name)s"
+msgstr "%(sender_name)s heeft een nieuw bestand aangemaakt"
+
+#, fuzzy, python-format
+#| msgid "%(sender_name)s created a new file"
+msgid "%(sender_name)s uploaded %(count)d files"
+msgstr "%(sender_name)s heeft een nieuw bestand aangemaakt"
 
 #, python-format
 msgid "New file by %(sender_name)s"
