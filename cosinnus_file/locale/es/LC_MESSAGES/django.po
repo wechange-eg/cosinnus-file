@@ -3,104 +3,106 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-02 16:09+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2020-04-22 13:06+0200\n"
+"PO-Revision-Date: 2020-04-22 12:37+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid "Files"
-msgstr ""
+msgstr "Archivos"
 
 msgctxt "the_app"
 msgid "file"
-msgstr ""
+msgstr "archivo"
 
 msgid "A user uploaded a new file"
-msgstr ""
+msgstr "Un usuario subió un archivo nuevo"
 
-#, python-format
+#, fuzzy, python-format
+#| msgid "%(sender_name)s created a new file"
 msgid "%(sender_name)s uploaded the file %(object_name)s"
-msgstr ""
+msgstr "%(sender_name)s creó un nuevo archivo"
 
-#, python-format
+#, fuzzy, python-format
+#| msgid "%(sender_name)s created a new file"
 msgid "%(sender_name)s uploaded %(count)d files"
-msgstr ""
+msgstr "%(sender_name)s creó un nuevo archivo"
 
 #, python-format
 msgid "New file by %(sender_name)s"
-msgstr ""
+msgstr "Archivo neuvo de %(sender_name)s"
 
 #, python-format
 msgid "%(sender_name)s created a new file"
-msgstr ""
+msgstr "%(sender_name)s creó un nuevo archivo"
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
-msgstr ""
+msgstr "Archivo neuvo: \"%(object_name)s\" fue creado en %(team_name)s."
 
 msgid "A user uploaded a new file in a team you are following"
-msgstr ""
+msgstr "Un usario creó un archivo nuevo en un equipo que estas siguiendo"
 
 #, python-format
 msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-msgstr ""
+msgstr "Archivo neuvo de %(sender_name)s en %(team_name)s (que sigues)"
 
 #, python-format
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
-msgstr ""
+msgstr "%(sender_name)s creó un archivo nuevo en %(team_name)s (que estas siguiendo)"
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s (which you follow)."
-msgstr ""
+msgstr "Archivo neuvo: \"%(object_name)s\" fue creado en %(team_name)s (que sigues)."
 
 msgid "Latest Files"
-msgstr ""
+msgstr "Ultimos archivos"
 
 msgid "No files"
-msgstr ""
+msgstr "Ningúnos Archivos"
 
 msgid "Pictures"
-msgstr ""
+msgstr "Imágenes"
 
 msgid "Documents"
-msgstr ""
+msgstr "Documentos"
 
 msgid "Audio Files"
-msgstr ""
+msgstr "Archivos de sonido"
 
 msgid "Videos"
-msgstr ""
+msgstr "Videos"
 
 msgid "Created By"
-msgstr ""
+msgstr "Creado por"
 
 msgid "File Type"
-msgstr ""
+msgstr "Tipo de archivo"
 
 msgid "File Name"
-msgstr ""
+msgstr "Nombre de archivo"
 
 msgid "File Name (descending)"
-msgstr ""
+msgstr "Nombre de archivo (descendente)"
 
 msgid "Newest Created"
-msgstr ""
+msgstr "Creados más nuevos"
 
 msgid "Smallest Files"
-msgstr ""
+msgstr "Archivos más pequeños"
 
 msgid "Largest Files"
-msgstr ""
+msgstr "Archivos más grandes"
 
 msgid "The given URL does not seem to be valid."
 msgstr ""
@@ -109,10 +111,10 @@ msgid "Must supply either a URL or File"
 msgstr ""
 
 msgid "Note"
-msgstr ""
+msgstr "Ten encuenta"
 
 msgid "File"
-msgstr ""
+msgstr "Archivo"
 
 msgid "Is URL Link"
 msgstr ""
@@ -121,23 +123,23 @@ msgid "URL"
 msgstr ""
 
 msgid "Path"
-msgstr ""
+msgstr "Camino"
 
 msgid "Uploaded by"
-msgstr ""
+msgstr "Subido por"
 
 msgid "Uploaded on"
-msgstr ""
+msgstr "Subido en"
 
 msgid "No files selected."
-msgstr ""
+msgstr "Ningúnos archivos seleccionados."
 
 msgctxt "special_folder_type"
 msgid "Attachments"
-msgstr ""
+msgstr "Documento adjunto"
 
 msgid "There was an error in one of the fields you entered. Please correct it before saving!"
-msgstr ""
+msgstr "Se ha producido un error en uno de las casillas insertadas. ¡Por favor, corrígelo antes de guardar!"
 
 msgid "The URL you have entered does not seem to be valid!"
 msgstr ""
@@ -152,37 +154,37 @@ msgid "Title"
 msgstr ""
 
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 msgid "Preview"
-msgstr ""
+msgstr "VIsta anticipada"
 
 msgid "Original filename"
-msgstr ""
+msgstr "Nombre original del archivo"
 
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 msgid "Cancel"
 msgstr ""
 
 msgid "Delete"
-msgstr ""
+msgstr "Borrar"
 
 msgid "Move"
-msgstr ""
+msgstr "Trasladar"
 
 msgid "Download"
-msgstr ""
+msgstr "Descargar"
 
 msgid "Download this folder"
-msgstr ""
+msgstr "Descargar esta carpeta"
 
 msgid "Add URL link"
 msgstr ""
 
 msgid "No files have been uploaded yet."
-msgstr ""
+msgstr "No hay archivo subidos hasta ahora."
 
 #, python-format
 msgid ""
@@ -198,84 +200,114 @@ msgid ""
 "\n"
 "Your %(site_name)s Team."
 msgstr ""
+"Hola %(receiver_name)s,\n"
+"\n"
+"un nuevo archivo \"%(object_name)s\" en %(team_name)s fue subido por %(sender_name)s. \n"
+"\n"
+"Puedes encontrarlo siguiendo este enlace: %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(Sigue este enlace para editar tus preferencias de notificación: %(notification_settings_url)s )\n"
+"\n"
+"Tu equipo de %(site_name)s ."
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
-msgstr ""
+msgstr "Un nuevo archivo: \"%(object_name)s\" fue subido en %(team_name)s."
 
 msgid "Move to another Folder"
-msgstr ""
+msgstr "Trasladar a otra carpeta"
 
 msgid "Link to this Image"
 msgstr ""
 
 msgid "by"
-msgstr ""
+msgstr "por"
 
 msgid "Created"
-msgstr ""
+msgstr "Creado"
 
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
-msgstr ""
+msgstr "Estas seguro de que quieres eliminar el archivo „%(title)s“?"
 
 msgid "Delete file"
-msgstr ""
+msgstr "Eliminar el Archivo"
 
 msgid "Close"
 msgstr ""
 
+#, fuzzy
+#| msgid "A user uploaded a new file"
 msgid "You uploaded a file"
-msgstr ""
+msgstr "Un usuario subió un archivo nuevo"
 
+#, fuzzy
+#| msgid "A user uploaded a new file"
 msgctxt "This appears next to new items in the timeline, as in '<Jane> created a new item'"
 msgid "uploaded a file"
-msgstr ""
+msgstr "Un usuario subió un archivo nuevo"
 
 msgid "More"
-msgstr ""
+msgstr "Más"
 
 msgid "Latest files"
-msgstr ""
+msgstr "Ultimos archivos"
 
 msgid "There are no files  yet"
-msgstr ""
+msgstr "No hay archivos hasta ahora"
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
-msgstr ""
+msgstr "Carpeta \"%(title)s\" ha sido creada con éxito."
 
 msgid "File does not exist or you are not allowed to delete it."
-msgstr ""
+msgstr "El archivo no existe o no tienes permiso para eliminarlo."
 
 #, python-format
 msgid "A problem occurred during export. The following file is missing: %(filename)s."
 msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Se produjo un problema durante la exportación. Falta el siguiente archivo: %(filename)s."
+msgstr[1] "Se produjo un problema durante la exportación. Faltan los siguientes archivos: %(filename)s."
 
 msgid "Invalid request."
-msgstr ""
+msgstr "Solicitud no válida."
 
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
-msgstr ""
+msgstr "Archivo \"%(title)s\" fue actualizado con éxito."
 
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
-msgstr ""
+msgstr "Archivo\"%(title)s\" no pudo ser actualizado."
 
 msgid "Downloading failed, the target object was not a folder!"
-msgstr ""
+msgstr "Error al descargar, ¡el objeto de destino no era una carpeta!"
 
 msgid "Canceled the download because there seem to be no files in this folder."
-msgstr ""
+msgstr "Se canceló la descarga porque parece que no hay archivos en esta carpeta."
 
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)d Archivo se añadió correctamente."
+msgstr[1] "%(count)d Archivos se añadieron correctamente."
+
+#~ msgid "File title"
+#~ msgstr "Título del archivo"
+
+#~ msgid "File description"
+#~ msgstr "Descripción del archivo"
+
+#~ msgid "File \"%(title)s\" was uploaded successfully."
+#~ msgstr "Archivo \"%(title)s\" fue subido con éxito."
+
+#~ msgid "File \"%(title)s\" could not be uploaded."
+#~ msgstr "Archivo \"%(title)s\" no se pudo subir."
+
+#~ msgid "File \"%(title)s\" could not be added."
+#~ msgstr "Archivo \"%(title)s\" no pudo ser añadido."

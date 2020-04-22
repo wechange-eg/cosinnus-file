@@ -8,106 +8,101 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 13:06+0200\n"
-"PO-Revision-Date: 2018-09-14 18:28+0200\n"
+"PO-Revision-Date: 2019-11-07 21:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.0.8\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"X-Generator: Poedit 2.0.7\n"
 
 msgid "Files"
-msgstr "Fichiers"
+msgstr "Fișiere"
 
 msgctxt "the_app"
 msgid "file"
-msgstr "fichier"
+msgstr "fișier"
 
 msgid "A user uploaded a new file"
-msgstr "Un utilisateur a téléchargé un nouveau fichier"
+msgstr "Un utilizator a încărcat un nou fișier"
 
 #, fuzzy, python-format
 #| msgid "%(sender_name)s created a new file"
 msgid "%(sender_name)s uploaded the file %(object_name)s"
-msgstr "%(sender_name)s a créé un nouveau fichier"
+msgstr "%(sender_name)s a creat un nou fișier"
 
 #, fuzzy, python-format
 #| msgid "%(sender_name)s created a new file"
 msgid "%(sender_name)s uploaded %(count)d files"
-msgstr "%(sender_name)s a créé un nouveau fichier"
+msgstr "%(sender_name)s a creat un nou fișier"
 
 #, python-format
 msgid "New file by %(sender_name)s"
-msgstr "Nouveau fichier par %(sender_name)s"
+msgstr "Nou fișier de %(sender_name)s"
 
 #, python-format
 msgid "%(sender_name)s created a new file"
-msgstr "%(sender_name)s a créé un nouveau fichier"
+msgstr "%(sender_name)s a creat un nou fișier"
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
-msgstr "Un nouveau fichier : \"%(object_name)s\" a été créé dans %(team_name)s."
+msgstr "Un nou fișier: ”%(object_name)s” a fost creat în %(team_name)s."
 
-#, fuzzy
-#| msgid "A user uploaded a new file"
 msgid "A user uploaded a new file in a team you are following"
-msgstr "Un utilisateur a téléchargé un nouveau fichier"
+msgstr "Un utilizator a încărcat un nou fișier într-o echipă pe care o urmărești"
 
-#, fuzzy, python-format
-#| msgid "New file by %(sender_name)s"
+#, python-format
 msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-msgstr "Nouveau fichier par %(sender_name)s"
+msgstr "Nou fișier de %(sender_name)s în %(team_name)s (pe care le urmezi)"
 
-#, fuzzy, python-format
-#| msgid "%(sender_name)s created a new file"
+#, python-format
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
-msgstr "%(sender_name)s a créé un nouveau fichier"
+msgstr "%(sender_name)s a creat un nou fișier în %(team_name)s (pe care le urmezi)"
 
-#, fuzzy, python-format
-#| msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
+#, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s (which you follow)."
-msgstr "Un nouveau fichier : \"%(object_name)s\" a été créé dans %(team_name)s."
+msgstr "Un nou fișier: ”%(object_name)s” a fost creat în %(team_name)s (pe care le urmezi)."
 
 msgid "Latest Files"
-msgstr "Derniers fichiers"
+msgstr "Cele mai recente fișiere"
 
 msgid "No files"
-msgstr "Pas de fichiers"
+msgstr "Fără fișiere"
 
 msgid "Pictures"
-msgstr "Photos"
+msgstr "Poze"
 
 msgid "Documents"
-msgstr "Documents"
+msgstr "Documente"
 
 msgid "Audio Files"
-msgstr "Fichiers audio"
+msgstr "Fișiere Audio"
 
 msgid "Videos"
-msgstr "Vidéos"
+msgstr "Videoclipuri"
 
 msgid "Created By"
-msgstr "Créé par"
+msgstr "Creat de"
 
 msgid "File Type"
-msgstr "Type de fichier"
+msgstr "Tip Fișier"
 
 msgid "File Name"
-msgstr "Nom du fichier"
+msgstr "Nume de Fișier"
 
 msgid "File Name (descending)"
-msgstr "Nom du fichier (décroissant)"
+msgstr "Nume de Fișier (descendentă)"
 
 msgid "Newest Created"
-msgstr "Créé le plus récemment"
+msgstr "Cel mai nou creat"
 
 msgid "Smallest Files"
-msgstr "Plus petits fichiers"
+msgstr "Cele mai mici fișiere"
 
 msgid "Largest Files"
-msgstr "Plus grands fichiers"
+msgstr "Cele mai mari fișiere"
 
 msgid "The given URL does not seem to be valid."
 msgstr ""
@@ -116,10 +111,10 @@ msgid "Must supply either a URL or File"
 msgstr ""
 
 msgid "Note"
-msgstr "Note"
+msgstr "Notă"
 
 msgid "File"
-msgstr "Fichier"
+msgstr "Fișier"
 
 msgid "Is URL Link"
 msgstr ""
@@ -128,23 +123,23 @@ msgid "URL"
 msgstr ""
 
 msgid "Path"
-msgstr "Chemin"
+msgstr "Calea"
 
 msgid "Uploaded by"
-msgstr "Téléchargé par"
+msgstr "Încărcat de"
 
 msgid "Uploaded on"
-msgstr "Téléchargé sur"
+msgstr "Încărcat pe"
 
 msgid "No files selected."
-msgstr "Aucun fichier sélectionné."
+msgstr "Nu au fost selectate fișiere."
 
 msgctxt "special_folder_type"
 msgid "Attachments"
-msgstr "Pièces jointes"
+msgstr "Atașamente"
 
 msgid "There was an error in one of the fields you entered. Please correct it before saving!"
-msgstr "Il y a une erreur dans l'un des champs que tu as saisis. Corrige-la avant d'enregistrer !"
+msgstr "A existat o eroare într-unul din câmpurile pe care le-ați introdus. Vă rugăm să îl corectați înainte de a salva!"
 
 msgid "The URL you have entered does not seem to be valid!"
 msgstr ""
@@ -159,39 +154,37 @@ msgid "Title"
 msgstr ""
 
 msgid "Description"
-msgstr "Description"
+msgstr "Descriere"
 
 msgid "Preview"
-msgstr "Aperçu"
+msgstr "Previzualizare"
 
 msgid "Original filename"
-msgstr "Nom original du fichier"
+msgstr "Nume de fișier original"
 
 msgid "Save"
-msgstr "Enregistrer"
+msgstr "Salvați"
 
 msgid "Cancel"
 msgstr ""
 
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Șterge"
 
-#, fuzzy
-#| msgid "More"
 msgid "Move"
-msgstr "Plus"
+msgstr "Mișcare"
 
 msgid "Download"
-msgstr "Télécharger"
+msgstr "Descarcă"
 
 msgid "Download this folder"
-msgstr "Télécharger ce fichier"
+msgstr "Descărcați acest dosar"
 
 msgid "Add URL link"
 msgstr ""
 
 msgid "No files have been uploaded yet."
-msgstr "Aucun fichier n'a encore été téléchargé."
+msgstr "Încă nu au fost încărcate fișiere."
 
 #, python-format
 msgid ""
@@ -209,112 +202,110 @@ msgid ""
 msgstr ""
 "Salut %(receiver_name)s,\n"
 "\n"
-"un nouveau fichier \"%(object_name)s\" dans %(team_name)s a été téléchargé par %(sender_name)s. \n"
+"Un nou fișier ”%(object_name)s” în %(team_name)s a fost încărcat de %(sender_name)s. \n"
 "\n"
-"Tu peux le trouver en suivant ce lien : %(object_url)s\n"
+"Îl puteți găsi urmărind această legătură: %(object_url)s\n"
 "\n"
 "\n"
 "\n"
-"(Suis ce lien pour modifier tes préférences de notification : %(notification_settings_url)s )\n"
+"(Urmați această legătură pentru a modifica preferințele de notificare: %(notification_settings_url)s )\n"
 "\n"
-"L'équipe %(site_name)s"
+"A ta %(site_name)s Echipă."
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
-msgstr "Un nouveau fichier : \"%(object_name)s\" a été téléchargé dans %(team_name)s."
+msgstr "Un nou fișier: ”%(object_name)s” a fost încărcat în %(team_name)s."
 
 msgid "Move to another Folder"
-msgstr "Déplacer dans un autre dossier"
+msgstr "Treceți la alt Dosar"
 
 msgid "Link to this Image"
 msgstr ""
 
 msgid "by"
-msgstr "par"
+msgstr "de"
 
 msgid "Created"
-msgstr "Créé"
+msgstr "Creată"
 
 msgid "Edit"
-msgstr "Modifier"
+msgstr "Editați"
 
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
-msgstr "Souhaites-tu vraiment supprimer le fichier „%(title)s“ ?"
+msgstr "Vrei cu adevărat să ștergi fișierul „%(title)s”?"
 
 msgid "Delete file"
-msgstr "Supprimer le fichier"
+msgstr "Șterge fișierul"
 
 msgid "Close"
 msgstr ""
 
-#, fuzzy
-#| msgid "A user uploaded a new file"
 msgid "You uploaded a file"
-msgstr "Un utilisateur a téléchargé un nouveau fichier"
+msgstr "Ai încărcat un fișier"
 
-#, fuzzy
-#| msgid "A user uploaded a new file"
 msgctxt "This appears next to new items in the timeline, as in '<Jane> created a new item'"
 msgid "uploaded a file"
-msgstr "Un utilisateur a téléchargé un nouveau fichier"
+msgstr "a încărcat un fișier"
 
 msgid "More"
-msgstr "Plus"
+msgstr "Mai mult"
 
 msgid "Latest files"
-msgstr "Derniers fichiers"
+msgstr "Cele mai recente fișiere"
 
 msgid "There are no files  yet"
-msgstr "Il n'y a pas encore de fichiers"
+msgstr "Încă nu există  fișiere"
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
-msgstr "Le dossier \"%(title)s\" a été créé."
+msgstr "Dosar ”%(title)s” a fost creat cu succes."
 
 msgid "File does not exist or you are not allowed to delete it."
-msgstr "Le fichier n'existe pas ou tu n'as pas l'autorisation de le supprimer."
+msgstr "Fișierul nu există sau nu aveți voie să îl ștergeți."
 
 #, python-format
 msgid "A problem occurred during export. The following file is missing: %(filename)s."
 msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
-msgstr[0] "Un problème est survenu durant l'export. Le fichier suivant manque : %(filename)s."
-msgstr[1] "Un problème est survenu durant l'export. Les fichiers suivants manquent : %(filename)s."
+msgstr[0] "O problemă a apărut în timpul exportului. Fișierul următor lipsește: %(filename)s."
+msgstr[1] "O problemă a apărut în timpul exportului. Fișierul următor lipsește: %(filename)s."
+msgstr[2] "O problemă a apărut în timpul exportului. Fișierele următoare lipsesc: %(filename)s."
 
 msgid "Invalid request."
-msgstr "Demande invalide."
+msgstr "Cerere invalidă."
 
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
-msgstr "Le fichier \"%(title)s\" a été mis à jour."
+msgstr "Fișier ”%(title)s” a fost actualizat cu succes."
 
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
-msgstr "Le fichier \"%(title)s\" n'a pas pu être mis à jour."
+msgstr "Fișier ”%(title)s” nu a putut fi actualizat."
 
 msgid "Downloading failed, the target object was not a folder!"
-msgstr "Le téléchargement a échoué, l'objet cible n'était pas un dossier !"
+msgstr "Descărcarea a eșuat, obiectul țintă nu era un dosar!"
 
 msgid "Canceled the download because there seem to be no files in this folder."
-msgstr "Téléchargement annulé car il semble qu'il n'y ait pas de fichiers dans ce dossier."
+msgstr "A anulat descărcarea, deoarece se pare că nu există fișiere în acest dosar."
 
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
-msgstr[0] "%(count)d fichier a été ajouté."
-msgstr[1] "%(count)d fichiers ont été ajoutés."
+msgstr[0] "%(count)d Fișierul a fost adăugat cu succes."
+msgstr[1] "%(count)d Fișierul a fost adăugat cu succes."
+msgstr[2] "%(count)d Fișierele au fost adăugate cu succes."
 
 #~ msgid "File title"
-#~ msgstr "Nom du fichier"
+#~ msgstr "Titlul fișierului"
 
 #~ msgid "File description"
-#~ msgstr "Description du fichier"
+#~ msgstr "Descrierea fișierului"
 
 #~ msgid "File \"%(title)s\" was uploaded successfully."
-#~ msgstr "Le fichier \"%(title)s\" a été téléchargé."
+#~ msgstr "Fișier ”%(title)s” a fost încărcat cu succes."
 
 #~ msgid "File \"%(title)s\" could not be uploaded."
-#~ msgstr "Le fichier \"%(title)s\" n'a pas pu être téléchargé."
+#~ msgstr "Fișier ”%(title)s” nu a putut fi încărcat."
 
 #~ msgid "File \"%(title)s\" could not be added."
-#~ msgstr "Le fichier \"%(title)s\" n'a pas pu être ajouté."
+#~ msgstr "Fișier ”%(title)s” nu a putut fi adăugat."
