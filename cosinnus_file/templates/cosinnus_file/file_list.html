@@ -1,5 +1,5 @@
 {% extends "cosinnus_file/base.html" %}
-{% load i18n static cosinnus_tags widget_tweaks thumbnail %}
+{% load i18n static cosinnus_tags widget_tweaks thumbnail djajax_tags %}
 
 {% block extrahead %}
     {{ block.super }}
@@ -25,6 +25,39 @@
 {% endblock leftnav %}
 
 {% block content %}
+    
+    {% captureas cloud_hide_pref %}cloud_file_teaser_{{ group.id }}{% endcaptureas %}
+    {% captureas cloud_hide_value %}cloud_file_teaser_{{ group.id }}:true{% endcaptureas %}
+    {% if SETTINGS.COSINNUS_CLOUD_ENABLED and user.pk in group.admins and not 'cosinnus_cloud' in group.get_deactivated_apps and not user|cosinnus_setting:cloud_hide_pref %}
+       <div class="large-space cloud-file-teaser-frame">
+            <div class="alert alert-black-white no-margin alert-dismissable">
+                <i class="fa fa-cloud fa-3x"></i>
+                <button id="close_button" type="button" class="close" onclick="$('.cloud-file-teaser-frame').hide();" aria-hidden="true" {% djajax_connect user.cosinnus_profile.settings trigger_on="click" fixed_value=cloud_hide_value %}>&#215;</button>
+                {% include 'cosinnus_file/texts/file_cloud_teaser_text.html' %}
+            </div>
+            
+            <button class="btn btn-emphasized" href="#" data-toggle="modal" data-target="#cloud-file-modal">
+                <ul class="media-list">
+                    <li class="media">
+                        <a class="pull-left" href="#">
+                            <i class="fa fa-cloud"></i>
+                        </a>
+                        <div class="media-body">
+                              {% trans "Show detailed steps" %}
+                        </div>
+                    </li>
+                </ul>
+            </button>
+            
+			{% captureas label %}
+			    {% include 'cosinnus_file/texts/file_cloud_teaser_popup_text.html' %}
+			{% endcaptureas %}
+			{% captureas title %}{% trans "Move your files to the n-Cloud" %}{% endcaptureas %}
+			{% include "cosinnus/modal_box.html" with id="cloud-file-modal" label=label title=title title_icon="fa-cloud" %}
+            <div class="clearfix"></div>
+        </div>
+    {% endif %}
+    <div class="clearfix"></div>
     
 	{% trans "Delete" as btn_label %}
     {% captureas btn_action %}$.cosinnus.Feedback.cosinnus_delete_element($.cosinnus.getListOfCheckedItems());{% endcaptureas %}
