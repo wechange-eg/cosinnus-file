@@ -1,0 +1,295 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-23 12:30+0100\n"
+"PO-Revision-Date: 2020-04-07 12:41+0100\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.3\n"
+
+msgid "Files"
+msgstr "ფაილები"
+
+msgctxt "the_app"
+msgid "file"
+msgstr "ფაილი"
+
+msgid "A user uploaded a new file"
+msgstr "მომხმარებელმა ახალი ფაილი ატვირთა"
+
+#, python-format
+msgid "%(sender_name)s uploaded the file %(object_name)s"
+msgstr "%(sender_name)s ატვირთა ფაილი სახელად %(object_name)s"
+
+#, python-format
+msgid "%(sender_name)s uploaded %(count)d files"
+msgstr "%(sender_name)s-მა ატვირთა %(count)d ფაილები"
+
+#, python-format
+msgid "New file by %(sender_name)s"
+msgstr "ახალი ფაილი %(sender_name)s-ის მიერ"
+
+#, python-format
+msgid "%(sender_name)s created a new file"
+msgstr "%(sender_name)s-მა შექმნა ახალი ფაილი"
+
+#, python-format
+msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
+msgstr "ახალი ფაილი: \"%(object_name)s\" შეიქმნა %(team_name)s-ში."
+
+msgid "A user uploaded a new file in a team you are following"
+msgstr "მომხმარებელმა ატვირთა ახალი ფაილი, იმ გუნდში, რომელსაც თქვენ მიყვებით"
+
+#, python-format
+msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
+msgstr "ახალი ფაილი %(sender_name)s-ის მიერ %(team_name)s-ში (რომელსაც მიყვებით)"
+
+#, python-format
+msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
+msgstr "%(sender_name)s შექმნა ახალი ფაილი %(team_name)s-ში (რომელსაც თქვენ მიყვებით)"
+
+#, python-format
+msgid "A new file: \"%(object_name)s\" was created in %(team_name)s (which you follow)."
+msgstr "ახალი ფაილი: \"%(object_name)s\" შეიქმნა %(team_name)s -ში (რომელსაც თქვენ მიყვებით)."
+
+msgid "Latest Files"
+msgstr "ბოლო ფაილები"
+
+msgid "No files"
+msgstr "ფაილები არ არის"
+
+msgid "Pictures"
+msgstr "სურათები"
+
+msgid "Documents"
+msgstr "დოკუმენტები"
+
+msgid "Audio Files"
+msgstr "აუდიო ფაილები"
+
+msgid "Videos"
+msgstr "ვიდეოები"
+
+msgid "Created By"
+msgstr "შექმნილია"
+
+msgid "File Type"
+msgstr "ფაილის ტიპი"
+
+msgid "File Name"
+msgstr "ფაილის სახელი"
+
+msgid "File Name (descending)"
+msgstr "ფაილის სახელი (განსხვავებული)"
+
+msgid "Newest Created"
+msgstr "უახლესი შექმნილი"
+
+msgid "Smallest Files"
+msgstr "ყველაზე პატარა ფაილები"
+
+msgid "Largest Files"
+msgstr "ყველაზე დიდი ფაილები"
+
+msgid "The given URL does not seem to be valid."
+msgstr "მოცემული URL არ შეიძლება იყოს მოქმედი."
+
+msgid "Must supply either a URL or File"
+msgstr "უნდა მოხდეს URL-ს ან ფაილის მიწოდება"
+
+msgid "Note"
+msgstr "შენიშვნა"
+
+msgid "File"
+msgstr "ფაილი"
+
+msgid "Is URL Link"
+msgstr "ბმულის URL"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Path"
+msgstr "Path"
+
+msgid "Uploaded by"
+msgstr "ატვირთულია"
+
+msgid "Uploaded on"
+msgstr "ატვირთულია"
+
+msgid "No files selected."
+msgstr "ფაილები არჩეული არ არის."
+
+msgctxt "special_folder_type"
+msgid "Attachments"
+msgstr "მიმაგრებული ფაილები"
+
+msgid "There was an error in one of the fields you entered. Please correct it before saving!"
+msgstr "შეცდომა დაფიქსირდა ერთ-ერთ გრაფაში, რომელშიც ინფორმაცია შეიყვანეთ. გთხოვთ შეასწოროთ შენახვამდე!"
+
+msgid "The URL you have entered does not seem to be valid!"
+msgstr "თქვენ მიერ შეყვანილი URL არ შეიძლება იყოს მოქმედი!"
+
+msgid "URL Link"
+msgstr "ბმულის URL"
+
+msgid "Paste or type the link's URL here"
+msgstr "გადმოიტანეთ ან ჩაწერეთ ბმულის URL აქ"
+
+msgid "Title"
+msgstr "სათაური"
+
+msgid "Description"
+msgstr "აღწერა"
+
+msgid "Preview"
+msgstr "ანონსი"
+
+msgid "Original filename"
+msgstr "პირვანდელი ფაილის სახელი"
+
+msgid "Save"
+msgstr "შენახვა"
+
+msgid "Cancel"
+msgstr "გაუქმება"
+
+msgid "Delete"
+msgstr "წაშლა"
+
+msgid "Move"
+msgstr "გადატანა"
+
+msgid "Download"
+msgstr "გადმოწერა"
+
+msgid "Download this folder"
+msgstr "საქაღალდის გადმოწერა"
+
+msgid "Add URL link"
+msgstr "URL ბმულის დამატება"
+
+msgid "No files have been uploaded yet."
+msgstr "ახალი ფაილების ჯერ არ არის ატვირთული."
+
+#, python-format
+msgid ""
+"Hi %(receiver_name)s,\n"
+"\n"
+"a new file \"%(object_name)s\" in %(team_name)s was uploaded by %(sender_name)s. \n"
+"\n"
+"You can find it by following this link: %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(Follow this link to edit your notification preferences: %(notification_settings_url)s )\n"
+"\n"
+"Your %(site_name)s Team."
+msgstr ""
+"გამარჯობა %(receiver_name)s,\n"
+"\n"
+"ახალი ფაილი \"%(object_name)s\" აიტვირთა %(team_name)s-ში %(sender_name)s-ის მიერ. \n"
+"\n"
+"შეგიძლიათ იხილოთ შემდეგ ბმულზე: %(object_url)s\n"
+"\n"
+"\n"
+"\n"
+"(გაყევით მოცემულ ბმულს შეტყობინებათა პრეფერენციების რედაქტირებისათვის: "
+"%(notification_settings_url)s )\n"
+"\n"
+"თქვენი %(site_name)s-ის გუნდი."
+
+#, python-format
+msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
+msgstr "ახალი ფაილი: \"%(object_name)s\" ატვირთულ იქნა %(team_name)s-ში."
+
+msgid "Move to another Folder"
+msgstr "სხვა საქაღალდეში გადატანა"
+
+msgid "Link to this Image"
+msgstr "ამ გამოსახულების ბმული"
+
+msgid "by"
+msgstr "მიერ"
+
+msgid "Created"
+msgstr "შექმნილია"
+
+msgid "Edit"
+msgstr "რედაქტირება"
+
+#, python-format
+msgid "Do you really want to delete file „%(title)s“?"
+msgstr "ნამდვილად გსურთ ფაილის „%(title)s“ წაშლა?"
+
+msgid "Delete file"
+msgstr "ფაილის წაშლა"
+
+msgid "Close"
+msgstr "დახურვა"
+
+msgid "You uploaded a file"
+msgstr "თქვენ ატვირთეთ ფაილი"
+
+msgctxt "This appears next to new items in the timeline, as in '<Jane> created a new item'"
+msgid "uploaded a file"
+msgstr "ატვირთეთ ფაილი"
+
+msgid "More"
+msgstr "მეტი"
+
+msgid "Latest files"
+msgstr "ბოლო ფაილები"
+
+msgid "There are no files  yet"
+msgstr "ფაილები ჯერ არ არის"
+
+#, python-format
+msgid "Folder \"%(title)s\" was created successfully."
+msgstr "საქაღალდე \"%(title)s\" წარმატებით შეიქმნა."
+
+msgid "File does not exist or you are not allowed to delete it."
+msgstr "ფაილები არ არსებობს ან თქვენ არ გაქვთ მათი წაშლის უფლება."
+
+#, python-format
+msgid "A problem occurred during export. The following file is missing: %(filename)s."
+msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
+msgstr[0] ""
+"ექპორტის დროს დაფიქსირდა პრობლემა. შემდეგი ფაილი არ იძებნება: %(filename)s.\n"
+"\n"
+"\n"
+"ექპორტის დროს დაფიქსირდა პრობლემა. შემდეგი ფაილები არ იძებნება: %(filename)s."
+
+msgid "Invalid request."
+msgstr "არასწორი მოთხოვნა."
+
+#, python-format
+msgid "File \"%(title)s\" was updated successfully."
+msgstr "ფაილი \"%(title)s\"  წარმატებით აიტვირთა."
+
+#, python-format
+msgid "File \"%(title)s\" could not be updated."
+msgstr "ფაილის \"%(title)s\" განახლება შეუძლებელია."
+
+msgid "Downloading failed, the target object was not a folder!"
+msgstr "გადმოწერა ვერ მოხერხდა, სამიზნე ობიექტი არ არის საქაღალდე!"
+
+msgid "Canceled the download because there seem to be no files in this folder."
+msgstr "გადმოწერა გაუქმდა, რადგან არ იყო არც საქაღალდე და არც ფაილი."
+
+#, python-format
+msgid "%(count)d File was added successfully."
+msgid_plural "%(count)d Files were added successfully."
+msgstr[0] "%(count)d  ფაილი წარმატებით დაემატა."
