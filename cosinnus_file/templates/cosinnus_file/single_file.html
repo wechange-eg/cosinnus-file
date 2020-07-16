@@ -2,7 +2,7 @@
 
 {% with file=object %}
     <div class="app-files">
-        <div class="btn btn-emphasized w100" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_url }}" data-lightbox="image-{{ file.id }}" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}" {% if file.is_url %}target="_blank"{% endif %}{% endif %}>
+        <div class="btn btn-emphasized w100" {% if file.is_image %}href="{{ file.static_image_url }}" data-lightbox-download="{{ file.static_image_original_url }}" data-lightbox="image-{{ file.id }}" data-title="{{ file.title }}"{% else %}href="{{ file.get_absolute_url }}" {% if file.is_url %}target="_blank"{% endif %}{% endif %}>
             <ul class="media-list {% if no_space %}fine-space{% else %}large-space{% endif %}">
                 <li class="media">
                     <span class="pull-left">
