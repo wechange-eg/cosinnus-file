@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-18 13:31+0200\n"
+"POT-Creation-Date: 2020-10-06 16:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,10 +36,6 @@ msgid "%(sender_name)s uploaded %(count)d files"
 msgstr ""
 
 #, python-format
-msgid "New file by %(sender_name)s"
-msgstr ""
-
-#, python-format
 msgid "%(sender_name)s created a new file"
 msgstr ""
 
@@ -48,10 +44,6 @@ msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
 msgstr ""
 
 msgid "A user uploaded a new file in a team you are following"
-msgstr ""
-
-#, python-format
-msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
 msgstr ""
 
 #, python-format

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-18 13:31+0200\n"
+"POT-Creation-Date: 2020-10-06 16:06+0200\n"
 "PO-Revision-Date: 2018-09-14 18:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -39,10 +39,6 @@ msgid "%(sender_name)s uploaded %(count)d files"
 msgstr "%(sender_name)s a créé un nouveau fichier"
 
 #, python-format
-msgid "New file by %(sender_name)s"
-msgstr "Nouveau fichier par %(sender_name)s"
-
-#, python-format
 msgid "%(sender_name)s created a new file"
 msgstr "%(sender_name)s a créé un nouveau fichier"
 
@@ -54,11 +50,6 @@ msgstr "Un nouveau fichier : \"%(object_name)s\" a été créé dans %(team_name
 #| msgid "A user uploaded a new file"
 msgid "A user uploaded a new file in a team you are following"
 msgstr "Un utilisateur a téléchargé un nouveau fichier"
-
-#, fuzzy, python-format
-#| msgid "New file by %(sender_name)s"
-msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-msgstr "Nouveau fichier par %(sender_name)s"
 
 #, fuzzy, python-format
 #| msgid "%(sender_name)s created a new file"
@@ -344,6 +335,14 @@ msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d fichier a été ajouté."
 msgstr[1] "%(count)d fichiers ont été ajoutés."
+
+#~ msgid "New file by %(sender_name)s"
+#~ msgstr "Nouveau fichier par %(sender_name)s"
+
+#, fuzzy
+#~| msgid "New file by %(sender_name)s"
+#~ msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
+#~ msgstr "Nouveau fichier par %(sender_name)s"
 
 #~ msgid "File title"
 #~ msgstr "Nom du fichier"
