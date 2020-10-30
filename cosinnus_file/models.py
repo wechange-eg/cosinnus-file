@@ -19,6 +19,7 @@ from django.utils.translation import ugettext_lazy as _, pgettext
 
 from cosinnus.conf import settings
 from cosinnus.models import BaseTaggableObjectModel
+from cosinnus.models.tagged import LikeableObjectMixin
 
 from cosinnus_file.managers import FileEntryManager
 from cosinnus.models.tagged import BaseHierarchicalTaggableObjectModel
@@ -46,7 +47,7 @@ def get_hashed_filename(instance, filename):
 
 
 
-class FileEntry(ThumbnailableImageMixin, VideoEmbedFieldMixin, BaseHierarchicalTaggableObjectModel):
+class FileEntry(ThumbnailableImageMixin, VideoEmbedFieldMixin, LikeableObjectMixin, BaseHierarchicalTaggableObjectModel):
     """
     Model for uploaded files.
 

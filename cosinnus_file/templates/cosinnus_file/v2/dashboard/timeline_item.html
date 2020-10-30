@@ -34,3 +34,7 @@
 {% block delete_button_frame %}{% endblock %}
 {% block edit_button_frame %}{% endblock %}
 
+{% block action_buttons %}
+	{% include 'cosinnus/v2/dashboard/timeline_button_star.html' with item=item %}
+{% endblock %}
+
