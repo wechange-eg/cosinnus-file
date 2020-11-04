@@ -45,7 +45,7 @@ from cosinnus_file import get_version
 setup(
     name='cosinnus-file',
     version=get_version(),
-    description='cosinnus file upload, storage and organisation application',
+    description='cosinnus file upload, storage and organization application',
     long_description=read('README'),
     author='Sinnwerkstatt Medienagentur GmbH Berlin',
     author_email='web@sinnwerkstatt.com',

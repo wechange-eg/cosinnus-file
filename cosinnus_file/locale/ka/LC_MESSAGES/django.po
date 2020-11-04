@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-23 12:30+0100\n"
+"POT-Creation-Date: 2020-10-06 16:06+0200\n"
 "PO-Revision-Date: 2020-04-07 12:41+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.3\n"
 
 msgid "Files"
@@ -37,10 +37,6 @@ msgid "%(sender_name)s uploaded %(count)d files"
 msgstr "%(sender_name)s-მა ატვირთა %(count)d ფაილები"
 
 #, python-format
-msgid "New file by %(sender_name)s"
-msgstr "ახალი ფაილი %(sender_name)s-ის მიერ"
-
-#, python-format
 msgid "%(sender_name)s created a new file"
 msgstr "%(sender_name)s-მა შექმნა ახალი ფაილი"
 
@@ -50,10 +46,6 @@ msgstr "ახალი ფაილი: \"%(object_name)s\" შეიქმნ�
 
 msgid "A user uploaded a new file in a team you are following"
 msgstr "მომხმარებელმა ატვირთა ახალი ფაილი, იმ გუნდში, რომელსაც თქვენ მიყვებით"
-
-#, python-format
-msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-msgstr "ახალი ფაილი %(sender_name)s-ის მიერ %(team_name)s-ში (რომელსაც მიყვებით)"
 
 #, python-format
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
@@ -166,6 +158,12 @@ msgstr "შენახვა"
 msgid "Cancel"
 msgstr "გაუქმება"
 
+msgid "Show detailed steps"
+msgstr ""
+
+msgid "Move your files to the Cloud"
+msgstr ""
+
 msgid "Delete"
 msgstr "წაშლა"
 
@@ -206,8 +204,7 @@ msgstr ""
 "\n"
 "\n"
 "\n"
-"(გაყევით მოცემულ ბმულს შეტყობინებათა პრეფერენციების რედაქტირებისათვის: "
-"%(notification_settings_url)s )\n"
+"(გაყევით მოცემულ ბმულს შეტყობინებათა პრეფერენციების რედაქტირებისათვის: %(notification_settings_url)s )\n"
 "\n"
 "თქვენი %(site_name)s-ის გუნდი."
 
@@ -239,6 +236,41 @@ msgstr "ფაილის წაშლა"
 
 msgid "Close"
 msgstr "დახურვა"
+
+msgid "To move your files to the Cloud, follow these steps:"
+msgstr ""
+
+msgid "Navigate to the folder you wish to move to the Cloud, or to the root folder of the Files app if you wish to move all of the files"
+msgstr ""
+
+#, fuzzy
+#| msgid "Download this folder"
+msgid "Root folder"
+msgstr "საქაღალდის გადმოწერა"
+
+#, python-format
+msgid "Click \"%(download_label)s\" to download the file archive"
+msgstr ""
+
+msgid "Unzip the file archive to a local folder on your hard drive"
+msgstr ""
+
+#, python-format
+msgid "Open the Cloud folder for \"%(group_name)s\":"
+msgstr ""
+
+msgid "Cloud app"
+msgstr ""
+
+msgid "Drag & drop the entire content of the unzipped folder from your local hard drive to the Cloud folder"
+msgstr ""
+
+#, python-format
+msgid "Your files will now upload to the Cloud and can be accessed by all members of \"%(group_name)s\". Your files will remain here in the Files app as well. If you are satisfied with how they look in the Cloud, you may delete them here."
+msgstr ""
+
+msgid "If you wish to access your files from multiple devices, you may want to consider moving them to the Cloud. The process is easy, and you can still keep your files here until you are satisfied with the Cloud."
+msgstr ""
 
 msgid "You uploaded a file"
 msgstr "თქვენ ატვირთეთ ფაილი"
@@ -293,3 +325,9 @@ msgstr "გადმოწერა გაუქმდა, რადგან �
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d  ფაილი წარმატებით დაემატა."
+
+#~ msgid "New file by %(sender_name)s"
+#~ msgstr "ახალი ფაილი %(sender_name)s-ის მიერ"
+
+#~ msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
+#~ msgstr "ახალი ფაილი %(sender_name)s-ის მიერ %(team_name)s-ში (რომელსაც მიყვებით)"

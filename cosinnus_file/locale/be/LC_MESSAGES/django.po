@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-18 13:31+0200\n"
+"POT-Creation-Date: 2020-10-06 16:06+0200\n"
 "PO-Revision-Date: 2019-05-08 00:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -39,10 +39,6 @@ msgid "%(sender_name)s uploaded %(count)d files"
 msgstr "%(sender_name)s стварыў(-ла) новы файл"
 
 #, python-format
-msgid "New file by %(sender_name)s"
-msgstr "Новы файл ад %(sender_name)s"
-
-#, python-format
 msgid "%(sender_name)s created a new file"
 msgstr "%(sender_name)s стварыў(-ла) новы файл"
 
@@ -52,10 +48,6 @@ msgstr "Новы файл: \"%(object_name)s\" створаны ў %(team_name)s
 
 msgid "A user uploaded a new file in a team you are following"
 msgstr "Карыстальнік(-ца) зацягнуў(-ла) новы файл у каманду, за якой вы сочыце"
-
-#, python-format
-msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-msgstr "Новы файл ад %(sender_name)s у %(team_name)s (за якой вы сочыце)"
 
 #, python-format
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
@@ -341,6 +333,12 @@ msgstr[0] "%(count)d файл паспяхова дададзены."
 msgstr[1] "%(count)d файлы паспяхова дададзеныя."
 msgstr[2] "%(count)d файлаў паспяхова дададзеныя."
 msgstr[3] ""
+
+#~ msgid "New file by %(sender_name)s"
+#~ msgstr "Новы файл ад %(sender_name)s"
+
+#~ msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
+#~ msgstr "Новы файл ад %(sender_name)s у %(team_name)s (за якой вы сочыце)"
 
 #~ msgid "File title"
 #~ msgstr "Назва файла"

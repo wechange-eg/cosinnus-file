@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-18 13:31+0200\n"
-"PO-Revision-Date: 2019-12-23 17:13+0100\n"
+"POT-Creation-Date: 2020-10-06 16:06+0200\n"
+"PO-Revision-Date: 2020-10-13 18:31+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.4.1\n"
 
 msgid "Files"
 msgstr "Файли"
@@ -26,21 +26,15 @@ msgid "file"
 msgstr "файли"
 
 msgid "A user uploaded a new file"
-msgstr "Користувач завантажив/-ла новий файл"
-
-#, fuzzy, python-format
-#| msgid "%(sender_name)s created a new file"
-msgid "%(sender_name)s uploaded the file %(object_name)s"
-msgstr "%(sender_name)s створив новий файл"
-
-#, fuzzy, python-format
-#| msgid "%(sender_name)s created a new file"
-msgid "%(sender_name)s uploaded %(count)d files"
-msgstr "%(sender_name)s створив новий файл"
+msgstr "Користувач завантажив(-ла) новий файл"
 
 #, python-format
-msgid "New file by %(sender_name)s"
-msgstr "Новий файл від %(sender_name)s"
+msgid "%(sender_name)s uploaded the file %(object_name)s"
+msgstr "%(sender_name)s завантажив файл %(object_name)s"
+
+#, python-format
+msgid "%(sender_name)s uploaded %(count)d files"
+msgstr "%(sender_name)s завантажив %(count)d файлів"
 
 #, python-format
 msgid "%(sender_name)s created a new file"
@@ -51,11 +45,7 @@ msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
 msgstr "Новий файл: \"%(object_name)s\" був створений в %(team_name)s."
 
 msgid "A user uploaded a new file in a team you are following"
-msgstr "Користувач завантажив/-ла новий файл у команду, яку Ви відстежуєте"
-
-#, python-format
-msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-msgstr "Новий файл від %(sender_name)s в %(team_name)s (яку Ви відстежуєте)"
+msgstr "Користувач завантажив(-ла) новий файл у команду, яку Ви відстежуєте"
 
 #, python-format
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
@@ -169,10 +159,10 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 msgid "Show detailed steps"
-msgstr ""
+msgstr "Показати детальні кроки"
 
 msgid "Move your files to the Cloud"
-msgstr ""
+msgstr "Перемістіть свої файли в хмару"
 
 msgid "Delete"
 msgstr "Видалити"
@@ -245,49 +235,47 @@ msgid "Delete file"
 msgstr "Видалити файл"
 
 msgid "Close"
-msgstr "закривати"
+msgstr "Закрити"
 
 msgid "To move your files to the Cloud, follow these steps:"
-msgstr ""
+msgstr "Щоб перемістити свої файли в хмару, виконайте наступні дії:"
 
 msgid "Navigate to the folder you wish to move to the Cloud, or to the root folder of the Files app if you wish to move all of the files"
-msgstr ""
+msgstr "Перейдіть до папки, яку Ви хочете перемістити до Хмари, або до кореневої папки програми застосунку Файли, якщо Ви хочете перемістити всі файли"
 
-#, fuzzy
-#| msgid "Download this folder"
 msgid "Root folder"
-msgstr "Завантажити цю папку"
+msgstr "Кореневий каталог"
 
 #, python-format
 msgid "Click \"%(download_label)s\" to download the file archive"
-msgstr ""
+msgstr "Клікність\"%(download_label)s\", щоб завантажити архів файлів"
 
 msgid "Unzip the file archive to a local folder on your hard drive"
-msgstr ""
+msgstr "Розпакуйте архів файлів у локальну папку на Вашому жорсткому диску"
 
 #, python-format
 msgid "Open the Cloud folder for \"%(group_name)s\":"
-msgstr ""
+msgstr "Відкрийте папку на Хмарі для \"%(group_name)s\":"
 
 msgid "Cloud app"
-msgstr ""
+msgstr "Хмарний застосунок"
 
 msgid "Drag & drop the entire content of the unzipped folder from your local hard drive to the Cloud folder"
-msgstr ""
+msgstr "Перетягніть увесь вміст розпакованої папки з локального жорсткого диску в папку на Хмарі"
 
 #, python-format
 msgid "Your files will now upload to the Cloud and can be accessed by all members of \"%(group_name)s\". Your files will remain here in the Files app as well. If you are satisfied with how they look in the Cloud, you may delete them here."
-msgstr ""
+msgstr "Тепер ваші файли завантажуватимуться у Хмару та будуть доступними всім учасникам групи \"%(group_name)s\". Ваші файли також залишаться тут у застосунку Файли. Якщо ви задоволені тим, який вигляд вони мають у Хмарі, ви можете видалити їх тут."
 
 msgid "If you wish to access your files from multiple devices, you may want to consider moving them to the Cloud. The process is easy, and you can still keep your files here until you are satisfied with the Cloud."
-msgstr ""
+msgstr "Якщо ви хочете отримати доступ до своїх файлів із декількох пристроїв, ви можете розглянути можливість їхнього переміщення до Хмари. Цей процес є простим, і ви все ще можете зберігати свої файли тут, доки Вас не почне влаштовувати Хмара."
 
 msgid "You uploaded a file"
 msgstr "Ти завантажи(ла)в новий файл"
 
 msgctxt "This appears next to new items in the timeline, as in '<Jane> created a new item'"
 msgid "uploaded a file"
-msgstr "Завантажено новий файл"
+msgstr "завантажено файл"
 
 msgid "More"
 msgstr "Більше"
@@ -335,6 +323,12 @@ msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d файл було успішно додано."
 msgstr[1] "%(count)d файли було успішно додано."
 msgstr[2] "%(count)d файлів було успішно додано."
+
+#~ msgid "New file by %(sender_name)s"
+#~ msgstr "Новий файл від %(sender_name)s"
+
+#~ msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
+#~ msgstr "Новий файл від %(sender_name)s в %(team_name)s (яку Ви відстежуєте)"
 
 #~ msgid "File title"
 #~ msgstr "Назва файлу"
