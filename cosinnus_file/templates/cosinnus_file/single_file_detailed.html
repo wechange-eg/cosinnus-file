@@ -106,9 +106,10 @@
 		        </button> 
 		    {% endif %}
 	    
-		    {% include 'cosinnus/feedback/report_button_btn.html' with object=file %}
+			{% include 'cosinnus/common/likefollowstar/star_button_btn.html' with user=request.user object=file no_margin=True %}
+			{% include 'cosinnus/feedback/report_button_btn.html' with object=file %}
 		    
-			{% if user|has_write_access:file %}   
+			{% if user|has_write_access:file %}
 			    {% captureas label %}{% blocktrans with title=file.title %}Do you really want to delete file „{{ title }}“?{% endblocktrans %}{% endcaptureas %}
 			    {% captureas title %}{% trans "Delete file" %}{% endcaptureas %}
 			    {% captureas action %}{% group_url 'cosinnus:file:delete' group=file.group slug=file.slug%}{% add_current_params %}{% endcaptureas %}
