@@ -14,6 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 from cosinnus.forms.group import GroupKwargModelFormMixin
 from cosinnus.forms.tagged import get_form, BaseTaggableObjectForm
 from cosinnus.forms.user import UserKwargModelFormMixin
+from cosinnus.utils.validators import validate_file_infection
 
 
 logger = logging.getLogger('cosinnus')
@@ -24,6 +25,7 @@ class _FileForm(GroupKwargModelFormMixin, UserKwargModelFormMixin,
     
     optional_fields = ['title', 'file', 'note', 'url']
     
+    file = forms.FileField(validators=[validate_file_infection])
     url = forms.URLField(widget=forms.TextInput, required=False)
 
     class Meta(object):

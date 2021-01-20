@@ -524,13 +524,13 @@ def file_upload_inline(request, group):
     if not group:
         logger.error('No group found when trying to upload a file!', extra={'group_slug': group, 
             'request': request, 'path': request.path})
-        return JSONResponse({'error': 'groupnotfound'})
+        return JSONResponse({'status': 'error', 'message': _('Internal Error: Group not Found')})
     
     # do permission checking using has_write_access(request.user, group)
     if not check_group_create_objects_access(group, request.user):
         logger.error('Permission error while uploading an attached file directly!', 
              extra={'user': request.user, 'request': request, 'path': request.path, 'group_slug': group})
-        return JSONResponse({'error': 'denied'})
+        return JSONResponse({'status': 'error', 'message': _('Permission for upload denied')})
     
     # add any other required kwargs (group) and stuff correctly so the form can be saved
     post = request.POST
@@ -602,10 +602,14 @@ def file_upload_inline(request, group):
                 pill_id, pill_html = build_attachment_field_result('cosinnus_file.FileEntry', saved_file)
                 result_list.append({'text': pill_html, 'id': pill_id})
         else:
-            logger.error('Form error while uploading an attached file directly!', 
+            logger.warn('Form error while uploading an attached file directly!', 
                  extra={'form.errors': form.errors, 'user': request.user, 'request': request, 
                         'path': request.path, 'group_slug': group})
-    
+            message = _('The uploaded file was invalid.')
+            if form.forms['obj'].errors.get('file', None):
+                message = form.forms['obj'].errors.get('file', None)
+            return JSONResponse({'status': 'error', 'message': message})
+            
     if result_list:
         if on_success == 'refresh_page':
             messages.success(request, ungettext('%(count)d File was added successfully.', '%(count)d Files were added successfully.', len(result_list)) % {'count': len(result_list)})
@@ -613,5 +617,5 @@ def file_upload_inline(request, group):
         
         return JSONResponse({'status': 'ok', 'on_success': on_success, 'data': result_list})
     else:
-        return JSONResponse({'status': 'invalid'})
+        return JSONResponse({'status': 'error', 'message': _('The file you uploaded was too large or the file type was not permitted to be uploaded!')})
 
