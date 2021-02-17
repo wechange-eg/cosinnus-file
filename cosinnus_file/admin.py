@@ -4,11 +4,11 @@ from __future__ import unicode_literals
 from django.contrib import admin
 
 from cosinnus_file.models import FileEntry
-from cosinnus.admin import BaseHierarchicalTaggableAdminMixin
+from cosinnus.admin import BaseHierarchicalTaggableAdmin
 
 
-class FileEntryAdmin(BaseHierarchicalTaggableAdminMixin, admin.ModelAdmin):
-    list_display = BaseHierarchicalTaggableAdminMixin.list_display + ['sourcefilename']
-    search_fields = BaseHierarchicalTaggableAdminMixin.search_fields + ['sourcefilename']
+class FileEntryAdmin(BaseHierarchicalTaggableAdmin):
+    list_display = BaseHierarchicalTaggableAdmin.list_display + ['sourcefilename']
+    search_fields = BaseHierarchicalTaggableAdmin.search_fields + ['sourcefilename']
 
 admin.site.register(FileEntry, FileEntryAdmin)
