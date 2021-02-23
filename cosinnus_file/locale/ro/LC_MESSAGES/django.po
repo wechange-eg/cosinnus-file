@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 16:06+0200\n"
+"POT-Creation-Date: 2021-02-23 18:24+0100\n"
 "PO-Revision-Date: 2020-10-11 19:24+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -317,12 +317,24 @@ msgstr "Descărcarea a eșuat, obiectul țintă nu era un dosar!"
 msgid "Canceled the download because there seem to be no files in this folder."
 msgstr "A anulat descărcarea, deoarece se pare că nu există fișiere în acest dosar."
 
+msgid "Internal Error: Group not Found"
+msgstr ""
+
+msgid "Permission for upload denied"
+msgstr ""
+
+msgid "The uploaded file was invalid."
+msgstr ""
+
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d Fișierul a fost adăugat cu succes."
 msgstr[1] "%(count)d Fișierul a fost adăugat cu succes."
 msgstr[2] "%(count)d Fișierele au fost adăugate cu succes."
+
+msgid "The file you uploaded was too large or the file type was not permitted to be uploaded!"
+msgstr ""
 
 #~ msgid "New file by %(sender_name)s"
 #~ msgstr "Nou fișier de %(sender_name)s"

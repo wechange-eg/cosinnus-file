@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 16:06+0200\n"
+"POT-Creation-Date: 2021-02-23 18:24+0100\n"
 "PO-Revision-Date: 2020-05-03 01:16+0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -318,11 +318,23 @@ msgstr "Endirmə uğursuz oldu, hədəf obyekt qovluq deyildi!"
 msgid "Canceled the download because there seem to be no files in this folder."
 msgstr "Endirmə ləğv edildi, çünki bu qovluqda heç bir fayl mövcud deyil."
 
+msgid "Internal Error: Group not Found"
+msgstr ""
+
+msgid "Permission for upload denied"
+msgstr ""
+
+msgid "The uploaded file was invalid."
+msgstr ""
+
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d faylı uğurla əlavə edildi."
 msgstr[1] "%(count)d faylları uğurla əlavə edildi."
+
+msgid "The file you uploaded was too large or the file type was not permitted to be uploaded!"
+msgstr ""
 
 #~ msgid "New file by %(sender_name)s"
 #~ msgstr "%(sender_name)s tərəfindən yeni fayl"

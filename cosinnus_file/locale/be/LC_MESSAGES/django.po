@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 16:06+0200\n"
+"POT-Creation-Date: 2021-02-23 18:24+0100\n"
 "PO-Revision-Date: 2019-05-08 00:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -326,6 +326,15 @@ msgstr "Сцягванне немагчыма, аб'ект прызначэнн�
 msgid "Canceled the download because there seem to be no files in this folder."
 msgstr "Сцягванне адмененае, таму што ў гэтай папцы няма файлаў."
 
+msgid "Internal Error: Group not Found"
+msgstr ""
+
+msgid "Permission for upload denied"
+msgstr ""
+
+msgid "The uploaded file was invalid."
+msgstr ""
+
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
@@ -333,6 +342,9 @@ msgstr[0] "%(count)d файл паспяхова дададзены."
 msgstr[1] "%(count)d файлы паспяхова дададзеныя."
 msgstr[2] "%(count)d файлаў паспяхова дададзеныя."
 msgstr[3] ""
+
+msgid "The file you uploaded was too large or the file type was not permitted to be uploaded!"
+msgstr ""
 
 #~ msgid "New file by %(sender_name)s"
 #~ msgstr "Новы файл ад %(sender_name)s"

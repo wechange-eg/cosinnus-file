@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 16:06+0200\n"
+"POT-Creation-Date: 2021-02-23 18:24+0100\n"
 "PO-Revision-Date: 2019-09-19 22:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -320,11 +320,23 @@ msgstr "Downloaden mislukt, het object was geen map!"
 msgid "Canceled the download because there seem to be no files in this folder."
 msgstr "De download is geannuleerd omdat er geen bestanden in deze map bevinden."
 
+msgid "Internal Error: Group not Found"
+msgstr ""
+
+msgid "Permission for upload denied"
+msgstr ""
+
+msgid "The uploaded file was invalid."
+msgstr ""
+
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d Bestand is succesvol toegevoegd."
 msgstr[1] "%(count)d Bestanden zijn succesvol toegevoegd."
+
+msgid "The file you uploaded was too large or the file type was not permitted to be uploaded!"
+msgstr ""
 
 #~ msgid "New file by %(sender_name)s"
 #~ msgstr "Nieuw bestand door %(sender_name)s"

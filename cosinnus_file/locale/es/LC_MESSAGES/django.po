@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 16:06+0200\n"
+"POT-Creation-Date: 2021-02-23 18:24+0100\n"
 "PO-Revision-Date: 2020-04-22 12:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -324,11 +324,23 @@ msgstr "Error al descargar, ¡el objeto de destino no era una carpeta!"
 msgid "Canceled the download because there seem to be no files in this folder."
 msgstr "Se canceló la descarga porque parece que no hay archivos en esta carpeta."
 
+msgid "Internal Error: Group not Found"
+msgstr ""
+
+msgid "Permission for upload denied"
+msgstr ""
+
+msgid "The uploaded file was invalid."
+msgstr ""
+
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
 msgstr[0] "%(count)d Archivo se añadió correctamente."
 msgstr[1] "%(count)d Archivos se añadieron correctamente."
+
+msgid "The file you uploaded was too large or the file type was not permitted to be uploaded!"
+msgstr ""
 
 #~ msgid "New file by %(sender_name)s"
 #~ msgstr "Archivo neuvo de %(sender_name)s"
