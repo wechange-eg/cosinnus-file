@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-23 18:24+0100\n"
-"PO-Revision-Date: 2020-09-29 18:04+0100\n"
+"POT-Creation-Date: 2021-03-12 17:55+0100\n"
+"PO-Revision-Date: 2021-03-08 23:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he\n"
@@ -16,14 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.4.2\n"
 
 msgid "Files"
 msgstr "קבצים"
 
 msgctxt "the_app"
 msgid "file"
-msgstr ""
+msgstr "קבצים"
 
 msgid "A user uploaded a new file"
 msgstr "משתמש העלה קובץ חדש"
@@ -38,7 +38,7 @@ msgstr "%(sender_name)s העלו %(count)d קבצים"
 
 #, python-format
 msgid "%(sender_name)s created a new file"
-msgstr "%(sender_name)s יצר'ה קובץ חדש"
+msgstr "%(sender_name)s יצר/ה קובץ חדש"
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
@@ -230,7 +230,7 @@ msgstr "ערוך"
 
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
-msgstr "האם את'ה בטוח שברצונך למחוק את הקובץ „%(title)s“?"
+msgstr "האם את/ה בטוח שברצונך למחוק את הקובץ „%(title)s“?"
 
 msgid "Delete file"
 msgstr "מחק קובץ"
@@ -318,13 +318,13 @@ msgid "Canceled the download because there seem to be no files in this folder."
 msgstr "אין קבצים בתיקייה זו, ההורדה בוטלה."
 
 msgid "Internal Error: Group not Found"
-msgstr ""
+msgstr "שגיאה פנימית: הקבוצה לא נמצאה"
 
 msgid "Permission for upload denied"
-msgstr ""
+msgstr "ההרשאה להעלאה נדחתה"
 
 msgid "The uploaded file was invalid."
-msgstr ""
+msgstr "הקובץ שהועלה לא היה חוקי."
 
 #, python-format
 msgid "%(count)d File was added successfully."
@@ -333,4 +333,4 @@ msgstr[0] "%(count)d קובץ נוסף בהצלחה."
 msgstr[1] "%(count)d נוספו בהצלחה."
 
 msgid "The file you uploaded was too large or the file type was not permitted to be uploaded!"
-msgstr ""
+msgstr "הקובץ שהעלית היה גדול מדי או שסוג הקובץ לא הורשה לעלות!"
