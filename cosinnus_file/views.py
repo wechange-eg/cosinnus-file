@@ -262,6 +262,8 @@ class FileDownloadView(RequireReadMixin, RecordLastVisitedMixin, FilterGroupMixi
     '''
     model = FileEntry
     force_download = False
+    # allow file download in groups when files app is deactivated
+    ALLOW_VIEW_ACCESS_WHEN_GROUP_APP_DEACTIVATED = True
     
     def dispatch(self, request, *args, **kwargs):
         self.force_download = kwargs.pop('force_download', self.force_download)
