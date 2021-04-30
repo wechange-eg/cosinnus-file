@@ -8,7 +8,7 @@ from cosinnus.admin import BaseHierarchicalTaggableAdmin
 
 
 class FileEntryAdmin(BaseHierarchicalTaggableAdmin):
-    list_display = BaseHierarchicalTaggableAdmin.list_display + ['sourcefilename']
-    search_fields = BaseHierarchicalTaggableAdmin.search_fields + ['sourcefilename']
+    list_display = BaseHierarchicalTaggableAdmin.list_display + ['_sourcefilename']
+    search_fields = BaseHierarchicalTaggableAdmin.search_fields + ['_sourcefilename']
 
 admin.site.register(FileEntry, FileEntryAdmin)
