@@ -3,160 +3,160 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-14 15:23+0200\n"
-"PO-Revision-Date: 2020-05-03 01:16+0400\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: az\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Files"
-msgstr "Fayllar"
+msgstr ""
 
 msgctxt "the_app"
 msgid "file"
-msgstr "fayl"
+msgstr ""
 
 msgid "A user uploaded a new file"
-msgstr "Bir istifadəçi yeni fayl yüklədi"
+msgstr ""
 
 #, python-format
 msgid "%(sender_name)s uploaded the file %(object_name)s"
-msgstr "%(sender_name)s %(object_name)s faylını yüklədi"
+msgstr ""
 
 #, python-format
 msgid "%(sender_name)s uploaded %(count)d files"
-msgstr "%(sender_name)s %(count)d fayllarını yüklədi"
+msgstr ""
 
 #, python-format
 msgid "%(sender_name)s created a new file"
-msgstr "%(sender_name)s yeni fayl yaratdı"
+msgstr ""
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s."
-msgstr "Yeni fayl: \"%(object_name)s\" %(team_name)s komandasında yaradıldı."
+msgstr ""
 
 msgid "A user uploaded a new file in a team you are following"
-msgstr "Bir istifadəçi izlədiyiniz komandada yeni bir fayl yüklədi"
+msgstr ""
 
 #, python-format
 msgid "%(sender_name)s created a new file in %(team_name)s (which you follow)"
-msgstr "%(sender_name)s %(team_name)s komandasında (izlədiyiniz) yeni fayl yaratdı"
+msgstr ""
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was created in %(team_name)s (which you follow)."
-msgstr "Yeni fayl: \"%(object_name)s\" %(team_name)s komandasında yaradıldı."
+msgstr ""
 
 msgid "Latest Files"
-msgstr "Ən son fayllar"
+msgstr ""
 
 msgid "No files"
-msgstr "Fayl yoxdur"
+msgstr ""
 
 msgid "Pictures"
-msgstr "Şəkillər"
+msgstr ""
 
 msgid "Documents"
-msgstr "Sənədlər"
+msgstr ""
 
 msgid "Audio Files"
-msgstr "Audio fayllar"
+msgstr ""
 
 msgid "Videos"
-msgstr "Videolar"
+msgstr ""
 
 msgid "Created By"
-msgstr "Tərəfindən tərtib edilib"
+msgstr ""
 
 msgid "File Type"
-msgstr "Faylın Növü"
+msgstr ""
 
 msgid "File Name"
-msgstr "Faylın Adı"
+msgstr ""
 
 msgid "File Name (descending)"
-msgstr "Faylın Adı (azalan)"
+msgstr ""
 
 msgid "Newest Created"
-msgstr "Ən Yeni Yaradılan"
+msgstr ""
 
 msgid "Smallest Files"
-msgstr "Ən Kiçik Fayllar"
+msgstr ""
 
 msgid "Largest Files"
-msgstr "Ən Böyük Fayllar"
+msgstr ""
 
 msgid "The given URL does not seem to be valid."
-msgstr "Verilən URL etibarlı deyil."
+msgstr ""
 
 msgid "Must supply either a URL or File"
-msgstr "Ya URL ya da Fayl təmin edilməlidir"
+msgstr ""
 
 msgid "Note"
-msgstr "Qeyd"
+msgstr ""
 
 msgid "File"
-msgstr "Fayl"
+msgstr ""
 
 msgid "Is URL Link"
-msgstr "URL bağlantısıdır"
+msgstr ""
 
 msgid "URL"
-msgstr "URL"
+msgstr ""
 
 msgid "Path"
-msgstr "Yol"
+msgstr ""
 
 msgid "Uploaded by"
-msgstr "Tərəfindən yükləndi"
+msgstr ""
 
 msgid "Uploaded on"
-msgstr "Yükləndi"
+msgstr ""
 
 msgid "No files selected."
-msgstr "Fayl seçilməyib."
+msgstr ""
 
 msgctxt "special_folder_type"
 msgid "Attachments"
-msgstr "Qoşmalar"
+msgstr ""
 
 msgid "There was an error in one of the fields you entered. Please correct it before saving!"
-msgstr "Girdiyiniz xanalardan birində səhv oldu. Xahiş edirəm yaddaşda saxlamazdan əvvəl düzəldin!"
+msgstr ""
 
 msgid "The URL you have entered does not seem to be valid!"
-msgstr "Daxil etdiyiniz URL etibarlı deyil!"
+msgstr ""
 
 msgid "URL Link"
-msgstr "URL Linki"
+msgstr ""
 
 msgid "Paste or type the link's URL here"
-msgstr "Buraya linkin URL-sini yapışdırın və ya yazın"
+msgstr ""
 
 msgid "Title"
-msgstr "Titul"
+msgstr ""
 
 msgid "Description"
-msgstr "Təsvir"
+msgstr ""
 
 msgid "Preview"
-msgstr "İlkin baxış"
+msgstr ""
 
 msgid "Original filename"
-msgstr "Orijinal fayl adı"
+msgstr ""
 
 msgid "Save"
-msgstr "Yaddaşda saxla"
+msgstr ""
 
 msgid "Cancel"
-msgstr "İmtina etmək"
+msgstr ""
 
 msgid "Show detailed steps"
 msgstr ""
@@ -165,22 +165,22 @@ msgid "Move your files to the Cloud"
 msgstr ""
 
 msgid "Delete"
-msgstr "Silmək"
+msgstr ""
 
 msgid "Move"
-msgstr "Köçürün"
+msgstr ""
 
 msgid "Download"
-msgstr "Endirin"
+msgstr ""
 
 msgid "Download this folder"
-msgstr "Bu qovluğu endirin"
+msgstr ""
 
 msgid "Add URL link"
-msgstr "URL linkini əlavə edin"
+msgstr ""
 
 msgid "No files have been uploaded yet."
-msgstr "Hələ heç bir fayl yüklənməyib."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -196,46 +196,35 @@ msgid ""
 "\n"
 "Your %(site_name)s Team."
 msgstr ""
-"Salam %(receiver_name)s,\n"
-"\n"
-"%(sender_name)s tərəfindən yeni fayl \"%(object_name)s\" in  %(team_name)s komandasına yükləndi. \n"
-"\n"
-"Onu bu linki izləyərək tapa bilərsiniz: %(object_url)s\n"
-"\n"
-"\n"
-"\n"
-"(Bildiriş seçimlərinizi düzəltmək üçün bu linki izləyin: %(notification_settings_url)s )\n"
-"\n"
-"Sizin %(site_name)s Komandası."
 
 #, python-format
 msgid "A new file: \"%(object_name)s\" was uploaded in %(team_name)s."
-msgstr "%(team_name)s komandasına yeni fayl: \"%(object_name)s\" yükləndi."
+msgstr ""
 
 msgid "Move to another Folder"
-msgstr "Başqa qovluğa köçürün"
+msgstr ""
 
 msgid "Link to this Image"
-msgstr "Bu Şəkil ilə əlaqələndirin"
+msgstr ""
 
 msgid "by"
-msgstr "tərəfindən"
+msgstr ""
 
 msgid "Created"
-msgstr "Yaradıldı"
+msgstr ""
 
 msgid "Edit"
-msgstr "Redaktə edin"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to delete file „%(title)s“?"
-msgstr "Siz həqiqətən də „%(title)s“ faylını silmək istəyirsiniz?"
+msgstr ""
 
 msgid "Delete file"
-msgstr "Faylı silin"
+msgstr ""
 
 msgid "Close"
-msgstr "Bağlayın"
+msgstr ""
 
 msgid "To move your files to the Cloud, follow these steps:"
 msgstr ""
@@ -243,10 +232,8 @@ msgstr ""
 msgid "Navigate to the folder you wish to move to the Cloud, or to the root folder of the Files app if you wish to move all of the files"
 msgstr ""
 
-#, fuzzy
-#| msgid "Download this folder"
 msgid "Root folder"
-msgstr "Bu qovluğu endirin"
+msgstr ""
 
 #, python-format
 msgid "Click \"%(download_label)s\" to download the file archive"
@@ -273,50 +260,50 @@ msgid "If you wish to access your files from multiple devices, you may want to c
 msgstr ""
 
 msgid "You uploaded a file"
-msgstr "Siz fayl yüklədiniz"
+msgstr ""
 
 msgctxt "This appears next to new items in the timeline, as in '<Jane> created a new item'"
 msgid "uploaded a file"
-msgstr "bir fayl yüklədi"
+msgstr ""
 
 msgid "More"
-msgstr "Daha çox"
+msgstr ""
 
 msgid "Latest files"
-msgstr "Ən son fayllar"
+msgstr ""
 
 msgid "There are no files  yet"
-msgstr "Hələlik sənədlər  yoxdur"
+msgstr ""
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
-msgstr "\"%(title)s\" qovluğu uğurla yaradıldı."
+msgstr ""
 
 msgid "File does not exist or you are not allowed to delete it."
-msgstr "Fayl mövcud deyil və ya silmək icazəniz yoxdur."
+msgstr ""
 
 #, python-format
 msgid "A problem occurred during export. The following file is missing: %(filename)s."
 msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
-msgstr[0] "İxrac zamanı bir problem meydana gəldi. Aşağıdakı fayl çatışmır: %(filename)s."
-msgstr[1] "İxrac zamanı bir problem meydana gəldi. Aşağıdakı fayllar çatışmır: %(filename)s."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Invalid request."
-msgstr "Etibarsız tələb."
+msgstr ""
 
 #, python-format
 msgid "File \"%(title)s\" was updated successfully."
-msgstr "\"%(title)s\" faylı uğurla yeniləndi."
+msgstr ""
 
 #, python-format
 msgid "File \"%(title)s\" could not be updated."
-msgstr "\"%(title)s\" faylı yenilənə bilmədi."
+msgstr ""
 
 msgid "Downloading failed, the target object was not a folder!"
-msgstr "Endirmə uğursuz oldu, hədəf obyekt qovluq deyildi!"
+msgstr ""
 
 msgid "Canceled the download because there seem to be no files in this folder."
-msgstr "Endirmə ləğv edildi, çünki bu qovluqda heç bir fayl mövcud deyil."
+msgstr ""
 
 msgid "Internal Error: Group not Found"
 msgstr ""
@@ -330,14 +317,8 @@ msgstr ""
 #, python-format
 msgid "%(count)d File was added successfully."
 msgid_plural "%(count)d Files were added successfully."
-msgstr[0] "%(count)d faylı uğurla əlavə edildi."
-msgstr[1] "%(count)d faylları uğurla əlavə edildi."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "The file you uploaded was too large or the file type was not permitted to be uploaded!"
 msgstr ""
-
-#~ msgid "New file by %(sender_name)s"
-#~ msgstr "%(sender_name)s tərəfindən yeni fayl"
-
-#~ msgid "New file by %(sender_name)s in %(team_name)s (which you follow)"
-#~ msgstr "%(team_name)s komandasında (izlədiyiniz) %(sender_name)s tərəfindən yeni fayl"
