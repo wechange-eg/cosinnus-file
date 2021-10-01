@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-14 15:23+0200\n"
-"PO-Revision-Date: 2020-05-18 13:40+0100\n"
+"POT-Creation-Date: 2021-10-01 15:20+0200\n"
+"PO-Revision-Date: 2021-10-01 15:27+0200\n"
 "Last-Translator: Markus Holtermann <info@markusholtermann.eu>\n"
 "Language-Team: German <>\n"
 "Language: de\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 3.0\n"
 
 msgid "Files"
 msgstr "Dateien"
@@ -285,7 +285,7 @@ msgid "Latest files"
 msgstr "Neueste Dateien"
 
 msgid "There are no files  yet"
-msgstr "Es wurden noch keine Dateien hochgeladen."
+msgstr "Es wurden noch keine Dateien hochgeladen"
 
 #, python-format
 msgid "Folder \"%(title)s\" was created successfully."
@@ -297,8 +297,8 @@ msgstr "Entweder existiert diese Datei nicht oder Ihnen fehlen die Rechte um die
 #, python-format
 msgid "A problem occurred during export. The following file is missing: %(filename)s."
 msgid_plural "A problem occurred during export. The following files are missing: %(filename)s."
-msgstr[0] "Beim Exportieren ist ein Fehler aufgetreten. Die folgende Datei existiert nicht: %(filename)s"
-msgstr[1] "Beim Exportieren ist ein Fehler aufgetreten. Die folgenden Dateien existieren nicht: %(filename)s"
+msgstr[0] "Beim Exportieren ist ein Fehler aufgetreten. Die folgende Datei existiert nicht: %(filename)s."
+msgstr[1] "Beim Exportieren ist ein Fehler aufgetreten. Die folgenden Dateien existieren nicht: %(filename)s."
 
 msgid "Invalid request."
 msgstr "Ungültiger Seitenaufruf."
@@ -312,19 +312,19 @@ msgid "File \"%(title)s\" could not be updated."
 msgstr "Datei \"%(title)s\" konnte nicht geändert werden."
 
 msgid "Downloading failed, the target object was not a folder!"
-msgstr "Der Download konnte nicht durchgeführt werden, weil das Zielobjekt kein Ordner ist."
+msgstr "Der Download konnte nicht durchgeführt werden, weil das Zielobjekt kein Ordner ist!"
 
 msgid "Canceled the download because there seem to be no files in this folder."
 msgstr "Der Downloadvorgang wurde abgebrochen, weil es in diesem Ordner keine Dateien gibt."
 
 msgid "Internal Error: Group not Found"
-msgstr ""
+msgstr "Interner Fehler: Gruppe nicht gefunden"
 
 msgid "Permission for upload denied"
-msgstr ""
+msgstr "Zugriff fürs Upload verweigert"
 
 msgid "The uploaded file was invalid."
-msgstr ""
+msgstr "Die hochgeladene Datei war ungültig."
 
 #, python-format
 msgid "%(count)d File was added successfully."
@@ -333,7 +333,7 @@ msgstr[0] "%(count)d Datei wurde erfolgreich hochgeladen."
 msgstr[1] "%(count)d Dateien wurden erfolgreich hochgeladen."
 
 msgid "The file you uploaded was too large or the file type was not permitted to be uploaded!"
-msgstr ""
+msgstr "Die von Ihnen hochgeladene Datei war zu groß und der Dateityp war ungültig fürs Upload!"
 
 #~ msgid "New file by %(sender_name)s"
 #~ msgstr "Neue Datei von %(sender_name)s"
