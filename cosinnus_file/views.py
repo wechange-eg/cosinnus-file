@@ -72,7 +72,8 @@ class FileFormMixin(FilterGroupMixin, GroupFormKwargsMixin,
         return context
     
     def form_valid(self, form):
-        form.instance.creator = self.request.user
+        if form.instance.pk is None:
+            form.instance.creator = self.request.user
         # save/update filesize
         if form.instance.file:
             form.instance._filesize = form.instance.file.file.size
